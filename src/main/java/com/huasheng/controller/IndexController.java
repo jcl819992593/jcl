@@ -18,10 +18,11 @@ public class IndexController {
     public String nnn(){
         System.out.println("=========================asdasdasds======================");
 
-
         Person person = personService.getPerson();
         System.out.println(person);
         return "index";
+
+
     }
 
 }
