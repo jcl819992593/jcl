@@ -17,7 +17,7 @@ public class IndexController {
     @RequestMapping("/")
     public String nnn(){
         System.out.println("=========================asdasdasds======================");
-
+        System.out.println("使用GitLab");
         Person person = personService.getPerson();
         System.out.println(person);
         return "index";
