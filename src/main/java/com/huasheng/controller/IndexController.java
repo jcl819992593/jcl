@@ -14,10 +14,11 @@ public class IndexController {
     @Autowired
     PersonService personService;
 
-
     @RequestMapping("/")
     public String nnn(){
         System.out.println("=========================asdasdasds======================");
+
+
         Person person = personService.getPerson();
         System.out.println(person);
         return "index";
