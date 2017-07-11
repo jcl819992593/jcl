@@ -22,10 +22,6 @@ public class IndexController {
         System.out.println(person);
         return "index";
 
-
-
-
-
     }
 
 }
