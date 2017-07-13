@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.annotation.Resource;
+
 /**
  * Created by admin on 2017/7/10.
  */
@@ -13,13 +15,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class IndexController {
     @Autowired
     PersonService personService;
-
     @RequestMapping("/")
     public String nnn(){
         System.out.println("=========================asdasdasds======================");
-        System.out.println("使用GitLab");
-        Person person = personService.getPerson();
-        System.out.println(person);
+        personService.getByMap();
+        System.out.println("service方法被调用了");
         return "index";
 
     }

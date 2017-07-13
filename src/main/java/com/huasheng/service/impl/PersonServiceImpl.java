@@ -6,6 +6,9 @@ import com.huasheng.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
+import java.util.List;
+
 
 /**
  * Created by admin on 2017/7/11.
@@ -13,11 +16,22 @@ import org.springframework.stereotype.Service;
 @Service
 public class PersonServiceImpl implements PersonService {
     @Autowired
-     private PersonOpera personOpera;
+    private PersonOpera personOpera;
 
     @Override
-    public Person getPerson() {
-        Person person = personOpera.getPerson();
-        return person;
+    public void getByMap() {
+        HashMap<String, Object> maps = new HashMap<String, Object>();
+        maps.put("uId",1);
+        maps.put("name","zhangsan");
+        Person person = personOpera.getByParam(maps);
+        System.out.println(person);
+    }
+
+    @Override
+    public void getPerson() {
+        List<Person> persons = personOpera.getPerson();
+        for (Person person : persons) {
+            System.out.println(person);
+        }
     }
 }
