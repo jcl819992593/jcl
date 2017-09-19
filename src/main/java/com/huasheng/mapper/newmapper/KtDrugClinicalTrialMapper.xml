@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huasheng.dao.newdao.KtDrugClinicalTrialDao" >
+  <resultMap id="BaseResultMap" type="com.huasheng.pojo.newpojo.KtDrugClinicalTrial" >
+    <id column="drug_key" property="drugKey" jdbcType="VARCHAR" />
+    <id column="clinical_trial_key" property="clinicalTrialKey" jdbcType="VARCHAR" />
+    <result column="drug_id" property="drugId" jdbcType="INTEGER" />
+    <result column="clinical_trial_id" property="clinicalTrialId" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    drug_key, clinical_trial_key, drug_id, clinical_trial_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.huasheng.pojo.newpojo.KtDrugClinicalTrial" >
+    select 
+    <include refid="Base_Column_List" />
+    from kt_drug_clinical_trial
+    where clinical_trial_key = #{clinicalTrialKey,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.huasheng.pojo.newpojo.KtDrugClinicalTrial" >
+    delete from kt_drug_clinical_trial
+    where drug_key = #{drugKey,jdbcType=VARCHAR}
+      and clinical_trial_key = #{clinicalTrialKey,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.huasheng.pojo.newpojo.KtDrugClinicalTrial" >
+    insert into kt_drug_clinical_trial (drug_key, clinical_trial_key, drug_id, 
+      clinical_trial_id)
+    values (#{drugKey,jdbcType=VARCHAR}, #{clinicalTrialKey,jdbcType=VARCHAR}, #{drugId,jdbcType=INTEGER}, 
+      #{clinicalTrialId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.huasheng.pojo.newpojo.KtDrugClinicalTrial" >
+    insert into kt_drug_clinical_trial
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="drugKey != null" >
+        drug_key,
+      </if>
+      <if test="clinicalTrialKey != null" >
+        clinical_trial_key,
+      </if>
+      <if test="drugId != null" >
+        drug_id,
+      </if>
+      <if test="clinicalTrialId != null" >
+        clinical_trial_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="drugKey != null" >
+        #{drugKey,jdbcType=VARCHAR},
+      </if>
+      <if test="clinicalTrialKey != null" >
+        #{clinicalTrialKey,jdbcType=VARCHAR},
+      </if>
+      <if test="drugId != null" >
+        #{drugId,jdbcType=INTEGER},
+      </if>
+      <if test="clinicalTrialId != null" >
+        #{clinicalTrialId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huasheng.pojo.newpojo.KtDrugClinicalTrial" >
+    update kt_drug_clinical_trial
+    <set >
+      <if test="drugId != null" >
+        drug_id = #{drugId,jdbcType=INTEGER},
+      </if>
+      <if test="clinicalTrialId != null" >
+        clinical_trial_id = #{clinicalTrialId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where drug_key = #{drugKey,jdbcType=VARCHAR}
+      and clinical_trial_key = #{clinicalTrialKey,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huasheng.pojo.newpojo.KtDrugClinicalTrial" >
+    update kt_drug_clinical_trial
+    set drug_id = #{drugId,jdbcType=INTEGER},
+      clinical_trial_id = #{clinicalTrialId,jdbcType=VARCHAR},
+    drug_key = #{drugKey,jdbcType=VARCHAR}
+    where clinical_trial_key = #{clinicalTrialKey,jdbcType=VARCHAR}
+  </update>
+
+  <select id="getDrugClinicalTrialByClinicalTrialKey" resultMap="BaseResultMap" parameterType="com.huasheng.pojo.newpojo.KtDrugClinicalTrial" >
+    select
+    <include refid="Base_Column_List" />
+    from kt_drug_clinical_trial
+    where
+     clinical_trial_key = #{clinicalTrialKey,jdbcType=VARCHAR}
+  </select>
+</mapper>

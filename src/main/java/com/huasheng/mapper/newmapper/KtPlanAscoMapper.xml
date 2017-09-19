@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huasheng.dao.newdao.KtPlanAscoDao" >
+  <resultMap id="BaseResultMap" type="com.huasheng.pojo.newpojo.KtPlanAsco" >
+    <id column="plan_asco_key" property="planAscoKey" jdbcType="VARCHAR" />
+    <result column="medication_plan_key" property="medicationPlanKey" jdbcType="VARCHAR" />
+    <result column="medication_plan_id" property="medicationPlanId" jdbcType="INTEGER" />
+    <result column="the_category" property="theCategory" jdbcType="INTEGER" />
+    <result column="cite_message" property="citeMessage" jdbcType="VARCHAR" />
+    <result column="the_url" property="theUrl" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    plan_asco_key, medication_plan_key, medication_plan_id, the_category, cite_message, 
+    the_url
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from kt_plan_asco
+    where plan_asco_key = #{planAscoKey,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from kt_plan_asco
+    where plan_asco_key = #{planAscoKey,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.huasheng.pojo.newpojo.KtPlanAsco" >
+    insert into kt_plan_asco (plan_asco_key, medication_plan_key, medication_plan_id, 
+      the_category, cite_message, the_url
+      )
+    values (#{planAscoKey,jdbcType=VARCHAR}, #{medicationPlanKey,jdbcType=VARCHAR}, #{medicationPlanId,jdbcType=INTEGER},
+      #{theCategory,jdbcType=INTEGER}, #{citeMessage,jdbcType=VARCHAR}, #{theUrl,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.huasheng.pojo.newpojo.KtPlanAsco" >
+    insert into kt_plan_asco
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="planAscoKey != null" >
+        plan_asco_key,
+      </if>
+      <if test="medicationPlanKey != null" >
+        medication_plan_key,
+      </if>
+      <if test="medicationPlanId != null" >
+        medication_plan_id,
+      </if>
+      <if test="theCategory != null" >
+        the_category,
+      </if>
+      <if test="citeMessage != null" >
+        cite_message,
+      </if>
+      <if test="theUrl != null" >
+        the_url,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="planAscoKey != null" >
+        #{planAscoKey,jdbcType=VARCHAR},
+      </if>
+      <if test="medicationPlanKey != null" >
+        #{medicationPlanKey,jdbcType=VARCHAR},
+      </if>
+      <if test="medicationPlanId != null" >
+        #{medicationPlanId,jdbcType=INTEGER},
+      </if>
+      <if test="theCategory != null" >
+        #{theCategory,jdbcType=INTEGER},
+      </if>
+      <if test="citeMessage != null" >
+        #{citeMessage,jdbcType=VARCHAR},
+      </if>
+      <if test="theUrl != null" >
+        #{theUrl,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huasheng.pojo.newpojo.KtPlanAsco" >
+    update kt_plan_asco
+    <set >
+      <if test="medicationPlanKey != null" >
+        medication_plan_key = #{medicationPlanKey,jdbcType=VARCHAR},
+      </if>
+      <if test="medicationPlanId != null" >
+        medication_plan_id = #{medicationPlanId,jdbcType=INTEGER},
+      </if>
+      <if test="theCategory != null" >
+        the_category = #{theCategory,jdbcType=INTEGER},
+      </if>
+      <if test="citeMessage != null" >
+        cite_message = #{citeMessage,jdbcType=VARCHAR},
+      </if>
+      <if test="theUrl != null" >
+        the_url = #{theUrl,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where plan_asco_key = #{planAscoKey,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huasheng.pojo.newpojo.KtPlanAsco" >
+    update kt_plan_asco
+    set medication_plan_key = #{medicationPlanKey,jdbcType=VARCHAR},
+      medication_plan_id = #{medicationPlanId,jdbcType=INTEGER},
+      the_category = #{theCategory,jdbcType=INTEGER},
+      cite_message = #{citeMessage,jdbcType=VARCHAR},
+      the_url = #{theUrl,jdbcType=VARCHAR}
+    where plan_asco_key = #{planAscoKey,jdbcType=VARCHAR}
+  </update>
+
+  <select id="getPlanAscoByKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from kt_plan_asco
+    where medication_plan_key = #{medicationPlanKey,jdbcType=VARCHAR}
+  </select>
+</mapper>

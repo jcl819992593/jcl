@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huasheng.dao.newdao.KtDocumentCategoryDao" >
+  <resultMap id="BaseResultMap" type="com.huasheng.pojo.newpojo.KtDocumentCategory" >
+    <id column="item_key" property="itemKey" jdbcType="VARCHAR" />
+    <id column="document_key" property="documentKey" jdbcType="CHAR" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="com.huasheng.pojo.newpojo.KtDocumentCategory" >
+    delete from kt_document_category
+    where item_key = #{itemKey,jdbcType=VARCHAR}
+      and document_key = #{documentKey,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.huasheng.pojo.newpojo.KtDocumentCategory" >
+    insert into kt_document_category (item_key, document_key)
+    values (#{itemKey,jdbcType=VARCHAR}, #{documentKey,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.huasheng.pojo.newpojo.KtDocumentCategory" >
+    insert into kt_document_category
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="itemKey != null" >
+        item_key,
+      </if>
+      <if test="documentKey != null" >
+        document_key,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="itemKey != null" >
+        #{itemKey,jdbcType=VARCHAR},
+      </if>
+      <if test="documentKey != null" >
+        #{documentKey,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <delete id="deleteByDocumentKey" parameterType="java.lang.String" >
+    delete from kt_document_category
+    where  document_key = #{documentKey,jdbcType=CHAR}
+  </delete>
+  <select id="selectByDocumentKey" resultType="java.util.Map" parameterType="java.lang.String">
+    SELECT kdc.document_key documentKey,kdc.item_key itemKey,kddi.item_name itemName
+    FROM kt_document_category kdc
+    LEFT JOIN kt_data_dictionary_items kddi ON kdc.item_key=kddi.item_key
+    WHERE kdc.document_key=#{documentKey,jdbcType=CHAR}
+  </select>
+</mapper>

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huasheng.dao.newdao.KtDrugInternationalBrandDao" >
+  <resultMap id="BaseResultMap" type="com.huasheng.pojo.newpojo.KtDrugInternationalBrand" >
+    <id column="international_brand_key" property="internationalBrandKey" jdbcType="VARCHAR" />
+    <result column="drug_key" property="drugKey" jdbcType="VARCHAR" />
+    <result column="drug_id" property="drugId" jdbcType="INTEGER" />
+    <result column="international_brand" property="internationalBrand" jdbcType="VARCHAR" />
+    <result column="brand_company" property="brandCompany" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    international_brand_key, drug_key, drug_id, international_brand, brand_company
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from kt_drug_international_brand
+    where international_brand_key = #{internationalBrandKey,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from kt_drug_international_brand
+    where international_brand_key = #{internationalBrandKey,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.huasheng.pojo.newpojo.KtDrugInternationalBrand" >
+    insert into kt_drug_international_brand (international_brand_key, drug_key, drug_id, 
+      international_brand, brand_company)
+    values (#{internationalBrandKey,jdbcType=VARCHAR}, #{drugKey,jdbcType=VARCHAR}, #{drugId,jdbcType=INTEGER}, 
+      #{internationalBrand,jdbcType=VARCHAR}, #{brandCompany,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.huasheng.pojo.newpojo.KtDrugInternationalBrand" >
+    insert into kt_drug_international_brand
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="internationalBrandKey != null" >
+        international_brand_key,
+      </if>
+      <if test="drugKey != null" >
+        drug_key,
+      </if>
+      <if test="drugId != null" >
+        drug_id,
+      </if>
+      <if test="internationalBrand != null" >
+        international_brand,
+      </if>
+      <if test="brandCompany != null" >
+        brand_company,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="internationalBrandKey != null" >
+        #{internationalBrandKey,jdbcType=VARCHAR},
+      </if>
+      <if test="drugKey != null" >
+        #{drugKey,jdbcType=VARCHAR},
+      </if>
+      <if test="drugId != null" >
+        #{drugId,jdbcType=INTEGER},
+      </if>
+      <if test="internationalBrand != null" >
+        #{internationalBrand,jdbcType=VARCHAR},
+      </if>
+      <if test="brandCompany != null" >
+        #{brandCompany,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huasheng.pojo.newpojo.KtDrugInternationalBrand" >
+    update kt_drug_international_brand
+    <set >
+      <if test="drugKey != null" >
+        drug_key = #{drugKey,jdbcType=VARCHAR},
+      </if>
+      <if test="drugId != null" >
+        drug_id = #{drugId,jdbcType=INTEGER},
+      </if>
+      <if test="internationalBrand != null" >
+        international_brand = #{internationalBrand,jdbcType=VARCHAR},
+      </if>
+      <if test="brandCompany != null" >
+        brand_company = #{brandCompany,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where international_brand_key = #{internationalBrandKey,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huasheng.pojo.newpojo.KtDrugInternationalBrand" >
+    update kt_drug_international_brand
+    set drug_key = #{drugKey,jdbcType=VARCHAR},
+      drug_id = #{drugId,jdbcType=INTEGER},
+      international_brand = #{internationalBrand,jdbcType=VARCHAR},
+      brand_company = #{brandCompany,jdbcType=VARCHAR}
+    where international_brand_key = #{internationalBrandKey,jdbcType=VARCHAR}
+  </update>
+  <!--批量插入商品名-->
+  <insert id="addKtDrugInternationalBrandMore" parameterType="List">
+    INSERT INTO kt_drug_international_brand(international_brand_key, drug_key, drug_id,international_brand,brand_company) VALUES
+    <foreach collection="list" item="item" index="index" separator=",">
+      (#{item.internationalBrandKey}, #{item.drugKey}, #{item.drugId},#{item.internationalBrand},#{item.brandCompany})
+    </foreach>
+  </insert>
+  <!--根据drugKey查询商品名-->
+  <select id="selectByDrugKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from kt_drug_international_brand
+    where drug_key = #{drugKey,jdbcType=VARCHAR}
+    ORDER BY
+    international_brand_key ASC
+  </select>
+
+  <delete id="deleteByDrugKey" parameterType="java.lang.String" >
+    delete from kt_drug_international_brand
+    where drug_key = #{drugKey,jdbcType=VARCHAR}
+  </delete>
+</mapper>

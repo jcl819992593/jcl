@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huasheng.dao.newdao.KtVariantTumorTypeDao" >
+  <resultMap id="BaseResultMap" type="com.huasheng.pojo.newpojo.KtVariantTumorType" >
+    <id column="type_key" property="typeKey" jdbcType="VARCHAR" />
+    <result column="variant_key" property="variantKey" jdbcType="VARCHAR" />
+    <result column="variant_id" property="variantId" jdbcType="INTEGER" />
+    <result column="site1" property="site1" jdbcType="VARCHAR" />
+    <result column="site2" property="site2" jdbcType="VARCHAR" />
+    <result column="site3" property="site3" jdbcType="VARCHAR" />
+    <result column="site4" property="site4" jdbcType="VARCHAR" />
+    <result column="hist1" property="hist1" jdbcType="VARCHAR" />
+    <result column="hist2" property="hist2" jdbcType="VARCHAR" />
+    <result column="hist3" property="hist3" jdbcType="VARCHAR" />
+    <result column="hist4" property="hist4" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    type_key, variant_key, variant_id, site1, site2, site3, site4, hist1, hist2, hist3, 
+    hist4
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from kt_variant_tumor_type
+    where type_key = #{typeKey,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from kt_variant_tumor_type
+    where type_key = #{typeKey,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.huasheng.pojo.newpojo.KtVariantTumorType" >
+    insert into kt_variant_tumor_type (type_key, variant_key, variant_id, 
+      site1, site2, site3, 
+      site4, hist1, hist2, 
+      hist3, hist4)
+    values (#{typeKey,jdbcType=VARCHAR}, #{variantKey,jdbcType=VARCHAR}, #{variantId,jdbcType=INTEGER}, 
+      #{site1,jdbcType=VARCHAR}, #{site2,jdbcType=VARCHAR}, #{site3,jdbcType=VARCHAR}, 
+      #{site4,jdbcType=VARCHAR}, #{hist1,jdbcType=VARCHAR}, #{hist2,jdbcType=VARCHAR}, 
+      #{hist3,jdbcType=VARCHAR}, #{hist4,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.huasheng.pojo.newpojo.KtVariantTumorType" >
+    insert into kt_variant_tumor_type
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="typeKey != null" >
+        type_key,
+      </if>
+      <if test="variantKey != null" >
+        variant_key,
+      </if>
+      <if test="variantId != null" >
+        variant_id,
+      </if>
+      <if test="site1 != null" >
+        site1,
+      </if>
+      <if test="site2 != null" >
+        site2,
+      </if>
+      <if test="site3 != null" >
+        site3,
+      </if>
+      <if test="site4 != null" >
+        site4,
+      </if>
+      <if test="hist1 != null" >
+        hist1,
+      </if>
+      <if test="hist2 != null" >
+        hist2,
+      </if>
+      <if test="hist3 != null" >
+        hist3,
+      </if>
+      <if test="hist4 != null" >
+        hist4,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="typeKey != null" >
+        #{typeKey,jdbcType=VARCHAR},
+      </if>
+      <if test="variantKey != null" >
+        #{variantKey,jdbcType=VARCHAR},
+      </if>
+      <if test="variantId != null" >
+        #{variantId,jdbcType=INTEGER},
+      </if>
+      <if test="site1 != null" >
+        #{site1,jdbcType=VARCHAR},
+      </if>
+      <if test="site2 != null" >
+        #{site2,jdbcType=VARCHAR},
+      </if>
+      <if test="site3 != null" >
+        #{site3,jdbcType=VARCHAR},
+      </if>
+      <if test="site4 != null" >
+        #{site4,jdbcType=VARCHAR},
+      </if>
+      <if test="hist1 != null" >
+        #{hist1,jdbcType=VARCHAR},
+      </if>
+      <if test="hist2 != null" >
+        #{hist2,jdbcType=VARCHAR},
+      </if>
+      <if test="hist3 != null" >
+        #{hist3,jdbcType=VARCHAR},
+      </if>
+      <if test="hist4 != null" >
+        #{hist4,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huasheng.pojo.newpojo.KtVariantTumorType" >
+    update kt_variant_tumor_type
+    <set >
+      <if test="variantKey != null" >
+        variant_key = #{variantKey,jdbcType=VARCHAR},
+      </if>
+      <if test="variantId != null" >
+        variant_id = #{variantId,jdbcType=INTEGER},
+      </if>
+      <if test="site1 != null" >
+        site1 = #{site1,jdbcType=VARCHAR},
+      </if>
+      <if test="site2 != null" >
+        site2 = #{site2,jdbcType=VARCHAR},
+      </if>
+      <if test="site3 != null" >
+        site3 = #{site3,jdbcType=VARCHAR},
+      </if>
+      <if test="site4 != null" >
+        site4 = #{site4,jdbcType=VARCHAR},
+      </if>
+      <if test="hist1 != null" >
+        hist1 = #{hist1,jdbcType=VARCHAR},
+      </if>
+      <if test="hist2 != null" >
+        hist2 = #{hist2,jdbcType=VARCHAR},
+      </if>
+      <if test="hist3 != null" >
+        hist3 = #{hist3,jdbcType=VARCHAR},
+      </if>
+      <if test="hist4 != null" >
+        hist4 = #{hist4,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where type_key = #{typeKey,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huasheng.pojo.newpojo.KtVariantTumorType" >
+    update kt_variant_tumor_type
+    set variant_key = #{variantKey,jdbcType=VARCHAR},
+      variant_id = #{variantId,jdbcType=INTEGER},
+      site1 = #{site1,jdbcType=VARCHAR},
+      site2 = #{site2,jdbcType=VARCHAR},
+      site3 = #{site3,jdbcType=VARCHAR},
+      site4 = #{site4,jdbcType=VARCHAR},
+      hist1 = #{hist1,jdbcType=VARCHAR},
+      hist2 = #{hist2,jdbcType=VARCHAR},
+      hist3 = #{hist3,jdbcType=VARCHAR},
+      hist4 = #{hist4,jdbcType=VARCHAR}
+    where type_key = #{typeKey,jdbcType=VARCHAR}
+  </update>
+  <select id="getVariantTumorType" parameterType="String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from kt_variant_tumor_type
+    where variant_key = #{variantKey,jdbcType=VARCHAR}
+  </select>
+  <insert id="insertMore" parameterType="List">
+     insert into kt_variant_tumor_type (type_key, variant_key, variant_id,
+      site1, site2, site3,
+      site4, hist1, hist2,
+      hist3, hist4)
+    values
+    <foreach collection="list" item="item" index="index" separator=",">
+    (#{item.typeKey,jdbcType=VARCHAR}, #{item.variantKey,jdbcType=VARCHAR}, #{item.variantId,jdbcType=INTEGER},
+      #{item.site1,jdbcType=VARCHAR}, #{item.site2,jdbcType=VARCHAR}, #{item.site3,jdbcType=VARCHAR},
+      #{item.site4,jdbcType=VARCHAR}, #{item.hist1,jdbcType=VARCHAR}, #{item.hist2,jdbcType=VARCHAR},
+      #{item.hist3,jdbcType=VARCHAR}, #{item.hist4,jdbcType=VARCHAR})
+    </foreach>
+  </insert>
+
+  <delete id="deleteByVariantKey" parameterType="String">
+    DELETE FROM kt_variant_tumor_type WHERE variant_key = #{variantKey,jdbcType=VARCHAR}
+  </delete>
+</mapper>

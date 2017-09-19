@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huasheng.dao.newdao.KtCancerGuideDao" >
+  <resultMap id="BaseResultMap" type="com.huasheng.pojo.newpojo.KtCancerGuide" >
+    <id column="cancer_guide_key" property="cancerGuideKey" jdbcType="VARCHAR" />
+    <result column="cancer_key" property="cancerKey" jdbcType="VARCHAR" />
+    <result column="doid" property="doid" jdbcType="INTEGER" />
+    <result column="domestic_guideline" property="domesticGuideline" jdbcType="VARCHAR" />
+    <result column="foreign_guideline" property="foreignGuideline" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    cancer_guide_key, cancer_key, doid, domestic_guideline, foreign_guideline
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from kt_cancer_guide
+    where cancer_guide_key = #{cancerGuideKey,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from kt_cancer_guide
+    where cancer_guide_key = #{cancerGuideKey,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.huasheng.pojo.newpojo.KtCancerGuide" >
+    insert into kt_cancer_guide (cancer_guide_key, cancer_key, doid,
+      domestic_guideline, foreign_guideline)
+    values (#{cancerGuideKey,jdbcType=VARCHAR}, #{cancerKey,jdbcType=VARCHAR}, #{doid,jdbcType=INTEGER},
+      #{domesticGuideline,jdbcType=VARCHAR}, #{foreignGuideline,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.huasheng.pojo.newpojo.KtCancerGuide" >
+    insert into kt_cancer_guide
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="cancerGuideKey != null" >
+        cancer_guide_key,
+      </if>
+      <if test="cancerKey != null" >
+        cancer_key,
+      </if>
+      <if test="doid != null" >
+        doid,
+      </if>
+      <if test="domesticGuideline != null" >
+        domestic_guideline,
+      </if>
+      <if test="foreignGuideline != null" >
+        foreign_guideline,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="cancerGuideKey != null" >
+        #{cancerGuideKey,jdbcType=VARCHAR},
+      </if>
+      <if test="cancerKey != null" >
+        #{cancerKey,jdbcType=VARCHAR},
+      </if>
+      <if test="doid != null" >
+        #{doid,jdbcType=INTEGER},
+      </if>
+      <if test="domesticGuideline != null" >
+        #{domesticGuideline,jdbcType=VARCHAR},
+      </if>
+      <if test="foreignGuideline != null" >
+        #{foreignGuideline,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huasheng.pojo.newpojo.KtCancerGuide" >
+    update kt_cancer_guide
+    <set >
+      <if test="cancerKey != null" >
+        cancer_key = #{cancerKey,jdbcType=VARCHAR},
+      </if>
+      <if test="doid != null" >
+        doid = #{doid,jdbcType=INTEGER},
+      </if>
+      <if test="domesticGuideline != null" >
+        domestic_guideline = #{domesticGuideline,jdbcType=VARCHAR},
+      </if>
+      <if test="foreignGuideline != null" >
+        foreign_guideline = #{foreignGuideline,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where cancer_guide_key = #{cancerGuideKey,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huasheng.pojo.newpojo.KtCancerGuide" >
+    update kt_cancer_guide
+    set cancer_key = #{cancerKey,jdbcType=VARCHAR},
+      doid = #{doid,jdbcType=INTEGER},
+      domestic_guideline = #{domesticGuideline,jdbcType=VARCHAR},
+      foreign_guideline = #{foreignGuideline,jdbcType=VARCHAR}
+    where cancer_guide_key = #{cancerGuideKey,jdbcType=VARCHAR}
+  </update>
+
+  <select id="selectByCancerKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from kt_cancer_guide
+    where cancer_key = #{cancerKey,jdbcType=VARCHAR}
+  </select>
+</mapper>

@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huasheng.dao.newdao.KtDocumentDao" >
+  <resultMap id="BaseResultMap" type="com.huasheng.pojo.newpojo.KtDocument" >
+    <id column="document_key" property="documentKey" jdbcType="CHAR" />
+    <result column="document_title" property="documentTitle" jdbcType="VARCHAR" />
+    <result column="document_age_limit" property="documentAgeLimit" jdbcType="INTEGER" />
+    <result column="document_file_path" property="documentFilePath" jdbcType="VARCHAR" />
+    <result column="document_file_name" property="documentFileName" jdbcType="VARCHAR" />
+    <result column="document_file_time" property="documentFileTime" jdbcType="BIGINT" />
+    <result column="created_at" property="createdAt" jdbcType="BIGINT" />
+    <result column="created_way" property="createdWay" jdbcType="INTEGER" />
+    <result column="created_by_key" property="createdByKey" jdbcType="CHAR" />
+    <result column="created_by_name" property="createdByName" jdbcType="VARCHAR" />
+    <result column="check_state" property="checkState" jdbcType="INTEGER" />
+    <result column="check_report" property="checkReport" jdbcType="VARCHAR" />
+    <result column="checked_by_key" property="checkedByKey" jdbcType="CHAR" />
+    <result column="checked_by_name" property="checkedByName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    document_key, document_title, document_age_limit, document_file_path,
+    document_file_name,document_file_time,created_at, created_way, created_by_key, created_by_name, check_state,
+    check_report,checked_by_key, checked_by_name
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from kt_document
+    where document_key = #{documentKey,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from kt_document
+    where document_key = #{documentKey,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.huasheng.pojo.newpojo.KtDocument" >
+    insert into kt_document (document_key, document_title,
+      document_age_limit, document_file_path,document_file_name,document_file_time, created_at,
+      created_way, created_by_key, created_by_name, 
+      check_state, check_report, checked_by_key, 
+      checked_by_name)
+    values (#{documentKey,jdbcType=CHAR}, #{documentTitle,jdbcType=VARCHAR},
+      #{documentAgeLimit,jdbcType=INTEGER}, #{documentFilePath,jdbcType=VARCHAR},#{documentFileName,jdbcType=VARCHAR},#{documentFileTime,jdbcType=BIGINT}, #{createdAt,jdbcType=BIGINT},
+      #{createdWay,jdbcType=INTEGER}, #{createdByKey,jdbcType=CHAR}, #{createdByName,jdbcType=VARCHAR}, 
+      #{checkState,jdbcType=INTEGER}, #{checkReport,jdbcType=VARCHAR}, #{checkedByKey,jdbcType=CHAR}, 
+      #{checkedByName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.huasheng.pojo.newpojo.KtDocument" >
+    insert into kt_document
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="documentKey != null" >
+        document_key,
+      </if>
+      <if test="documentTitle != null" >
+        document_title,
+      </if>
+      <if test="documentAgeLimit != null" >
+        document_age_limit,
+      </if>
+      <if test="documentFile != null" >
+        document_file_path,
+      </if>
+      <if test="documentFile != null" >
+        document_file_name,
+      </if>
+      <if test="documentFile != null" >
+        document_file_time,
+      </if>
+      <if test="createdAt != null" >
+        created_at,
+      </if>
+      <if test="createdWay != null" >
+        created_way,
+      </if>
+      <if test="createdByKey != null" >
+        created_by_key,
+      </if>
+      <if test="createdByName != null" >
+        created_by_name,
+      </if>
+      <if test="checkState != null" >
+        check_state,
+      </if>
+      <if test="checkReport != null" >
+        check_report,
+      </if>
+      <if test="checkedByKey != null" >
+        checked_by_key,
+      </if>
+      <if test="checkedByName != null" >
+        checked_by_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="documentKey != null" >
+        #{documentKey,jdbcType=CHAR},
+      </if>
+      <if test="documentTitle != null" >
+        #{documentTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="documentAgeLimit != null" >
+        #{documentAgeLimit,jdbcType=INTEGER},
+      </if>
+      <if test="documentFilePath != null" >
+        #{documentFilePath,jdbcType=VARCHAR},
+      </if>
+      <if test="documentFileName != null" >
+        #{documentFileName,jdbcType=VARCHAR},
+      </if>
+      <if test="documentFileTime != null" >
+        #{documentFileTime,jdbcType=BIGINT},
+      </if>
+      <if test="createdAt != null" >
+        #{createdAt,jdbcType=BIGINT},
+      </if>
+      <if test="createdWay != null" >
+        #{createdWay,jdbcType=INTEGER},
+      </if>
+      <if test="createdByKey != null" >
+        #{createdByKey,jdbcType=CHAR},
+      </if>
+      <if test="createdByName != null" >
+        #{createdByName,jdbcType=VARCHAR},
+      </if>
+      <if test="checkState != null" >
+        #{checkState,jdbcType=INTEGER},
+      </if>
+      <if test="checkReport != null" >
+        #{checkReport,jdbcType=VARCHAR},
+      </if>
+      <if test="checkedByKey != null" >
+        #{checkedByKey,jdbcType=CHAR},
+      </if>
+      <if test="checkedByName != null" >
+        #{checkedByName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huasheng.pojo.newpojo.KtDocument" >
+    update kt_document
+    <set >
+      <if test="documentTitle != null" >
+        document_title = #{documentTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="documentAgeLimit != null" >
+        document_age_limit = #{documentAgeLimit,jdbcType=INTEGER},
+      </if>
+      <if test="documentFilePath != null" >
+        document_file_path = #{documentFilePath,jdbcType=VARCHAR},
+      </if>
+      <if test="documentFileName != null" >
+        document_file_name = #{documentFileName,jdbcType=VARCHAR},
+      </if>
+      <if test="documentFileTime != null" >
+        document_file_time = #{documentFileTime,jdbcType=VARCHAR},
+      </if>
+      <if test="createdAt != null" >
+        created_at = #{createdAt,jdbcType=BIGINT},
+      </if>
+      <if test="createdWay != null" >
+        created_way = #{createdWay,jdbcType=INTEGER},
+      </if>
+      <if test="createdByKey != null" >
+        created_by_key = #{createdByKey,jdbcType=CHAR},
+      </if>
+      <if test="createdByName != null" >
+        created_by_name = #{createdByName,jdbcType=VARCHAR},
+      </if>
+      <if test="checkState != null" >
+        check_state = #{checkState,jdbcType=INTEGER},
+      </if>
+      <if test="checkReport != null" >
+        check_report = #{checkReport,jdbcType=VARCHAR},
+      </if>
+      <if test="checkedByKey != null" >
+        checked_by_key = #{checkedByKey,jdbcType=CHAR},
+      </if>
+      <if test="checkedByName != null" >
+        checked_by_name = #{checkedByName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where document_key = #{documentKey,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huasheng.pojo.newpojo.KtDocument" >
+    update kt_document
+    set document_title = #{documentTitle,jdbcType=VARCHAR},
+      document_age_limit = #{documentAgeLimit,jdbcType=INTEGER},
+      document_file_path = #{documentFilePath,jdbcType=VARCHAR},
+      document_file_name = #{documentFileName,jdbcType=VARCHAR},
+      document_file_time = #{documentFileTime,jdbcType=BIGINT},
+      created_at = #{createdAt,jdbcType=BIGINT},
+      created_way = #{createdWay,jdbcType=INTEGER},
+      created_by_key = #{createdByKey,jdbcType=CHAR},
+      created_by_name = #{createdByName,jdbcType=VARCHAR},
+      check_state = #{checkState,jdbcType=INTEGER},
+      check_report = #{checkReport,jdbcType=VARCHAR},
+      checked_by_key = #{checkedByKey,jdbcType=CHAR},
+      checked_by_name = #{checkedByName,jdbcType=VARCHAR}
+    where document_key = #{documentKey,jdbcType=CHAR}
+  </update>
+
+  <select id="getDocumentList" resultType="java.util.Map">
+    SELECT
+    d.document_key documentKey,ddi.item_key itemKey,
+    d.document_title documentTitle, d.document_age_limit documentAgeLimit,
+    d.document_file_path documentFilePath,d.document_file_name documentFileName,d.document_file_time documentFileTime,
+    d.created_at createdAt, d.created_way createdWay, d.created_by_key createdByKey,
+    d.created_by_name createdByName, d.check_state checkState, d.check_report checkReport,
+    d.checked_by_key checkedByKey, d.checked_by_name checkedByName,ddi.item_name itemName
+    FROM kt_document d
+    LEFT JOIN  kt_document_category dc ON d.document_key=dc.document_key
+    LEFT JOIN kt_data_dictionary_items ddi ON dc.item_key=ddi.item_key
+    WHERE 1=1
+    <if test="createdWay!='' and createdWay!=null" >
+      AND d.created_way=#{createdWay}
+    </if>
+    <if test="checkState!='' and checkState!=null" >
+      AND d.check_state=#{checkState}
+    </if>
+    <if test="itemKey!='' and itemKey!=null" >
+      AND ddi.item_key=#{itemKey}
+    </if>
+    <if test="documentTitle!='' and documentTitle!=null" >
+      AND d.document_title LIKE CONCAT('%',#{documentTitle},'%')
+    </if>
+    <if test="documentAgeLimit!='' and documentAgeLimit!=null" >
+      AND d.document_age_limit=#{documentAgeLimit}
+    </if>
+    ORDER  BY d.created_at DESC
+  </select>
+  <update id="updateCheckState" parameterType="com.huasheng.pojo.newpojo.KtDocument">
+    update kt_document
+    set
+    check_state = #{checkState,jdbcType=BIGINT},
+    checked_by_key = #{checkedByKey,jdbcType=CHAR},
+    checked_by_name = #{checkedByName,jdbcType=VARCHAR},
+    check_report = #{checkReport}
+    where document_key = #{documentKey,jdbcType=VARCHAR}
+  </update>
+
+  <select id="getDocumentCount" parameterType="Map" resultType="Integer">
+    select count(document_key) from kt_document where  check_state=#{checkState} and created_way=#{createdWay}
+  </select>
+  <select id="getDocumentCountMonth" parameterType="Map" resultType="Integer">
+    select count(document_key) from kt_document where (created_at BETWEEN #{firstTime} and #{currentTime}) AND check_state=#{checkState} and created_way=#{createdWay}
+  </select>
+
+  <delete id="deleteAllDocument">
+    delete from kt_document
+  </delete>
+</mapper>

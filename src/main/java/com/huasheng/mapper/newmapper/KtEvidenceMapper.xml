@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huasheng.dao.newdao.KtEvidenceDao" >
+  <resultMap id="BaseResultMap" type="com.huasheng.pojo.newpojo.KtEvidence" >
+    <id column="evidence_key" property="evidenceKey" jdbcType="VARCHAR" />
+    <result column="evidence_id" property="evidenceId" jdbcType="INTEGER" />
+    <result column="cancer_key" property="cancerKey" jdbcType="VARCHAR" />
+    <result column="doid" property="doid" jdbcType="INTEGER" />
+    <result column="doid_name" property="doidName" jdbcType="VARCHAR" />
+    <result column="variant_key" property="variantKey" jdbcType="VARCHAR" />
+    <result column="variant_id" property="variantId" jdbcType="INTEGER" />
+    <result column="evidence_type" property="evidenceType" jdbcType="VARCHAR" />
+    <result column="evidence_level" property="evidenceLevel" jdbcType="INTEGER" />
+    <result column="evidence_direction" property="evidenceDirection" jdbcType="VARCHAR" />
+    <result column="summary" property="summary" jdbcType="VARCHAR" />
+    <result column="created_at" property="createdAt" jdbcType="BIGINT" />
+    <result column="created_way" property="createdWay" jdbcType="INTEGER" />
+    <result column="created_by_key" property="createdByKey" jdbcType="CHAR" />
+    <result column="created_by_name" property="createdByName" jdbcType="VARCHAR" />
+    <result column="check_state" property="checkState" jdbcType="INTEGER" />
+    <result column="check_report" property="checkReport" jdbcType="VARCHAR" />
+    <result column="checked_by_key" property="checkedByKey" jdbcType="CHAR" />
+    <result column="checked_by_name" property="checkedByName" jdbcType="VARCHAR" />
+    <result column="translate_by_key" property="translateByKey" jdbcType="CHAR" />
+    <result column="translate_by_name" property="translateByName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    evidence_key, evidence_id, cancer_key, doid, doid_name, variant_key, variant_id, 
+    evidence_type, evidence_level, evidence_direction, summary, created_at, created_way, 
+    created_by_key, created_by_name, check_state, check_report, checked_by_key, checked_by_name,
+    translate_by_key, translate_by_name
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from kt_evidence
+    where evidence_key = #{evidenceKey,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from kt_evidence
+    where evidence_key = #{evidenceKey,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.huasheng.pojo.newpojo.KtEvidence" >
+    insert into kt_evidence (evidence_key, evidence_id, cancer_key, 
+      doid, doid_name, variant_key, 
+      variant_id, evidence_type, evidence_level, 
+      evidence_direction, summary, created_at, 
+      created_way, created_by_key, created_by_name, 
+      check_state, check_report, checked_by_key,
+      checked_by_name, translate_by_key, translate_by_name
+      )
+    values (#{evidenceKey,jdbcType=VARCHAR}, #{evidenceId,jdbcType=INTEGER}, #{cancerKey,jdbcType=VARCHAR}, 
+      #{doid,jdbcType=INTEGER}, #{doidName,jdbcType=VARCHAR}, #{variantKey,jdbcType=VARCHAR}, 
+      #{variantId,jdbcType=INTEGER}, #{evidenceType,jdbcType=VARCHAR}, #{evidenceLevel,jdbcType=INTEGER}, 
+      #{evidenceDirection,jdbcType=VARCHAR}, #{summary,jdbcType=VARCHAR}, #{createdAt,jdbcType=BIGINT}, 
+      #{createdWay,jdbcType=INTEGER}, #{createdByKey,jdbcType=CHAR}, #{createdByName,jdbcType=VARCHAR}, 
+      #{checkState,jdbcType=INTEGER}, #{checkReport,jdbcType=VARCHAR}, #{checkedByKey,jdbcType=CHAR},
+      #{checkedByName,jdbcType=VARCHAR}, #{translateByKey,jdbcType=CHAR}, #{translateByName,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.huasheng.pojo.newpojo.KtEvidence" >
+    insert into kt_evidence
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="evidenceKey != null" >
+        evidence_key,
+      </if>
+      <if test="evidenceId != null" >
+        evidence_id,
+      </if>
+      <if test="cancerKey != null" >
+        cancer_key,
+      </if>
+      <if test="doid != null" >
+        doid,
+      </if>
+      <if test="doidName != null" >
+        doid_name,
+      </if>
+      <if test="variantKey != null" >
+        variant_key,
+      </if>
+      <if test="variantId != null" >
+        variant_id,
+      </if>
+      <if test="evidenceType != null" >
+        evidence_type,
+      </if>
+      <if test="evidenceLevel != null" >
+        evidence_level,
+      </if>
+      <if test="evidenceDirection != null" >
+        evidence_direction,
+      </if>
+      <if test="summary != null" >
+        summary,
+      </if>
+      <if test="createdAt != null" >
+        created_at,
+      </if>
+      <if test="createdWay != null" >
+        created_way,
+      </if>
+      <if test="createdByKey != null" >
+        created_by_key,
+      </if>
+      <if test="createdByName != null" >
+        created_by_name,
+      </if>
+      <if test="checkState != null" >
+        check_state,
+      </if>
+      <if test="checkReport != null" >
+        check_report,
+      </if>
+      <if test="checkedByKey != null" >
+        checked_by_key,
+      </if>
+      <if test="checkedByName != null" >
+        checked_by_name,
+      </if>
+      <if test="translateByKey != null" >
+        translate_by_key,
+      </if>
+      <if test="translateByName != null" >
+        translate_by_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="evidenceKey != null" >
+        #{evidenceKey,jdbcType=VARCHAR},
+      </if>
+      <if test="evidenceId != null" >
+        #{evidenceId,jdbcType=INTEGER},
+      </if>
+      <if test="cancerKey != null" >
+        #{cancerKey,jdbcType=VARCHAR},
+      </if>
+      <if test="doid != null" >
+        #{doid,jdbcType=INTEGER},
+      </if>
+      <if test="doidName != null" >
+        #{doidName,jdbcType=VARCHAR},
+      </if>
+      <if test="variantKey != null" >
+        #{variantKey,jdbcType=VARCHAR},
+      </if>
+      <if test="variantId != null" >
+        #{variantId,jdbcType=INTEGER},
+      </if>
+      <if test="evidenceType != null" >
+        #{evidenceType,jdbcType=VARCHAR},
+      </if>
+      <if test="evidenceLevel != null" >
+        #{evidenceLevel,jdbcType=INTEGER},
+      </if>
+      <if test="evidenceDirection != null" >
+        #{evidenceDirection,jdbcType=VARCHAR},
+      </if>
+      <if test="summary != null" >
+        #{summary,jdbcType=VARCHAR},
+      </if>
+      <if test="createdAt != null" >
+        #{createdAt,jdbcType=BIGINT},
+      </if>
+      <if test="createdWay != null" >
+        #{createdWay,jdbcType=INTEGER},
+      </if>
+      <if test="createdByKey != null" >
+        #{createdByKey,jdbcType=CHAR},
+      </if>
+      <if test="createdByName != null" >
+        #{createdByName,jdbcType=VARCHAR},
+      </if>
+      <if test="checkState != null" >
+        #{checkState,jdbcType=INTEGER},
+      </if>
+      <if test="checkReport != null" >
+        #{checkReport,jdbcType=VARCHAR},
+      </if>
+      <if test="checkedByKey != null" >
+        #{checkedByKey,jdbcType=CHAR},
+      </if>
+      <if test="checkedByName != null" >
+        #{checkedByName,jdbcType=VARCHAR},
+      </if>
+      <if test="translateByKey != null" >
+        #{translateByKey,jdbcType=CHAR},
+      </if>
+      <if test="translateByName != null" >
+        #{translateByName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huasheng.pojo.newpojo.KtEvidence" >
+    update kt_evidence
+    <set >
+      <if test="evidenceId != null" >
+        evidence_id = #{evidenceId,jdbcType=INTEGER},
+      </if>
+      <if test="cancerKey != null" >
+        cancer_key = #{cancerKey,jdbcType=VARCHAR},
+      </if>
+      <if test="doid != null" >
+        doid = #{doid,jdbcType=INTEGER},
+      </if>
+      <if test="doidName != null" >
+        doid_name = #{doidName,jdbcType=VARCHAR},
+      </if>
+      <if test="variantKey != null" >
+        variant_key = #{variantKey,jdbcType=VARCHAR},
+      </if>
+      <if test="variantId != null" >
+        variant_id = #{variantId,jdbcType=INTEGER},
+      </if>
+      <if test="evidenceType != null" >
+        evidence_type = #{evidenceType,jdbcType=VARCHAR},
+      </if>
+      <if test="evidenceLevel != null" >
+        evidence_level = #{evidenceLevel,jdbcType=INTEGER},
+      </if>
+      <if test="evidenceDirection != null" >
+        evidence_direction = #{evidenceDirection,jdbcType=VARCHAR},
+      </if>
+      <if test="summary != null" >
+        summary = #{summary,jdbcType=VARCHAR},
+      </if>
+      <if test="createdAt != null" >
+        created_at = #{createdAt,jdbcType=BIGINT},
+      </if>
+      <if test="createdWay != null" >
+        created_way = #{createdWay,jdbcType=INTEGER},
+      </if>
+      <if test="createdByKey != null" >
+        created_by_key = #{createdByKey,jdbcType=CHAR},
+      </if>
+      <if test="createdByName != null" >
+        created_by_name = #{createdByName,jdbcType=VARCHAR},
+      </if>
+      <if test="checkState != null" >
+        check_state = #{checkState,jdbcType=INTEGER},
+      </if>
+      <if test="checkReport != null" >
+        check_report = #{checkReport,jdbcType=VARCHAR},
+      </if>
+      <if test="checkedByKey != null" >
+        checked_by_key = #{checkedByKey,jdbcType=CHAR},
+      </if>
+      <if test="checkedByName != null" >
+        checked_by_name = #{checkedByName,jdbcType=VARCHAR},
+      </if>
+      <if test="translateByKey != null" >
+        translate_by_key = #{translateByKey,jdbcType=CHAR},
+      </if>
+      <if test="translateByName != null" >
+        translate_by_name = #{translateByName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where evidence_key = #{evidenceKey,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huasheng.pojo.newpojo.KtEvidence" >
+    update kt_evidence
+    set evidence_id = #{evidenceId,jdbcType=INTEGER},
+      cancer_key = #{cancerKey,jdbcType=VARCHAR},
+      doid = #{doid,jdbcType=INTEGER},
+      doid_name = #{doidName,jdbcType=VARCHAR},
+      variant_key = #{variantKey,jdbcType=VARCHAR},
+      variant_id = #{variantId,jdbcType=INTEGER},
+      evidence_type = #{evidenceType,jdbcType=VARCHAR},
+      evidence_level = #{evidenceLevel,jdbcType=INTEGER},
+      evidence_direction = #{evidenceDirection,jdbcType=VARCHAR},
+      summary = #{summary,jdbcType=VARCHAR},
+      created_at = #{createdAt,jdbcType=BIGINT},
+      created_way = #{createdWay,jdbcType=INTEGER},
+      created_by_key = #{createdByKey,jdbcType=CHAR},
+      created_by_name = #{createdByName,jdbcType=VARCHAR},
+      check_state = #{checkState,jdbcType=INTEGER},
+      check_report = #{checkReport,jdbcType=VARCHAR},
+      checked_by_key = #{checkedByKey,jdbcType=CHAR},
+      checked_by_name = #{checkedByName,jdbcType=VARCHAR},
+      translate_by_key = #{translateByKey,jdbcType=CHAR},
+      translate_by_name = #{translateByName,jdbcType=VARCHAR}
+    where evidence_key = #{evidenceKey,jdbcType=VARCHAR}
+  </update>
+    <select id="getEvidenceList" resultType="java.util.Map">
+        SELECT
+        e.evidence_key evidenceKey,
+        e.evidence_id evidenceId,
+        e.cancer_key cancerKey,
+        e.doid doid,
+        e.doid_name doidName,
+        e.variant_key variantKey,
+        e.variant_id variantId,
+        e.evidence_type evidenceType,
+        e.evidence_level evidenceLevel,
+        e.evidence_direction evidenceDirection,
+        e.summary summary,
+        e.created_at createdAt,
+        e.created_way createdWay,
+        e.created_by_key createdByKey,
+        e.created_by_name createdByName,
+        e.check_state checkState,
+        e.checked_by_key checkedByKey,
+        e.checked_by_name checkedByName,
+        e.translate_by_key translateByKey,
+        e.translate_by_name translateByName,
+        e.check_report checkReport,
+        group_concat(DISTINCT ed.drug_id SEPARATOR '、') drugId
+        FROM kt_evidence e LEFT JOIN kt_evidence_drug ed ON  e.evidence_key=ed.evidence_key
+        WHERE  1=1
+        <if test="createdAt != null and createdAt!=''" >
+            AND e.created_at = #{createdAt,jdbcType=BIGINT}
+        </if>
+        <if test="checkState != null and checkState!=''" >
+            AND e.check_state = #{checkState,jdbcType=INTEGER}
+        </if>
+        <if test="doid != null and doid!=''" >
+            AND e.doid = #{doid,jdbcType=INTEGER}
+        </if>
+        <if test="variantId != null and variantId!=''" >
+            AND e.variant_id = #{variantId,jdbcType=INTEGER}
+        </if>
+        <if test="evidenceType != null and evidenceType!=''" >
+            AND e.evidence_type = #{evidenceType,jdbcType=VARCHAR}
+        </if>
+        <if test="drugId != null and drugId!=''" >
+            AND ed.drug_id = #{drugId,jdbcType=INTEGER}
+        </if>
+        GROUP  BY  e.evidence_key
+        ORDER BY  e.created_at DESC
+    </select>
+    <update id="updateCheckState" parameterType="com.huasheng.pojo.newpojo.KtEvidence">
+        update kt_evidence
+        set
+        check_state = #{checkState,jdbcType=BIGINT},
+        checked_by_key = #{checkedByKey,jdbcType=CHAR},
+        checked_by_name = #{checkedByName,jdbcType=VARCHAR},
+        check_report = #{checkReport}
+        where evidence_key = #{evidenceKey,jdbcType=VARCHAR}
+    </update>
+    <select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List" />
+        from kt_evidence
+        where evidence_id = #{evidenceId,jdbcType=INTEGER}
+    </select>
+  <select id="getEvidenceCount" parameterType="Map" resultType="Integer">
+    SELECT count(evidence_key) from kt_evidence where  check_state = #{checkState} and  created_way = #{createdWay}
+  </select>
+
+  <select id="getEvidenceCountMonth" parameterType="Map" resultType="Integer">
+    SELECT count(evidence_key) from kt_evidence where  (created_at BETWEEN #{firstTime} and #{currentTime}) AND check_state = #{checkState} and  created_way = #{createdWay}
+  </select>
+
+  <delete id="deleteAllSyndrome" >
+    delete from kt_evidence
+
+  </delete>
+
+</mapper>

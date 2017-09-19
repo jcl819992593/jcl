@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huasheng.dao.newdao.KtGeneDetectionWaysDao" >
+  <resultMap id="BaseResultMap" type="com.huasheng.pojo.newpojo.KtGeneDetectionWays" >
+    <id column="detection_way_key" property="detectionWayKey" jdbcType="VARCHAR" />
+    <result column="detection_key" property="detectionKey" jdbcType="VARCHAR" />
+    <result column="way_cycle" property="wayCycle" jdbcType="INTEGER" />
+    <result column="way_price" property="wayPrice" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    detection_way_key, detection_key, way_cycle, way_price
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from kt_gene_detection_ways
+    where detection_way_key = #{detectionWayKey,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from kt_gene_detection_ways
+    where detection_way_key = #{detectionWayKey,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.huasheng.pojo.newpojo.KtGeneDetectionWays" >
+    insert into kt_gene_detection_ways (detection_way_key, detection_key, way_cycle, 
+      way_price)
+    values (#{detectionWayKey,jdbcType=VARCHAR}, #{detectionKey,jdbcType=VARCHAR}, #{wayCycle,jdbcType=INTEGER}, 
+      #{wayPrice,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.huasheng.pojo.newpojo.KtGeneDetectionWays" >
+    insert into kt_gene_detection_ways
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="detectionWayKey != null" >
+        detection_way_key,
+      </if>
+      <if test="detectionKey != null" >
+        detection_key,
+      </if>
+      <if test="wayCycle != null" >
+        way_cycle,
+      </if>
+      <if test="wayPrice != null" >
+        way_price,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="detectionWayKey != null" >
+        #{detectionWayKey,jdbcType=VARCHAR},
+      </if>
+      <if test="detectionKey != null" >
+        #{detectionKey,jdbcType=VARCHAR},
+      </if>
+      <if test="wayCycle != null" >
+        #{wayCycle,jdbcType=INTEGER},
+      </if>
+      <if test="wayPrice != null" >
+        #{wayPrice,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huasheng.pojo.newpojo.KtGeneDetectionWays" >
+    update kt_gene_detection_ways
+    <set >
+      <if test="detectionKey != null" >
+        detection_key = #{detectionKey,jdbcType=VARCHAR},
+      </if>
+      <if test="wayCycle != null" >
+        way_cycle = #{wayCycle,jdbcType=INTEGER},
+      </if>
+      <if test="wayPrice != null" >
+        way_price = #{wayPrice,jdbcType=INTEGER},
+      </if>
+    </set>
+    where detection_way_key = #{detectionWayKey,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huasheng.pojo.newpojo.KtGeneDetectionWays" >
+    update kt_gene_detection_ways
+    set detection_key = #{detectionKey,jdbcType=VARCHAR},
+      way_cycle = #{wayCycle,jdbcType=INTEGER},
+      way_price = #{wayPrice,jdbcType=INTEGER}
+    where detection_way_key = #{detectionWayKey,jdbcType=VARCHAR}
+  </update>
+
+  <insert id="insertMore" parameterType="List">
+    insert into kt_gene_detection_ways (detection_way_key, detection_key, way_cycle,way_price)
+    values
+    <foreach collection="list" item="item" index="index" separator=",">
+      (#{item.detectionWayKey,jdbcType=VARCHAR}, #{item.detectionKey,jdbcType=VARCHAR}, #{item.wayCycle,jdbcType=INTEGER},#{item.wayPrice,jdbcType=INTEGER})
+    </foreach>
+  </insert>
+  <delete id="deleteByDetectionKey" parameterType="java.lang.String">
+    delete from kt_gene_detection_ways
+    where detection_key = #{detectionKey,jdbcType=VARCHAR}
+  </delete>
+
+  <select id="getWaysList" resultType="java.util.Map" parameterType="java.lang.String">
+    SELECT
+    kgdw.detection_way_key detectionWayKey,
+    kgdw.detection_key detectionKey,
+    kgdw.way_cycle wayCycle,
+    kgdw.way_price wayPrice,
+    group_concat(DISTINCT i1.item_key SEPARATOR ',') orgsItemKeys,
+    group_concat(DISTINCT i1.item_name SEPARATOR ',') orgsItemNames,
+    group_concat(DISTINCT i2.item_key SEPARATOR ',') platformsItemKeys,
+    group_concat(DISTINCT i2.item_name SEPARATOR ',') platformsItemNames,
+    group_concat(DISTINCT i3.item_key SEPARATOR ',') sampleTypesItemKeys,
+    group_concat(DISTINCT i3.item_name SEPARATOR ',') sampleTypesItemNames,
+    group_concat(DISTINCT i4.item_key SEPARATOR ',') waysItemKeys,
+    group_concat(DISTINCT i4.item_name SEPARATOR ',') waysItemNames
+    FROM kt_gene_detection_ways kgdw
+    LEFT JOIN kt_gene_detection_way_orgs kgdwo ON kgdw.detection_way_key=kgdwo.detection_way_key
+    LEFT JOIN kt_data_dictionary_items i1 ON kgdwo.item_key=i1.item_key
+    LEFT JOIN kt_gene_detection_way_platforms kgdwp ON  kgdw.detection_way_key=kgdwp.detection_way_key
+    LEFT JOIN kt_data_dictionary_items i2 ON kgdwp.item_key=i2.item_key
+    LEFT JOIN kt_gene_detection_way_sample_types kgdwst ON kgdw.detection_way_key=kgdwst.detection_way_key
+    LEFT JOIN kt_data_dictionary_items i3 ON kgdwst.item_key=i3.item_key
+    LEFT JOIN kt_gene_detection_way_ways kgdww ON kgdw.detection_way_key=kgdww.detection_way_key
+    LEFT JOIN kt_data_dictionary_items i4 ON kgdww.item_key=i4.item_key
+    WHERE kgdw.detection_key=#{detectionKey,jdbcType=VARCHAR}
+    GROUP BY kgdw.detection_way_key
+  </select>
+</mapper>

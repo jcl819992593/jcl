@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huasheng.dao.newdao.KtDrugInteractionDao" >
+  <resultMap id="BaseResultMap" type="com.huasheng.pojo.newpojo.KtDrugInteraction" >
+    <id column="interaction_key" property="interactionKey" jdbcType="VARCHAR" />
+    <result column="drug_key" property="drugKey" jdbcType="VARCHAR" />
+    <result column="drug_id" property="drugId" jdbcType="INTEGER" />
+    <result column="drug_id_interaction" property="drugIdInteraction" jdbcType="INTEGER" />
+    <result column="drug_interaction_key" property="drugInteractionKey" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.huasheng.pojo.newpojo.KtDrugInteraction" extends="BaseResultMap" >
+    <result column="description" property="description" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    interaction_key, drug_key, drug_id, drug_id_interaction, drug_interaction_key
+  </sql>
+  <sql id="Blob_Column_List" >
+    description
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from kt_drug_interaction
+    where interaction_key = #{interactionKey,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from kt_drug_interaction
+    where interaction_key = #{interactionKey,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.huasheng.pojo.newpojo.KtDrugInteraction" >
+    insert into kt_drug_interaction (interaction_key, drug_key, drug_id,
+    drug_id_interaction, drug_interaction_key,
+    description)
+    values (#{interactionKey,jdbcType=VARCHAR}, #{drugKey,jdbcType=VARCHAR}, #{drugId,jdbcType=INTEGER},
+    #{drugIdInteraction,jdbcType=INTEGER}, #{drugInteractionKey,jdbcType=VARCHAR},
+    #{description,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.huasheng.pojo.newpojo.KtDrugInteraction" >
+    insert into kt_drug_interaction
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="interactionKey != null" >
+        interaction_key,
+      </if>
+      <if test="drugKey != null" >
+        drug_key,
+      </if>
+      <if test="drugId != null" >
+        drug_id,
+      </if>
+      <if test="drugIdInteraction != null" >
+        drug_id_interaction,
+      </if>
+      <if test="drugInteractionKey != null" >
+        drug_interaction_key,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="interactionKey != null" >
+        #{interactionKey,jdbcType=VARCHAR},
+      </if>
+      <if test="drugKey != null" >
+        #{drugKey,jdbcType=VARCHAR},
+      </if>
+      <if test="drugId != null" >
+        #{drugId,jdbcType=INTEGER},
+      </if>
+      <if test="drugIdInteraction != null" >
+        #{drugIdInteraction,jdbcType=INTEGER},
+      </if>
+      <if test="drugInteractionKey != null" >
+        #{drugInteractionKey,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huasheng.pojo.newpojo.KtDrugInteraction" >
+    update kt_drug_interaction
+    <set >
+      <if test="drugKey != null" >
+        drug_key = #{drugKey,jdbcType=VARCHAR},
+      </if>
+      <if test="drugId != null" >
+        drug_id = #{drugId,jdbcType=INTEGER},
+      </if>
+      <if test="drugIdInteraction != null" >
+        drug_id_interaction = #{drugIdInteraction,jdbcType=INTEGER},
+      </if>
+      <if test="drugInteractionKey != null" >
+        drug_interaction_key = #{drugInteractionKey,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where interaction_key = #{interactionKey,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.huasheng.pojo.newpojo.KtDrugInteraction" >
+    update kt_drug_interaction
+    set drug_key = #{drugKey,jdbcType=VARCHAR},
+    drug_id = #{drugId,jdbcType=INTEGER},
+    drug_id_interaction = #{drugIdInteraction,jdbcType=INTEGER},
+    drug_interaction_key = #{drugInteractionKey,jdbcType=VARCHAR},
+    description = #{description,jdbcType=LONGVARCHAR}
+    where interaction_key = #{interactionKey,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huasheng.pojo.newpojo.KtDrugInteraction" >
+    update kt_drug_interaction
+    set drug_key = #{drugKey,jdbcType=VARCHAR},
+    drug_id = #{drugId,jdbcType=INTEGER},
+    drug_id_interaction = #{drugIdInteraction,jdbcType=INTEGER},
+    drug_interaction_key = #{drugInteractionKey,jdbcType=VARCHAR}
+    where interaction_key = #{interactionKey,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByDrugKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from kt_drug_interaction
+    where drug_key = #{drugKey,jdbcType=VARCHAR}
+  </select>
+  <insert id="addKtDrugInteractionMore" parameterType="List">
+    INSERT into kt_drug_interaction(interaction_key,drug_key,drug_id,drug_id_interaction,drug_interaction_key,description) VALUES
+    <foreach collection="list" item="item" index="index" separator=",">
+      (#{item.interactionKey},#{item.drugKey},#{item.drugId},#{item.drugIdInteraction},#{item.drugInteractionKey},#{item.description})
+    </foreach>
+  </insert>
+
+  <delete id="deleteByDrugKey" parameterType="java.lang.String" >
+    DELETE FROM kt_drug_interaction where drug_key=#{_parameter,jdbcType=VARCHAR}
+  </delete>
+
+  <select id="getByDrugKey" parameterType="java.util.Map" resultType="java.util.Map">
+    SELECT
+    drug.generic_name genericName,
+    interaction.description interactionDesc,
+    interaction.idInteraction interactionId,
+    interaction.drugInteractionKey
+    FROM
+    kt_drug drug,
+    (
+    SELECT
+    a.drug_id_interaction idInteraction,
+    a.description description,
+    a.drug_interaction_key drugInteractionKey
+    FROM
+    kt_drug_interaction a
+    WHERE
+    a.drug_key = #{drugKey,jdbcType=VARCHAR}
+    ) interaction
+    WHERE 1=1
+    <if test="cn!='' and cn!=null" >
+    AND drug.drug_key = interaction.drugInteractionKey
+    </if>
+    <if test="en!='' and en!=null" >
+      AND drug.drug_id = interaction.idInteraction
+    </if>
+  </select>
+  <select id="getKtDrugIdInteractions" parameterType="java.util.Map" resultType="com.huasheng.pojo.newpojo.KtDrugIdInteraction">
+    SELECT
+    drug.generic_name genericName,
+    interaction.description interactionDesc,
+    interaction.idInteraction interactionId,
+    interaction.drugInteractionKey
+    FROM
+    kt_drug drug,
+    (
+    SELECT
+    a.drug_id_interaction idInteraction,
+    a.description description,
+    a.drug_interaction_key drugInteractionKey
+    FROM
+    kt_drug_interaction a
+    WHERE
+    a.drug_key = #{drugKey,jdbcType=VARCHAR}
+    ) interaction
+    WHERE drug.drug_id = interaction.idInteraction
+  </select>
+</mapper>

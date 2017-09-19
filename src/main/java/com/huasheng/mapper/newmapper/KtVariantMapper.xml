@@ -1,0 +1,397 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huasheng.dao.newdao.KtVariantDao" >
+  <resultMap id="BaseResultMap" type="com.huasheng.pojo.newpojo.KtVariant" >
+    <id column="variant_key" property="variantKey" jdbcType="VARCHAR" />
+    <result column="gene_key" property="geneKey" jdbcType="VARCHAR" />
+    <result column="variant_id" property="variantId" jdbcType="INTEGER" />
+    <result column="gene_id" property="geneId" jdbcType="INTEGER" />
+    <result column="grch" property="grch" jdbcType="INTEGER" />
+    <result column="genomic_position" property="genomicPosition" jdbcType="VARCHAR" />
+    <result column="aa_mutation" property="aaMutation" jdbcType="VARCHAR" />
+    <result column="cds_mutation" property="cdsMutation" jdbcType="VARCHAR" />
+    <result column="variant_type" property="variantType" jdbcType="VARCHAR" />
+    <result column="cosmic_id" property="cosmicId" jdbcType="VARCHAR" />
+    <result column="dbsnp_id" property="dbsnpId" jdbcType="VARCHAR" />
+    <result column="mutation_effect" property="mutationEffect" jdbcType="VARCHAR" />
+    <result column="oncogenicity" property="oncogenicity" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="mutation_detection" property="mutationDetection" jdbcType="VARCHAR" />
+    <result column="created_at" property="createdAt" jdbcType="BIGINT" />
+    <result column="created_way" property="createdWay" jdbcType="INTEGER" />
+    <result column="created_by_key" property="createdByKey" jdbcType="CHAR" />
+    <result column="created_by_name" property="createdByName" jdbcType="VARCHAR" />
+    <result column="check_state" property="checkState" jdbcType="INTEGER" />
+    <result column="check_report" property="checkReport" jdbcType="VARCHAR" />
+    <result column="checked_by_key" property="checkedByKey" jdbcType="CHAR" />
+    <result column="checked_by_name" property="checkedByName" jdbcType="VARCHAR" />
+    <result column="translate_by_key" property="translateByKey" jdbcType="CHAR" />
+    <result column="translate_by_name" property="translateByName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    variant_key, gene_key, variant_id, gene_id, grch, genomic_position, aa_mutation, 
+    cds_mutation, variant_type, cosmic_id, dbsnp_id, mutation_effect, oncogenicity, remark, 
+    mutation_detection, created_at, created_way, created_by_key, created_by_name, check_state, 
+    check_report, checked_by_key, checked_by_name, translate_by_key, translate_by_name
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from kt_variant
+    where variant_key = #{variantKey,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from kt_variant
+    where variant_key = #{variantKey,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.huasheng.pojo.newpojo.KtVariant" >
+    insert into kt_variant (variant_key, gene_key, variant_id, 
+      gene_id, grch, genomic_position, 
+      aa_mutation, cds_mutation, variant_type, 
+      cosmic_id, dbsnp_id, mutation_effect, 
+      oncogenicity, remark, mutation_detection, 
+      created_at, created_way, created_by_key, 
+      created_by_name, check_state, check_report, 
+      checked_by_key, checked_by_name, translate_by_key, 
+      translate_by_name)
+    values (#{variantKey,jdbcType=VARCHAR}, #{geneKey,jdbcType=VARCHAR}, #{variantId,jdbcType=INTEGER}, 
+      #{geneId,jdbcType=INTEGER}, #{grch,jdbcType=INTEGER}, #{genomicPosition,jdbcType=VARCHAR}, 
+      #{aaMutation,jdbcType=VARCHAR}, #{cdsMutation,jdbcType=VARCHAR}, #{variantType,jdbcType=VARCHAR}, 
+      #{cosmicId,jdbcType=VARCHAR}, #{dbsnpId,jdbcType=VARCHAR}, #{mutationEffect,jdbcType=VARCHAR}, 
+      #{oncogenicity,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{mutationDetection,jdbcType=VARCHAR}, 
+      #{createdAt,jdbcType=BIGINT}, #{createdWay,jdbcType=INTEGER}, #{createdByKey,jdbcType=CHAR}, 
+      #{createdByName,jdbcType=VARCHAR}, #{checkState,jdbcType=INTEGER}, #{checkReport,jdbcType=VARCHAR}, 
+      #{checkedByKey,jdbcType=CHAR}, #{checkedByName,jdbcType=VARCHAR}, #{translateByKey,jdbcType=CHAR}, 
+      #{translateByName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.huasheng.pojo.newpojo.KtVariant" >
+    insert into kt_variant
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="variantKey != null" >
+        variant_key,
+      </if>
+      <if test="geneKey != null" >
+        gene_key,
+      </if>
+      <if test="variantId != null" >
+        variant_id,
+      </if>
+      <if test="geneId != null" >
+        gene_id,
+      </if>
+      <if test="grch != null" >
+        grch,
+      </if>
+      <if test="genomicPosition != null" >
+        genomic_position,
+      </if>
+      <if test="aaMutation != null" >
+        aa_mutation,
+      </if>
+      <if test="cdsMutation != null" >
+        cds_mutation,
+      </if>
+      <if test="variantType != null" >
+        variant_type,
+      </if>
+      <if test="cosmicId != null" >
+        cosmic_id,
+      </if>
+      <if test="dbsnpId != null" >
+        dbsnp_id,
+      </if>
+      <if test="mutationEffect != null" >
+        mutation_effect,
+      </if>
+      <if test="oncogenicity != null" >
+        oncogenicity,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="mutationDetection != null" >
+        mutation_detection,
+      </if>
+      <if test="createdAt != null" >
+        created_at,
+      </if>
+      <if test="createdWay != null" >
+        created_way,
+      </if>
+      <if test="createdByKey != null" >
+        created_by_key,
+      </if>
+      <if test="createdByName != null" >
+        created_by_name,
+      </if>
+      <if test="checkState != null" >
+        check_state,
+      </if>
+      <if test="checkReport != null" >
+        check_report,
+      </if>
+      <if test="checkedByKey != null" >
+        checked_by_key,
+      </if>
+      <if test="checkedByName != null" >
+        checked_by_name,
+      </if>
+      <if test="translateByKey != null" >
+        translate_by_key,
+      </if>
+      <if test="translateByName != null" >
+        translate_by_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="variantKey != null" >
+        #{variantKey,jdbcType=VARCHAR},
+      </if>
+      <if test="geneKey != null" >
+        #{geneKey,jdbcType=VARCHAR},
+      </if>
+      <if test="variantId != null" >
+        #{variantId,jdbcType=INTEGER},
+      </if>
+      <if test="geneId != null" >
+        #{geneId,jdbcType=INTEGER},
+      </if>
+      <if test="grch != null" >
+        #{grch,jdbcType=INTEGER},
+      </if>
+      <if test="genomicPosition != null" >
+        #{genomicPosition,jdbcType=VARCHAR},
+      </if>
+      <if test="aaMutation != null" >
+        #{aaMutation,jdbcType=VARCHAR},
+      </if>
+      <if test="cdsMutation != null" >
+        #{cdsMutation,jdbcType=VARCHAR},
+      </if>
+      <if test="variantType != null" >
+        #{variantType,jdbcType=VARCHAR},
+      </if>
+      <if test="cosmicId != null" >
+        #{cosmicId,jdbcType=VARCHAR},
+      </if>
+      <if test="dbsnpId != null" >
+        #{dbsnpId,jdbcType=VARCHAR},
+      </if>
+      <if test="mutationEffect != null" >
+        #{mutationEffect,jdbcType=VARCHAR},
+      </if>
+      <if test="oncogenicity != null" >
+        #{oncogenicity,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="mutationDetection != null" >
+        #{mutationDetection,jdbcType=VARCHAR},
+      </if>
+      <if test="createdAt != null" >
+        #{createdAt,jdbcType=BIGINT},
+      </if>
+      <if test="createdWay != null" >
+        #{createdWay,jdbcType=INTEGER},
+      </if>
+      <if test="createdByKey != null" >
+        #{createdByKey,jdbcType=CHAR},
+      </if>
+      <if test="createdByName != null" >
+        #{createdByName,jdbcType=VARCHAR},
+      </if>
+      <if test="checkState != null" >
+        #{checkState,jdbcType=INTEGER},
+      </if>
+      <if test="checkReport != null" >
+        #{checkReport,jdbcType=VARCHAR},
+      </if>
+      <if test="checkedByKey != null" >
+        #{checkedByKey,jdbcType=CHAR},
+      </if>
+      <if test="checkedByName != null" >
+        #{checkedByName,jdbcType=VARCHAR},
+      </if>
+      <if test="translateByKey != null" >
+        #{translateByKey,jdbcType=CHAR},
+      </if>
+      <if test="translateByName != null" >
+        #{translateByName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huasheng.pojo.newpojo.KtVariant" >
+    update kt_variant
+    <set >
+      <if test="geneKey != null" >
+        gene_key = #{geneKey,jdbcType=VARCHAR},
+      </if>
+      <if test="variantId != null" >
+        variant_id = #{variantId,jdbcType=INTEGER},
+      </if>
+      <if test="geneId != null" >
+        gene_id = #{geneId,jdbcType=INTEGER},
+      </if>
+      <if test="grch != null" >
+        grch = #{grch,jdbcType=INTEGER},
+      </if>
+      <if test="genomicPosition != null" >
+        genomic_position = #{genomicPosition,jdbcType=VARCHAR},
+      </if>
+      <if test="aaMutation != null" >
+        aa_mutation = #{aaMutation,jdbcType=VARCHAR},
+      </if>
+      <if test="cdsMutation != null" >
+        cds_mutation = #{cdsMutation,jdbcType=VARCHAR},
+      </if>
+      <if test="variantType != null" >
+        variant_type = #{variantType,jdbcType=VARCHAR},
+      </if>
+      <if test="cosmicId != null" >
+        cosmic_id = #{cosmicId,jdbcType=VARCHAR},
+      </if>
+      <if test="dbsnpId != null" >
+        dbsnp_id = #{dbsnpId,jdbcType=VARCHAR},
+      </if>
+      <if test="mutationEffect != null" >
+        mutation_effect = #{mutationEffect,jdbcType=VARCHAR},
+      </if>
+      <if test="oncogenicity != null" >
+        oncogenicity = #{oncogenicity,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="mutationDetection != null" >
+        mutation_detection = #{mutationDetection,jdbcType=VARCHAR},
+      </if>
+      <if test="createdAt != null" >
+        created_at = #{createdAt,jdbcType=BIGINT},
+      </if>
+      <if test="createdWay != null" >
+        created_way = #{createdWay,jdbcType=INTEGER},
+      </if>
+      <if test="createdByKey != null" >
+        created_by_key = #{createdByKey,jdbcType=CHAR},
+      </if>
+      <if test="createdByName != null" >
+        created_by_name = #{createdByName,jdbcType=VARCHAR},
+      </if>
+      <if test="checkState != null" >
+        check_state = #{checkState,jdbcType=INTEGER},
+      </if>
+      <if test="checkReport != null" >
+        check_report = #{checkReport,jdbcType=VARCHAR},
+      </if>
+      <if test="checkedByKey != null" >
+        checked_by_key = #{checkedByKey,jdbcType=CHAR},
+      </if>
+      <if test="checkedByName != null" >
+        checked_by_name = #{checkedByName,jdbcType=VARCHAR},
+      </if>
+      <if test="translateByKey != null" >
+        translate_by_key = #{translateByKey,jdbcType=CHAR},
+      </if>
+      <if test="translateByName != null" >
+        translate_by_name = #{translateByName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where variant_key = #{variantKey,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huasheng.pojo.newpojo.KtVariant" >
+    update kt_variant
+    set gene_key = #{geneKey,jdbcType=VARCHAR},
+      variant_id = #{variantId,jdbcType=INTEGER},
+      gene_id = #{geneId,jdbcType=INTEGER},
+      grch = #{grch,jdbcType=INTEGER},
+      genomic_position = #{genomicPosition,jdbcType=VARCHAR},
+      aa_mutation = #{aaMutation,jdbcType=VARCHAR},
+      cds_mutation = #{cdsMutation,jdbcType=VARCHAR},
+      variant_type = #{variantType,jdbcType=VARCHAR},
+      cosmic_id = #{cosmicId,jdbcType=VARCHAR},
+      dbsnp_id = #{dbsnpId,jdbcType=VARCHAR},
+      mutation_effect = #{mutationEffect,jdbcType=VARCHAR},
+      oncogenicity = #{oncogenicity,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      mutation_detection = #{mutationDetection,jdbcType=VARCHAR},
+      created_at = #{createdAt,jdbcType=BIGINT},
+      created_way = #{createdWay,jdbcType=INTEGER},
+      created_by_key = #{createdByKey,jdbcType=CHAR},
+      created_by_name = #{createdByName,jdbcType=VARCHAR},
+    <if test="checkReport!='' and checkReport != null" >
+      check_report = #{checkReport,jdbcType=VARCHAR},
+    </if>
+    <if test="checkedByKey!='' and checkedByKey != null" >
+      checked_by_key = #{checkedByKey,jdbcType=CHAR},
+    </if>
+    <if test="checkedByName!='' and checkedByName != null" >
+      checked_by_name = #{checkedByName,jdbcType=VARCHAR},
+    </if>
+    <if test="translateByKey!='' and translateByKey != null">
+      translate_by_key = #{translateByKey,jdbcType=CHAR},
+    </if>
+    <if test="translateByName!='' and translateByName != null">
+      translate_by_name = #{translateByName,jdbcType=VARCHAR},
+    </if>
+    check_state = #{checkState,jdbcType=INTEGER}
+    where variant_key = #{variantKey,jdbcType=VARCHAR}
+  </update>
+  <!--列表-->
+  <select id="getVariantList" resultMap="BaseResultMap" parameterType="Map">
+    select
+    <include refid="Base_Column_List" />
+    from kt_variant
+     where 1=1
+    <if test="geneId!='' and geneId!=null">
+      and gene_id=#{geneId}
+    </if>
+    <if test="aaMutation!='' and aaMutation!=null">
+      and aa_mutation like CONCAT(CONCAT('%',#{aaMutation},'%'))
+    </if>
+    <if test="cdsMutation!='' and cdsMutation!=null">
+      and cds_mutation like CONCAT(CONCAT('%',#{cdsMutation},'%'))
+    </if>
+    <if test="checkState!='' and checkState!=null">
+      and check_state=#{checkState}
+    </if>
+    <if test="createdWay!='' and createdWay!=null" >
+      AND created_way =#{createdWay}
+    </if>
+    ORDER BY
+    created_at DESC
+  </select>
+
+  <update id="updateTranslator" parameterType="com.huasheng.pojo.newpojo.KtVariant">
+    update kt_variant
+    set
+    check_state = #{checkState,jdbcType=BIGINT},
+    translate_by_key = #{translateByKey,jdbcType=CHAR},
+    translate_by_name = #{translateByName,jdbcType=VARCHAR}
+    where variant_key = #{variantKey,jdbcType=VARCHAR}
+  </update>
+
+  <update id="updateCheckState" parameterType="com.huasheng.pojo.newpojo.KtVariant">
+    update kt_variant
+    set
+    check_state = #{checkState,jdbcType=BIGINT},
+    checked_by_key = #{checkedByKey,jdbcType=CHAR},
+    checked_by_name = #{checkedByName,jdbcType=VARCHAR},
+    check_report = #{checkReport}
+    where variant_key = #{variantKey,jdbcType=VARCHAR}
+  </update>
+  <select id="getvariantPending" parameterType="Map" resultType="Integer">
+    select count(variant_key) from kt_variant where  check_state=#{checkState} and created_way=#{createdWay}
+  </select>
+
+  <select id="getVariantById" resultMap="BaseResultMap" parameterType="Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from kt_variant
+    where variant_id = #{variantId}
+  </select>
+
+  <select id="getVariantTranslateMonth" parameterType="Map" resultType="Integer">
+    select count(variant_key) from kt_variant where  (created_at BETWEEN #{firstTime} and #{currentTime}) AND check_state=#{checkState} and created_way=#{createdWay}
+  </select>
+</mapper>

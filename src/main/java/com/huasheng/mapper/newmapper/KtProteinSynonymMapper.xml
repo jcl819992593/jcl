@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huasheng.dao.newdao.KtProteinSynonymDao" >
+  <resultMap id="BaseResultMap" type="com.huasheng.pojo.newpojo.KtProteinSynonym" >
+    <id column="protein_synonym_key" property="proteinSynonymKey" jdbcType="VARCHAR" />
+    <result column="protein_key" property="proteinKey" jdbcType="VARCHAR" />
+    <result column="protein_id" property="proteinId" jdbcType="VARCHAR" />
+    <result column="synonym" property="synonym" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    protein_synonym_key, protein_key, protein_id, synonym
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from kt_protein_synonym
+    where protein_synonym_key = #{proteinSynonymKey,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from kt_protein_synonym
+    where protein_synonym_key = #{proteinSynonymKey,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.huasheng.pojo.newpojo.KtProteinSynonym" >
+    insert into kt_protein_synonym (protein_synonym_key, protein_key, protein_id, 
+      synonym)
+    values (#{proteinSynonymKey,jdbcType=VARCHAR}, #{proteinKey,jdbcType=VARCHAR}, #{proteinId,jdbcType=VARCHAR}, 
+      #{synonym,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.huasheng.pojo.newpojo.KtProteinSynonym" >
+    insert into kt_protein_synonym
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="proteinSynonymKey != null" >
+        protein_synonym_key,
+      </if>
+      <if test="proteinKey != null" >
+        protein_key,
+      </if>
+      <if test="proteinId != null" >
+        protein_id,
+      </if>
+      <if test="synonym != null" >
+        synonym,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="proteinSynonymKey != null" >
+        #{proteinSynonymKey,jdbcType=VARCHAR},
+      </if>
+      <if test="proteinKey != null" >
+        #{proteinKey,jdbcType=VARCHAR},
+      </if>
+      <if test="proteinId != null" >
+        #{proteinId,jdbcType=VARCHAR},
+      </if>
+      <if test="synonym != null" >
+        #{synonym,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huasheng.pojo.newpojo.KtProteinSynonym" >
+    update kt_protein_synonym
+    <set >
+      <if test="proteinKey != null" >
+        protein_key = #{proteinKey,jdbcType=VARCHAR},
+      </if>
+      <if test="proteinId != null" >
+        protein_id = #{proteinId,jdbcType=VARCHAR},
+      </if>
+      <if test="synonym != null" >
+        synonym = #{synonym,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where protein_synonym_key = #{proteinSynonymKey,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huasheng.pojo.newpojo.KtProteinSynonym" >
+    update kt_protein_synonym
+    set protein_key = #{proteinKey,jdbcType=VARCHAR},
+      protein_id = #{proteinId,jdbcType=VARCHAR},
+      synonym = #{synonym,jdbcType=VARCHAR}
+    where protein_synonym_key = #{proteinSynonymKey,jdbcType=VARCHAR}
+  </update>
+  <!--批量插入蛋白别名-->
+  <insert id="insertKtProteinSynonym" parameterType="List">
+    insert into kt_protein_synonym (protein_synonym_key, protein_key, protein_id,
+      synonym)
+    values
+    <foreach collection="list" item="item" index="index" separator=",">
+    (#{item.proteinSynonymKey,jdbcType=VARCHAR}, #{item.proteinKey,jdbcType=VARCHAR}, #{item.proteinId,jdbcType=VARCHAR},
+      #{item.synonym,jdbcType=VARCHAR})
+    </foreach>
+  </insert>
+  <!--根据蛋白key删除别名-->
+<delete id="deleteByProteinKey" parameterType="String" >
+    delete from kt_protein_synonym
+    where protein_key = #{proteinKey,jdbcType=VARCHAR}
+</delete>
+  <!--根据蛋白key查找别名-->
+  <select id="getProteinSynonymByProteinKey" parameterType="String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from kt_protein_synonym
+    where protein_key = #{proteinKey,jdbcType=VARCHAR}
+  </select>
+
+  <delete id="deleteAllProteinSynonym"  >
+    delete from kt_protein_synonym
+  </delete>
+</mapper>

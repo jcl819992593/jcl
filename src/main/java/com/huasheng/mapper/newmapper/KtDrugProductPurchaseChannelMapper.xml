@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huasheng.dao.newdao.KtDrugProductPurchaseChannelDao" >
+  <resultMap id="BaseResultMap" type="com.huasheng.pojo.newpojo.KtDrugProductPurchaseChannel" >
+    <id column="channel_key" property="channelKey" jdbcType="VARCHAR" />
+    <result column="product_key" property="productKey" jdbcType="VARCHAR" />
+    <result column="channel_name" property="channelName" jdbcType="VARCHAR" />
+    <result column="channel_url" property="channelUrl" jdbcType="VARCHAR" />
+    <result column="channel_phone" property="channelPhone" jdbcType="VARCHAR" />
+    <result column="channel_price" property="channelPrice" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    channel_key, product_key, channel_name, channel_url, channel_phone, channel_price
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from kt_drug_product_purchase_channel
+    where channel_key = #{channelKey,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from kt_drug_product_purchase_channel
+    where channel_key = #{channelKey,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.huasheng.pojo.newpojo.KtDrugProductPurchaseChannel" >
+    insert into kt_drug_product_purchase_channel (channel_key, product_key, channel_name, 
+      channel_url, channel_phone, channel_price
+      )
+    values (#{channelKey,jdbcType=VARCHAR}, #{productKey,jdbcType=VARCHAR}, #{channelName,jdbcType=VARCHAR}, 
+      #{channelUrl,jdbcType=VARCHAR}, #{channelPhone,jdbcType=VARCHAR}, #{channelPrice,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.huasheng.pojo.newpojo.KtDrugProductPurchaseChannel" >
+    insert into kt_drug_product_purchase_channel
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="channelKey != null" >
+        channel_key,
+      </if>
+      <if test="productKey != null" >
+        product_key,
+      </if>
+      <if test="channelName != null" >
+        channel_name,
+      </if>
+      <if test="channelUrl != null" >
+        channel_url,
+      </if>
+      <if test="channelPhone != null" >
+        channel_phone,
+      </if>
+      <if test="channelPrice != null" >
+        channel_price,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="channelKey != null" >
+        #{channelKey,jdbcType=VARCHAR},
+      </if>
+      <if test="productKey != null" >
+        #{productKey,jdbcType=VARCHAR},
+      </if>
+      <if test="channelName != null" >
+        #{channelName,jdbcType=VARCHAR},
+      </if>
+      <if test="channelUrl != null" >
+        #{channelUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="channelPhone != null" >
+        #{channelPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="channelPrice != null" >
+        #{channelPrice,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huasheng.pojo.newpojo.KtDrugProductPurchaseChannel" >
+    update kt_drug_product_purchase_channel
+    <set >
+      <if test="productKey != null" >
+        product_key = #{productKey,jdbcType=VARCHAR},
+      </if>
+      <if test="channelName != null" >
+        channel_name = #{channelName,jdbcType=VARCHAR},
+      </if>
+      <if test="channelUrl != null" >
+        channel_url = #{channelUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="channelPhone != null" >
+        channel_phone = #{channelPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="channelPrice != null" >
+        channel_price = #{channelPrice,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where channel_key = #{channelKey,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huasheng.pojo.newpojo.KtDrugProductPurchaseChannel" >
+    update kt_drug_product_purchase_channel
+    set product_key = #{productKey,jdbcType=VARCHAR},
+      channel_name = #{channelName,jdbcType=VARCHAR},
+      channel_url = #{channelUrl,jdbcType=VARCHAR},
+      channel_phone = #{channelPhone,jdbcType=VARCHAR},
+      channel_price = #{channelPrice,jdbcType=VARCHAR}
+    where channel_key = #{channelKey,jdbcType=VARCHAR}
+  </update>
+  <!--批量插入购买渠道-->
+  <insert id="addKtDrugProductPurchaseChannelMore" parameterType="List">
+    INSERT INTO kt_drug_product_purchase_channel(channel_key, product_key, channel_name,
+    channel_url, channel_phone, channel_price) VALUES
+    <foreach collection="list" index="index" item="item" separator=",">
+      (#{item.channelKey}, #{item.productKey}, #{item.channelName},#{item.channelUrl},#{item.channelPhone},#{item.channelPrice})
+    </foreach>
+  </insert>
+  <select id="selectByProductKey" resultMap="BaseResultMap" parameterType="String">
+    select
+    <include refid="Base_Column_List" />
+    from kt_drug_product_purchase_channel
+    where product_key = #{productKey}
+  </select>
+  <delete id="deleteKtDrugPurchaseChannelByProductKey" parameterType="String">
+     delete from kt_drug_product_purchase_channel
+    where product_key = #{productKey}
+  </delete>
+</mapper>

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huasheng.dao.newdao.KtDrugGeneDao" >
+  <resultMap id="BaseResultMap" type="com.huasheng.pojo.newpojo.KtDrugGene" >
+    <id column="gene_key" property="geneKey" jdbcType="VARCHAR" />
+    <id column="drug_key" property="drugKey" jdbcType="VARCHAR" />
+    <result column="drug_id" property="drugId" jdbcType="INTEGER" />
+    <result column="gene_id" property="geneId" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    gene_key, drug_key, drug_id, gene_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.huasheng.pojo.newpojo.KtDrugGene" >
+    select 
+    <include refid="Base_Column_List" />
+    from kt_drug_gene
+    where gene_key = #{geneKey,jdbcType=VARCHAR}
+      and drug_key = #{drugKey,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.huasheng.pojo.newpojo.KtDrugGene" >
+    delete from kt_drug_gene
+    where gene_key = #{geneKey,jdbcType=VARCHAR}
+      and drug_key = #{drugKey,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.huasheng.pojo.newpojo.KtDrugGene" >
+    insert into kt_drug_gene (gene_key, drug_key, drug_id, 
+      gene_id)
+    values (#{geneKey,jdbcType=VARCHAR}, #{drugKey,jdbcType=VARCHAR}, #{drugId,jdbcType=INTEGER}, 
+      #{geneId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.huasheng.pojo.newpojo.KtDrugGene" >
+    insert into kt_drug_gene
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="geneKey != null" >
+        gene_key,
+      </if>
+      <if test="drugKey != null" >
+        drug_key,
+      </if>
+      <if test="drugId != null" >
+        drug_id,
+      </if>
+      <if test="geneId != null" >
+        gene_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="geneKey != null" >
+        #{geneKey,jdbcType=VARCHAR},
+      </if>
+      <if test="drugKey != null" >
+        #{drugKey,jdbcType=VARCHAR},
+      </if>
+      <if test="drugId != null" >
+        #{drugId,jdbcType=INTEGER},
+      </if>
+      <if test="geneId != null" >
+        #{geneId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huasheng.pojo.newpojo.KtDrugGene" >
+    update kt_drug_gene
+    <set >
+      <if test="drugId != null" >
+        drug_id = #{drugId,jdbcType=INTEGER},
+      </if>
+      <if test="geneId != null" >
+        gene_id = #{geneId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where gene_key = #{geneKey,jdbcType=VARCHAR}
+      and drug_key = #{drugKey,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huasheng.pojo.newpojo.KtDrugGene" >
+    update kt_drug_gene
+    set drug_id = #{drugId,jdbcType=INTEGER},
+      gene_id = #{geneId,jdbcType=INTEGER}
+    where gene_key = #{geneKey,jdbcType=VARCHAR}
+      and drug_key = #{drugKey,jdbcType=VARCHAR}
+  </update>
+  <update id="updateKtDrugGene" parameterType="com.huasheng.pojo.newpojo.KtDrugGene" >
+    update kt_drug_gene
+    set drug_id = #{drugId,jdbcType=INTEGER},
+    gene_id = #{geneId,jdbcType=INTEGER},
+    gene_key = #{geneKey,jdbcType=VARCHAR}
+    where
+    drug_key = #{drugKey,jdbcType=VARCHAR}
+  </update>
+</mapper>

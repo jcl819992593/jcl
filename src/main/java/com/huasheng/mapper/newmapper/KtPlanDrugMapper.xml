@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huasheng.dao.newdao.KtPlanDrugDao" >
+  <resultMap id="BaseResultMap" type="com.huasheng.pojo.newpojo.KtPlanDrug" >
+    <id column="medication_plan_key" property="medicationPlanKey" jdbcType="VARCHAR" />
+    <id column="drug_key" property="drugKey" jdbcType="VARCHAR" />
+    <result column="medication_plan_id" property="medicationPlanId" jdbcType="INTEGER" />
+    <result column="drug_id" property="drugId" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    medication_plan_key, drug_key, medication_plan_id, drug_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.huasheng.pojo.newpojo.KtPlanDrug" >
+    select 
+    <include refid="Base_Column_List" />
+    from kt_plan_drug
+    where medication_plan_key = #{medicationPlanKey,jdbcType=VARCHAR}
+      and drug_key = #{drugKey,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.huasheng.pojo.newpojo.KtPlanDrug" >
+    delete from kt_plan_drug
+    where medication_plan_key = #{medicationPlanKey,jdbcType=VARCHAR}
+      and drug_key = #{drugKey,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.huasheng.pojo.newpojo.KtPlanDrug" >
+    insert into kt_plan_drug (medication_plan_key, drug_key, medication_plan_id, 
+      drug_id)
+    values (#{medicationPlanKey,jdbcType=VARCHAR}, #{drugKey,jdbcType=VARCHAR}, #{medicationPlanId,jdbcType=INTEGER}, 
+      #{drugId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.huasheng.pojo.newpojo.KtPlanDrug" >
+    insert into kt_plan_drug
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="medicationPlanKey != null" >
+        medication_plan_key,
+      </if>
+      <if test="drugKey != null" >
+        drug_key,
+      </if>
+      <if test="medicationPlanId != null" >
+        medication_plan_id,
+      </if>
+      <if test="drugId != null" >
+        drug_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="medicationPlanKey != null" >
+        #{medicationPlanKey,jdbcType=VARCHAR},
+      </if>
+      <if test="drugKey != null" >
+        #{drugKey,jdbcType=VARCHAR},
+      </if>
+      <if test="medicationPlanId != null" >
+        #{medicationPlanId,jdbcType=INTEGER},
+      </if>
+      <if test="drugId != null" >
+        #{drugId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huasheng.pojo.newpojo.KtPlanDrug" >
+    update kt_plan_drug
+    <set >
+      <if test="medicationPlanId != null" >
+        medication_plan_id = #{medicationPlanId,jdbcType=INTEGER},
+      </if>
+      <if test="drugId != null" >
+        drug_id = #{drugId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where medication_plan_key = #{medicationPlanKey,jdbcType=VARCHAR}
+      and drug_key = #{drugKey,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huasheng.pojo.newpojo.KtPlanDrug" >
+    update kt_plan_drug
+    set medication_plan_id = #{medicationPlanId,jdbcType=INTEGER},
+      drug_id = #{drugId,jdbcType=INTEGER}
+    where medication_plan_key = #{medicationPlanKey,jdbcType=VARCHAR}
+      and drug_key = #{drugKey,jdbcType=VARCHAR}
+  </update>
+
+  <select id="getktPlanDrugList" resultMap="BaseResultMap" parameterType="com.huasheng.pojo.newpojo.KtPlanDrug" >
+    select
+    <include refid="Base_Column_List" />
+    from kt_plan_drug
+    where medication_plan_key = #{medicationPlanKey,jdbcType=VARCHAR}
+  </select>
+  <insert id="insertPlanDrugList" parameterType="List">
+    INSERT into kt_plan_drug(medication_plan_key,drug_key,medication_plan_id,drug_id) VALUES
+    <foreach collection="list" item="item" index="index" separator=",">
+      (#{item.medicationPlanKey},#{item.drugKey},#{item.medicationPlanId},#{item.drugId})
+    </foreach>
+  </insert>
+  <delete id="deleteByMedicationPlanKey" parameterType="java.lang.String" >
+    delete from kt_plan_drug
+    where medication_plan_key = #{medicationPlanKey,jdbcType=VARCHAR}
+  </delete>
+</mapper>

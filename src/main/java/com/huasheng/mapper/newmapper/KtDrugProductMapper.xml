@@ -1,0 +1,498 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huasheng.dao.newdao.KtDrugProductDao" >
+  <resultMap id="BaseResultMap" type="com.huasheng.pojo.newpojo.KtDrugProduct" >
+    <id column="product_key" property="productKey" jdbcType="VARCHAR" />
+    <result column="drug_key" property="drugKey" jdbcType="VARCHAR" />
+    <result column="drug_id" property="drugId" jdbcType="INTEGER" />
+    <result column="product_name" property="productName" jdbcType="VARCHAR" />
+    <result column="trade_name" property="tradeName" jdbcType="VARCHAR" />
+    <result column="drug_attribute" property="drugAttribute" jdbcType="VARCHAR" />
+    <result column="dosage_form" property="dosageForm" jdbcType="VARCHAR" />
+    <result column="product_route" property="productRoute" jdbcType="VARCHAR" />
+    <result column="dosage_strength" property="dosageStrength" jdbcType="VARCHAR" />
+    <result column="is_medical_insurance" property="isMedicalInsurance" jdbcType="BIT" />
+    <result column="reference_price" property="referencePrice" jdbcType="VARCHAR" />
+    <result column="labeller" property="labeller" jdbcType="VARCHAR" />
+    <result column="generic" property="generic" jdbcType="BIT" />
+    <result column="product_source" property="productSource" jdbcType="VARCHAR" />
+    <result column="country" property="country" jdbcType="VARCHAR" />
+    <result column="marketing_start" property="marketingStart" jdbcType="TIMESTAMP" />
+    <result column="marketing_end" property="marketingEnd" jdbcType="TIMESTAMP" />
+    <result column="package_image" property="packageImage" jdbcType="VARCHAR" />
+    <result column="approved" property="approved" jdbcType="BIT" />
+    <result column="created_at" property="createdAt" jdbcType="BIGINT" />
+    <result column="created_way" property="createdWay" jdbcType="INTEGER" />
+    <result column="created_by_key" property="createdByKey" jdbcType="CHAR" />
+    <result column="created_by_name" property="createdByName" jdbcType="VARCHAR" />
+    <result column="check_state" property="checkState" jdbcType="INTEGER" />
+    <result column="check_report" property="checkReport" jdbcType="VARCHAR" />
+    <result column="checked_by_key" property="checkedByKey" jdbcType="CHAR" />
+    <result column="checked_by_name" property="checkedByName" jdbcType="VARCHAR" />
+    <result column="translate_by_key" property="translateByKey" jdbcType="CHAR" />
+    <result column="translate_by_name" property="translateByName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    product_key, drug_key, drug_id, product_name, trade_name, drug_attribute, dosage_form, 
+    product_route, dosage_strength, is_medical_insurance, reference_price, labeller, 
+    generic, product_source, country, marketing_start, marketing_end, package_image, 
+    approved, created_at, created_way, created_by_key, created_by_name, check_state, 
+    check_report, checked_by_key, checked_by_name, translate_by_key, translate_by_name
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from kt_drug_product
+    where product_key = #{productKey,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from kt_drug_product
+    where product_key = #{productKey,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.huasheng.pojo.newpojo.KtDrugProduct" >
+    insert into kt_drug_product (product_key, drug_key, drug_id, 
+      product_name, trade_name, drug_attribute, 
+      dosage_form, product_route, dosage_strength, 
+      is_medical_insurance, reference_price, labeller, 
+      generic, product_source, country, 
+      marketing_start, marketing_end, package_image, 
+      approved, created_at, created_way, 
+      created_by_key, created_by_name, check_state, 
+      check_report, checked_by_key, checked_by_name, 
+      translate_by_key, translate_by_name)
+    values (#{productKey,jdbcType=VARCHAR}, #{drugKey,jdbcType=VARCHAR}, #{drugId,jdbcType=INTEGER}, 
+      #{productName,jdbcType=VARCHAR}, #{tradeName,jdbcType=VARCHAR}, #{drugAttribute,jdbcType=VARCHAR}, 
+      #{dosageForm,jdbcType=VARCHAR}, #{productRoute,jdbcType=VARCHAR}, #{dosageStrength,jdbcType=VARCHAR}, 
+      #{isMedicalInsurance,jdbcType=BIT}, #{referencePrice,jdbcType=VARCHAR}, #{labeller,jdbcType=VARCHAR}, 
+      #{generic,jdbcType=BIT}, #{productSource,jdbcType=VARCHAR}, #{country,jdbcType=VARCHAR}, 
+      #{marketingStart,jdbcType=TIMESTAMP}, #{marketingEnd,jdbcType=TIMESTAMP}, #{packageImage,jdbcType=VARCHAR}, 
+      #{approved,jdbcType=BIT}, #{createdAt,jdbcType=BIGINT}, #{createdWay,jdbcType=INTEGER}, 
+      #{createdByKey,jdbcType=CHAR}, #{createdByName,jdbcType=VARCHAR}, #{checkState,jdbcType=INTEGER}, 
+      #{checkReport,jdbcType=VARCHAR}, #{checkedByKey,jdbcType=CHAR}, #{checkedByName,jdbcType=VARCHAR}, 
+      #{translateByKey,jdbcType=CHAR}, #{translateByName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.huasheng.pojo.newpojo.KtDrugProduct" >
+    insert into kt_drug_product
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="productKey != null" >
+        product_key,
+      </if>
+      <if test="drugKey != null" >
+        drug_key,
+      </if>
+      <if test="drugId != null" >
+        drug_id,
+      </if>
+      <if test="productName != null" >
+        product_name,
+      </if>
+      <if test="tradeName != null" >
+        trade_name,
+      </if>
+      <if test="drugAttribute != null" >
+        drug_attribute,
+      </if>
+      <if test="dosageForm != null" >
+        dosage_form,
+      </if>
+      <if test="productRoute != null" >
+        product_route,
+      </if>
+      <if test="dosageStrength != null" >
+        dosage_strength,
+      </if>
+      <if test="isMedicalInsurance != null" >
+        is_medical_insurance,
+      </if>
+      <if test="referencePrice != null" >
+        reference_price,
+      </if>
+      <if test="labeller != null" >
+        labeller,
+      </if>
+      <if test="generic != null" >
+        generic,
+      </if>
+      <if test="productSource != null" >
+        product_source,
+      </if>
+      <if test="country != null" >
+        country,
+      </if>
+      <if test="marketingStart != null" >
+        marketing_start,
+      </if>
+      <if test="marketingEnd != null" >
+        marketing_end,
+      </if>
+      <if test="packageImage != null" >
+        package_image,
+      </if>
+      <if test="approved != null" >
+        approved,
+      </if>
+      <if test="createdAt != null" >
+        created_at,
+      </if>
+      <if test="createdWay != null" >
+        created_way,
+      </if>
+      <if test="createdByKey != null" >
+        created_by_key,
+      </if>
+      <if test="createdByName != null" >
+        created_by_name,
+      </if>
+      <if test="checkState != null" >
+        check_state,
+      </if>
+      <if test="checkReport != null" >
+        check_report,
+      </if>
+      <if test="checkedByKey != null" >
+        checked_by_key,
+      </if>
+      <if test="checkedByName != null" >
+        checked_by_name,
+      </if>
+      <if test="translateByKey != null" >
+        translate_by_key,
+      </if>
+      <if test="translateByName != null" >
+        translate_by_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="productKey != null" >
+        #{productKey,jdbcType=VARCHAR},
+      </if>
+      <if test="drugKey != null" >
+        #{drugKey,jdbcType=VARCHAR},
+      </if>
+      <if test="drugId != null" >
+        #{drugId,jdbcType=INTEGER},
+      </if>
+      <if test="productName != null" >
+        #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeName != null" >
+        #{tradeName,jdbcType=VARCHAR},
+      </if>
+      <if test="drugAttribute != null" >
+        #{drugAttribute,jdbcType=VARCHAR},
+      </if>
+      <if test="dosageForm != null" >
+        #{dosageForm,jdbcType=VARCHAR},
+      </if>
+      <if test="productRoute != null" >
+        #{productRoute,jdbcType=VARCHAR},
+      </if>
+      <if test="dosageStrength != null" >
+        #{dosageStrength,jdbcType=VARCHAR},
+      </if>
+      <if test="isMedicalInsurance != null" >
+        #{isMedicalInsurance,jdbcType=BIT},
+      </if>
+      <if test="referencePrice != null" >
+        #{referencePrice,jdbcType=VARCHAR},
+      </if>
+      <if test="labeller != null" >
+        #{labeller,jdbcType=VARCHAR},
+      </if>
+      <if test="generic != null" >
+        #{generic,jdbcType=BIT},
+      </if>
+      <if test="productSource != null" >
+        #{productSource,jdbcType=VARCHAR},
+      </if>
+      <if test="country != null" >
+        #{country,jdbcType=VARCHAR},
+      </if>
+      <if test="marketingStart != null" >
+        #{marketingStart,jdbcType=TIMESTAMP},
+      </if>
+      <if test="marketingEnd != null" >
+        #{marketingEnd,jdbcType=TIMESTAMP},
+      </if>
+      <if test="packageImage != null" >
+        #{packageImage,jdbcType=VARCHAR},
+      </if>
+      <if test="approved != null" >
+        #{approved,jdbcType=BIT},
+      </if>
+      <if test="createdAt != null" >
+        #{createdAt,jdbcType=BIGINT},
+      </if>
+      <if test="createdWay != null" >
+        #{createdWay,jdbcType=INTEGER},
+      </if>
+      <if test="createdByKey != null" >
+        #{createdByKey,jdbcType=CHAR},
+      </if>
+      <if test="createdByName != null" >
+        #{createdByName,jdbcType=VARCHAR},
+      </if>
+      <if test="checkState != null" >
+        #{checkState,jdbcType=INTEGER},
+      </if>
+      <if test="checkReport != null" >
+        #{checkReport,jdbcType=VARCHAR},
+      </if>
+      <if test="checkedByKey != null" >
+        #{checkedByKey,jdbcType=CHAR},
+      </if>
+      <if test="checkedByName != null" >
+        #{checkedByName,jdbcType=VARCHAR},
+      </if>
+      <if test="translateByKey != null" >
+        #{translateByKey,jdbcType=CHAR},
+      </if>
+      <if test="translateByName != null" >
+        #{translateByName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huasheng.pojo.newpojo.KtDrugProduct" >
+    update kt_drug_product
+    <set >
+      <if test="drugKey != null" >
+        drug_key = #{drugKey,jdbcType=VARCHAR},
+      </if>
+      <if test="drugId != null" >
+        drug_id = #{drugId,jdbcType=INTEGER},
+      </if>
+      <if test="productName != null" >
+        product_name = #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeName != null" >
+        trade_name = #{tradeName,jdbcType=VARCHAR},
+      </if>
+      <if test="drugAttribute != null" >
+        drug_attribute = #{drugAttribute,jdbcType=VARCHAR},
+      </if>
+      <if test="dosageForm != null" >
+        dosage_form = #{dosageForm,jdbcType=VARCHAR},
+      </if>
+      <if test="productRoute != null" >
+        product_route = #{productRoute,jdbcType=VARCHAR},
+      </if>
+      <if test="dosageStrength != null" >
+        dosage_strength = #{dosageStrength,jdbcType=VARCHAR},
+      </if>
+      <if test="isMedicalInsurance != null" >
+        is_medical_insurance = #{isMedicalInsurance,jdbcType=BIT},
+      </if>
+      <if test="referencePrice != null" >
+        reference_price = #{referencePrice,jdbcType=VARCHAR},
+      </if>
+      <if test="labeller != null" >
+        labeller = #{labeller,jdbcType=VARCHAR},
+      </if>
+      <if test="generic != null" >
+        generic = #{generic,jdbcType=BIT},
+      </if>
+      <if test="productSource != null" >
+        product_source = #{productSource,jdbcType=VARCHAR},
+      </if>
+      <if test="country != null" >
+        country = #{country,jdbcType=VARCHAR},
+      </if>
+      <if test="marketingStart != null" >
+        marketing_start = #{marketingStart,jdbcType=TIMESTAMP},
+      </if>
+      <if test="marketingEnd != null" >
+        marketing_end = #{marketingEnd,jdbcType=TIMESTAMP},
+      </if>
+      <if test="packageImage != null" >
+        package_image = #{packageImage,jdbcType=VARCHAR},
+      </if>
+      <if test="approved != null" >
+        approved = #{approved,jdbcType=BIT},
+      </if>
+      <if test="createdAt != null" >
+        created_at = #{createdAt,jdbcType=BIGINT},
+      </if>
+      <if test="createdWay != null" >
+        created_way = #{createdWay,jdbcType=INTEGER},
+      </if>
+      <if test="createdByKey != null" >
+        created_by_key = #{createdByKey,jdbcType=CHAR},
+      </if>
+      <if test="createdByName != null" >
+        created_by_name = #{createdByName,jdbcType=VARCHAR},
+      </if>
+      <if test="checkState != null" >
+        check_state = #{checkState,jdbcType=INTEGER},
+      </if>
+      <if test="checkReport != null" >
+        check_report = #{checkReport,jdbcType=VARCHAR},
+      </if>
+      <if test="checkedByKey != null" >
+        checked_by_key = #{checkedByKey,jdbcType=CHAR},
+      </if>
+      <if test="checkedByName != null" >
+        checked_by_name = #{checkedByName,jdbcType=VARCHAR},
+      </if>
+      <if test="translateByKey != null" >
+        translate_by_key = #{translateByKey,jdbcType=CHAR},
+      </if>
+      <if test="translateByName != null" >
+        translate_by_name = #{translateByName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where product_key = #{productKey,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huasheng.pojo.newpojo.KtDrugProduct" >
+    update kt_drug_product
+    set drug_key = #{drugKey,jdbcType=VARCHAR},
+      drug_id = #{drugId,jdbcType=INTEGER},
+      product_name = #{productName,jdbcType=VARCHAR},
+      trade_name = #{tradeName,jdbcType=VARCHAR},
+      drug_attribute = #{drugAttribute,jdbcType=VARCHAR},
+      dosage_form = #{dosageForm,jdbcType=VARCHAR},
+      product_route = #{productRoute,jdbcType=VARCHAR},
+      dosage_strength = #{dosageStrength,jdbcType=VARCHAR},
+      is_medical_insurance = #{isMedicalInsurance,jdbcType=BIT},
+      reference_price = #{referencePrice,jdbcType=VARCHAR},
+      labeller = #{labeller,jdbcType=VARCHAR},
+      generic = #{generic,jdbcType=BIT},
+      product_source = #{productSource,jdbcType=VARCHAR},
+      country = #{country,jdbcType=VARCHAR},
+      marketing_start = #{marketingStart,jdbcType=TIMESTAMP},
+      marketing_end = #{marketingEnd,jdbcType=TIMESTAMP},
+      <if test="packageImage !='' and packageImage!=null">
+      package_image = #{packageImage,jdbcType=VARCHAR},
+      </if>
+      approved = #{approved,jdbcType=BIT},
+      created_at = #{createdAt,jdbcType=BIGINT},
+      created_way = #{createdWay,jdbcType=INTEGER},
+      created_by_key = #{createdByKey,jdbcType=CHAR},
+      created_by_name = #{createdByName,jdbcType=VARCHAR},
+
+    <if test="checkReport!='' and checkReport != null" >
+      check_report = #{checkReport,jdbcType=VARCHAR},
+    </if>
+    <if test="checkedByKey!='' and checkedByKey != null" >
+      checked_by_key = #{checkedByKey,jdbcType=CHAR},
+    </if>
+      <if test="checkedByName!='' and checkedByName != null" >
+      checked_by_name = #{checkedByName,jdbcType=VARCHAR},
+      </if>
+    <if test="translateByKey!='' and translateByKey != null">
+      translate_by_key = #{translateByKey,jdbcType=CHAR},
+    </if>
+    <if test="translateByName!='' and translateByName != null">
+      translate_by_name = #{translateByName,jdbcType=VARCHAR},
+    </if>
+    check_state = #{checkState,jdbcType=INTEGER}
+    where product_key = #{productKey,jdbcType=VARCHAR}
+  </update>
+  <!--查询药物和药品-->
+  <select id="getKtDrugProductByProductKey" resultType="Map" parameterType="String">
+    select  a.generic_name genericName,b.product_key productKey,b.drug_key drugKey,b.drug_id drugId,b.product_name productName,b.trade_name tradeName, b.drug_attribute drugAttribute,
+    b.dosage_form dosageForm, b.product_route productRoute, b.dosage_strength dosageStrength,
+    b.is_medical_insurance isMedicalInsurance, b.reference_price referencePrice, b.labeller labeller,
+    b.generic generic, b.product_source productSource, b.country country,
+    b.marketing_start marketingStart, b.marketing_end marketingEnd,
+    b.package_image packageImage, b.approved approved,b.created_way createdWay,b.check_report checkReport,b.check_state checkState,b.translate_by_name translateByName,b.translate_by_key translateByKey
+    from kt_drug_product b left JOIN kt_drug a on a.drug_key=b.drug_key where product_key=#{productKey}
+
+  </select>
+  <!--查询药品和机构-->
+  <select id="getApprovalAndProduct" resultType="Map" parameterType="String">
+    SELECT c.item_name itemName,b.approval_number approvalNumber,b.approval_date approvalDate,b.item_key itemKey
+    FROM kt_drug_product a LEFT JOIN kt_drug_product_approval_number b on a.product_key=b.product_key
+    LEFT JOIN kt_data_dictionary_items c on b.item_key=c.item_key
+    where b.product_key=#{productKey}
+  </select>
+  <!--查询药品和机构放实体比对用-->
+  <select id="getApprovalTrans" resultType="com.huasheng.pojo.newpojo.KtDrugProductApproval" parameterType="String">
+    SELECT c.item_name itemName,b.approval_number approvalNumber,b.approval_date approvalDate,b.item_key itemKey
+    FROM kt_drug_product a LEFT JOIN kt_drug_product_approval_number b on a.product_key=b.product_key
+    LEFT JOIN kt_data_dictionary_items c on b.item_key=c.item_key
+    where b.product_key=#{productKey}
+  </select>
+  <select id="getDrugProductList" parameterType="Map" resultType="Map">
+    select  a.generic_name genericName,b.created_at createdAt,b.check_state checkState,b.check_report checkReport, b.product_key productKey,b.drug_key drugKey,b.drug_id drugId,b.product_name productName,b.trade_name tradeName, b.drug_attribute drugAttribute,
+    b.dosage_form dosageForm, b.product_route productRoute, b.dosage_strength dosageStrength,
+    b.is_medical_insurance isMedicalInsurance, b.reference_price referencePrice, b.labeller labeller,
+    b.generic generic, b.product_source productSource, b.country country,
+    b.marketing_start marketingStart, b.marketing_end marketingEnd,
+    b.package_image packageImage, b.approved approved,b.translate_by_name translateByName,b.translate_by_key translateByKey
+    from kt_drug_product b left JOIN kt_drug a on a.drug_key=b.drug_key
+    where 1=1
+    <if test="genericName !='' and genericName!=null">
+      and a.generic_name like CONCAT(CONCAT('%',#{genericName},'%'))
+    </if>
+    <if test="productName!='' and productName!=null">
+      and (b.product_name like CONCAT(CONCAT('%',#{productName},'%')) or b.trade_name like  CONCAT(CONCAT('%',#{productName},'%')))
+    </if>
+    <if test="isMedicalInsurance!='' and isMedicalInsurance!=null">
+      and b.is_medical_insurance=#{isMedicalInsurance}
+    </if>
+    <if test="drugAttribute!='' and drugAttribute!=null">
+      and b.drug_attribute=#{drugAttribute}
+    </if>
+    <if test="checkState!='' and checkState!=null">
+      and b.check_state=#{checkState}
+    </if>
+    <if test="createdWay!='' and createdWay!=null" >
+      AND b.created_way =#{createdWay}
+    </if>
+    ORDER BY b.created_at DESC
+  </select>
+  <update id="updateKtDrugProductCheckState" parameterType="com.huasheng.pojo.newpojo.KtDrugProduct">
+    update kt_drug_product SET
+    check_state = #{checkState,jdbcType=BIGINT},
+    checked_by_key = #{checkedByKey,jdbcType=CHAR},
+    checked_by_name = #{checkedByName,jdbcType=VARCHAR},
+    check_report = #{checkReport}
+    where product_key = #{productKey,jdbcType=VARCHAR}
+  </update>
+  <!--更新翻译状态-->
+<update id="updateTranslator" parameterType="com.huasheng.pojo.newpojo.KtDrugProduct">
+   update kt_drug_product
+    set
+    created_at = #{createdAt,jdbcType=BIGINT},
+    check_state = #{checkState,jdbcType=BIGINT},
+    translate_by_key = #{translateByKey,jdbcType=CHAR},
+    translate_by_name = #{translateByName,jdbcType=VARCHAR}
+    where product_key = #{productKey,jdbcType=VARCHAR}
+</update>
+ <!-- 根据英文id找药品-->
+<select id="getDrugProductById" parameterType="String" resultMap="BaseResultMap">
+  select
+  <include refid="Base_Column_List" />
+  from kt_drug_product
+  where drug_id = #{drugId}
+</select>
+<update id="checkEnDrug" parameterType="Map">
+  update kt_drug_product
+  set
+  check_state = #{checkState,jdbcType=BIGINT}
+  <if test="checkReport!='' and checkReport!=null">
+    ,check_report = #{checkReport,jdbcType=VARCHAR}
+  </if>
+  <if test="checkReport!='' and checkReport!=null">
+    ,checked_by_key = #{checkedByKey,jdbcType=VARCHAR}
+  </if>
+  <if test="checkedByKey!='' and checkedByName!=null">
+    ,checked_by_name = #{checkedByName,jdbcType=VARCHAR}
+  </if>
+  where 1=1
+  <if test="productKey!='' and productKey!=null">
+    AND product_key = #{productKey,jdbcType=VARCHAR}
+  </if>
+  </update>
+  <select id="getDrugCountPending" parameterType="Map" resultType="Integer">
+     SELECT count(product_key) from kt_drug_product where check_state=#{checkState} and created_way=#{createdWay}
+  </select>
+
+  <select id="getDrugCountTranslateMonth" parameterType="Map" resultType="Integer">
+    SELECT count(product_key) from kt_drug_product where (created_at BETWEEN #{firstTime} and #{currentTime}) AND check_state=#{checkState} and created_way=#{createdWay}
+  </select>
+
+  <delete id="deleteAll" parameterType="java.lang.String" >
+    delete from kt_drug_product
+  </delete>
+</mapper>

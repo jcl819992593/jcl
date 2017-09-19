@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huasheng.dao.newdao.KtScientificResearchDao" >
+  <resultMap id="BaseResultMap" type="com.huasheng.pojo.newpojo.KtScientificResearch" >
+    <id column="research_key" property="researchKey" jdbcType="VARCHAR" />
+    <result column="scientific_research_id" property="scientificResearchId" jdbcType="VARCHAR" />
+    <result column="the_title" property="theTitle" jdbcType="VARCHAR" />
+    <result column="the_time" property="theTime" jdbcType="TIMESTAMP" />
+    <result column="the_abstracts" property="theAbstracts" jdbcType="VARCHAR" />
+    <result column="the_result" property="theResult" jdbcType="VARCHAR" />
+    <result column="the_approach" property="theApproach" jdbcType="VARCHAR" />
+    <result column="the_background" property="theBackground" jdbcType="VARCHAR" />
+    <result column="the_conclusion" property="theConclusion" jdbcType="VARCHAR" />
+    <result column="the_author" property="theAuthor" jdbcType="VARCHAR" />
+    <result column="the_source" property="theSource" jdbcType="VARCHAR" />
+    <result column="the_journal" property="theJournal" jdbcType="VARCHAR" />
+    <result column="the_url" property="theUrl" jdbcType="VARCHAR" />
+    <result column="the_pmid" property="thePmid" jdbcType="VARCHAR" />
+    <result column="the_sort" property="theSort" jdbcType="VARCHAR" />
+    <result column="created_at" property="createdAt" jdbcType="BIGINT" />
+    <result column="created_way" property="createdWay" jdbcType="INTEGER" />
+    <result column="created_by_key" property="createdByKey" jdbcType="CHAR" />
+    <result column="created_by_name" property="createdByName" jdbcType="VARCHAR" />
+    <result column="check_state" property="checkState" jdbcType="INTEGER" />
+    <result column="check_report" property="checkReport" jdbcType="VARCHAR" />
+    <result column="checked_by_key" property="checkedByKey" jdbcType="CHAR" />
+    <result column="checked_by_name" property="checkedByName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    research_key, scientific_research_id, the_title, the_time, the_abstracts, the_result, 
+    the_approach, the_background, the_conclusion, the_author, the_source, the_journal, 
+    the_url, the_pmid, the_sort, created_at, created_way, created_by_key, created_by_name, 
+    check_state, check_report, checked_by_key, checked_by_name
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from kt_scientific_research
+    where research_key = #{researchKey,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from kt_scientific_research
+    where research_key = #{researchKey,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.huasheng.pojo.newpojo.KtScientificResearch" >
+    insert into kt_scientific_research (research_key, scientific_research_id, 
+      the_title, the_time, the_abstracts, 
+      the_result, the_approach, the_background, 
+      the_conclusion, the_author, the_source, 
+      the_journal, the_url, the_pmid, 
+      the_sort, created_at, created_way, 
+      created_by_key, created_by_name, check_state, 
+      check_report, checked_by_key, checked_by_name
+      )
+    values (#{researchKey,jdbcType=VARCHAR}, #{scientificResearchId,jdbcType=VARCHAR}, 
+      #{theTitle,jdbcType=VARCHAR}, #{theTime,jdbcType=TIMESTAMP}, #{theAbstracts,jdbcType=VARCHAR}, 
+      #{theResult,jdbcType=VARCHAR}, #{theApproach,jdbcType=VARCHAR}, #{theBackground,jdbcType=VARCHAR}, 
+      #{theConclusion,jdbcType=VARCHAR}, #{theAuthor,jdbcType=VARCHAR}, #{theSource,jdbcType=VARCHAR}, 
+      #{theJournal,jdbcType=VARCHAR}, #{theUrl,jdbcType=VARCHAR}, #{thePmid,jdbcType=VARCHAR}, 
+      #{theSort,jdbcType=VARCHAR}, #{createdAt,jdbcType=BIGINT}, #{createdWay,jdbcType=INTEGER}, 
+      #{createdByKey,jdbcType=CHAR}, #{createdByName,jdbcType=VARCHAR}, #{checkState,jdbcType=INTEGER}, 
+      #{checkReport,jdbcType=VARCHAR}, #{checkedByKey,jdbcType=CHAR}, #{checkedByName,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.huasheng.pojo.newpojo.KtScientificResearch" >
+    insert into kt_scientific_research
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="researchKey != null" >
+        research_key,
+      </if>
+      <if test="scientificResearchId != null" >
+        scientific_research_id,
+      </if>
+      <if test="theTitle != null" >
+        the_title,
+      </if>
+      <if test="theTime != null" >
+        the_time,
+      </if>
+      <if test="theAbstracts != null" >
+        the_abstracts,
+      </if>
+      <if test="theResult != null" >
+        the_result,
+      </if>
+      <if test="theApproach != null" >
+        the_approach,
+      </if>
+      <if test="theBackground != null" >
+        the_background,
+      </if>
+      <if test="theConclusion != null" >
+        the_conclusion,
+      </if>
+      <if test="theAuthor != null" >
+        the_author,
+      </if>
+      <if test="theSource != null" >
+        the_source,
+      </if>
+      <if test="theJournal != null" >
+        the_journal,
+      </if>
+      <if test="theUrl != null" >
+        the_url,
+      </if>
+      <if test="thePmid != null" >
+        the_pmid,
+      </if>
+      <if test="theSort != null" >
+        the_sort,
+      </if>
+      <if test="createdAt != null" >
+        created_at,
+      </if>
+      <if test="createdWay != null" >
+        created_way,
+      </if>
+      <if test="createdByKey != null" >
+        created_by_key,
+      </if>
+      <if test="createdByName != null" >
+        created_by_name,
+      </if>
+      <if test="checkState != null" >
+        check_state,
+      </if>
+      <if test="checkReport != null" >
+        check_report,
+      </if>
+      <if test="checkedByKey != null" >
+        checked_by_key,
+      </if>
+      <if test="checkedByName != null" >
+        checked_by_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="researchKey != null" >
+        #{researchKey,jdbcType=VARCHAR},
+      </if>
+      <if test="scientificResearchId != null" >
+        #{scientificResearchId,jdbcType=VARCHAR},
+      </if>
+      <if test="theTitle != null" >
+        #{theTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="theTime != null" >
+        #{theTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="theAbstracts != null" >
+        #{theAbstracts,jdbcType=VARCHAR},
+      </if>
+      <if test="theResult != null" >
+        #{theResult,jdbcType=VARCHAR},
+      </if>
+      <if test="theApproach != null" >
+        #{theApproach,jdbcType=VARCHAR},
+      </if>
+      <if test="theBackground != null" >
+        #{theBackground,jdbcType=VARCHAR},
+      </if>
+      <if test="theConclusion != null" >
+        #{theConclusion,jdbcType=VARCHAR},
+      </if>
+      <if test="theAuthor != null" >
+        #{theAuthor,jdbcType=VARCHAR},
+      </if>
+      <if test="theSource != null" >
+        #{theSource,jdbcType=VARCHAR},
+      </if>
+      <if test="theJournal != null" >
+        #{theJournal,jdbcType=VARCHAR},
+      </if>
+      <if test="theUrl != null" >
+        #{theUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="thePmid != null" >
+        #{thePmid,jdbcType=VARCHAR},
+      </if>
+      <if test="theSort != null" >
+        #{theSort,jdbcType=VARCHAR},
+      </if>
+      <if test="createdAt != null" >
+        #{createdAt,jdbcType=BIGINT},
+      </if>
+      <if test="createdWay != null" >
+        #{createdWay,jdbcType=INTEGER},
+      </if>
+      <if test="createdByKey != null" >
+        #{createdByKey,jdbcType=CHAR},
+      </if>
+      <if test="createdByName != null" >
+        #{createdByName,jdbcType=VARCHAR},
+      </if>
+      <if test="checkState != null" >
+        #{checkState,jdbcType=INTEGER},
+      </if>
+      <if test="checkReport != null" >
+        #{checkReport,jdbcType=VARCHAR},
+      </if>
+      <if test="checkedByKey != null" >
+        #{checkedByKey,jdbcType=CHAR},
+      </if>
+      <if test="checkedByName != null" >
+        #{checkedByName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huasheng.pojo.newpojo.KtScientificResearch" >
+    update kt_scientific_research
+    <set >
+      <if test="scientificResearchId != null" >
+        scientific_research_id = #{scientificResearchId,jdbcType=VARCHAR},
+      </if>
+      <if test="theTitle != null" >
+        the_title = #{theTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="theTime != null" >
+        the_time = #{theTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="theAbstracts != null" >
+        the_abstracts = #{theAbstracts,jdbcType=VARCHAR},
+      </if>
+      <if test="theResult != null" >
+        the_result = #{theResult,jdbcType=VARCHAR},
+      </if>
+      <if test="theApproach != null" >
+        the_approach = #{theApproach,jdbcType=VARCHAR},
+      </if>
+      <if test="theBackground != null" >
+        the_background = #{theBackground,jdbcType=VARCHAR},
+      </if>
+      <if test="theConclusion != null" >
+        the_conclusion = #{theConclusion,jdbcType=VARCHAR},
+      </if>
+      <if test="theAuthor != null" >
+        the_author = #{theAuthor,jdbcType=VARCHAR},
+      </if>
+      <if test="theSource != null" >
+        the_source = #{theSource,jdbcType=VARCHAR},
+      </if>
+      <if test="theJournal != null" >
+        the_journal = #{theJournal,jdbcType=VARCHAR},
+      </if>
+      <if test="theUrl != null" >
+        the_url = #{theUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="thePmid != null" >
+        the_pmid = #{thePmid,jdbcType=VARCHAR},
+      </if>
+      <if test="theSort != null" >
+        the_sort = #{theSort,jdbcType=VARCHAR},
+      </if>
+      <if test="createdAt != null" >
+        created_at = #{createdAt,jdbcType=BIGINT},
+      </if>
+      <if test="createdWay != null" >
+        created_way = #{createdWay,jdbcType=INTEGER},
+      </if>
+      <if test="createdByKey != null" >
+        created_by_key = #{createdByKey,jdbcType=CHAR},
+      </if>
+      <if test="createdByName != null" >
+        created_by_name = #{createdByName,jdbcType=VARCHAR},
+      </if>
+      <if test="checkState != null" >
+        check_state = #{checkState,jdbcType=INTEGER},
+      </if>
+      <if test="checkReport != null" >
+        check_report = #{checkReport,jdbcType=VARCHAR},
+      </if>
+      <if test="checkedByKey != null" >
+        checked_by_key = #{checkedByKey,jdbcType=CHAR},
+      </if>
+      <if test="checkedByName != null" >
+        checked_by_name = #{checkedByName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where research_key = #{researchKey,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huasheng.pojo.newpojo.KtScientificResearch" >
+    update kt_scientific_research
+    set scientific_research_id = #{scientificResearchId,jdbcType=VARCHAR},
+      the_title = #{theTitle,jdbcType=VARCHAR},
+      the_time = #{theTime,jdbcType=TIMESTAMP},
+      the_abstracts = #{theAbstracts,jdbcType=VARCHAR},
+      the_result = #{theResult,jdbcType=VARCHAR},
+      the_approach = #{theApproach,jdbcType=VARCHAR},
+      the_background = #{theBackground,jdbcType=VARCHAR},
+      the_conclusion = #{theConclusion,jdbcType=VARCHAR},
+      the_author = #{theAuthor,jdbcType=VARCHAR},
+      the_source = #{theSource,jdbcType=VARCHAR},
+      the_journal = #{theJournal,jdbcType=VARCHAR},
+      the_url = #{theUrl,jdbcType=VARCHAR},
+      the_pmid = #{thePmid,jdbcType=VARCHAR},
+      the_sort = #{theSort,jdbcType=VARCHAR},
+      created_at = #{createdAt,jdbcType=BIGINT},
+      created_way = #{createdWay,jdbcType=INTEGER},
+      created_by_key = #{createdByKey,jdbcType=CHAR},
+      created_by_name = #{createdByName,jdbcType=VARCHAR},
+    <if test="checkReport!='' and checkReport != null" >
+      check_report = #{checkReport,jdbcType=VARCHAR},
+    </if>
+    <if test="checkedByKey!='' and checkedByKey != null" >
+      checked_by_key = #{checkedByKey,jdbcType=CHAR},
+    </if>
+    <if test="checkedByName!='' and checkedByName != null" >
+      checked_by_name = #{checkedByName,jdbcType=VARCHAR},
+    </if>
+    check_state = #{checkState,jdbcType=INTEGER}
+    where research_key = #{researchKey,jdbcType=VARCHAR}
+  </update>
+  <select id="getVariantList" parameterType="Map" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from kt_scientific_research
+    where 1=1
+    <if test="theTitle!='' and theTitle!=null">
+      and the_title like CONCAT(CONCAT('%',#{theTitle},'%'))
+    </if>
+    <if test="checkState!='' and checkState!=null">
+      and check_state=#{checkState}
+    </if>
+    <if test="createdWay!='' and createdWay!=null" >
+      AND created_way =#{createdWay}
+    </if>
+    ORDER BY
+    created_at DESC
+  </select>
+  <update id="updateCheckState" parameterType="com.huasheng.pojo.newpojo.KtScientificResearch">
+     update kt_scientific_research
+    set
+    check_state = #{checkState,jdbcType=BIGINT},
+    checked_by_key = #{checkedByKey,jdbcType=CHAR},
+    checked_by_name = #{checkedByName,jdbcType=VARCHAR},
+    check_report = #{checkReport}
+    where research_key = #{researchKey,jdbcType=VARCHAR}
+  </update>
+  <select id="getScientificResearchCount" parameterType="Map" resultType="Integer">
+     SELECT count(research_key) from kt_scientific_research where check_state=#{checkState} and created_way=#{createdWay}
+  </select>
+
+  <select id="getScientificResearchCountMonth" parameterType="Map" resultType="Integer">
+    SELECT count(research_key) from kt_scientific_research where (created_at BETWEEN #{firstTime} and #{currentTime}) AND check_state=#{checkState} and created_way=#{createdWay}
+  </select>
+
+  <delete id="deleteAllScientificResearch"  >
+    delete from kt_scientific_research
+  </delete>
+</mapper>

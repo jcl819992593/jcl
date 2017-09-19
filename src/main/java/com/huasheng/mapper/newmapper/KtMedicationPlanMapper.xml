@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huasheng.dao.newdao.KtMedicationPlanDao" >
+  <resultMap id="BaseResultMap" type="com.huasheng.pojo.newpojo.KtMedicationPlan" >
+    <id column="medication_plan_key" property="medicationPlanKey" jdbcType="VARCHAR" />
+    <result column="medicine_plan_id" property="medicinePlanId" jdbcType="INTEGER" />
+    <result column="regimen_name" property="regimenName" jdbcType="VARCHAR" />
+    <result column="program_name_c" property="programNameC" jdbcType="VARCHAR" />
+    <result column="disease_name" property="diseaseName" jdbcType="VARCHAR" />
+    <result column="chemotherapy_type" property="chemotherapyType" jdbcType="VARCHAR" />
+    <result column="chemotherapy_name" property="chemotherapyName" jdbcType="VARCHAR" />
+    <result column="regimen_description" property="regimenDescription" jdbcType="VARCHAR" />
+    <result column="approval_agency" property="approvalAgency" jdbcType="VARCHAR" />
+    <result column="approval_link" property="approvalLink" jdbcType="VARCHAR" />
+    <result column="created_at" property="createdAt" jdbcType="BIGINT" />
+    <result column="created_way" property="createdWay" jdbcType="INTEGER" />
+    <result column="created_by_key" property="createdByKey" jdbcType="CHAR" />
+    <result column="created_by_name" property="createdByName" jdbcType="VARCHAR" />
+    <result column="check_state" property="checkState" jdbcType="INTEGER" />
+    <result column="check_report" property="checkReport" jdbcType="VARCHAR" />
+    <result column="checked_by_key" property="checkedByKey" jdbcType="CHAR" />
+    <result column="checked_by_name" property="checkedByName" jdbcType="VARCHAR" />
+    <result column="translate_by_key" property="translateByKey" jdbcType="CHAR" />
+    <result column="translate_by_name" property="translateByName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    medication_plan_key, medicine_plan_id, regimen_name, program_name_c, disease_name, 
+    chemotherapy_type, chemotherapy_name, regimen_description, approval_agency, approval_link, 
+    created_at, created_way, created_by_key, created_by_name, check_state, check_report, 
+    checked_by_key, checked_by_name, translate_by_key, translate_by_name
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from kt_medication_plan
+    where medication_plan_key = #{medicationPlanKey,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from kt_medication_plan
+    where medication_plan_key = #{medicationPlanKey,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.huasheng.pojo.newpojo.KtMedicationPlan" >
+    insert into kt_medication_plan (medication_plan_key, medicine_plan_id, 
+      regimen_name, program_name_c, disease_name, 
+      chemotherapy_type, chemotherapy_name, regimen_description, 
+      approval_agency, approval_link, created_at, 
+      created_way, created_by_key, created_by_name, 
+      check_state, check_report, checked_by_key, 
+      checked_by_name, translate_by_key, translate_by_name
+      )
+    values (#{medicationPlanKey,jdbcType=VARCHAR}, #{medicinePlanId,jdbcType=INTEGER}, 
+      #{regimenName,jdbcType=VARCHAR}, #{programNameC,jdbcType=VARCHAR}, #{diseaseName,jdbcType=VARCHAR}, 
+      #{chemotherapyType,jdbcType=VARCHAR}, #{chemotherapyName,jdbcType=VARCHAR}, #{regimenDescription,jdbcType=VARCHAR}, 
+      #{approvalAgency,jdbcType=VARCHAR}, #{approvalLink,jdbcType=VARCHAR}, #{createdAt,jdbcType=BIGINT}, 
+      #{createdWay,jdbcType=INTEGER}, #{createdByKey,jdbcType=CHAR}, #{createdByName,jdbcType=VARCHAR}, 
+      #{checkState,jdbcType=INTEGER}, #{checkReport,jdbcType=VARCHAR}, #{checkedByKey,jdbcType=CHAR}, 
+      #{checkedByName,jdbcType=VARCHAR}, #{translateByKey,jdbcType=CHAR}, #{translateByName,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.huasheng.pojo.newpojo.KtMedicationPlan" >
+    insert into kt_medication_plan
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="medicationPlanKey != null" >
+        medication_plan_key,
+      </if>
+      <if test="medicinePlanId != null" >
+        medicine_plan_id,
+      </if>
+      <if test="regimenName != null" >
+        regimen_name,
+      </if>
+      <if test="programNameC != null" >
+        program_name_c,
+      </if>
+      <if test="diseaseName != null" >
+        disease_name,
+      </if>
+      <if test="chemotherapyType != null" >
+        chemotherapy_type,
+      </if>
+      <if test="chemotherapyName != null" >
+        chemotherapy_name,
+      </if>
+      <if test="regimenDescription != null" >
+        regimen_description,
+      </if>
+      <if test="approvalAgency != null" >
+        approval_agency,
+      </if>
+      <if test="approvalLink != null" >
+        approval_link,
+      </if>
+      <if test="createdAt != null" >
+        created_at,
+      </if>
+      <if test="createdWay != null" >
+        created_way,
+      </if>
+      <if test="createdByKey != null" >
+        created_by_key,
+      </if>
+      <if test="createdByName != null" >
+        created_by_name,
+      </if>
+      <if test="checkState != null" >
+        check_state,
+      </if>
+      <if test="checkReport != null" >
+        check_report,
+      </if>
+      <if test="checkedByKey != null" >
+        checked_by_key,
+      </if>
+      <if test="checkedByName != null" >
+        checked_by_name,
+      </if>
+      <if test="translateByKey != null" >
+        translate_by_key,
+      </if>
+      <if test="translateByName != null" >
+        translate_by_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="medicationPlanKey != null" >
+        #{medicationPlanKey,jdbcType=VARCHAR},
+      </if>
+      <if test="medicinePlanId != null" >
+        #{medicinePlanId,jdbcType=INTEGER},
+      </if>
+      <if test="regimenName != null" >
+        #{regimenName,jdbcType=VARCHAR},
+      </if>
+      <if test="programNameC != null" >
+        #{programNameC,jdbcType=VARCHAR},
+      </if>
+      <if test="diseaseName != null" >
+        #{diseaseName,jdbcType=VARCHAR},
+      </if>
+      <if test="chemotherapyType != null" >
+        #{chemotherapyType,jdbcType=VARCHAR},
+      </if>
+      <if test="chemotherapyName != null" >
+        #{chemotherapyName,jdbcType=VARCHAR},
+      </if>
+      <if test="regimenDescription != null" >
+        #{regimenDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="approvalAgency != null" >
+        #{approvalAgency,jdbcType=VARCHAR},
+      </if>
+      <if test="approvalLink != null" >
+        #{approvalLink,jdbcType=VARCHAR},
+      </if>
+      <if test="createdAt != null" >
+        #{createdAt,jdbcType=BIGINT},
+      </if>
+      <if test="createdWay != null" >
+        #{createdWay,jdbcType=INTEGER},
+      </if>
+      <if test="createdByKey != null" >
+        #{createdByKey,jdbcType=CHAR},
+      </if>
+      <if test="createdByName != null" >
+        #{createdByName,jdbcType=VARCHAR},
+      </if>
+      <if test="checkState != null" >
+        #{checkState,jdbcType=INTEGER},
+      </if>
+      <if test="checkReport != null" >
+        #{checkReport,jdbcType=VARCHAR},
+      </if>
+      <if test="checkedByKey != null" >
+        #{checkedByKey,jdbcType=CHAR},
+      </if>
+      <if test="checkedByName != null" >
+        #{checkedByName,jdbcType=VARCHAR},
+      </if>
+      <if test="translateByKey != null" >
+        #{translateByKey,jdbcType=CHAR},
+      </if>
+      <if test="translateByName != null" >
+        #{translateByName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huasheng.pojo.newpojo.KtMedicationPlan" >
+    update kt_medication_plan
+    <set >
+      <if test="medicinePlanId != null" >
+        medicine_plan_id = #{medicinePlanId,jdbcType=INTEGER},
+      </if>
+      <if test="regimenName != null" >
+        regimen_name = #{regimenName,jdbcType=VARCHAR},
+      </if>
+      <if test="programNameC != null" >
+        program_name_c = #{programNameC,jdbcType=VARCHAR},
+      </if>
+      <if test="diseaseName != null" >
+        disease_name = #{diseaseName,jdbcType=VARCHAR},
+      </if>
+      <if test="chemotherapyType != null" >
+        chemotherapy_type = #{chemotherapyType,jdbcType=VARCHAR},
+      </if>
+      <if test="chemotherapyName != null" >
+        chemotherapy_name = #{chemotherapyName,jdbcType=VARCHAR},
+      </if>
+      <if test="regimenDescription != null" >
+        regimen_description = #{regimenDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="approvalAgency != null" >
+        approval_agency = #{approvalAgency,jdbcType=VARCHAR},
+      </if>
+      <if test="approvalLink != null" >
+        approval_link = #{approvalLink,jdbcType=VARCHAR},
+      </if>
+      <if test="createdAt != null" >
+        created_at = #{createdAt,jdbcType=BIGINT},
+      </if>
+      <if test="createdWay != null" >
+        created_way = #{createdWay,jdbcType=INTEGER},
+      </if>
+      <if test="createdByKey != null" >
+        created_by_key = #{createdByKey,jdbcType=CHAR},
+      </if>
+      <if test="createdByName != null" >
+        created_by_name = #{createdByName,jdbcType=VARCHAR},
+      </if>
+      <if test="checkState != null" >
+        check_state = #{checkState,jdbcType=INTEGER},
+      </if>
+      <if test="checkReport != null" >
+        check_report = #{checkReport,jdbcType=VARCHAR},
+      </if>
+      <if test="checkedByKey != null" >
+        checked_by_key = #{checkedByKey,jdbcType=CHAR},
+      </if>
+      <if test="checkedByName != null" >
+        checked_by_name = #{checkedByName,jdbcType=VARCHAR},
+      </if>
+      <if test="translateByKey != null" >
+        translate_by_key = #{translateByKey,jdbcType=CHAR},
+      </if>
+      <if test="translateByName != null" >
+        translate_by_name = #{translateByName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where medication_plan_key = #{medicationPlanKey,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huasheng.pojo.newpojo.KtMedicationPlan" >
+    update kt_medication_plan
+    set medicine_plan_id = #{medicinePlanId,jdbcType=INTEGER},
+      regimen_name = #{regimenName,jdbcType=VARCHAR},
+      program_name_c = #{programNameC,jdbcType=VARCHAR},
+      disease_name = #{diseaseName,jdbcType=VARCHAR},
+      chemotherapy_type = #{chemotherapyType,jdbcType=VARCHAR},
+      chemotherapy_name = #{chemotherapyName,jdbcType=VARCHAR},
+      regimen_description = #{regimenDescription,jdbcType=VARCHAR},
+      approval_agency = #{approvalAgency,jdbcType=VARCHAR},
+      approval_link = #{approvalLink,jdbcType=VARCHAR}
+    <if test="createdAt != null" >
+      ,created_at = #{createdAt,jdbcType=BIGINT}
+    </if>
+    <if test="createdWay != null" >
+      ,created_way = #{createdWay,jdbcType=INTEGER}
+    </if>
+    <if test="createdByKey != null" >
+      ,created_by_key = #{createdByKey,jdbcType=CHAR}
+    </if>
+    <if test="createdByName != null" >
+      ,created_by_name = #{createdByName,jdbcType=VARCHAR}
+    </if>
+    <if test="checkState != null" >
+     ,check_state = #{checkState,jdbcType=INTEGER}
+    </if>
+    <if test="checkReport != null" >
+      ,check_report = #{checkReport,jdbcType=VARCHAR}
+    </if>
+    <if test="checkedByKey != null" >
+      ,checked_by_key = #{checkedByKey,jdbcType=CHAR}
+    </if>
+    <if test="checkedByName != null" >
+      ,checked_by_name = #{checkedByName,jdbcType=VARCHAR}
+    </if>
+    <if test="translateByKey != null" >
+      ,translate_by_key = #{translateByKey,jdbcType=CHAR}
+    </if>
+    <if test="translateByName != null" >
+      ,translate_by_name = #{translateByName,jdbcType=VARCHAR}
+    </if>
+    where medication_plan_key = #{medicationPlanKey,jdbcType=VARCHAR}
+  </update>
+  <select id="getMedicationPlanList" parameterType="Map" resultType="Map">
+   SELECT
+   a.medicine_plan_id  medicinePlanId,
+   regimen_name  regimenName,
+   program_name_c  programNameC,
+   disease_name  diseaseName,
+   chemotherapy_type  chemotherapyType,
+   chemotherapy_name  chemotherapyName,
+   regimen_description  regimenDescription,
+   approval_agency  approvalAgency,
+   approval_link  approvalLink,
+   created_at  createdAt,
+   created_way  createdWay,
+   created_by_key  createdByKey,
+   created_by_name  createdByName,
+   check_state  checkState,
+   check_report  checkReport,
+   checked_by_key  checkedByKey,
+   checked_by_name  checkedByName,
+    translate_by_key  translateByKey,
+   translate_by_name  translateByName,
+   a.medication_plan_key  medicationPlanKey,
+   group_concat(DISTINCT b.drug_id  SEPARATOR '、') drugId,
+   c.indication_id indicationId
+   FROM
+  `kt_medication_plan` a
+  LEFT JOIN kt_plan_drug b ON a.medication_plan_key = b.medication_plan_key
+  LEFT JOIN kt_plan_cancer_and_details c ON a.medication_plan_key =c.medication_plan_key
+    where 1=1
+    <if test="regimenName !='' and regimenName!=null">
+      and (a.regimen_name like CONCAT('%',#{regimenName},'%') or program_name_c  like CONCAT('%',#{regimenName},'%')
+     )
+    </if>
+    <if test="diseaseName !='' and diseaseName !=null">
+      and a.disease_name like CONCAT('%',#{diseaseName},'%')
+    </if>
+    <if test="doid !='' and doid !=null">
+      and c.indication_id=#{indicationId}
+    </if>
+    <if test="drugId !='' and drugId !=null">
+      and b.drug_id=#{drugId}
+    </if>
+    <if test="createdWay!='' and createdWay!=null" >
+      AND a.created_way =#{createdWay}
+    </if>
+    <if test="checkState!='' and checkState!=null" >
+      AND check_state =#{checkState}
+    </if>
+    GROUP BY a.medication_plan_key
+    ORDER BY a.created_at desc
+  </select>
+  <update id="updateCheckState" parameterType="com.huasheng.pojo.newpojo.KtMedicationPlan" >
+    update kt_medication_plan
+    set
+    check_state = #{checkState,jdbcType=BIGINT},
+    checked_by_key = #{checkedByKey,jdbcType=CHAR},
+    checked_by_name = #{checkedByName,jdbcType=VARCHAR},
+    check_report = #{checkReport}
+    where medication_plan_key = #{medicationPlanKey,jdbcType=VARCHAR}
+  </update>
+<select id="getMedicationPlanCount" parameterType="Map" resultType="Integer">
+    select count(medication_plan_key) from kt_medication_plan where  check_state=#{checkState} and created_way=#{createdWay}
+</select>
+
+  <select id="getMedicationPlanCountMonth" parameterType="Map" resultType="Integer">
+    select count(medication_plan_key) from kt_medication_plan where (created_at BETWEEN #{firstTime} and #{currentTime}) AND check_state=#{checkState} and created_way=#{createdWay}
+  </select>
+  <delete id="deleteAllMedicationPlan"  >
+    delete from kt_medication_plan
+  </delete>
+</mapper>

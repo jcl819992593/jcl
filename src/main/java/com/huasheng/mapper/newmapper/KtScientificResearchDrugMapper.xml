@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huasheng.dao.newdao.KtScientificResearchDrugDao" >
+  <resultMap id="BaseResultMap" type="com.huasheng.pojo.newpojo.KtScientificResearchDrug" >
+    <id column="drug_key" property="drugKey" jdbcType="VARCHAR" />
+    <id column="research_key" property="researchKey" jdbcType="VARCHAR" />
+    <result column="scientific_research_id" property="scientificResearchId" jdbcType="VARCHAR" />
+    <result column="drug_id" property="drugId" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    drug_key, research_key, scientific_research_id, drug_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.huasheng.pojo.newpojo.KtScientificResearchDrug" >
+    select 
+    <include refid="Base_Column_List" />
+    from kt_scientific_research_drug
+    where
+       research_key = #{researchKey,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="String" >
+    delete from kt_scientific_research_drug
+    where
+       research_key = #{researchKey,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.huasheng.pojo.newpojo.KtScientificResearchDrug" >
+    insert into kt_scientific_research_drug (drug_key, research_key, scientific_research_id, 
+      drug_id)
+    values (#{drugKey,jdbcType=VARCHAR}, #{researchKey,jdbcType=VARCHAR}, #{scientificResearchId,jdbcType=VARCHAR}, 
+      #{drugId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.huasheng.pojo.newpojo.KtScientificResearchDrug" >
+    insert into kt_scientific_research_drug
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="drugKey != null" >
+        drug_key,
+      </if>
+      <if test="researchKey != null" >
+        research_key,
+      </if>
+      <if test="scientificResearchId != null" >
+        scientific_research_id,
+      </if>
+      <if test="drugId != null" >
+        drug_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="drugKey != null" >
+        #{drugKey,jdbcType=VARCHAR},
+      </if>
+      <if test="researchKey != null" >
+        #{researchKey,jdbcType=VARCHAR},
+      </if>
+      <if test="scientificResearchId != null" >
+        #{scientificResearchId,jdbcType=VARCHAR},
+      </if>
+      <if test="drugId != null" >
+        #{drugId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huasheng.pojo.newpojo.KtScientificResearchDrug" >
+    update kt_scientific_research_drug
+    <set >
+      <if test="scientificResearchId != null" >
+        scientific_research_id = #{scientificResearchId,jdbcType=VARCHAR},
+      </if>
+      <if test="drugId != null" >
+        drug_id = #{drugId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where drug_key = #{drugKey,jdbcType=VARCHAR}
+      and research_key = #{researchKey,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huasheng.pojo.newpojo.KtScientificResearchDrug" >
+    update kt_scientific_research_drug
+    set scientific_research_id = #{scientificResearchId,jdbcType=VARCHAR},
+      drug_id = #{drugId,jdbcType=VARCHAR}
+    where drug_key = #{drugKey,jdbcType=VARCHAR}
+      and research_key = #{researchKey,jdbcType=VARCHAR}
+  </update>
+  <insert id="insertMore" parameterType="List">
+    insert into kt_scientific_research_drug (drug_key, research_key, scientific_research_id,
+      drug_id)
+    values
+    <foreach collection="list" item="item" index="index" separator=",">
+    (#{item.drugKey,jdbcType=VARCHAR}, #{item.researchKey,jdbcType=VARCHAR}, #{item.scientificResearchId,jdbcType=VARCHAR},
+      #{item.drugId,jdbcType=VARCHAR})
+    </foreach>
+  </insert>
+</mapper>

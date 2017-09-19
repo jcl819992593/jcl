@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huasheng.dao.newdao.KtScientificResearchCancerDao" >
+  <resultMap id="BaseResultMap" type="com.huasheng.pojo.newpojo.KtScientificResearchCancer" >
+    <id column="research_key" property="researchKey" jdbcType="VARCHAR" />
+    <id column="cancer_key" property="cancerKey" jdbcType="VARCHAR" />
+    <result column="scientific_research_id" property="scientificResearchId" jdbcType="VARCHAR" />
+    <result column="doid" property="doid" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    research_key, cancer_key, scientific_research_id, doid
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.huasheng.pojo.newpojo.KtScientificResearchCancer" >
+    select 
+    <include refid="Base_Column_List" />
+    from kt_scientific_research_cancer
+    where research_key = #{researchKey,jdbcType=VARCHAR}
+      and cancer_key = #{cancerKey,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="String" >
+    delete from kt_scientific_research_cancer
+    where research_key = #{researchKey,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.huasheng.pojo.newpojo.KtScientificResearchCancer" >
+    insert into kt_scientific_research_cancer (research_key, cancer_key, scientific_research_id, 
+      doid)
+    values (#{researchKey,jdbcType=VARCHAR}, #{cancerKey,jdbcType=VARCHAR}, #{scientificResearchId,jdbcType=VARCHAR}, 
+      #{doid,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.huasheng.pojo.newpojo.KtScientificResearchCancer" >
+    insert into kt_scientific_research_cancer
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="researchKey != null" >
+        research_key,
+      </if>
+      <if test="cancerKey != null" >
+        cancer_key,
+      </if>
+      <if test="scientificResearchId != null" >
+        scientific_research_id,
+      </if>
+      <if test="doid != null" >
+        doid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="researchKey != null" >
+        #{researchKey,jdbcType=VARCHAR},
+      </if>
+      <if test="cancerKey != null" >
+        #{cancerKey,jdbcType=VARCHAR},
+      </if>
+      <if test="scientificResearchId != null" >
+        #{scientificResearchId,jdbcType=VARCHAR},
+      </if>
+      <if test="doid != null" >
+        #{doid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huasheng.pojo.newpojo.KtScientificResearchCancer" >
+    update kt_scientific_research_cancer
+    <set >
+      <if test="scientificResearchId != null" >
+        scientific_research_id = #{scientificResearchId,jdbcType=VARCHAR},
+      </if>
+      <if test="doid != null" >
+        doid = #{doid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where research_key = #{researchKey,jdbcType=VARCHAR}
+      and cancer_key = #{cancerKey,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huasheng.pojo.newpojo.KtScientificResearchCancer" >
+    update kt_scientific_research_cancer
+    set scientific_research_id = #{scientificResearchId,jdbcType=VARCHAR},
+      doid = #{doid,jdbcType=INTEGER}
+    where research_key = #{researchKey,jdbcType=VARCHAR}
+      and cancer_key = #{cancerKey,jdbcType=VARCHAR}
+  </update>
+  <insert id="insertMore" parameterType="List">
+    insert into kt_scientific_research_cancer (research_key, cancer_key, scientific_research_id,
+      doid)
+    values
+    <foreach collection="list" item="item" index="index" separator=",">
+    (#{item.researchKey,jdbcType=VARCHAR}, #{item.cancerKey,jdbcType=VARCHAR}, #{item.scientificResearchId,jdbcType=VARCHAR},
+      #{item.doid,jdbcType=INTEGER})
+    </foreach>
+  </insert>
+
+  <select id="getScientificResearchCancerByResearchKey" resultMap="BaseResultMap" parameterType="com.huasheng.pojo.newpojo.KtScientificResearchCancer" >
+    select
+    <include refid="Base_Column_List" />
+    from kt_scientific_research_cancer
+    where research_key = #{researchKey,jdbcType=VARCHAR}
+  </select>
+</mapper>

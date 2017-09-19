@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huasheng.dao.newdao.KtDrugStructuredIndicationDao" >
+  <resultMap id="BaseResultMap" type="com.huasheng.pojo.newpojo.KtDrugStructuredIndication" >
+    <id column="drug_key" property="drugKey" jdbcType="VARCHAR" />
+    <id column="indication_key" property="indicationKey" jdbcType="VARCHAR" />
+    <result column="drug_id" property="drugId" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    drug_key, indication_key, drug_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.huasheng.pojo.newpojo.KtDrugStructuredIndication" >
+    select
+    <include refid="Base_Column_List" />
+    from kt_drug_structured_indication
+    where drug_key = #{drugKey,jdbcType=VARCHAR}
+    and indication_key = #{indicationKey,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.huasheng.pojo.newpojo.KtDrugStructuredIndication" >
+    delete from kt_drug_structured_indication
+    where drug_key = #{drugKey,jdbcType=VARCHAR}
+    and indication_key = #{indicationKey,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.huasheng.pojo.newpojo.KtDrugStructuredIndication" >
+    insert into kt_drug_structured_indication (drug_key, indication_key, drug_id
+    )
+    values (#{drugKey,jdbcType=VARCHAR}, #{indicationKey,jdbcType=VARCHAR}, #{drugId,jdbcType=INTEGER}
+    )
+  </insert>
+  <insert id="insertSelective" parameterType="com.huasheng.pojo.newpojo.KtDrugStructuredIndication" >
+    insert into kt_drug_structured_indication
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="drugKey != null" >
+        drug_key,
+      </if>
+      <if test="indicationKey != null" >
+        indication_key,
+      </if>
+      <if test="drugId != null" >
+        drug_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="drugKey != null" >
+        #{drugKey,jdbcType=VARCHAR},
+      </if>
+      <if test="indicationKey != null" >
+        #{indicationKey,jdbcType=VARCHAR},
+      </if>
+      <if test="drugId != null" >
+        #{drugId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huasheng.pojo.newpojo.KtDrugStructuredIndication" >
+    update kt_drug_structured_indication
+    <set >
+      <if test="drugId != null" >
+        drug_id = #{drugId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where drug_key = #{drugKey,jdbcType=VARCHAR}
+    and indication_key = #{indicationKey,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huasheng.pojo.newpojo.KtDrugStructuredIndication" >
+    update kt_drug_structured_indication
+    set drug_id = #{drugId,jdbcType=INTEGER}
+    where drug_key = #{drugKey,jdbcType=VARCHAR}
+    and indication_key = #{indicationKey,jdbcType=VARCHAR}
+  </update>
+  <!--批量插入药物结构化适应症-->
+  <insert id="addKtDrugStructuredIndicationMore" parameterType="List">
+    INSERT into kt_drug_structured_indication (indication_key,drug_key,drug_id) VALUES
+    <foreach collection="list" item="item" index="index" separator=",">
+      (#{item.indicationKey},#{item.drugKey},#{item.drugId})
+    </foreach>
+  </insert>
+  <select id="selectByDrugKey" resultType="com.huasheng.pojo.newpojo.KtDrugIndication" parameterType="java.lang.String" >
+    SELECT
+    structured.indication_key indicationKey,
+    indication.meddra_concept_name meddraConceptName
+    FROM
+    kt_drug drug
+    LEFT JOIN kt_drug_structured_indication structured ON drug.drug_key = structured.drug_key
+    LEFT JOIN kt_indication indication ON structured.indication_key = indication.indication_key
+    WHERE
+    drug.drug_key = #{drugKey,jdbcType=VARCHAR}
+  </select>
+
+  <select id="getListByDrugKey" resultType="com.huasheng.pojo.newpojo.KtDrugStructuredIndication" parameterType="java.lang.String" >
+    select
+    drug_key drugKey,
+    indication_key indicationKey,
+    drug_id drugId
+    from kt_drug_structured_indication
+    where drug_key = #{drugKey,jdbcType=VARCHAR}
+  </select>
+
+  <delete id="deleteByDrugKey" parameterType="java.lang.String" >
+    delete from kt_drug_structured_indication
+    where drug_key = #{drugKey,jdbcType=VARCHAR}
+  </delete>
+
+</mapper>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huasheng.dao.newdao.KtDrugProductApprovalNumberDao" >
+  <resultMap id="BaseResultMap" type="com.huasheng.pojo.newpojo.KtDrugProductApprovalNumber" >
+    <id column="product_key" property="productKey" jdbcType="VARCHAR" />
+    <id column="item_key" property="itemKey" jdbcType="VARCHAR" />
+    <result column="approval_number" property="approvalNumber" jdbcType="VARCHAR" />
+    <result column="approval_date" property="approvalDate" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    product_key, item_key, approval_number, approval_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.huasheng.pojo.newpojo.KtDrugProductApprovalNumber" >
+    select 
+    <include refid="Base_Column_List" />
+    from kt_drug_product_approval_number
+    where product_key = #{productKey,jdbcType=VARCHAR}
+      and item_key = #{itemKey,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.huasheng.pojo.newpojo.KtDrugProductApprovalNumber" >
+    delete from kt_drug_product_approval_number
+    where product_key = #{productKey,jdbcType=VARCHAR}
+      and item_key = #{itemKey,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.huasheng.pojo.newpojo.KtDrugProductApprovalNumber" >
+    insert into kt_drug_product_approval_number (product_key, item_key, approval_number, 
+      approval_date)
+    values (#{productKey,jdbcType=VARCHAR}, #{itemKey,jdbcType=VARCHAR}, #{approvalNumber,jdbcType=VARCHAR}, 
+      #{approvalDate,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.huasheng.pojo.newpojo.KtDrugProductApprovalNumber" >
+    insert into kt_drug_product_approval_number
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="productKey != null" >
+        product_key,
+      </if>
+      <if test="itemKey != null" >
+        item_key,
+      </if>
+      <if test="approvalNumber != null" >
+        approval_number,
+      </if>
+      <if test="approvalDate != null" >
+        approval_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="productKey != null" >
+        #{productKey,jdbcType=VARCHAR},
+      </if>
+      <if test="itemKey != null" >
+        #{itemKey,jdbcType=VARCHAR},
+      </if>
+      <if test="approvalNumber != null" >
+        #{approvalNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="approvalDate != null" >
+        #{approvalDate,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huasheng.pojo.newpojo.KtDrugProductApprovalNumber" >
+    update kt_drug_product_approval_number
+    <set >
+      <if test="approvalNumber != null" >
+        approval_number = #{approvalNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="approvalDate != null" >
+        approval_date = #{approvalDate,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where product_key = #{productKey,jdbcType=VARCHAR}
+      and item_key = #{itemKey,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huasheng.pojo.newpojo.KtDrugProductApprovalNumber" >
+    update kt_drug_product_approval_number
+    set approval_number = #{approvalNumber,jdbcType=VARCHAR},
+      approval_date = #{approvalDate,jdbcType=VARCHAR}
+    where product_key = #{productKey,jdbcType=VARCHAR}
+      and item_key = #{itemKey,jdbcType=VARCHAR}
+  </update>
+  <insert id="addKtDrugProductApprovalNumber" parameterType="List">
+    INSERT INTO kt_drug_product_approval_number (product_key, item_key, approval_number, 
+      approval_date) VALUES 
+      <foreach collection="list" item="item" index="index" separator=",">
+        (#{item.productKey}, #{item.itemKey}, #{item.approvalNumber},
+        #{item.approvalDate})
+      </foreach>
+  </insert>
+  <delete id="deleteByProductKey" parameterType="String">
+    delete from kt_drug_product_approval_number
+    where product_key = #{productKey}
+
+  </delete>
+</mapper>

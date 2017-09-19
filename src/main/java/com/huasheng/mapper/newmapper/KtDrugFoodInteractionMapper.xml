@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huasheng.dao.newdao.KtDrugFoodInteractionDao" >
+  <resultMap id="BaseResultMap" type="com.huasheng.pojo.newpojo.KtDrugFoodInteraction" >
+    <id column="food_interaction_key" property="foodInteractionKey" jdbcType="CHAR" />
+    <result column="drug_key" property="drugKey" jdbcType="VARCHAR" />
+    <result column="drug_id" property="drugId" jdbcType="INTEGER" />
+    <result column="food_interaction" property="foodInteraction" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    food_interaction_key, drug_key, drug_id, food_interaction
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from kt_drug_food_interaction
+    where food_interaction_key = #{foodInteractionKey,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from kt_drug_food_interaction
+    where food_interaction_key = #{foodInteractionKey,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.huasheng.pojo.newpojo.KtDrugFoodInteraction" >
+    insert into kt_drug_food_interaction (food_interaction_key, drug_key, drug_id, 
+      food_interaction)
+    values (#{foodInteractionKey,jdbcType=CHAR}, #{drugKey,jdbcType=VARCHAR}, #{drugId,jdbcType=INTEGER}, 
+      #{foodInteraction,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.huasheng.pojo.newpojo.KtDrugFoodInteraction" >
+    insert into kt_drug_food_interaction
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="foodInteractionKey != null" >
+        food_interaction_key,
+      </if>
+      <if test="drugKey != null" >
+        drug_key,
+      </if>
+      <if test="drugId != null" >
+        drug_id,
+      </if>
+      <if test="foodInteraction != null" >
+        food_interaction,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="foodInteractionKey != null" >
+        #{foodInteractionKey,jdbcType=CHAR},
+      </if>
+      <if test="drugKey != null" >
+        #{drugKey,jdbcType=VARCHAR},
+      </if>
+      <if test="drugId != null" >
+        #{drugId,jdbcType=INTEGER},
+      </if>
+      <if test="foodInteraction != null" >
+        #{foodInteraction,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huasheng.pojo.newpojo.KtDrugFoodInteraction" >
+    update kt_drug_food_interaction
+    <set >
+      <if test="drugKey != null" >
+        drug_key = #{drugKey,jdbcType=VARCHAR},
+      </if>
+      <if test="drugId != null" >
+        drug_id = #{drugId,jdbcType=INTEGER},
+      </if>
+      <if test="foodInteraction != null" >
+        food_interaction = #{foodInteraction,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where food_interaction_key = #{foodInteractionKey,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huasheng.pojo.newpojo.KtDrugFoodInteraction" >
+    update kt_drug_food_interaction
+    set drug_key = #{drugKey,jdbcType=VARCHAR},
+      drug_id = #{drugId,jdbcType=INTEGER},
+      food_interaction = #{foodInteraction,jdbcType=VARCHAR}
+    where food_interaction_key = #{foodInteractionKey,jdbcType=CHAR}
+  </update>
+  <select id="selectByDrugKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from kt_drug_food_interaction
+    where drug_key = #{drugKey,jdbcType=VARCHAR}
+  </select>
+</mapper>

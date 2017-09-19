@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huasheng.dao.newdao.KtDrugOtherNameDao" >
+  <resultMap id="BaseResultMap" type="com.huasheng.pojo.newpojo.KtDrugOtherName" >
+    <id column="other_name_key" property="otherNameKey" jdbcType="VARCHAR" />
+    <result column="drug_key" property="drugKey" jdbcType="VARCHAR" />
+    <result column="drug_id" property="drugId" jdbcType="INTEGER" />
+    <result column="other_name" property="otherName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    other_name_key, drug_key, drug_id, other_name
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from kt_drug_other_name
+    where other_name_key = #{otherNameKey,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from kt_drug_other_name
+    where other_name_key = #{otherNameKey,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.huasheng.pojo.newpojo.KtDrugOtherName" >
+    insert into kt_drug_other_name (other_name_key, drug_key, drug_id, 
+      other_name)
+    values (#{otherNameKey,jdbcType=VARCHAR}, #{drugKey,jdbcType=VARCHAR}, #{drugId,jdbcType=INTEGER}, 
+      #{otherName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.huasheng.pojo.newpojo.KtDrugOtherName" >
+    insert into kt_drug_other_name
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="otherNameKey != null" >
+        other_name_key,
+      </if>
+      <if test="drugKey != null" >
+        drug_key,
+      </if>
+      <if test="drugId != null" >
+        drug_id,
+      </if>
+      <if test="otherName != null" >
+        other_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="otherNameKey != null" >
+        #{otherNameKey,jdbcType=VARCHAR},
+      </if>
+      <if test="drugKey != null" >
+        #{drugKey,jdbcType=VARCHAR},
+      </if>
+      <if test="drugId != null" >
+        #{drugId,jdbcType=INTEGER},
+      </if>
+      <if test="otherName != null" >
+        #{otherName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huasheng.pojo.newpojo.KtDrugOtherName" >
+    update kt_drug_other_name
+    <set >
+      <if test="drugKey != null" >
+        drug_key = #{drugKey,jdbcType=VARCHAR},
+      </if>
+      <if test="drugId != null" >
+        drug_id = #{drugId,jdbcType=INTEGER},
+      </if>
+      <if test="otherName != null" >
+        other_name = #{otherName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where other_name_key = #{otherNameKey,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huasheng.pojo.newpojo.KtDrugOtherName" >
+    update kt_drug_other_name
+    set drug_key = #{drugKey,jdbcType=VARCHAR},
+      drug_id = #{drugId,jdbcType=INTEGER},
+      other_name = #{otherName,jdbcType=VARCHAR}
+    where other_name_key = #{otherNameKey,jdbcType=VARCHAR}
+  </update>
+  <!--批量插入药物其他名称-->
+  <insert id="addKtDrugOtherNameMore" parameterType="List">
+    INSERT into kt_drug_other_name(drug_key,drug_id,other_name,other_name_key) VALUES
+    <foreach collection="list" item="item" index="index" separator=",">
+      (#{item.drugKey},#{item.drugId},#{item.otherName},#{item.otherNameKey})
+    </foreach>
+  </insert>
+  <!--根据drugKey查询其他名称-->
+  <select id="selectByDrugKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from kt_drug_other_name
+    where drug_key = #{drugKey,jdbcType=VARCHAR}
+    ORDER BY
+    other_name_key ASC
+  </select>
+
+  <delete id="deleteByDrugKey" parameterType="java.lang.String" >
+    delete from kt_drug_other_name
+    where drug_key = #{drugKey,jdbcType=VARCHAR}
+  </delete>
+</mapper>

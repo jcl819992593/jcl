@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huasheng.dao.newdao.KtDrugDetailsDao" >
+  <resultMap id="BaseResultMap" type="com.huasheng.pojo.newpojo.KtDrugDetails" >
+    <id column="detail_key" property="detailKey" jdbcType="VARCHAR" />
+    <result column="drug_key" property="drugKey" jdbcType="VARCHAR" />
+    <result column="drug_id" property="drugId" jdbcType="INTEGER" />
+    <result column="phenotype" property="phenotype" jdbcType="VARCHAR" />
+    <result column="two_fold_example" property="twoFoldExample" jdbcType="VARCHAR" />
+    <result column="phenotype_influence" property="phenotypeInfluence" jdbcType="VARCHAR" />
+    <result column="recommended_dose" property="recommendedDose" jdbcType="VARCHAR" />
+    <result column="recommended_category" property="recommendedCategory" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    detail_key, drug_key, drug_id, phenotype, two_fold_example, phenotype_influence, 
+    recommended_dose, recommended_category
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from kt_drug_details
+    where detail_key = #{detailKey,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from kt_drug_details
+    where detail_key = #{detailKey,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.huasheng.pojo.newpojo.KtDrugDetails" >
+    insert into kt_drug_details (detail_key, drug_key, drug_id, 
+      phenotype, two_fold_example, phenotype_influence, 
+      recommended_dose, recommended_category)
+    values (#{detailKey,jdbcType=VARCHAR}, #{drugKey,jdbcType=VARCHAR}, #{drugId,jdbcType=INTEGER}, 
+      #{phenotype,jdbcType=VARCHAR}, #{twoFoldExample,jdbcType=VARCHAR}, #{phenotypeInfluence,jdbcType=VARCHAR}, 
+      #{recommendedDose,jdbcType=VARCHAR}, #{recommendedCategory,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.huasheng.pojo.newpojo.KtDrugDetails" >
+    insert into kt_drug_details
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="detailKey != null" >
+        detail_key,
+      </if>
+      <if test="drugKey != null" >
+        drug_key,
+      </if>
+      <if test="drugId != null" >
+        drug_id,
+      </if>
+      <if test="phenotype != null" >
+        phenotype,
+      </if>
+      <if test="twoFoldExample != null" >
+        two_fold_example,
+      </if>
+      <if test="phenotypeInfluence != null" >
+        phenotype_influence,
+      </if>
+      <if test="recommendedDose != null" >
+        recommended_dose,
+      </if>
+      <if test="recommendedCategory != null" >
+        recommended_category,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="detailKey != null" >
+        #{detailKey,jdbcType=VARCHAR},
+      </if>
+      <if test="drugKey != null" >
+        #{drugKey,jdbcType=VARCHAR},
+      </if>
+      <if test="drugId != null" >
+        #{drugId,jdbcType=INTEGER},
+      </if>
+      <if test="phenotype != null" >
+        #{phenotype,jdbcType=VARCHAR},
+      </if>
+      <if test="twoFoldExample != null" >
+        #{twoFoldExample,jdbcType=VARCHAR},
+      </if>
+      <if test="phenotypeInfluence != null" >
+        #{phenotypeInfluence,jdbcType=VARCHAR},
+      </if>
+      <if test="recommendedDose != null" >
+        #{recommendedDose,jdbcType=VARCHAR},
+      </if>
+      <if test="recommendedCategory != null" >
+        #{recommendedCategory,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huasheng.pojo.newpojo.KtDrugDetails" >
+    update kt_drug_details
+    <set >
+      <if test="drugKey != null" >
+        drug_key = #{drugKey,jdbcType=VARCHAR},
+      </if>
+      <if test="drugId != null" >
+        drug_id = #{drugId,jdbcType=INTEGER},
+      </if>
+      <if test="phenotype != null" >
+        phenotype = #{phenotype,jdbcType=VARCHAR},
+      </if>
+      <if test="twoFoldExample != null" >
+        two_fold_example = #{twoFoldExample,jdbcType=VARCHAR},
+      </if>
+      <if test="phenotypeInfluence != null" >
+        phenotype_influence = #{phenotypeInfluence,jdbcType=VARCHAR},
+      </if>
+      <if test="recommendedDose != null" >
+        recommended_dose = #{recommendedDose,jdbcType=VARCHAR},
+      </if>
+      <if test="recommendedCategory != null" >
+        recommended_category = #{recommendedCategory,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where detail_key = #{detailKey,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huasheng.pojo.newpojo.KtDrugDetails" >
+    update kt_drug_details
+    set drug_key = #{drugKey,jdbcType=VARCHAR},
+      drug_id = #{drugId,jdbcType=INTEGER},
+      phenotype = #{phenotype,jdbcType=VARCHAR},
+      two_fold_example = #{twoFoldExample,jdbcType=VARCHAR},
+      phenotype_influence = #{phenotypeInfluence,jdbcType=VARCHAR},
+      recommended_dose = #{recommendedDose,jdbcType=VARCHAR},
+      recommended_category = #{recommendedCategory,jdbcType=VARCHAR}
+    where detail_key = #{detailKey,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByDrugKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from kt_drug_details
+    where drug_key = #{drugKey,jdbcType=VARCHAR}
+  </select>
+</mapper>

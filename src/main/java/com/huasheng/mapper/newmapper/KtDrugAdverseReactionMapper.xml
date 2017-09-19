@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huasheng.dao.newdao.KtDrugAdverseReactionDao" >
+  <resultMap id="BaseResultMap" type="com.huasheng.pojo.newpojo.KtDrugAdverseReaction" >
+    <id column="drug_key" property="drugKey" jdbcType="VARCHAR" />
+    <id column="side_effect_key" property="sideEffectKey" jdbcType="VARCHAR" />
+    <result column="drug_id" property="drugId" jdbcType="INTEGER" />
+    <result column="adress_name" property="adressName" jdbcType="VARCHAR" />
+    <result column="ferquency" property="ferquency" jdbcType="VARCHAR" />
+    <result column="placebo_frequency" property="placeboFrequency" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    drug_key, side_effect_key, drug_id, adress_name, ferquency, placebo_frequency
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.huasheng.pojo.newpojo.KtDrugAdverseReaction" >
+    select
+    <include refid="Base_Column_List" />
+    from kt_drug_adverse_reaction
+    where drug_key = #{drugKey,jdbcType=VARCHAR}
+    and side_effect_key = #{sideEffectKey,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.huasheng.pojo.newpojo.KtDrugAdverseReaction" >
+    delete from kt_drug_adverse_reaction
+    where drug_key = #{drugKey,jdbcType=VARCHAR}
+    and side_effect_key = #{sideEffectKey,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.huasheng.pojo.newpojo.KtDrugAdverseReaction" >
+    insert into kt_drug_adverse_reaction (drug_key, side_effect_key, drug_id,
+    adress_name, ferquency, placebo_frequency
+    )
+    values (#{drugKey,jdbcType=VARCHAR}, #{sideEffectKey,jdbcType=VARCHAR}, #{drugId,jdbcType=INTEGER},
+    #{adressName,jdbcType=VARCHAR}, #{ferquency,jdbcType=VARCHAR}, #{placeboFrequency,jdbcType=VARCHAR}
+    )
+  </insert>
+  <insert id="insertSelective" parameterType="com.huasheng.pojo.newpojo.KtDrugAdverseReaction" >
+    insert into kt_drug_adverse_reaction
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="drugKey != null" >
+        drug_key,
+      </if>
+      <if test="sideEffectKey != null" >
+        side_effect_key,
+      </if>
+      <if test="drugId != null" >
+        drug_id,
+      </if>
+      <if test="adressName != null" >
+        adress_name,
+      </if>
+      <if test="ferquency != null" >
+        ferquency,
+      </if>
+      <if test="placeboFrequency != null" >
+        placebo_frequency,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="drugKey != null" >
+        #{drugKey,jdbcType=VARCHAR},
+      </if>
+      <if test="sideEffectKey != null" >
+        #{sideEffectKey,jdbcType=VARCHAR},
+      </if>
+      <if test="drugId != null" >
+        #{drugId,jdbcType=INTEGER},
+      </if>
+      <if test="adressName != null" >
+        #{adressName,jdbcType=VARCHAR},
+      </if>
+      <if test="ferquency != null" >
+        #{ferquency,jdbcType=VARCHAR},
+      </if>
+      <if test="placeboFrequency != null" >
+        #{placeboFrequency,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huasheng.pojo.newpojo.KtDrugAdverseReaction" >
+    update kt_drug_adverse_reaction
+    <set >
+      <if test="drugId != null" >
+        drug_id = #{drugId,jdbcType=INTEGER},
+      </if>
+      <if test="adressName != null" >
+        adress_name = #{adressName,jdbcType=VARCHAR},
+      </if>
+      <if test="ferquency != null" >
+        ferquency = #{ferquency,jdbcType=VARCHAR},
+      </if>
+      <if test="placeboFrequency != null" >
+        placebo_frequency = #{placeboFrequency,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where drug_key = #{drugKey,jdbcType=VARCHAR}
+    and side_effect_key = #{sideEffectKey,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huasheng.pojo.newpojo.KtDrugAdverseReaction" >
+    update kt_drug_adverse_reaction
+    set drug_id = #{drugId,jdbcType=INTEGER},
+    adress_name = #{adressName,jdbcType=VARCHAR},
+    ferquency = #{ferquency,jdbcType=VARCHAR},
+    placebo_frequency = #{placeboFrequency,jdbcType=VARCHAR}
+    where drug_key = #{drugKey,jdbcType=VARCHAR}
+    and side_effect_key = #{sideEffectKey,jdbcType=VARCHAR}
+  </update>
+  <!--批量插入药物不良反应-->
+  <insert id="addKtDrugAdverseReactionMore" parameterType="List">
+    INSERT into kt_drug_adverse_reaction(side_effect_key,drug_key,drug_id,adress_name,ferquency,placebo_frequency) VALUES
+    <foreach collection="list" item="item" index="index" separator=",">
+      (#{item.sideEffectKey},#{item.drugKey},#{item.drugId},#{item.adressName},#{item.ferquency},#{item.placeboFrequency})
+    </foreach>
+  </insert>
+  <select id="selectByDrugKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from kt_drug_adverse_reaction
+    where drug_key = #{drugKey,jdbcType=VARCHAR}
+    ORDER BY
+    side_effect_key ASC
+  </select>
+
+  <delete id="deleteByDrugKey" parameterType="java.lang.String" >
+    delete from kt_drug_adverse_reaction
+    where drug_key = #{drugKey,jdbcType=VARCHAR}
+  </delete>
+
+</mapper>

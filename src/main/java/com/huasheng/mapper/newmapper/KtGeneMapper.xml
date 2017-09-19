@@ -1,0 +1,383 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huasheng.dao.newdao.KtGeneDao" >
+  <resultMap id="BaseResultMap" type="com.huasheng.pojo.newpojo.KtGene" >
+    <id column="gene_key" property="geneKey" jdbcType="VARCHAR" />
+    <result column="gene_id" property="geneId" jdbcType="INTEGER" />
+    <result column="gene_type" property="geneType" jdbcType="VARCHAR" />
+    <result column="gene_symbol" property="geneSymbol" jdbcType="VARCHAR" />
+    <result column="gene_full_name" property="geneFullName" jdbcType="VARCHAR" />
+    <result column="entrez_gene_summary" property="entrezGeneSummary" jdbcType="VARCHAR" />
+    <result column="cytogenetic_band" property="cytogeneticBand" jdbcType="VARCHAR" />
+    <result column="has_cosmic_mutations" property="hasCosmicMutations" jdbcType="BIT" />
+    <result column="cancer_gene" property="cancerGene" jdbcType="VARCHAR" />
+    <result column="created_at" property="createdAt" jdbcType="BIGINT" />
+    <result column="created_way" property="createdWay" jdbcType="INTEGER" />
+    <result column="created_by_key" property="createdByKey" jdbcType="CHAR" />
+    <result column="created_by_name" property="createdByName" jdbcType="VARCHAR" />
+    <result column="check_state" property="checkState" jdbcType="INTEGER" />
+    <result column="check_report" property="checkReport" jdbcType="VARCHAR" />
+    <result column="checked_by_key" property="checkedByKey" jdbcType="CHAR" />
+    <result column="checked_by_name" property="checkedByName" jdbcType="VARCHAR" />
+    <result column="translate_by_key" property="translateByKey" jdbcType="CHAR" />
+    <result column="translate_by_name" property="translateByName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    gene_key, gene_id, gene_type, gene_symbol, gene_full_name, entrez_gene_summary, cytogenetic_band, 
+    has_cosmic_mutations, cancer_gene, created_at, created_way, created_by_key, created_by_name, 
+    check_state, check_report, checked_by_key, checked_by_name, translate_by_key, translate_by_name
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from kt_gene
+    where gene_key = #{geneKey,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from kt_gene
+    where gene_key = #{geneKey,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.huasheng.pojo.newpojo.KtGene" >
+    insert into kt_gene (gene_key, gene_id, gene_type, 
+      gene_symbol, gene_full_name, entrez_gene_summary, 
+      cytogenetic_band, has_cosmic_mutations, cancer_gene, 
+      created_at, created_way, created_by_key, 
+      created_by_name, check_state, check_report, 
+      checked_by_key, checked_by_name, translate_by_key, 
+      translate_by_name)
+    values (#{geneKey,jdbcType=VARCHAR}, #{geneId,jdbcType=INTEGER}, #{geneType,jdbcType=VARCHAR}, 
+      #{geneSymbol,jdbcType=VARCHAR}, #{geneFullName,jdbcType=VARCHAR}, #{entrezGeneSummary,jdbcType=VARCHAR}, 
+      #{cytogeneticBand,jdbcType=VARCHAR}, #{hasCosmicMutations,jdbcType=BIT}, #{cancerGene,jdbcType=VARCHAR}, 
+      #{createdAt,jdbcType=BIGINT}, #{createdWay,jdbcType=INTEGER}, #{createdByKey,jdbcType=CHAR}, 
+      #{createdByName,jdbcType=VARCHAR}, #{checkState,jdbcType=INTEGER}, #{checkReport,jdbcType=VARCHAR}, 
+      #{checkedByKey,jdbcType=CHAR}, #{checkedByName,jdbcType=VARCHAR}, #{translateByKey,jdbcType=CHAR}, 
+      #{translateByName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.huasheng.pojo.newpojo.KtGene" >
+    insert into kt_gene
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="geneKey != null" >
+        gene_key,
+      </if>
+      <if test="geneId != null" >
+        gene_id,
+      </if>
+      <if test="geneType != null" >
+        gene_type,
+      </if>
+      <if test="geneSymbol != null" >
+        gene_symbol,
+      </if>
+      <if test="geneFullName != null" >
+        gene_full_name,
+      </if>
+      <if test="entrezGeneSummary != null" >
+        entrez_gene_summary,
+      </if>
+      <if test="cytogeneticBand != null" >
+        cytogenetic_band,
+      </if>
+      <if test="hasCosmicMutations != null" >
+        has_cosmic_mutations,
+      </if>
+      <if test="cancerGene != null" >
+        cancer_gene,
+      </if>
+      <if test="createdAt != null" >
+        created_at,
+      </if>
+      <if test="createdWay != null" >
+        created_way,
+      </if>
+      <if test="createdByKey != null" >
+        created_by_key,
+      </if>
+      <if test="createdByName != null" >
+        created_by_name,
+      </if>
+      <if test="checkState != null" >
+        check_state,
+      </if>
+      <if test="checkReport != null" >
+        check_report,
+      </if>
+      <if test="checkedByKey != null" >
+        checked_by_key,
+      </if>
+      <if test="checkedByName != null" >
+        checked_by_name,
+      </if>
+      <if test="translateByKey != null" >
+        translate_by_key,
+      </if>
+      <if test="translateByName != null" >
+        translate_by_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="geneKey != null" >
+        #{geneKey,jdbcType=VARCHAR},
+      </if>
+      <if test="geneId != null" >
+        #{geneId,jdbcType=INTEGER},
+      </if>
+      <if test="geneType != null" >
+        #{geneType,jdbcType=VARCHAR},
+      </if>
+      <if test="geneSymbol != null" >
+        #{geneSymbol,jdbcType=VARCHAR},
+      </if>
+      <if test="geneFullName != null" >
+        #{geneFullName,jdbcType=VARCHAR},
+      </if>
+      <if test="entrezGeneSummary != null" >
+        #{entrezGeneSummary,jdbcType=VARCHAR},
+      </if>
+      <if test="cytogeneticBand != null" >
+        #{cytogeneticBand,jdbcType=VARCHAR},
+      </if>
+      <if test="hasCosmicMutations != null" >
+        #{hasCosmicMutations,jdbcType=BIT},
+      </if>
+      <if test="cancerGene != null" >
+        #{cancerGene,jdbcType=VARCHAR},
+      </if>
+      <if test="createdAt != null" >
+        #{createdAt,jdbcType=BIGINT},
+      </if>
+      <if test="createdWay != null" >
+        #{createdWay,jdbcType=INTEGER},
+      </if>
+      <if test="createdByKey != null" >
+        #{createdByKey,jdbcType=CHAR},
+      </if>
+      <if test="createdByName != null" >
+        #{createdByName,jdbcType=VARCHAR},
+      </if>
+      <if test="checkState != null" >
+        #{checkState,jdbcType=INTEGER},
+      </if>
+      <if test="checkReport != null" >
+        #{checkReport,jdbcType=VARCHAR},
+      </if>
+      <if test="checkedByKey != null" >
+        #{checkedByKey,jdbcType=CHAR},
+      </if>
+      <if test="checkedByName != null" >
+        #{checkedByName,jdbcType=VARCHAR},
+      </if>
+      <if test="translateByKey != null" >
+        #{translateByKey,jdbcType=CHAR},
+      </if>
+      <if test="translateByName != null" >
+        #{translateByName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huasheng.pojo.newpojo.KtGene" >
+    update kt_gene
+    <set >
+      <if test="geneId != null" >
+        gene_id = #{geneId,jdbcType=INTEGER},
+      </if>
+      <if test="geneType != null" >
+        gene_type = #{geneType,jdbcType=VARCHAR},
+      </if>
+      <if test="geneSymbol != null" >
+        gene_symbol = #{geneSymbol,jdbcType=VARCHAR},
+      </if>
+      <if test="geneFullName != null" >
+        gene_full_name = #{geneFullName,jdbcType=VARCHAR},
+      </if>
+      <if test="entrezGeneSummary != null" >
+        entrez_gene_summary = #{entrezGeneSummary,jdbcType=VARCHAR},
+      </if>
+      <if test="cytogeneticBand != null" >
+        cytogenetic_band = #{cytogeneticBand,jdbcType=VARCHAR},
+      </if>
+      <if test="hasCosmicMutations != null" >
+        has_cosmic_mutations = #{hasCosmicMutations,jdbcType=BIT},
+      </if>
+      <if test="cancerGene != null" >
+        cancer_gene = #{cancerGene,jdbcType=VARCHAR},
+      </if>
+      <if test="createdAt != null" >
+        created_at = #{createdAt,jdbcType=BIGINT},
+      </if>
+      <if test="createdWay != null" >
+        created_way = #{createdWay,jdbcType=INTEGER},
+      </if>
+      <if test="createdByKey != null" >
+        created_by_key = #{createdByKey,jdbcType=CHAR},
+      </if>
+      <if test="createdByName != null" >
+        created_by_name = #{createdByName,jdbcType=VARCHAR},
+      </if>
+      <if test="checkState != null" >
+        check_state = #{checkState,jdbcType=INTEGER},
+      </if>
+      <if test="checkReport != null" >
+        check_report = #{checkReport,jdbcType=VARCHAR},
+      </if>
+      <if test="checkedByKey != null" >
+        checked_by_key = #{checkedByKey,jdbcType=CHAR},
+      </if>
+      <if test="checkedByName != null" >
+        checked_by_name = #{checkedByName,jdbcType=VARCHAR},
+      </if>
+      <if test="translateByKey != null" >
+        translate_by_key = #{translateByKey,jdbcType=CHAR},
+      </if>
+      <if test="translateByName != null" >
+        translate_by_name = #{translateByName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where gene_key = #{geneKey,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huasheng.pojo.newpojo.KtGene" >
+    update kt_gene
+    set gene_id = #{geneId,jdbcType=INTEGER},
+    gene_type = #{geneType,jdbcType=VARCHAR},
+    gene_symbol = #{geneSymbol,jdbcType=VARCHAR},
+    gene_full_name = #{geneFullName,jdbcType=VARCHAR},
+    entrez_gene_summary = #{entrezGeneSummary,jdbcType=VARCHAR},
+    cytogenetic_band = #{cytogeneticBand,jdbcType=VARCHAR},
+    has_cosmic_mutations = #{hasCosmicMutations,jdbcType=BIT},
+    cancer_gene = #{cancerGene,jdbcType=VARCHAR},
+    created_at = #{createdAt,jdbcType=BIGINT},
+    created_way = #{createdWay,jdbcType=INTEGER},
+    created_by_key = #{createdByKey,jdbcType=CHAR},
+    created_by_name = #{createdByName,jdbcType=VARCHAR},
+
+    <if test="checkReport!='' and checkReport != null" >
+      check_report = #{checkReport,jdbcType=VARCHAR},
+    </if>
+    <if test="checkedByKey!='' and checkedByKey != null" >
+      checked_by_key = #{checkedByKey,jdbcType=CHAR},
+    </if>
+    <if test="checkedByName!='' and checkedByName != null" >
+      checked_by_name = #{checkedByName,jdbcType=VARCHAR},
+    </if>
+    <if test="translateByKey!='' and translateByKey != null">
+      translate_by_key = #{translateByKey,jdbcType=CHAR},
+    </if>
+    <if test="translateByName!='' and translateByName != null">
+      translate_by_name = #{translateByName,jdbcType=VARCHAR},
+    </if>
+    check_state = #{checkState,jdbcType=INTEGER}
+    where gene_key = #{geneKey,jdbcType=VARCHAR}
+  </update>
+
+  <!--基因列表-->
+  <select id="getGeneList" parameterType="Map" resultType="Map">
+    SELECT
+    a.gene_key geneKey,
+    a.gene_id geneId,
+    a.gene_symbol geneSymbol,
+    a.gene_full_name geneFullName,
+    a.gene_type geneType,
+    a.check_state checkState,
+    a.check_report checkReport,
+    group_concat(DISTINCT b.gene_alias SEPARATOR '、') geneAlias,
+    a.cancer_gene cancerGene,
+    a.has_cosmic_mutations hasCosmicMutations,
+    a.created_at createdAt,
+    group_concat(DISTINCT c.other_name SEPARATOR '、') otherName,
+    a.translate_by_name translateByName
+    FROM
+    kt_gene a
+    LEFT JOIN kt_gene_alias b ON a.gene_key = b.gene_key
+    LEFT JOIN kt_gene_other_name c on a.gene_key=c.gene_key
+    WHERE
+    1 = 1
+    <if test="geneId!='' and geneId!=null">
+      and a.gene_id=#{geneId}
+    </if>
+    <if test="geneSymbol!='' and geneSymbol!=null">
+      and (a.gene_symbol like CONCAT(CONCAT('%',#{geneSymbol},'%')) or a.gene_full_name like CONCAT(CONCAT('%',#{geneSymbol},'%'))
+      or b.gene_alias like CONCAT(CONCAT('%',#{geneSymbol},'%')) or c.other_name like CONCAT(CONCAT('%',#{geneSymbol},'%')))
+    </if>
+    <if test="cancerGene!='' and cancerGene!=null">
+      and a.cancer_gene=#{cancerGene}
+    </if>
+    <if test="hasCosmicMutations!='' and hasCosmicMutations!=null">
+      and a.has_cosmic_mutations=#{hasCosmicMutations}
+    </if>
+    <if test="checkState!='' and checkState!=null">
+      and a.check_state=#{checkState}
+    </if>
+    <if test="createdWay!='' and createdWay!=null" >
+      AND a.created_way =#{createdWay}
+    </if>
+    <if test="proteinGeneChoice!='' and proteinGeneChoice!=null" >
+      AND a.gene_key not in (select gene_key from kt_protein )
+    </if>
+    GROUP BY
+    a.gene_key
+    ORDER BY
+    a.created_at DESC
+  </select>
+
+  <select id="selectByDrugKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    gene.gene_key,gene.gene_id,gene.gene_symbol
+    FROM
+    kt_gene gene
+    LEFT JOIN kt_drug_gene dg ON gene.gene_key = dg.gene_key
+    LEFT JOIN kt_drug drug ON dg.drug_key = drug.drug_key
+    where drug.drug_key=#{_parameter,jdbcType=VARCHAR}
+  </select>
+  <!--更新基因审核状态-->
+  <update id="updateGeneCheckState" parameterType="com.huasheng.pojo.newpojo.KtGene">
+    update kt_gene
+    set
+    check_state = #{checkState,jdbcType=BIGINT},
+    checked_by_key = #{checkedByKey,jdbcType=CHAR},
+    checked_by_name = #{checkedByName,jdbcType=VARCHAR},
+    check_report = #{checkReport}
+    where gene_key = #{geneKey,jdbcType=VARCHAR}
+  </update>
+  <!--更新基因翻译状态-->
+  <update id="updateTranslator" parameterType="com.huasheng.pojo.newpojo.KtGene">
+    update kt_gene
+    set
+    check_state = #{checkState,jdbcType=BIGINT},
+    translate_by_key = #{translateByKey,jdbcType=CHAR},
+    translate_by_name = #{translateByName,jdbcType=VARCHAR}
+    where gene_key = #{geneKey,jdbcType=VARCHAR}
+  </update>
+  <select id="getGenePending" parameterType="Map" resultType="Integer">
+    SELECT count(gene_key) from kt_gene where check_state=#{checkState} and created_way=#{createdWay}
+  </select>
+
+  <select id="getGeneProtein" resultType="java.util.Map" parameterType="java.util.Map">
+    SELECT
+    gene.gene_key geneKey,
+    gene.gene_id geneId,
+    protein.protein_name proteinName
+    FROM
+    kt_gene gene
+    LEFT JOIN kt_protein protein ON gene.gene_key = protein.gene_key
+    where 1=1
+    <if test="checkState!='' and checkState!=null" >
+      AND gene.check_state =#{checkState}
+    </if>
+    <if test="geneId!='' and geneId!=null">
+      AND gene.gene_id=#{geneId}
+    </if>
+    <if test="checkState!='' and checkState!=null">
+      and gene.check_state=#{checkState}
+    </if>
+    <if test="createdWay!='' and createdWay!=null" >
+      AND gene.created_way =#{createdWay}
+    </if>
+  </select>
+
+  <select id="getGeneTranslateMonth" parameterType="Map" resultType="Integer">
+    SELECT count(gene_key) from kt_gene where (created_at BETWEEN #{firstTime} and #{currentTime}) AND check_state=#{checkState} and created_way=#{createdWay}
+  </select>
+
+  <delete id="deleteAllGene" >
+    delete from kt_gene
+  </delete>
+</mapper>

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huasheng.dao.newdao.KtVariantTumorTypeDoidDao" >
+    <resultMap id="BaseResultMap" type="com.huasheng.pojo.newpojo.KtVariantTumorTypeDoid" >
+        <id column="cancer_key" property="cancerKey" jdbcType="VARCHAR" />
+        <id column="type_key" property="typeKey" jdbcType="VARCHAR" />
+        <result column="variant_id" property="variantId" jdbcType="INTEGER" />
+        <result column="doid" property="doid" jdbcType="INTEGER" />
+        <result column="cancer_name" property="cancerName" jdbcType="VARCHAR" />
+    </resultMap>
+    <sql id="Base_Column_List" >
+    cancer_key, type_key, variant_id, doid, cancer_name
+  </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.huasheng.pojo.newpojo.KtVariantTumorTypeDoid" >
+        select
+        <include refid="Base_Column_List" />
+        from kt_variant_tumor_type_doid
+        where cancer_key = #{cancerKey,jdbcType=VARCHAR}
+        and type_key = #{typeKey,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="com.huasheng.pojo.newpojo.KtVariantTumorTypeDoid" >
+    delete from kt_variant_tumor_type_doid
+    where cancer_key = #{cancerKey,jdbcType=VARCHAR}
+      and type_key = #{typeKey,jdbcType=VARCHAR}
+  </delete>
+    <insert id="insert" parameterType="com.huasheng.pojo.newpojo.KtVariantTumorTypeDoid" >
+    insert into kt_variant_tumor_type_doid (cancer_key, type_key, variant_id,
+      doid, cancer_name)
+    values (#{cancerKey,jdbcType=VARCHAR}, #{typeKey,jdbcType=VARCHAR}, #{variantId,jdbcType=INTEGER},
+      #{doid,jdbcType=INTEGER}, #{cancerName,jdbcType=VARCHAR})
+  </insert>
+    <insert id="insertSelective" parameterType="com.huasheng.pojo.newpojo.KtVariantTumorTypeDoid" >
+        insert into kt_variant_tumor_type_doid
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="cancerKey != null" >
+                cancer_key,
+            </if>
+            <if test="typeKey != null" >
+                type_key,
+            </if>
+            <if test="variantId != null" >
+                variant_id,
+            </if>
+            <if test="doid != null" >
+                doid,
+            </if>
+            <if test="cancerName != null" >
+                cancer_name,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="cancerKey != null" >
+                #{cancerKey,jdbcType=VARCHAR},
+            </if>
+            <if test="typeKey != null" >
+                #{typeKey,jdbcType=VARCHAR},
+            </if>
+            <if test="variantId != null" >
+                #{variantId,jdbcType=INTEGER},
+            </if>
+            <if test="doid != null" >
+                #{doid,jdbcType=INTEGER},
+            </if>
+            <if test="cancerName != null" >
+                #{cancerName,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.huasheng.pojo.newpojo.KtVariantTumorTypeDoid" >
+        update kt_variant_tumor_type_doid
+        <set >
+            <if test="variantId != null" >
+                variant_id = #{variantId,jdbcType=INTEGER},
+            </if>
+            <if test="doid != null" >
+                doid = #{doid,jdbcType=INTEGER},
+            </if>
+            <if test="cancerName != null" >
+                cancer_name = #{cancerName,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where cancer_key = #{cancerKey,jdbcType=VARCHAR}
+        and type_key = #{typeKey,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.huasheng.pojo.newpojo.KtVariantTumorTypeDoid" >
+    update kt_variant_tumor_type_doid
+    set variant_id = #{variantId,jdbcType=INTEGER},
+      doid = #{doid,jdbcType=INTEGER},
+      cancer_name = #{cancerName,jdbcType=VARCHAR},
+      cancer_key=#{cancerKey,jdbcType=VARCHAR}
+    where
+       type_key = #{typeKey,jdbcType=VARCHAR}
+  </update>
+
+    <select id="getVariantTumorTypeDoid" parameterType="String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from kt_variant_tumor_type_doid
+        where type_key = #{typeKey,jdbcType=VARCHAR}
+    </select>
+
+    <insert id="insertMore" parameterType="List">
+        insert into kt_variant_tumor_type_doid (cancer_key, type_key, variant_id, doid, cancer_name)
+        values
+        <foreach collection="list" item="item" index="index" separator="," >
+            (
+            #{item.cancerKey,jdbcType=VARCHAR},
+            #{item.typeKey,jdbcType=VARCHAR},
+            #{item.variantId,jdbcType=INTEGER},
+            #{item.doid,jdbcType=INTEGER},
+            #{item.cancerName,jdbcType=VARCHAR}
+            )
+        </foreach>
+    </insert>
+</mapper>

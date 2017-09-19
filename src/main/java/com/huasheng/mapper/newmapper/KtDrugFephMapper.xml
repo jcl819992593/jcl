@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huasheng.dao.newdao.KtDrugFephDao" >
+  <resultMap id="BaseResultMap" type="com.huasheng.pojo.newpojo.KtDrugFeph" >
+    <id column="drug_feph_key" property="drugFephKey" jdbcType="CHAR" />
+    <result column="drug_key" property="drugKey" jdbcType="VARCHAR" />
+    <result column="drug_id" property="drugId" jdbcType="INTEGER" />
+    <result column="feph_type" property="fephType" jdbcType="VARCHAR" />
+    <result column="require_gene_test" property="requireGeneTest" jdbcType="TINYINT" />
+    <result column="detail" property="detail" jdbcType="VARCHAR" />
+    <result column="detection_subitem" property="detectionSubitem" jdbcType="VARCHAR" />
+    <result column="detection_item" property="detectionItem" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    drug_feph_key, drug_key, drug_id, feph_type, require_gene_test, detail, detection_subitem, 
+    detection_item
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from kt_drug_feph
+    where drug_feph_key = #{drugFephKey,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from kt_drug_feph
+    where drug_feph_key = #{drugFephKey,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.huasheng.pojo.newpojo.KtDrugFeph" >
+    insert into kt_drug_feph (drug_feph_key, drug_key, drug_id, 
+      feph_type, require_gene_test, detail, 
+      detection_subitem, detection_item)
+    values (#{drugFephKey,jdbcType=CHAR}, #{drugKey,jdbcType=VARCHAR}, #{drugId,jdbcType=INTEGER}, 
+      #{fephType,jdbcType=VARCHAR}, #{requireGeneTest,jdbcType=TINYINT}, #{detail,jdbcType=VARCHAR}, 
+      #{detectionSubitem,jdbcType=VARCHAR}, #{detectionItem,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.huasheng.pojo.newpojo.KtDrugFeph" >
+    insert into kt_drug_feph
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="drugFephKey != null" >
+        drug_feph_key,
+      </if>
+      <if test="drugKey != null" >
+        drug_key,
+      </if>
+      <if test="drugId != null" >
+        drug_id,
+      </if>
+      <if test="fephType != null" >
+        feph_type,
+      </if>
+      <if test="requireGeneTest != null" >
+        require_gene_test,
+      </if>
+      <if test="detail != null" >
+        detail,
+      </if>
+      <if test="detectionSubitem != null" >
+        detection_subitem,
+      </if>
+      <if test="detectionItem != null" >
+        detection_item,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="drugFephKey != null" >
+        #{drugFephKey,jdbcType=CHAR},
+      </if>
+      <if test="drugKey != null" >
+        #{drugKey,jdbcType=VARCHAR},
+      </if>
+      <if test="drugId != null" >
+        #{drugId,jdbcType=INTEGER},
+      </if>
+      <if test="fephType != null" >
+        #{fephType,jdbcType=VARCHAR},
+      </if>
+      <if test="requireGeneTest != null" >
+        #{requireGeneTest,jdbcType=TINYINT},
+      </if>
+      <if test="detail != null" >
+        #{detail,jdbcType=VARCHAR},
+      </if>
+      <if test="detectionSubitem != null" >
+        #{detectionSubitem,jdbcType=VARCHAR},
+      </if>
+      <if test="detectionItem != null" >
+        #{detectionItem,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huasheng.pojo.newpojo.KtDrugFeph" >
+    update kt_drug_feph
+    <set >
+      <if test="drugKey != null" >
+        drug_key = #{drugKey,jdbcType=VARCHAR},
+      </if>
+      <if test="drugId != null" >
+        drug_id = #{drugId,jdbcType=INTEGER},
+      </if>
+      <if test="fephType != null" >
+        feph_type = #{fephType,jdbcType=VARCHAR},
+      </if>
+      <if test="requireGeneTest != null" >
+        require_gene_test = #{requireGeneTest,jdbcType=TINYINT},
+      </if>
+      <if test="detail != null" >
+        detail = #{detail,jdbcType=VARCHAR},
+      </if>
+      <if test="detectionSubitem != null" >
+        detection_subitem = #{detectionSubitem,jdbcType=VARCHAR},
+      </if>
+      <if test="detectionItem != null" >
+        detection_item = #{detectionItem,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where drug_feph_key = #{drugFephKey,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huasheng.pojo.newpojo.KtDrugFeph" >
+    update kt_drug_feph
+    set drug_key = #{drugKey,jdbcType=VARCHAR},
+      drug_id = #{drugId,jdbcType=INTEGER},
+      feph_type = #{fephType,jdbcType=VARCHAR},
+      require_gene_test = #{requireGeneTest,jdbcType=TINYINT},
+      detail = #{detail,jdbcType=VARCHAR},
+      detection_subitem = #{detectionSubitem,jdbcType=VARCHAR},
+      detection_item = #{detectionItem,jdbcType=VARCHAR}
+    where drug_feph_key = #{drugFephKey,jdbcType=CHAR}
+  </update>
+  <insert id="addKtDrugFephMore" parameterType="List">
+    INSERT into  kt_drug_feph (drug_feph_key, drug_key, drug_id, feph_type, require_gene_test,detail,detection_subitem, detection_item) VALUES
+    <foreach collection="list" item="item" index="index" separator=",">
+      (#{item.drugFephKey}, #{item.drugKey}, #{item.drugId},
+      #{item.fephType}, #{item.requireGeneTest}, #{item.detail},
+      #{item.detectionSubitem}, #{item.detectionItem})
+    </foreach>
+  </insert>
+  <select id="selectByDrugKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from kt_drug_feph
+    where drug_key = #{drugKey,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByDrugKey" parameterType="java.lang.String" >
+    delete from kt_drug_feph
+    where drug_key = #{drugKey,jdbcType=VARCHAR}
+  </delete>
+</mapper>

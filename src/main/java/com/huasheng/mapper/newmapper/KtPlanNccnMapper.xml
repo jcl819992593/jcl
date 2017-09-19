@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huasheng.dao.newdao.KtPlanNccnDao" >
+  <resultMap id="BaseResultMap" type="com.huasheng.pojo.newpojo.KtPlanNccn" >
+    <id column="plan_nccn_key" property="planNccnKey" jdbcType="VARCHAR" />
+    <result column="medication_plan_key" property="medicationPlanKey" jdbcType="VARCHAR" />
+    <result column="medication_plan_id" property="medicationPlanId" jdbcType="INTEGER" />
+    <result column="the_category" property="theCategory" jdbcType="INTEGER" />
+    <result column="cite_message" property="citeMessage" jdbcType="VARCHAR" />
+    <result column="the_url" property="theUrl" jdbcType="VARCHAR" />
+    <result column="the_classification" property="theClassification" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    plan_nccn_key, medication_plan_key, medication_plan_id, the_category, cite_message, 
+    the_url, the_classification
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from kt_plan_nccn
+    where plan_nccn_key = #{planNccnKey,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from kt_plan_nccn
+    where plan_nccn_key = #{planNccnKey,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.huasheng.pojo.newpojo.KtPlanNccn" >
+    insert into kt_plan_nccn (plan_nccn_key, medication_plan_key, medication_plan_id, 
+      the_category, cite_message, the_url, 
+      the_classification)
+    values (#{planNccnKey,jdbcType=VARCHAR}, #{medicationPlanKey,jdbcType=VARCHAR}, #{medicationPlanId,jdbcType=INTEGER},
+      #{theCategory,jdbcType=INTEGER}, #{citeMessage,jdbcType=VARCHAR}, #{theUrl,jdbcType=VARCHAR}, 
+      #{theClassification,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.huasheng.pojo.newpojo.KtPlanNccn" >
+    insert into kt_plan_nccn
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="planNccnKey != null" >
+        plan_nccn_key,
+      </if>
+      <if test="medicationPlanKey != null" >
+        medication_plan_key,
+      </if>
+      <if test="medicationPlanId != null" >
+        medication_plan_id,
+      </if>
+      <if test="theCategory != null" >
+        the_category,
+      </if>
+      <if test="citeMessage != null" >
+        cite_message,
+      </if>
+      <if test="theUrl != null" >
+        the_url,
+      </if>
+      <if test="theClassification != null" >
+        the_classification,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="planNccnKey != null" >
+        #{planNccnKey,jdbcType=VARCHAR},
+      </if>
+      <if test="medicationPlanKey != null" >
+        #{medicationPlanKey,jdbcType=VARCHAR},
+      </if>
+      <if test="medicationPlanId != null" >
+        #{medicationPlanId,jdbcType=INTEGER},
+      </if>
+      <if test="theCategory != null" >
+        #{theCategory,jdbcType=INTEGER},
+      </if>
+      <if test="citeMessage != null" >
+        #{citeMessage,jdbcType=VARCHAR},
+      </if>
+      <if test="theUrl != null" >
+        #{theUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="theClassification != null" >
+        #{theClassification,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huasheng.pojo.newpojo.KtPlanNccn" >
+    update kt_plan_nccn
+    <set >
+      <if test="medicationPlanKey != null" >
+        medication_plan_key = #{medicationPlanKey,jdbcType=VARCHAR},
+      </if>
+      <if test="medicationPlanId != null" >
+        medication_plan_id = #{medicationPlanId,jdbcType=INTEGER},
+      </if>
+      <if test="theCategory != null" >
+        the_category = #{theCategory,jdbcType=INTEGER},
+      </if>
+      <if test="citeMessage != null" >
+        cite_message = #{citeMessage,jdbcType=VARCHAR},
+      </if>
+      <if test="theUrl != null" >
+        the_url = #{theUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="theClassification != null" >
+        the_classification = #{theClassification,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where plan_nccn_key = #{planNccnKey,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huasheng.pojo.newpojo.KtPlanNccn" >
+    update kt_plan_nccn
+    set medication_plan_key = #{medicationPlanKey,jdbcType=VARCHAR},
+      medication_plan_id = #{medicationPlanId,jdbcType=INTEGER},
+      the_category = #{theCategory,jdbcType=INTEGER},
+      cite_message = #{citeMessage,jdbcType=VARCHAR},
+      the_url = #{theUrl,jdbcType=VARCHAR},
+      the_classification = #{theClassification,jdbcType=VARCHAR}
+    where plan_nccn_key = #{planNccnKey,jdbcType=VARCHAR}
+  </update>
+
+  <select id="getPlanNccnByKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from kt_plan_nccn
+    where medication_plan_key = #{medicationPlanKey,jdbcType=VARCHAR}
+  </select>
+</mapper>

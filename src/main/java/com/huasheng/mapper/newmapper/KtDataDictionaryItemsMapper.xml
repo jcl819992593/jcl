@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huasheng.dao.newdao.KtDataDictionaryItemsDao" >
+  <resultMap id="BaseResultMap" type="com.huasheng.pojo.newpojo.KtDataDictionaryItems" >
+    <id column="item_key" property="itemKey" jdbcType="VARCHAR" />
+    <result column="dictionary_key" property="dictionaryKey" jdbcType="VARCHAR" />
+    <result column="item_name" property="itemName" jdbcType="VARCHAR" />
+    <result column="item_value" property="itemValue" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    item_key, dictionary_key, item_name, item_value
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from kt_data_dictionary_items
+    where item_key = #{itemKey,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from kt_data_dictionary_items
+    where item_key = #{itemKey,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.huasheng.pojo.newpojo.KtDataDictionaryItems" >
+    insert into kt_data_dictionary_items (item_key, dictionary_key, item_name, 
+      item_value)
+    values (#{itemKey,jdbcType=VARCHAR}, #{dictionaryKey,jdbcType=VARCHAR}, #{itemName,jdbcType=VARCHAR}, 
+      #{itemValue,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.huasheng.pojo.newpojo.KtDataDictionaryItems" >
+    insert into kt_data_dictionary_items
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="itemKey != null" >
+        item_key,
+      </if>
+      <if test="dictionaryKey != null" >
+        dictionary_key,
+      </if>
+      <if test="itemName != null" >
+        item_name,
+      </if>
+      <if test="itemValue != null" >
+        item_value,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="itemKey != null" >
+        #{itemKey,jdbcType=VARCHAR},
+      </if>
+      <if test="dictionaryKey != null" >
+        #{dictionaryKey,jdbcType=VARCHAR},
+      </if>
+      <if test="itemName != null" >
+        #{itemName,jdbcType=VARCHAR},
+      </if>
+      <if test="itemValue != null" >
+        #{itemValue,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huasheng.pojo.newpojo.KtDataDictionaryItems" >
+    update kt_data_dictionary_items
+    <set >
+      <if test="dictionaryKey != null" >
+        dictionary_key = #{dictionaryKey,jdbcType=VARCHAR},
+      </if>
+      <if test="itemName != null" >
+        item_name = #{itemName,jdbcType=VARCHAR},
+      </if>
+      <if test="itemValue != null" >
+        item_value = #{itemValue,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where item_key = #{itemKey,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huasheng.pojo.newpojo.KtDataDictionaryItems" >
+    update kt_data_dictionary_items
+    set
+      item_name = #{itemName,jdbcType=VARCHAR},
+      item_value = #{itemValue,jdbcType=VARCHAR}
+    where item_key = #{itemKey,jdbcType=VARCHAR}
+  </update>
+  <select id="getDataDictionaryItemsList" resultType="Map" parameterType="Map">
+    SELECT a.dictionary_key dictionaryKey,dictionary_name dictionaryName,item_name itemName,item_value itemValue,
+    item_key itemKey from kt_data_dictionary_items b left join kt_data_dictionary a on a.dictionary_key=b.dictionary_key
+    where 1=1
+    <if test="itemName !='' and itemName !=null">
+      and item_name like CONCAT ('%',#{itemName},'%')
+    </if>
+    <if test="dictionaryKey !='' and dictionaryKey !=null">
+      and a.dictionary_key=#{dictionaryKey}
+    </if>
+  </select>
+  <!--查询机构字典-->
+  <select id="getKtDrugProductApprovalOrgList" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from kt_data_dictionary_items
+    where dictionary_key = #{dictionaryKey,jdbcType=VARCHAR}
+  </select>
+  <select id="selectItemByDictionaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from kt_data_dictionary_items
+    where dictionary_key = #{dictionaryKey,jdbcType=VARCHAR}
+  </select>
+ <delete id="deleteAllItems" >
+   DELETE from kt_data_dictionary_items
+ </delete>
+</mapper>

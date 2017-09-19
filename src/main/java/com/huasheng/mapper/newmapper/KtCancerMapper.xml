@@ -1,0 +1,497 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huasheng.dao.newdao.KtCancerDao" >
+  <resultMap id="BaseResultMap" type="com.huasheng.pojo.newpojo.KtCancer" >
+    <id column="cancer_key" property="cancerKey" jdbcType="VARCHAR" />
+    <result column="doid" property="doid" jdbcType="VARCHAR" />
+    <result column="cancer_name" property="cancerName" jdbcType="VARCHAR" />
+    <result column="parent_ids" property="parentIds" jdbcType="VARCHAR" />
+    <result column="parent_keys" property="parentKeys" jdbcType="VARCHAR" />
+    <result column="english_name" property="englishName" jdbcType="VARCHAR" />
+    <result column="cancer_definition" property="cancerDefinition" jdbcType="VARCHAR" />
+    <result column="pathogenesis" property="pathogenesis" jdbcType="VARCHAR" />
+    <result column="clinicalfeatures" property="clinicalfeatures" jdbcType="VARCHAR" />
+    <result column="diagnostics" property="diagnostics" jdbcType="VARCHAR" />
+    <result column="histopathology" property="histopathology" jdbcType="VARCHAR" />
+    <result column="the_picture" property="thePicture" jdbcType="VARCHAR" />
+    <result column="is_common" property="isCommon" jdbcType="BIT" />
+    <result column="the_source" property="theSource" jdbcType="VARCHAR" />
+    <result column="the_link" property="theLink" jdbcType="VARCHAR" />
+    <result column="subtype_base" property="subtypeBase" jdbcType="INTEGER" />
+    <result column="cancer_incidence" property="cancerIncidence" jdbcType="VARCHAR" />
+    <result column="created_at" property="createdAt" jdbcType="BIGINT" />
+    <result column="created_way" property="createdWay" jdbcType="INTEGER" />
+    <result column="created_by_key" property="createdByKey" jdbcType="CHAR" />
+    <result column="created_by_name" property="createdByName" jdbcType="VARCHAR" />
+    <result column="check_state" property="checkState" jdbcType="INTEGER" />
+    <result column="check_report" property="checkReport" jdbcType="VARCHAR" />
+    <result column="checked_by_key" property="checkedByKey" jdbcType="CHAR" />
+    <result column="checked_by_name" property="checkedByName" jdbcType="VARCHAR" />
+    <result column="translate_by_key" property="translateByKey" jdbcType="CHAR" />
+    <result column="translate_by_name" property="translateByName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    cancer_key, doid, cancer_name, parent_ids, parent_keys, english_name, cancer_definition, 
+    pathogenesis, clinicalfeatures, diagnostics, histopathology, the_picture, is_common, 
+    the_source, the_link, subtype_base, cancer_incidence, created_at, created_way, created_by_key, 
+    created_by_name, check_state, check_report, checked_by_key, checked_by_name, translate_by_key, 
+    translate_by_name
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from kt_cancer
+    where cancer_key = #{cancerKey,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from kt_cancer
+    where cancer_key = #{cancerKey,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.huasheng.pojo.newpojo.KtCancer" >
+    insert into kt_cancer (cancer_key, doid, cancer_name, 
+      parent_ids, parent_keys, english_name, 
+      cancer_definition, pathogenesis, clinicalfeatures, 
+      diagnostics, histopathology, the_picture, 
+      is_common, the_source, the_link, 
+      subtype_base, cancer_incidence, created_at, 
+      created_way, created_by_key, created_by_name, 
+      check_state, check_report, checked_by_key, 
+      checked_by_name, translate_by_key, translate_by_name
+      )
+    values (#{cancerKey,jdbcType=VARCHAR}, #{doid,jdbcType=VARCHAR}, #{cancerName,jdbcType=VARCHAR}, 
+      #{parentIds,jdbcType=VARCHAR}, #{parentKeys,jdbcType=VARCHAR}, #{englishName,jdbcType=VARCHAR}, 
+      #{cancerDefinition,jdbcType=VARCHAR}, #{pathogenesis,jdbcType=VARCHAR}, #{clinicalfeatures,jdbcType=VARCHAR}, 
+      #{diagnostics,jdbcType=VARCHAR}, #{histopathology,jdbcType=VARCHAR}, #{thePicture,jdbcType=VARCHAR}, 
+      #{isCommon,jdbcType=BIT}, #{theSource,jdbcType=VARCHAR}, #{theLink,jdbcType=VARCHAR}, 
+      #{subtypeBase,jdbcType=INTEGER}, #{cancerIncidence,jdbcType=VARCHAR}, #{createdAt,jdbcType=BIGINT}, 
+      #{createdWay,jdbcType=INTEGER}, #{createdByKey,jdbcType=CHAR}, #{createdByName,jdbcType=VARCHAR}, 
+      #{checkState,jdbcType=INTEGER}, #{checkReport,jdbcType=VARCHAR}, #{checkedByKey,jdbcType=CHAR}, 
+      #{checkedByName,jdbcType=VARCHAR}, #{translateByKey,jdbcType=CHAR}, #{translateByName,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.huasheng.pojo.newpojo.KtCancer" >
+    insert into kt_cancer
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="cancerKey != null" >
+        cancer_key,
+      </if>
+      <if test="doid != null" >
+        doid,
+      </if>
+      <if test="cancerName != null" >
+        cancer_name,
+      </if>
+      <if test="parentIds != null" >
+        parent_ids,
+      </if>
+      <if test="parentKeys != null" >
+        parent_keys,
+      </if>
+      <if test="englishName != null" >
+        english_name,
+      </if>
+      <if test="cancerDefinition != null" >
+        cancer_definition,
+      </if>
+      <if test="pathogenesis != null" >
+        pathogenesis,
+      </if>
+      <if test="clinicalfeatures != null" >
+        clinicalfeatures,
+      </if>
+      <if test="diagnostics != null" >
+        diagnostics,
+      </if>
+      <if test="histopathology != null" >
+        histopathology,
+      </if>
+      <if test="thePicture != null" >
+        the_picture,
+      </if>
+      <if test="isCommon != null" >
+        is_common,
+      </if>
+      <if test="theSource != null" >
+        the_source,
+      </if>
+      <if test="theLink != null" >
+        the_link,
+      </if>
+      <if test="subtypeBase != null" >
+        subtype_base,
+      </if>
+      <if test="cancerIncidence != null" >
+        cancer_incidence,
+      </if>
+      <if test="createdAt != null" >
+        created_at,
+      </if>
+      <if test="createdWay != null" >
+        created_way,
+      </if>
+      <if test="createdByKey != null" >
+        created_by_key,
+      </if>
+      <if test="createdByName != null" >
+        created_by_name,
+      </if>
+      <if test="checkState != null" >
+        check_state,
+      </if>
+      <if test="checkReport != null" >
+        check_report,
+      </if>
+      <if test="checkedByKey != null" >
+        checked_by_key,
+      </if>
+      <if test="checkedByName != null" >
+        checked_by_name,
+      </if>
+      <if test="translateByKey != null" >
+        translate_by_key,
+      </if>
+      <if test="translateByName != null" >
+        translate_by_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="cancerKey != null" >
+        #{cancerKey,jdbcType=VARCHAR},
+      </if>
+      <if test="doid != null" >
+        #{doid,jdbcType=VARCHAR},
+      </if>
+      <if test="cancerName != null" >
+        #{cancerName,jdbcType=VARCHAR},
+      </if>
+      <if test="parentIds != null" >
+        #{parentIds,jdbcType=VARCHAR},
+      </if>
+      <if test="parentKeys != null" >
+        #{parentKeys,jdbcType=VARCHAR},
+      </if>
+      <if test="englishName != null" >
+        #{englishName,jdbcType=VARCHAR},
+      </if>
+      <if test="cancerDefinition != null" >
+        #{cancerDefinition,jdbcType=VARCHAR},
+      </if>
+      <if test="pathogenesis != null" >
+        #{pathogenesis,jdbcType=VARCHAR},
+      </if>
+      <if test="clinicalfeatures != null" >
+        #{clinicalfeatures,jdbcType=VARCHAR},
+      </if>
+      <if test="diagnostics != null" >
+        #{diagnostics,jdbcType=VARCHAR},
+      </if>
+      <if test="histopathology != null" >
+        #{histopathology,jdbcType=VARCHAR},
+      </if>
+      <if test="thePicture != null" >
+        #{thePicture,jdbcType=VARCHAR},
+      </if>
+      <if test="isCommon != null" >
+        #{isCommon,jdbcType=BIT},
+      </if>
+      <if test="theSource != null" >
+        #{theSource,jdbcType=VARCHAR},
+      </if>
+      <if test="theLink != null" >
+        #{theLink,jdbcType=VARCHAR},
+      </if>
+      <if test="subtypeBase != null" >
+        #{subtypeBase,jdbcType=INTEGER},
+      </if>
+      <if test="cancerIncidence != null" >
+        #{cancerIncidence,jdbcType=VARCHAR},
+      </if>
+      <if test="createdAt != null" >
+        #{createdAt,jdbcType=BIGINT},
+      </if>
+      <if test="createdWay != null" >
+        #{createdWay,jdbcType=INTEGER},
+      </if>
+      <if test="createdByKey != null" >
+        #{createdByKey,jdbcType=CHAR},
+      </if>
+      <if test="createdByName != null" >
+        #{createdByName,jdbcType=VARCHAR},
+      </if>
+      <if test="checkState != null" >
+        #{checkState,jdbcType=INTEGER},
+      </if>
+      <if test="checkReport != null" >
+        #{checkReport,jdbcType=VARCHAR},
+      </if>
+      <if test="checkedByKey != null" >
+        #{checkedByKey,jdbcType=CHAR},
+      </if>
+      <if test="checkedByName != null" >
+        #{checkedByName,jdbcType=VARCHAR},
+      </if>
+      <if test="translateByKey != null" >
+        #{translateByKey,jdbcType=CHAR},
+      </if>
+      <if test="translateByName != null" >
+        #{translateByName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huasheng.pojo.newpojo.KtCancer" >
+    update kt_cancer
+    <set >
+      <if test="doid != null" >
+        doid = #{doid,jdbcType=VARCHAR},
+      </if>
+      <if test="cancerName != null" >
+        cancer_name = #{cancerName,jdbcType=VARCHAR},
+      </if>
+      <if test="parentIds != null" >
+        parent_ids = #{parentIds,jdbcType=VARCHAR},
+      </if>
+      <if test="parentKeys != null" >
+        parent_keys = #{parentKeys,jdbcType=VARCHAR},
+      </if>
+      <if test="englishName != null" >
+        english_name = #{englishName,jdbcType=VARCHAR},
+      </if>
+      <if test="cancerDefinition != null" >
+        cancer_definition = #{cancerDefinition,jdbcType=VARCHAR},
+      </if>
+      <if test="pathogenesis != null" >
+        pathogenesis = #{pathogenesis,jdbcType=VARCHAR},
+      </if>
+      <if test="clinicalfeatures != null" >
+        clinicalfeatures = #{clinicalfeatures,jdbcType=VARCHAR},
+      </if>
+      <if test="diagnostics != null" >
+        diagnostics = #{diagnostics,jdbcType=VARCHAR},
+      </if>
+      <if test="histopathology != null" >
+        histopathology = #{histopathology,jdbcType=VARCHAR},
+      </if>
+      <if test="thePicture != null" >
+        the_picture = #{thePicture,jdbcType=VARCHAR},
+      </if>
+      <if test="isCommon != null" >
+        is_common = #{isCommon,jdbcType=BIT},
+      </if>
+      <if test="theSource != null" >
+        the_source = #{theSource,jdbcType=VARCHAR},
+      </if>
+      <if test="theLink != null" >
+        the_link = #{theLink,jdbcType=VARCHAR},
+      </if>
+      <if test="subtypeBase != null" >
+        subtype_base = #{subtypeBase,jdbcType=INTEGER},
+      </if>
+      <if test="cancerIncidence != null" >
+        cancer_incidence = #{cancerIncidence,jdbcType=VARCHAR},
+      </if>
+      <if test="createdAt != null" >
+        created_at = #{createdAt,jdbcType=BIGINT},
+      </if>
+      <if test="createdWay != null" >
+        created_way = #{createdWay,jdbcType=INTEGER},
+      </if>
+      <if test="createdByKey != null" >
+        created_by_key = #{createdByKey,jdbcType=CHAR},
+      </if>
+      <if test="createdByName != null" >
+        created_by_name = #{createdByName,jdbcType=VARCHAR},
+      </if>
+      <if test="checkState != null" >
+        check_state = #{checkState,jdbcType=INTEGER},
+      </if>
+      <if test="checkReport != null" >
+        check_report = #{checkReport,jdbcType=VARCHAR},
+      </if>
+      <if test="checkedByKey != null" >
+        checked_by_key = #{checkedByKey,jdbcType=CHAR},
+      </if>
+      <if test="checkedByName != null" >
+        checked_by_name = #{checkedByName,jdbcType=VARCHAR},
+      </if>
+      <if test="translateByKey != null" >
+        translate_by_key = #{translateByKey,jdbcType=CHAR},
+      </if>
+      <if test="translateByName != null" >
+        translate_by_name = #{translateByName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where cancer_key = #{cancerKey,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huasheng.pojo.newpojo.KtCancer" >
+    update kt_cancer
+    set doid = #{doid,jdbcType=VARCHAR},
+      cancer_name = #{cancerName,jdbcType=VARCHAR},
+      parent_ids = #{parentIds,jdbcType=VARCHAR},
+      parent_keys = #{parentKeys,jdbcType=VARCHAR},
+      english_name = #{englishName,jdbcType=VARCHAR},
+      cancer_definition = #{cancerDefinition,jdbcType=VARCHAR},
+      pathogenesis = #{pathogenesis,jdbcType=VARCHAR},
+      clinicalfeatures = #{clinicalfeatures,jdbcType=VARCHAR},
+      diagnostics = #{diagnostics,jdbcType=VARCHAR},
+      histopathology = #{histopathology,jdbcType=VARCHAR},
+      the_picture = #{thePicture,jdbcType=VARCHAR},
+      is_common = #{isCommon,jdbcType=BIT},
+      the_source = #{theSource,jdbcType=VARCHAR},
+      the_link = #{theLink,jdbcType=VARCHAR},
+      subtype_base = #{subtypeBase,jdbcType=INTEGER},
+      cancer_incidence = #{cancerIncidence,jdbcType=VARCHAR}
+      <if test="createdAt != null" >
+        ,created_at = #{createdAt,jdbcType=BIGINT}
+      </if>
+      <if test="createdWay != null" >
+        ,created_way = #{createdWay,jdbcType=INTEGER}
+      </if>
+      <if test="createdByKey != null" >
+        ,created_by_key = #{createdByKey,jdbcType=CHAR}
+      </if>
+      <if test="createdByName != null" >
+        ,created_by_name = #{createdByName,jdbcType=VARCHAR}
+      </if>
+      <if test="checkState != null" >
+        ,check_state = #{checkState,jdbcType=INTEGER}
+      </if>
+      <if test="checkReport != null" >
+        ,check_report = #{checkReport,jdbcType=VARCHAR}
+      </if>
+      <if test="checkedByKey != null" >
+        ,checked_by_key = #{checkedByKey,jdbcType=CHAR}
+      </if>
+      <if test="checkedByName != null" >
+        ,checked_by_name = #{checkedByName,jdbcType=VARCHAR}
+      </if>
+      <if test="translateByKey != null" >
+        ,translate_by_key = #{translateByKey,jdbcType=CHAR}
+      </if>
+      <if test="translateByName != null" >
+        ,translate_by_name = #{translateByName,jdbcType=VARCHAR}
+      </if>
+    where cancer_key = #{cancerKey,jdbcType=VARCHAR}
+  </update>
+  <!--列表-->
+  <select id="getCancerList" parameterType="Map" resultType="Map">
+SELECT
+	a.doid doid,
+	a.cancer_key cancerKey,
+	cancer_name cancerName,
+	parent_ids parentIds,
+	parent_keys parentKeys,
+	english_name englishName,
+	cancer_definition cancerDefinition,
+	pathogenesis pathogenesis,
+	clinicalfeatures clinicalfeatures,
+	diagnostics diagnostics,
+	histopathology histopathology,
+	the_picture thePicture,
+	is_common isCommon,
+	the_source theSource,
+	the_link theLink,
+	subtype_base subtypeBase,
+	cancer_incidence cancerIncidence,
+	created_at createdAt,
+	created_way createdWay,
+	created_by_key createdByKey,
+	created_by_name createdByName,
+	check_state checkState,
+	check_report checkReport,
+	checked_by_key checkedByKey,
+	checked_by_name checkedByName,
+	translate_by_key translateByKey,
+	translate_by_name translateByName,
+	group_concat(
+		DISTINCT b.alias_name SEPARATOR '、'
+	) aliasName
+    FROM
+	kt_cancer a
+   LEFT JOIN kt_cancer_alias b ON a.cancer_key = b.cancer_key
+   where 1=1
+    <if test="doid!='' and doid!=null">
+      and  a.doid=#{doid}
+   </if>
+    <if test="cancerName!='' and cancerName!=null">
+      and  (a.cancer_name like CONCAT(CONCAT('%',#{cancerName},'%')) or a.english_name like CONCAT(CONCAT('%',#{cancerName},'%')))
+    </if>
+    <if test="checkState!='' and checkState!=null">
+      and a.check_state=#{checkState}
+    </if>
+    <if test="createdWay!='' and createdWay!=null" >
+      AND a.created_way =#{createdWay}
+    </if>
+    GROUP BY
+	a.cancer_key
+     ORDER BY
+	a.created_at DESC
+  </select>
+  <update id="updateCheckState" parameterType="com.huasheng.pojo.newpojo.KtCancer">
+    update kt_cancer
+    set
+    check_state = #{checkState,jdbcType=BIGINT},
+    checked_by_key = #{checkedByKey,jdbcType=CHAR},
+    checked_by_name = #{checkedByName,jdbcType=VARCHAR},
+    check_report = #{checkReport}
+    where cancer_key = #{cancerKey,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByPKey" resultType="com.huasheng.pojo.newpojo.KtCancer" parameterType="java.lang.String" >
+    select
+    doid doid,
+	cancer_key cancerKey,
+	cancer_name cancerName,
+	parent_ids parentIds,
+	parent_keys parentKeys,
+	english_name englishName,
+	cancer_definition cancerDefinition,
+	pathogenesis pathogenesis,
+	clinicalfeatures clinicalfeatures,
+	diagnostics diagnostics,
+	histopathology histopathology,
+	the_picture thePicture,
+	is_common isCommon,
+	the_source theSource,
+	the_link theLink,
+	subtype_base subtypeBase,
+	cancer_incidence cancerIncidence,
+	created_at createdAt,
+	created_way createdWay,
+	created_by_key createdByKey,
+	created_by_name createdByName,
+	check_state checkState,
+	check_report checkReport,
+	checked_by_key checkedByKey,
+	checked_by_name checkedByName,
+	translate_by_key translateByKey,
+	translate_by_name translateByName
+    from kt_cancer
+    where cancer_key=#{cancerKey}
+  </select>
+
+  <update id="updateTranslator" parameterType="com.huasheng.pojo.newpojo.KtCancer">
+    update kt_cancer
+    set
+    check_state = #{checkState,jdbcType=BIGINT},
+    translate_by_key = #{translateByKey,jdbcType=CHAR},
+    translate_by_name = #{translateByName,jdbcType=VARCHAR}
+    where cancer_key = #{cancerKey,jdbcType=VARCHAR}
+  </update>
+  <select id="getCancerCount" parameterType="Map" resultType="Integer">
+        select count(cancer_key) from kt_cancer where  check_state=#{checkState} and created_way=#{createdWay}
+  </select>
+
+  <select id="selectByDoid" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from kt_cancer
+    where doid = #{doid,jdbcType=VARCHAR}
+  </select>
+
+  <select id="getCancerCountMonth" parameterType="Map" resultType="Integer">
+    select count(cancer_key) from kt_cancer where (created_at BETWEEN #{firstTime} and #{currentTime}) AND check_state=#{checkState} and created_way=#{createdWay}
+  </select>
+
+  <delete id="deleteAllCancer" >
+    delete from kt_cancer
+  </delete>
+</mapper>

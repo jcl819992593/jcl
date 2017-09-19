@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huasheng.dao.newdao.KtPlanCancerAndDetailsDao" >
+  <resultMap id="BaseResultMap" type="com.huasheng.pojo.newpojo.KtPlanCancerAndDetails" >
+    <id column="medication_plan_key" property="medicationPlanKey" jdbcType="VARCHAR" />
+    <id column="indication_key" property="indicationKey" jdbcType="VARCHAR" />
+    <result column="medication_plan_id" property="medicationPlanId" jdbcType="INTEGER" />
+    <result column="indication_id" property="indicationId" jdbcType="VARCHAR" />
+    <result column="indication_detail" property="indicationDetail" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    medication_plan_key, indication_key, medication_plan_id, indication_id, indication_detail
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.huasheng.pojo.newpojo.KtPlanCancerAndDetails" >
+    select 
+    <include refid="Base_Column_List" />
+    from kt_plan_cancer_and_details
+    where medication_plan_key = #{medicationPlanKey,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.huasheng.pojo.newpojo.KtPlanCancerAndDetails" >
+    delete from kt_plan_cancer_and_details
+    where medication_plan_key = #{medicationPlanKey,jdbcType=VARCHAR}
+      and indication_key = #{indicationKey,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.huasheng.pojo.newpojo.KtPlanCancerAndDetails" >
+    insert into kt_plan_cancer_and_details (medication_plan_key, indication_key, 
+      medication_plan_id, indication_id, indication_detail
+      )
+    values (#{medicationPlanKey,jdbcType=VARCHAR}, #{indicationKey,jdbcType=VARCHAR}, 
+      #{medicationPlanId,jdbcType=INTEGER}, #{indicationId,jdbcType=VARCHAR}, #{indicationDetail,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.huasheng.pojo.newpojo.KtPlanCancerAndDetails" >
+    insert into kt_plan_cancer_and_details
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="medicationPlanKey != null" >
+        medication_plan_key,
+      </if>
+      <if test="indicationKey != null" >
+        indication_key,
+      </if>
+      <if test="medicationPlanId != null" >
+        medication_plan_id,
+      </if>
+      <if test="indication_id != null" >
+        indication_id,
+      </if>
+      <if test="indication_detail != null" >
+        indication_detail,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="medicationPlanKey != null" >
+        #{medicationPlanKey,jdbcType=VARCHAR},
+      </if>
+      <if test="indicationKey != null" >
+        #{indicationKey,jdbcType=VARCHAR},
+      </if>
+      <if test="medicationPlanId != null" >
+        #{medicationPlanId,jdbcType=INTEGER},
+      </if>
+      <if test="indication_id != null" >
+        #{indicationId,jdbcType=VARCHAR},
+      </if>
+      <if test="indication_detail != null" >
+        #{indicationDetail,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huasheng.pojo.newpojo.KtPlanCancerAndDetails" >
+    update kt_plan_cancer_and_details
+    <set >
+      <if test="medicationPlanId != null" >
+        medication_plan_id = #{medicationPlanId,jdbcType=INTEGER},
+      </if>
+      <if test="indication_id != null" >
+        indication_id = #{indicationId,jdbcType=VARCHAR},
+      </if>
+      <if test="indication_detail != null" >
+        indication_detail = #{indicationDetail,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where medication_plan_key = #{medicationPlanKey,jdbcType=VARCHAR}
+      and indication_key = #{indicationKey,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huasheng.pojo.newpojo.KtPlanCancerAndDetails" >
+    update kt_plan_cancer_and_details
+    set medication_plan_id = #{medicationPlanId,jdbcType=INTEGER},
+      indication_id = #{indicationId,jdbcType=VARCHAR},
+      indication_detail = #{indicationDetail,jdbcType=VARCHAR},
+    indication_key = #{indicationKey,jdbcType=VARCHAR}
+    where medication_plan_key = #{medicationPlanKey,jdbcType=VARCHAR}
+  </update>
+
+  <select id="getPlanCancerAndDetailsByKey" resultMap="BaseResultMap" parameterType="com.huasheng.pojo.newpojo.KtPlanCancerAndDetails" >
+    select
+    <include refid="Base_Column_List" />
+    from kt_plan_cancer_and_details
+    where medication_plan_key = #{medicationPlanKey,jdbcType=VARCHAR}
+  </select>
+</mapper>

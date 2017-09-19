@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huasheng.dao.newdao.KtDrugProductInstructionDao" >
+  <resultMap id="BaseResultMap" type="com.huasheng.pojo.newpojo.KtDrugProductInstruction" >
+    <id column="instruction_key" property="instructionKey" jdbcType="VARCHAR" />
+    <result column="product_key" property="productKey" jdbcType="VARCHAR" />
+    <result column="instruction_file" property="instructionFile" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    instruction_key, product_key, instruction_file
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from kt_drug_product_instruction
+    where instruction_key = #{instructionKey,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from kt_drug_product_instruction
+    where instruction_key = #{instructionKey,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.huasheng.pojo.newpojo.KtDrugProductInstruction" >
+    insert into kt_drug_product_instruction (instruction_key, product_key, instruction_file
+      )
+    values (#{instructionKey,jdbcType=VARCHAR}, #{productKey,jdbcType=VARCHAR}, #{instructionFile,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.huasheng.pojo.newpojo.KtDrugProductInstruction" >
+    insert into kt_drug_product_instruction
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="instructionKey != null" >
+        instruction_key,
+      </if>
+      <if test="productKey != null" >
+        product_key,
+      </if>
+      <if test="instructionFile != null" >
+        instruction_file,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="instructionKey != null" >
+        #{instructionKey,jdbcType=VARCHAR},
+      </if>
+      <if test="productKey != null" >
+        #{productKey,jdbcType=VARCHAR},
+      </if>
+      <if test="instructionFile != null" >
+        #{instructionFile,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huasheng.pojo.newpojo.KtDrugProductInstruction" >
+    update kt_drug_product_instruction
+    <set >
+      <if test="productKey != null" >
+        product_key = #{productKey,jdbcType=VARCHAR},
+      </if>
+      <if test="instructionFile != null" >
+        instruction_file = #{instructionFile,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where instruction_key = #{instructionKey,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huasheng.pojo.newpojo.KtDrugProductInstruction" >
+    update kt_drug_product_instruction
+    set product_key = #{productKey,jdbcType=VARCHAR},
+      instruction_file = #{instructionFile,jdbcType=VARCHAR}
+    where instruction_key = #{instructionKey,jdbcType=VARCHAR}
+  </update>
+  <insert id="addKtDrugProductInstruction" parameterType="List">
+    insert into kt_drug_product_instruction (instruction_key, product_key, instruction_file
+      )VALUES
+      <foreach collection="list" index="index" item="item" separator=",">
+        (#{item.instructionKey}, #{item.productKey}, #{item.instructionFile})
+      </foreach>
+  </insert>
+
+  <select id="getInstructionByProductKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from kt_drug_product_instruction
+    where  product_key= #{productKey}
+  </select>
+   <delete id="deleteKtDrugProductInstruction" parameterType="String">
+     delete from kt_drug_product_instruction where product_key=#{productKey}
+
+   </delete>
+</mapper>

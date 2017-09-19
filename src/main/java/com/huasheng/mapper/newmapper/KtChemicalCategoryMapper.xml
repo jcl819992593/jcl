@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huasheng.dao.newdao.KtChemicalCategoryDao" >
+  <resultMap id="BaseResultMap" type="com.huasheng.pojo.newpojo.KtChemicalCategory" >
+    <id column="chemical_category_key" property="chemicalCategoryKey" jdbcType="VARCHAR" />
+    <result column="chemont_id" property="chemontId" jdbcType="VARCHAR" />
+    <result column="classification_name" property="classificationName" jdbcType="VARCHAR" />
+    <result column="category_definition" property="categoryDefinition" jdbcType="VARCHAR" />
+    <result column="parent_id" property="parentId" jdbcType="INTEGER" />
+    <result column="parent_key" property="parentKey" jdbcType="VARCHAR" />
+    <result column="created_at" property="createdAt" jdbcType="BIGINT" />
+    <result column="created_way" property="createdWay" jdbcType="INTEGER" />
+    <result column="created_by_key" property="createdByKey" jdbcType="CHAR" />
+    <result column="created_by_name" property="createdByName" jdbcType="VARCHAR" />
+    <result column="check_state" property="checkState" jdbcType="INTEGER" />
+    <result column="check_report" property="checkReport" jdbcType="VARCHAR" />
+    <result column="checked_by_key" property="checkedByKey" jdbcType="CHAR" />
+    <result column="checked_by_name" property="checkedByName" jdbcType="VARCHAR" />
+    <result column="translate_by_key" property="translateByKey" jdbcType="CHAR" />
+    <result column="translate_by_name" property="translateByName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    chemical_category_key, chemont_id, classification_name, category_definition, parent_id,
+    parent_key, created_at, created_way, created_by_key, created_by_name, check_state,
+    check_report, checked_by_key, checked_by_name, translate_by_key, translate_by_name
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from kt_chemical_category
+    where chemical_category_key = #{chemicalCategoryKey,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from kt_chemical_category
+    where chemical_category_key = #{chemicalCategoryKey,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.huasheng.pojo.newpojo.KtChemicalCategory" >
+    insert into kt_chemical_category (chemical_category_key, chemont_id, classification_name,
+    category_definition, parent_id, parent_key,
+    created_at, created_way, created_by_key,
+    created_by_name, check_state, check_report,
+    checked_by_key, checked_by_name, translate_by_key,
+    translate_by_name)
+    values (#{chemicalCategoryKey,jdbcType=VARCHAR}, #{chemontId,jdbcType=VARCHAR}, #{classificationName,jdbcType=VARCHAR},
+    #{categoryDefinition,jdbcType=VARCHAR}, #{parentId,jdbcType=INTEGER}, #{parentKey,jdbcType=VARCHAR},
+    #{createdAt,jdbcType=BIGINT}, #{createdWay,jdbcType=INTEGER}, #{createdByKey,jdbcType=CHAR},
+    #{createdByName,jdbcType=VARCHAR}, #{checkState,jdbcType=INTEGER}, #{checkReport,jdbcType=VARCHAR},
+    #{checkedByKey,jdbcType=CHAR}, #{checkedByName,jdbcType=VARCHAR}, #{translateByKey,jdbcType=CHAR},
+    #{translateByName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.huasheng.pojo.newpojo.KtChemicalCategory" >
+    insert into kt_chemical_category
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="chemicalCategoryKey != null" >
+        chemical_category_key,
+      </if>
+      <if test="chemontId != null" >
+        chemont_id,
+      </if>
+      <if test="classificationName != null" >
+        classification_name,
+      </if>
+      <if test="categoryDefinition != null" >
+        category_definition,
+      </if>
+      <if test="parentId != null" >
+        parent_id,
+      </if>
+      <if test="parentKey != null" >
+        parent_key,
+      </if>
+      <if test="createdAt != null" >
+        created_at,
+      </if>
+      <if test="createdWay != null" >
+        created_way,
+      </if>
+      <if test="createdByKey != null" >
+        created_by_key,
+      </if>
+      <if test="createdByName != null" >
+        created_by_name,
+      </if>
+      <if test="checkState != null" >
+        check_state,
+      </if>
+      <if test="checkReport != null" >
+        check_report,
+      </if>
+      <if test="checkedByKey != null" >
+        checked_by_key,
+      </if>
+      <if test="checkedByName != null" >
+        checked_by_name,
+      </if>
+      <if test="translateByKey != null" >
+        translate_by_key,
+      </if>
+      <if test="translateByName != null" >
+        translate_by_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="chemicalCategoryKey != null" >
+        #{chemicalCategoryKey,jdbcType=VARCHAR},
+      </if>
+      <if test="chemontId != null" >
+        #{chemontId,jdbcType=VARCHAR},
+      </if>
+      <if test="classificationName != null" >
+        #{classificationName,jdbcType=VARCHAR},
+      </if>
+      <if test="categoryDefinition != null" >
+        #{categoryDefinition,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null" >
+        #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="parentKey != null" >
+        #{parentKey,jdbcType=VARCHAR},
+      </if>
+      <if test="createdAt != null" >
+        #{createdAt,jdbcType=BIGINT},
+      </if>
+      <if test="createdWay != null" >
+        #{createdWay,jdbcType=INTEGER},
+      </if>
+      <if test="createdByKey != null" >
+        #{createdByKey,jdbcType=CHAR},
+      </if>
+      <if test="createdByName != null" >
+        #{createdByName,jdbcType=VARCHAR},
+      </if>
+      <if test="checkState != null" >
+        #{checkState,jdbcType=INTEGER},
+      </if>
+      <if test="checkReport != null" >
+        #{checkReport,jdbcType=VARCHAR},
+      </if>
+      <if test="checkedByKey != null" >
+        #{checkedByKey,jdbcType=CHAR},
+      </if>
+      <if test="checkedByName != null" >
+        #{checkedByName,jdbcType=VARCHAR},
+      </if>
+      <if test="translateByKey != null" >
+        #{translateByKey,jdbcType=CHAR},
+      </if>
+      <if test="translateByName != null" >
+        #{translateByName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huasheng.pojo.newpojo.KtChemicalCategory" >
+    update kt_chemical_category
+    <set >
+      <if test="chemontId != null" >
+        chemont_id = #{chemontId,jdbcType=VARCHAR},
+      </if>
+      <if test="classificationName != null" >
+        classification_name = #{classificationName,jdbcType=VARCHAR},
+      </if>
+      <if test="categoryDefinition != null" >
+        category_definition = #{categoryDefinition,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null" >
+        parent_id = #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="parentKey != null" >
+        parent_key = #{parentKey,jdbcType=VARCHAR},
+      </if>
+      <if test="createdAt != null" >
+        created_at = #{createdAt,jdbcType=BIGINT},
+      </if>
+      <if test="createdWay != null" >
+        created_way = #{createdWay,jdbcType=INTEGER},
+      </if>
+      <if test="createdByKey != null" >
+        created_by_key = #{createdByKey,jdbcType=CHAR},
+      </if>
+      <if test="createdByName != null" >
+        created_by_name = #{createdByName,jdbcType=VARCHAR},
+      </if>
+      <if test="checkState != null" >
+        check_state = #{checkState,jdbcType=INTEGER},
+      </if>
+      <if test="checkReport != null" >
+        check_report = #{checkReport,jdbcType=VARCHAR},
+      </if>
+      <if test="checkedByKey != null" >
+        checked_by_key = #{checkedByKey,jdbcType=CHAR},
+      </if>
+      <if test="checkedByName != null" >
+        checked_by_name = #{checkedByName,jdbcType=VARCHAR},
+      </if>
+      <if test="translateByKey != null" >
+        translate_by_key = #{translateByKey,jdbcType=CHAR},
+      </if>
+      <if test="translateByName != null" >
+        translate_by_name = #{translateByName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where chemical_category_key = #{chemicalCategoryKey,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huasheng.pojo.newpojo.KtChemicalCategory" >
+    update kt_chemical_category
+    set chemont_id = #{chemontId,jdbcType=VARCHAR},
+    classification_name = #{classificationName,jdbcType=VARCHAR},
+    category_definition = #{categoryDefinition,jdbcType=VARCHAR},
+    parent_id = #{parentId,jdbcType=INTEGER},
+    parent_key = #{parentKey,jdbcType=VARCHAR},
+    created_at = #{createdAt,jdbcType=BIGINT},
+    created_way = #{createdWay,jdbcType=INTEGER},
+    created_by_key = #{createdByKey,jdbcType=CHAR},
+    created_by_name = #{createdByName,jdbcType=VARCHAR},
+    check_state = #{checkState,jdbcType=INTEGER},
+    check_report = #{checkReport,jdbcType=VARCHAR},
+    checked_by_key = #{checkedByKey,jdbcType=CHAR},
+    checked_by_name = #{checkedByName,jdbcType=VARCHAR},
+    translate_by_key = #{translateByKey,jdbcType=CHAR},
+    translate_by_name = #{translateByName,jdbcType=VARCHAR}
+    where chemical_category_key = #{chemicalCategoryKey,jdbcType=VARCHAR}
+  </update>
+  <select id="getChemicalCategoryList" resultMap="BaseResultMap" parameterType="java.util.Map">
+    select
+    <include refid="Base_Column_List" />
+    from kt_chemical_category
+    where 1=1
+    <if test="checkState != null and checkState != ''">
+      and check_state=#{checkState,jdbcType=INTEGER}
+    </if>
+    <if test="createdWay != null and createdWay != ''">
+      and created_way=#{createdWay,jdbcType=INTEGER}
+    </if>
+  </select>
+  <select id="getCategoryByParentKey" resultMap="BaseResultMap" parameterType="java.lang.String">
+    select
+    <include refid="Base_Column_List" />
+    from kt_chemical_category
+    where chemical_category_key = #{parentKey,jdbcType=VARCHAR}
+  </select>
+
+  <update id="checkBack" parameterType="java.util.Map" >
+    update kt_chemical_category
+    set
+    check_state = #{checkState,jdbcType=INTEGER},
+    check_report = #{checkReport,jdbcType=VARCHAR}
+    where chemical_category_key = #{chemicalCategoryKey,jdbcType=VARCHAR}
+  </update>
+  <select id="getChemicalPending" parameterType="Map" resultType="Integer">
+        select count(chemical_category_key) from kt_chemical_category where  check_state=#{checkState} and created_way=#{createdWay}
+
+  </select>
+
+  <select id="getChemicalMonth" parameterType="Map" resultType="Integer">
+    select count(chemical_category_key) from kt_chemical_category where (created_at BETWEEN #{firstTime} and #{currentTime}) AND check_state=#{checkState} and created_way=#{createdWay}
+
+  </select>
+
+  <delete id="deleteAllChemicalCategory"  >
+    delete from kt_chemical_category
+  </delete>
+</mapper>

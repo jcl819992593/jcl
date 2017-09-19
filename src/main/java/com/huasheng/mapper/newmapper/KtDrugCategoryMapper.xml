@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huasheng.dao.newdao.KtDrugCategoryDao" >
+  <resultMap id="BaseResultMap" type="com.huasheng.pojo.newpojo.KtDrugCategory" >
+    <id column="drug_key" property="drugKey" jdbcType="VARCHAR" />
+    <id column="mesh_category_key" property="meshCategoryKey" jdbcType="VARCHAR" />
+    <result column="drug_id" property="drugId" jdbcType="INTEGER" />
+    <result column="mesh_id" property="meshId" jdbcType="VARCHAR" />
+    <result column="category_name" property="categoryName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    drug_key, mesh_category_key, drug_id, mesh_id, category_name
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.huasheng.pojo.newpojo.KtDrugCategory" >
+    select
+    <include refid="Base_Column_List" />
+    from kt_drug_category
+    where drug_key = #{drugKey,jdbcType=VARCHAR}
+    and mesh_category_key = #{meshCategoryKey,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.huasheng.pojo.newpojo.KtDrugCategory" >
+    delete from kt_drug_category
+    where drug_key = #{drugKey,jdbcType=VARCHAR}
+    and mesh_category_key = #{meshCategoryKey,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.huasheng.pojo.newpojo.KtDrugCategory" >
+    insert into kt_drug_category (drug_key, mesh_category_key, drug_id,
+    mesh_id, category_name)
+    values (#{drugKey,jdbcType=VARCHAR}, #{meshCategoryKey,jdbcType=VARCHAR}, #{drugId,jdbcType=INTEGER},
+    #{meshId,jdbcType=VARCHAR}, #{categoryName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.huasheng.pojo.newpojo.KtDrugCategory" >
+    insert into kt_drug_category
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="drugKey != null" >
+        drug_key,
+      </if>
+      <if test="meshCategoryKey != null" >
+        mesh_category_key,
+      </if>
+      <if test="drugId != null" >
+        drug_id,
+      </if>
+      <if test="meshId != null" >
+        mesh_id,
+      </if>
+      <if test="categoryName != null" >
+        category_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="drugKey != null" >
+        #{drugKey,jdbcType=VARCHAR},
+      </if>
+      <if test="meshCategoryKey != null" >
+        #{meshCategoryKey,jdbcType=VARCHAR},
+      </if>
+      <if test="drugId != null" >
+        #{drugId,jdbcType=INTEGER},
+      </if>
+      <if test="meshId != null" >
+        #{meshId,jdbcType=VARCHAR},
+      </if>
+      <if test="categoryName != null" >
+        #{categoryName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huasheng.pojo.newpojo.KtDrugCategory" >
+    update kt_drug_category
+    <set >
+      <if test="drugId != null" >
+        drug_id = #{drugId,jdbcType=INTEGER},
+      </if>
+      <if test="meshId != null" >
+        mesh_id = #{meshId,jdbcType=VARCHAR},
+      </if>
+      <if test="categoryName != null" >
+        category_name = #{categoryName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where drug_key = #{drugKey,jdbcType=VARCHAR}
+    and mesh_category_key = #{meshCategoryKey,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huasheng.pojo.newpojo.KtDrugCategory" >
+    update kt_drug_category
+    set drug_id = #{drugId,jdbcType=INTEGER},
+    mesh_id = #{meshId,jdbcType=VARCHAR},
+    category_name = #{categoryName,jdbcType=VARCHAR}
+    where drug_key = #{drugKey,jdbcType=VARCHAR}
+    and mesh_category_key = #{meshCategoryKey,jdbcType=VARCHAR}
+  </update>
+  <!--批量插入药物作用类别-->
+  <insert id="addKtDrugCategoryMore" parameterType="java.util.List">
+    INSERT into kt_drug_category(mesh_category_key,drug_key,drug_id,mesh_id,category_name) VALUES
+    <foreach collection="list" item="item" index="index" separator=",">
+      (#{item.meshCategoryKey},#{item.drugKey},#{item.drugId},#{item.meshId},#{item.categoryName})
+    </foreach>
+
+  </insert>
+
+  <!--根据drugKey查询作用分类-->
+  <select id="selectByDrugKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from kt_drug_category
+    where drug_key = #{drugKey,jdbcType=VARCHAR}
+    ORDER BY
+    mesh_category_key ASC
+  </select>
+
+  <delete id="deleteByDrugKey" parameterType="java.lang.String" >
+    delete from kt_drug_category
+    where drug_key = #{drugKey,jdbcType=VARCHAR}
+  </delete>
+</mapper>

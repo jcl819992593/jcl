@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huasheng.dao.newdao.KtGeneDetectionDao" >
+  <resultMap id="BaseResultMap" type="com.huasheng.pojo.newpojo.KtGeneDetection" >
+    <id column="detection_key" property="detectionKey" jdbcType="VARCHAR" />
+    <result column="detection_name" property="detectionName" jdbcType="VARCHAR" />
+    <result column="detection_content" property="detectionContent" jdbcType="VARCHAR" />
+    <result column="detection_significance" property="detectionSignificance" jdbcType="VARCHAR" />
+    <result column="detection_price" property="detectionPrice" jdbcType="INTEGER" />
+    <result column="detection_brokerage" property="detectionBrokerage" jdbcType="INTEGER" />
+    <result column="detection_description" property="detectionDescription" jdbcType="VARCHAR" />
+    <result column="created_at" property="createdAt" jdbcType="BIGINT" />
+    <result column="created_way" property="createdWay" jdbcType="INTEGER" />
+    <result column="created_by_key" property="createdByKey" jdbcType="CHAR" />
+    <result column="created_by_name" property="createdByName" jdbcType="VARCHAR" />
+    <result column="check_state" property="checkState" jdbcType="INTEGER" />
+    <result column="check_report" property="checkReport" jdbcType="VARCHAR" />
+    <result column="checked_by_key" property="checkedByKey" jdbcType="CHAR" />
+    <result column="checked_by_name" property="checkedByName" jdbcType="VARCHAR" />
+    <result column="translate_by_key" property="translateByKey" jdbcType="CHAR" />
+    <result column="translate_by_name" property="translateByName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    detection_key, detection_name, detection_content, detection_significance, detection_price, 
+    detection_brokerage, detection_description, created_at, created_way, created_by_key, 
+    created_by_name, check_state, check_report, checked_by_key, checked_by_name, translate_by_key, 
+    translate_by_name
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from kt_gene_detection
+    where detection_key = #{detectionKey,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from kt_gene_detection
+    where detection_key = #{detectionKey,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.huasheng.pojo.newpojo.KtGeneDetection" >
+    insert into kt_gene_detection (detection_key, detection_name, detection_content, 
+      detection_significance, detection_price, 
+      detection_brokerage, detection_description, 
+      created_at, created_way, created_by_key, 
+      created_by_name, check_state, check_report, 
+      checked_by_key, checked_by_name, translate_by_key, 
+      translate_by_name)
+    values (#{detectionKey,jdbcType=VARCHAR}, #{detectionName,jdbcType=VARCHAR}, #{detectionContent,jdbcType=VARCHAR}, 
+      #{detectionSignificance,jdbcType=VARCHAR}, #{detectionPrice,jdbcType=INTEGER}, 
+      #{detectionBrokerage,jdbcType=INTEGER}, #{detectionDescription,jdbcType=VARCHAR}, 
+      #{createdAt,jdbcType=BIGINT}, #{createdWay,jdbcType=INTEGER}, #{createdByKey,jdbcType=CHAR}, 
+      #{createdByName,jdbcType=VARCHAR}, #{checkState,jdbcType=INTEGER}, #{checkReport,jdbcType=VARCHAR}, 
+      #{checkedByKey,jdbcType=CHAR}, #{checkedByName,jdbcType=VARCHAR}, #{translateByKey,jdbcType=CHAR}, 
+      #{translateByName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.huasheng.pojo.newpojo.KtGeneDetection" >
+    insert into kt_gene_detection
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="detectionKey != null" >
+        detection_key,
+      </if>
+      <if test="detectionName != null" >
+        detection_name,
+      </if>
+      <if test="detectionContent != null" >
+        detection_content,
+      </if>
+      <if test="detectionSignificance != null" >
+        detection_significance,
+      </if>
+      <if test="detectionPrice != null" >
+        detection_price,
+      </if>
+      <if test="detectionBrokerage != null" >
+        detection_brokerage,
+      </if>
+      <if test="detectionDescription != null" >
+        detection_description,
+      </if>
+      <if test="createdAt != null" >
+        created_at,
+      </if>
+      <if test="createdWay != null" >
+        created_way,
+      </if>
+      <if test="createdByKey != null" >
+        created_by_key,
+      </if>
+      <if test="createdByName != null" >
+        created_by_name,
+      </if>
+      <if test="checkState != null" >
+        check_state,
+      </if>
+      <if test="checkReport != null" >
+        check_report,
+      </if>
+      <if test="checkedByKey != null" >
+        checked_by_key,
+      </if>
+      <if test="checkedByName != null" >
+        checked_by_name,
+      </if>
+      <if test="translateByKey != null" >
+        translate_by_key,
+      </if>
+      <if test="translateByName != null" >
+        translate_by_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="detectionKey != null" >
+        #{detectionKey,jdbcType=VARCHAR},
+      </if>
+      <if test="detectionName != null" >
+        #{detectionName,jdbcType=VARCHAR},
+      </if>
+      <if test="detectionContent != null" >
+        #{detectionContent,jdbcType=VARCHAR},
+      </if>
+      <if test="detectionSignificance != null" >
+        #{detectionSignificance,jdbcType=VARCHAR},
+      </if>
+      <if test="detectionPrice != null" >
+        #{detectionPrice,jdbcType=INTEGER},
+      </if>
+      <if test="detectionBrokerage != null" >
+        #{detectionBrokerage,jdbcType=INTEGER},
+      </if>
+      <if test="detectionDescription != null" >
+        #{detectionDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="createdAt != null" >
+        #{createdAt,jdbcType=BIGINT},
+      </if>
+      <if test="createdWay != null" >
+        #{createdWay,jdbcType=INTEGER},
+      </if>
+      <if test="createdByKey != null" >
+        #{createdByKey,jdbcType=CHAR},
+      </if>
+      <if test="createdByName != null" >
+        #{createdByName,jdbcType=VARCHAR},
+      </if>
+      <if test="checkState != null" >
+        #{checkState,jdbcType=INTEGER},
+      </if>
+      <if test="checkReport != null" >
+        #{checkReport,jdbcType=VARCHAR},
+      </if>
+      <if test="checkedByKey != null" >
+        #{checkedByKey,jdbcType=CHAR},
+      </if>
+      <if test="checkedByName != null" >
+        #{checkedByName,jdbcType=VARCHAR},
+      </if>
+      <if test="translateByKey != null" >
+        #{translateByKey,jdbcType=CHAR},
+      </if>
+      <if test="translateByName != null" >
+        #{translateByName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huasheng.pojo.newpojo.KtGeneDetection" >
+    update kt_gene_detection
+    <set >
+      <if test="detectionName != null" >
+        detection_name = #{detectionName,jdbcType=VARCHAR},
+      </if>
+      <if test="detectionContent != null" >
+        detection_content = #{detectionContent,jdbcType=VARCHAR},
+      </if>
+      <if test="detectionSignificance != null" >
+        detection_significance = #{detectionSignificance,jdbcType=VARCHAR},
+      </if>
+      <if test="detectionPrice != null" >
+        detection_price = #{detectionPrice,jdbcType=INTEGER},
+      </if>
+      <if test="detectionBrokerage != null" >
+        detection_brokerage = #{detectionBrokerage,jdbcType=INTEGER},
+      </if>
+      <if test="detectionDescription != null" >
+        detection_description = #{detectionDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="createdAt != null" >
+        created_at = #{createdAt,jdbcType=BIGINT},
+      </if>
+      <if test="createdWay != null" >
+        created_way = #{createdWay,jdbcType=INTEGER},
+      </if>
+      <if test="createdByKey != null" >
+        created_by_key = #{createdByKey,jdbcType=CHAR},
+      </if>
+      <if test="createdByName != null" >
+        created_by_name = #{createdByName,jdbcType=VARCHAR},
+      </if>
+      <if test="checkState != null" >
+        check_state = #{checkState,jdbcType=INTEGER},
+      </if>
+      <if test="checkReport != null" >
+        check_report = #{checkReport,jdbcType=VARCHAR},
+      </if>
+      <if test="checkedByKey != null" >
+        checked_by_key = #{checkedByKey,jdbcType=CHAR},
+      </if>
+      <if test="checkedByName != null" >
+        checked_by_name = #{checkedByName,jdbcType=VARCHAR},
+      </if>
+      <if test="translateByKey != null" >
+        translate_by_key = #{translateByKey,jdbcType=CHAR},
+      </if>
+      <if test="translateByName != null" >
+        translate_by_name = #{translateByName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where detection_key = #{detectionKey,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huasheng.pojo.newpojo.KtGeneDetection" >
+    update kt_gene_detection
+    set detection_name = #{detectionName,jdbcType=VARCHAR},
+      detection_content = #{detectionContent,jdbcType=VARCHAR},
+      detection_significance = #{detectionSignificance,jdbcType=VARCHAR},
+      detection_price = #{detectionPrice,jdbcType=INTEGER},
+      detection_brokerage = #{detectionBrokerage,jdbcType=INTEGER},
+      detection_description = #{detectionDescription,jdbcType=VARCHAR},
+      created_at = #{createdAt,jdbcType=BIGINT},
+      created_way = #{createdWay,jdbcType=INTEGER},
+      created_by_key = #{createdByKey,jdbcType=CHAR},
+      created_by_name = #{createdByName,jdbcType=VARCHAR},
+      check_state = #{checkState,jdbcType=INTEGER},
+      check_report = #{checkReport,jdbcType=VARCHAR},
+      checked_by_key = #{checkedByKey,jdbcType=CHAR},
+      checked_by_name = #{checkedByName,jdbcType=VARCHAR},
+      translate_by_key = #{translateByKey,jdbcType=CHAR},
+      translate_by_name = #{translateByName,jdbcType=VARCHAR}
+    where detection_key = #{detectionKey,jdbcType=VARCHAR}
+  </update>
+  <select id="getDetectionList" resultType="java.util.Map">
+    SELECT
+      kgd.detection_key detectionKey,
+      kgd.detection_name detectionName,
+      kgd.detection_content detectionContent,
+      kgd.detection_significance detectionSignificance,
+      kgd.detection_price detectionPrice,
+      kgd.detection_brokerage detectionBrokerage,
+      kgd.detection_description detectionDescription,
+      kgd.created_at createdAt,
+      kgd.created_way createdWay,
+      kgd.created_by_key createdByKey,
+      kgd.created_by_name createdByName,
+      kgd.check_state checkState,
+      kgd.check_report checkReport,
+      kgd.checked_by_key checkedByKey,
+      kgd.checked_by_name checkedByName,
+      kgd.translate_by_key translateByKey,
+      kgd.translate_by_name translateByName,
+      GROUP_CONCAT(DISTINCT kc.cancer_key SEPARATOR ',' ) cancerKeys,
+      GROUP_CONCAT(DISTINCT kc.doid SEPARATOR ',' ) doids,
+      GROUP_CONCAT(DISTINCT kd.drug_key SEPARATOR ',' ) drugKeys,
+      GROUP_CONCAT(DISTINCT kd.drug_id SEPARATOR ',' ) drugIds,
+      GROUP_CONCAT(DISTINCT kg.gene_key SEPARATOR ',' ) geneKeys,
+      GROUP_CONCAT(DISTINCT kg.gene_id SEPARATOR ',' ) geneIds
+    FROM kt_gene_detection kgd
+    LEFT JOIN kt_gene_detection_cancer_ref kgdcr ON kgd.detection_key=kgdcr.detection_key
+    LEFT JOIN kt_cancer kc ON kgdcr.cancer_key=kc.cancer_key
+    LEFT JOIN kt_gene_detection_drug_ref kgddr ON kgd.detection_key=kgddr.detection_key
+    LEFT JOIN kt_drug kd ON kgddr.drug_key=kd.drug_key
+    LEFT JOIN kt_gene_detection_gene_ref kgdgr ON kgd.detection_key=kgdgr.detection_key
+    LEFT JOIN kt_gene kg ON kgdgr.gene_key=kg.gene_key
+    WHERE 1=1
+    <if test="checkState!='' and checkState!=null">
+      and kgd.check_state=#{checkState}
+    </if>
+    <if test="createdWay!='' and createdWay!=null" >
+      AND kgd.created_way =#{createdWay}
+    </if>
+    <if test="detectionName!='' and detectionName!=null">
+      and kgd.detection_name LIKE CONCAT('%',#{detectionName},'%')
+    </if>
+    <if test="doid!='' and doid!=null" >
+      AND kc.doid =#{doid}
+    </if>
+    <if test="drugId!='' and drugId!=null" >
+      AND kd.drug_id =#{drugId}
+    </if>
+    <if test="geneId!='' and geneId!=null" >
+      AND kg.gene_id =#{geneId}
+    </if>
+    GROUP BY kgd.detection_key
+    ORDER BY kgd.created_at DESC
+  </select>
+
+  <select id="getDetection" resultType="java.util.Map" parameterType="java.lang.String">
+     SELECT
+      kgd.detection_key detectionKey,
+      kgd.detection_name detectionName,
+      kgd.detection_content detectionContent,
+      kgd.detection_significance detectionSignificance,
+      kgd.detection_price detectionPrice,
+      kgd.detection_brokerage detectionBrokerage,
+      kgd.detection_description detectionDescription,
+      kgd.created_at createdAt,
+      kgd.created_way createdWay,
+      kgd.created_by_key createdByKey,
+      kgd.created_by_name createdByName,
+      kgd.check_state checkState,
+      kgd.check_report checkReport,
+      kgd.checked_by_key checkedByKey,
+      kgd.checked_by_name checkedByName,
+      kgd.translate_by_key translateByKey,
+      kgd.translate_by_name translateByName,
+      GROUP_CONCAT(DISTINCT kc.cancer_key SEPARATOR ',' ) cancerKeys,
+      GROUP_CONCAT(DISTINCT kc.doid SEPARATOR ',' ) doids,
+      GROUP_CONCAT(DISTINCT kd.drug_key SEPARATOR ',' ) drugKeys,
+      GROUP_CONCAT(DISTINCT kd.drug_id SEPARATOR ',' ) drugIds,
+      GROUP_CONCAT(DISTINCT kg.gene_key SEPARATOR ',' ) geneKeys,
+      GROUP_CONCAT(DISTINCT kg.gene_id SEPARATOR ',' ) geneIds
+    FROM kt_gene_detection kgd
+    LEFT JOIN kt_gene_detection_cancer_ref kgdcr ON kgd.detection_key=kgdcr.detection_key
+    LEFT JOIN kt_cancer kc ON kgdcr.cancer_key=kc.cancer_key
+    LEFT JOIN kt_gene_detection_drug_ref kgddr ON kgd.detection_key=kgddr.detection_key
+    LEFT JOIN kt_drug kd ON kgddr.drug_key=kd.drug_key
+    LEFT JOIN kt_gene_detection_gene_ref kgdgr ON kgd.detection_key=kgdgr.detection_key
+    LEFT JOIN kt_gene kg ON kgdgr.gene_key=kg.gene_key
+    WHERE kgd.detection_key = #{detectionKey,jdbcType=VARCHAR}
+    GROUP BY kgd.detection_key
+  </select>
+  <update id="updateCheckState" parameterType="com.huasheng.pojo.newpojo.KtGeneDetection">
+    update kt_gene_detection
+    set
+    check_state = #{checkState,jdbcType=BIGINT},
+    checked_by_key = #{checkedByKey,jdbcType=CHAR},
+    checked_by_name = #{checkedByName,jdbcType=VARCHAR},
+    check_report = #{checkReport}
+    where detection_key = #{detectionKey,jdbcType=VARCHAR}
+  </update>
+  <select id="getDeneDetectionCount" parameterType="Map" resultType="Integer">
+     SELECT count(detection_key) from kt_gene_detection where check_state=#{checkState} and created_way=#{createdWay}
+  </select>
+
+  <delete id="deleteAllDetection"  >
+    delete from kt_gene_detection
+  </delete>
+  <select id="getDeneDetectionCountMonth" parameterType="Map" resultType="Integer">
+      select count(detection_key) from kt_gene_detection where (created_at BETWEEN #{firstTime} and #{currentTime}) AND check_state=#{checkState} and created_way=#{createdWay}
+  </select>
+</mapper>

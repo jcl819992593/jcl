@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huasheng.dao.newdao.KtChemicalCategorySynonymDao" >
+  <resultMap id="BaseResultMap" type="com.huasheng.pojo.newpojo.KtChemicalCategorySynonym" >
+    <id column="category_synonym_key" property="categorySynonymKey" jdbcType="VARCHAR" />
+    <result column="chemical_category_key" property="chemicalCategoryKey" jdbcType="VARCHAR" />
+    <result column="chemont_id" property="chemontId" jdbcType="VARCHAR" />
+    <result column="category_synonym" property="categorySynonym" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    category_synonym_key, chemical_category_key, chemont_id, category_synonym
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from kt_chemical_category_synonym
+    where category_synonym_key = #{categorySynonymKey,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from kt_chemical_category_synonym
+    where category_synonym_key = #{categorySynonymKey,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.huasheng.pojo.newpojo.KtChemicalCategorySynonym" >
+    insert into kt_chemical_category_synonym (category_synonym_key, chemical_category_key, 
+      chemont_id, category_synonym)
+    values (#{categorySynonymKey,jdbcType=VARCHAR}, #{chemicalCategoryKey,jdbcType=VARCHAR}, 
+      #{chemontId,jdbcType=VARCHAR}, #{categorySynonym,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.huasheng.pojo.newpojo.KtChemicalCategorySynonym" >
+    insert into kt_chemical_category_synonym
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="categorySynonymKey != null" >
+        category_synonym_key,
+      </if>
+      <if test="chemicalCategoryKey != null" >
+        chemical_category_key,
+      </if>
+      <if test="chemontId != null" >
+        chemont_id,
+      </if>
+      <if test="categorySynonym != null" >
+        category_synonym,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="categorySynonymKey != null" >
+        #{categorySynonymKey,jdbcType=VARCHAR},
+      </if>
+      <if test="chemicalCategoryKey != null" >
+        #{chemicalCategoryKey,jdbcType=VARCHAR},
+      </if>
+      <if test="chemontId != null" >
+        #{chemontId,jdbcType=VARCHAR},
+      </if>
+      <if test="categorySynonym != null" >
+        #{categorySynonym,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huasheng.pojo.newpojo.KtChemicalCategorySynonym" >
+    update kt_chemical_category_synonym
+    <set >
+      <if test="chemicalCategoryKey != null" >
+        chemical_category_key = #{chemicalCategoryKey,jdbcType=VARCHAR},
+      </if>
+      <if test="chemontId != null" >
+        chemont_id = #{chemontId,jdbcType=VARCHAR},
+      </if>
+      <if test="categorySynonym != null" >
+        category_synonym = #{categorySynonym,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where category_synonym_key = #{categorySynonymKey,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huasheng.pojo.newpojo.KtChemicalCategorySynonym" >
+    update kt_chemical_category_synonym
+    set chemical_category_key = #{chemicalCategoryKey,jdbcType=VARCHAR},
+      chemont_id = #{chemontId,jdbcType=VARCHAR},
+      category_synonym = #{categorySynonym,jdbcType=VARCHAR}
+    where category_synonym_key = #{categorySynonymKey,jdbcType=VARCHAR}
+  </update>
+
+  <insert id="insertSynonyms" parameterType="List">
+    INSERT into kt_chemical_category_synonym(category_synonym_key,chemical_category_key,chemont_id,category_synonym) VALUES
+    <foreach collection="list" item="item" index="index" separator=",">
+      (#{item.categorySynonymKey},#{item.chemicalCategoryKey},#{item.chemontId},#{item.categorySynonym})
+    </foreach>
+  </insert>
+  <select id="getSynonymList" resultType="java.util.Map">
+    SELECT
+    category_synonym_key synonymKey,
+    group_concat(DISTINCT synonym.category_synonym SEPARATOR '、') categorySynonym,
+    chemical_category_key categoryKey,
+    chemont_id chemontId
+    FROM
+    kt_chemical_category_synonym synonym
+    GROUP BY chemical_category_key
+  </select>
+
+  <select id="getSynonymByCategoryKey" resultMap="BaseResultMap" parameterType="java.lang.String">
+    select
+    <include refid="Base_Column_List" />
+    from kt_chemical_category_synonym
+    where chemical_category_key = #{categoryKey,jdbcType=VARCHAR}
+  </select>
+
+  <delete id="deleteByCategoryKey" parameterType="java.lang.String" >
+    delete from kt_chemical_category_synonym
+    where chemical_category_key = #{categoryKey,jdbcType=VARCHAR}
+  </delete>
+</mapper>

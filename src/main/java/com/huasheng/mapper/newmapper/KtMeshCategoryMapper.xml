@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huasheng.dao.newdao.KtMeshCategoryDao" >
+  <resultMap id="BaseResultMap" type="com.huasheng.pojo.newpojo.KtMeshCategory" >
+    <id column="mesh_category_key" property="meshCategoryKey" jdbcType="VARCHAR" />
+    <result column="mesh_id" property="meshId" jdbcType="VARCHAR" />
+    <result column="category_name" property="categoryName" jdbcType="VARCHAR" />
+    <result column="created_at" property="createdAt" jdbcType="BIGINT" />
+    <result column="created_way" property="createdWay" jdbcType="INTEGER" />
+    <result column="created_by_key" property="createdByKey" jdbcType="CHAR" />
+    <result column="created_by_name" property="createdByName" jdbcType="VARCHAR" />
+    <result column="check_state" property="checkState" jdbcType="INTEGER" />
+    <result column="checked_by_key" property="checkedByKey" jdbcType="CHAR" />
+    <result column="checked_by_name" property="checkedByName" jdbcType="VARCHAR" />
+    <result column="translate_by_key" property="translateByKey" jdbcType="CHAR" />
+    <result column="translate_by_name" property="translateByName" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.huasheng.pojo.newpojo.KtMeshCategory" extends="BaseResultMap" >
+    <result column="check_report" property="checkReport" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    mesh_category_key, mesh_id, category_name, created_at, created_way, created_by_key, 
+    created_by_name, check_state, checked_by_key, checked_by_name, translate_by_key, 
+    translate_by_name,check_report
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from kt_mesh_category
+    where mesh_category_key = #{meshCategoryKey,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from kt_mesh_category
+    where mesh_category_key = #{meshCategoryKey,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.huasheng.pojo.newpojo.KtMeshCategory" >
+    insert into kt_mesh_category (mesh_category_key, mesh_id, category_name, 
+      created_at, created_way, created_by_key, 
+      created_by_name, check_state, checked_by_key, 
+      checked_by_name, translate_by_key, translate_by_name, 
+      check_report)
+    values (#{meshCategoryKey,jdbcType=VARCHAR}, #{meshId,jdbcType=VARCHAR}, #{categoryName,jdbcType=VARCHAR}, 
+      #{createdAt,jdbcType=BIGINT}, #{createdWay,jdbcType=INTEGER}, #{createdByKey,jdbcType=CHAR}, 
+      #{createdByName,jdbcType=VARCHAR}, #{checkState,jdbcType=INTEGER}, #{checkedByKey,jdbcType=CHAR}, 
+      #{checkedByName,jdbcType=VARCHAR}, #{translateByKey,jdbcType=CHAR}, #{translateByName,jdbcType=VARCHAR}, 
+      #{checkReport,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.huasheng.pojo.newpojo.KtMeshCategory" >
+    insert into kt_mesh_category
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="meshCategoryKey != null" >
+        mesh_category_key,
+      </if>
+      <if test="meshId != null" >
+        mesh_id,
+      </if>
+      <if test="categoryName != null" >
+        category_name,
+      </if>
+      <if test="createdAt != null" >
+        created_at,
+      </if>
+      <if test="createdWay != null" >
+        created_way,
+      </if>
+      <if test="createdByKey != null" >
+        created_by_key,
+      </if>
+      <if test="createdByName != null" >
+        created_by_name,
+      </if>
+      <if test="checkState != null" >
+        check_state,
+      </if>
+      <if test="checkedByKey != null" >
+        checked_by_key,
+      </if>
+      <if test="checkedByName != null" >
+        checked_by_name,
+      </if>
+      <if test="translateByKey != null" >
+        translate_by_key,
+      </if>
+      <if test="translateByName != null" >
+        translate_by_name,
+      </if>
+      <if test="checkReport != null" >
+        check_report,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="meshCategoryKey != null" >
+        #{meshCategoryKey,jdbcType=VARCHAR},
+      </if>
+      <if test="meshId != null" >
+        #{meshId,jdbcType=VARCHAR},
+      </if>
+      <if test="categoryName != null" >
+        #{categoryName,jdbcType=VARCHAR},
+      </if>
+      <if test="createdAt != null" >
+        #{createdAt,jdbcType=BIGINT},
+      </if>
+      <if test="createdWay != null" >
+        #{createdWay,jdbcType=INTEGER},
+      </if>
+      <if test="createdByKey != null" >
+        #{createdByKey,jdbcType=CHAR},
+      </if>
+      <if test="createdByName != null" >
+        #{createdByName,jdbcType=VARCHAR},
+      </if>
+      <if test="checkState != null" >
+        #{checkState,jdbcType=INTEGER},
+      </if>
+      <if test="checkedByKey != null" >
+        #{checkedByKey,jdbcType=CHAR},
+      </if>
+      <if test="checkedByName != null" >
+        #{checkedByName,jdbcType=VARCHAR},
+      </if>
+      <if test="translateByKey != null" >
+        #{translateByKey,jdbcType=CHAR},
+      </if>
+      <if test="translateByName != null" >
+        #{translateByName,jdbcType=VARCHAR},
+      </if>
+      <if test="checkReport != null" >
+        #{checkReport,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huasheng.pojo.newpojo.KtMeshCategory" >
+    update kt_mesh_category
+    <set >
+      <if test="meshId != null" >
+        mesh_id = #{meshId,jdbcType=VARCHAR},
+      </if>
+      <if test="categoryName != null" >
+        category_name = #{categoryName,jdbcType=VARCHAR},
+      </if>
+      <if test="createdAt != null" >
+        created_at = #{createdAt,jdbcType=BIGINT},
+      </if>
+      <if test="createdWay != null" >
+        created_way = #{createdWay,jdbcType=INTEGER},
+      </if>
+      <if test="createdByKey != null" >
+        created_by_key = #{createdByKey,jdbcType=CHAR},
+      </if>
+      <if test="createdByName != null" >
+        created_by_name = #{createdByName,jdbcType=VARCHAR},
+      </if>
+      <if test="checkState != null" >
+        check_state = #{checkState,jdbcType=INTEGER},
+      </if>
+      <if test="checkedByKey != null" >
+        checked_by_key = #{checkedByKey,jdbcType=CHAR},
+      </if>
+      <if test="checkedByName != null" >
+        checked_by_name = #{checkedByName,jdbcType=VARCHAR},
+      </if>
+      <if test="translateByKey != null" >
+        translate_by_key = #{translateByKey,jdbcType=CHAR},
+      </if>
+      <if test="translateByName != null" >
+        translate_by_name = #{translateByName,jdbcType=VARCHAR},
+      </if>
+      <if test="checkReport != null" >
+        check_report = #{checkReport,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where mesh_category_key = #{meshCategoryKey,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.huasheng.pojo.newpojo.KtMeshCategory" >
+    update kt_mesh_category
+    set mesh_id = #{meshId,jdbcType=VARCHAR},
+      category_name = #{categoryName,jdbcType=VARCHAR},
+      created_at = #{createdAt,jdbcType=BIGINT},
+      created_way = #{createdWay,jdbcType=INTEGER},
+      created_by_key = #{createdByKey,jdbcType=CHAR},
+      created_by_name = #{createdByName,jdbcType=VARCHAR},
+      check_state = #{checkState,jdbcType=INTEGER},
+      checked_by_key = #{checkedByKey,jdbcType=CHAR},
+      checked_by_name = #{checkedByName,jdbcType=VARCHAR},
+      translate_by_key = #{translateByKey,jdbcType=CHAR},
+      translate_by_name = #{translateByName,jdbcType=VARCHAR},
+      check_report = #{checkReport,jdbcType=LONGVARCHAR}
+    where mesh_category_key = #{meshCategoryKey,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huasheng.pojo.newpojo.KtMeshCategory" >
+    update kt_mesh_category
+    set mesh_id = #{meshId,jdbcType=VARCHAR},
+      category_name = #{categoryName,jdbcType=VARCHAR},
+      created_at = #{createdAt,jdbcType=BIGINT},
+      created_way = #{createdWay,jdbcType=INTEGER},
+      created_by_key = #{createdByKey,jdbcType=CHAR},
+      created_by_name = #{createdByName,jdbcType=VARCHAR},
+      check_state = #{checkState,jdbcType=INTEGER},
+      checked_by_key = #{checkedByKey,jdbcType=CHAR},
+      checked_by_name = #{checkedByName,jdbcType=VARCHAR},
+      translate_by_key = #{translateByKey,jdbcType=CHAR},
+      translate_by_name = #{translateByName,jdbcType=VARCHAR}
+    where mesh_category_key = #{meshCategoryKey,jdbcType=VARCHAR}
+  </update>
+  <select id="getMeshCategoryList" resultMap="ResultMapWithBLOBs" parameterType="java.util.Map">
+    select
+    <include refid="Base_Column_List" />
+    from kt_mesh_category
+    where 1=1
+    <if test="categoryName!='' and categoryName!=null">
+    and category_name like #{categoryName}
+    </if>
+    <if test="checkState!='' and checkState!=null">
+      and check_state = #{checkState}
+    </if>
+    <if test="createdWay!='' and createdWay!=null">
+      and created_way = #{createdWay}
+    </if>
+  </select>
+  <select id="getmeshCategoryPending" parameterType="Map" resultType="Integer">
+     SELECT count(mesh_category_key) from kt_mesh_category where check_state=#{checkState} and created_way=#{createdWay}
+  </select>
+
+  <select id="getmeshCategoryMonth" parameterType="Map" resultType="Integer">
+    SELECT count(mesh_category_key) from kt_mesh_category where (created_at BETWEEN #{firstTime} and #{currentTime}) AND check_state=#{checkState} and created_way=#{createdWay}
+  </select>
+
+  <select id="getMeshCategoryByList" parameterType="java.util.List" resultType="com.huasheng.pojo.newpojo.KtDrugCategory">
+    SELECT
+    category.mesh_category_key meshCategoryKey,
+    category.category_name categoryName,
+    category.mesh_id meshId
+    FROM
+    kt_mesh_category category
+    WHERE 1=1
+    <if test="list!=null" >
+      AND
+      mesh_category_key IN
+      (
+        <foreach collection="list" item="item" index="index" separator=",">
+         #{item.meshCategoryKey}
+        </foreach>
+      )
+    </if>
+  </select>
+  <delete id="deleteAllMeshCategory"  >
+    delete from kt_mesh_category
+  </delete>
+</mapper>

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huasheng.dao.newdao.KtGeneKeggPathwayDao" >
+  <resultMap id="BaseResultMap" type="com.huasheng.pojo.newpojo.KtGeneKeggPathway" >
+    <id column="gene_key" property="geneKey" jdbcType="VARCHAR" />
+    <id column="pathway_key" property="pathwayKey" jdbcType="VARCHAR" />
+    <result column="gene_id" property="geneId" jdbcType="VARCHAR" />
+    <result column="kegg_id" property="keggId" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    gene_key, pathway_key, gene_id, kegg_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.huasheng.pojo.newpojo.KtGeneKeggPathway" >
+    select 
+    <include refid="Base_Column_List" />
+    from kt_gene_kegg_pathway
+    where gene_key = #{geneKey,jdbcType=VARCHAR}
+      and pathway_key = #{pathwayKey,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.huasheng.pojo.newpojo.KtGeneKeggPathway" >
+    delete from kt_gene_kegg_pathway
+    where gene_key = #{geneKey,jdbcType=VARCHAR}
+      and pathway_key = #{pathwayKey,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.huasheng.pojo.newpojo.KtGeneKeggPathway" >
+    insert into kt_gene_kegg_pathway (gene_key, pathway_key, gene_id, 
+      kegg_id)
+    values (#{geneKey,jdbcType=VARCHAR}, #{pathwayKey,jdbcType=VARCHAR}, #{geneId,jdbcType=VARCHAR}, 
+      #{keggId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.huasheng.pojo.newpojo.KtGeneKeggPathway" >
+    insert into kt_gene_kegg_pathway
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="geneKey != null" >
+        gene_key,
+      </if>
+      <if test="pathwayKey != null" >
+        pathway_key,
+      </if>
+      <if test="geneId != null" >
+        gene_id,
+      </if>
+      <if test="keggId != null" >
+        kegg_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="geneKey != null" >
+        #{geneKey,jdbcType=VARCHAR},
+      </if>
+      <if test="pathwayKey != null" >
+        #{pathwayKey,jdbcType=VARCHAR},
+      </if>
+      <if test="geneId != null" >
+        #{geneId,jdbcType=VARCHAR},
+      </if>
+      <if test="keggId != null" >
+        #{keggId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huasheng.pojo.newpojo.KtGeneKeggPathway" >
+    update kt_gene_kegg_pathway
+    <set >
+      <if test="geneId != null" >
+        gene_id = #{geneId,jdbcType=VARCHAR},
+      </if>
+      <if test="keggId != null" >
+        kegg_id = #{keggId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where gene_key = #{geneKey,jdbcType=VARCHAR}
+      and pathway_key = #{pathwayKey,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huasheng.pojo.newpojo.KtGeneKeggPathway" >
+    update kt_gene_kegg_pathway
+    set gene_id = #{geneId,jdbcType=VARCHAR},
+      kegg_id = #{keggId,jdbcType=VARCHAR}
+    where gene_key = #{geneKey,jdbcType=VARCHAR}
+      and pathway_key = #{pathwayKey,jdbcType=VARCHAR}
+  </update>
+ <!--查询基因与通路表联系-->
+  <select id="selectByGeneKey" parameterType="String" resultType="Map">
+    SELECT
+	a.gene_key geneKey,
+	b.kegg_id keggId,
+	b.pathway_key pathwayKey,
+	c.pathway_name pathwayName
+FROM
+	kt_gene a
+LEFT JOIN kt_gene_kegg_pathway b ON a.gene_key = b.gene_key
+LEFT JOIN kt_kegg_pathway c ON b.pathway_key = c.pathway_key
+where a.gene_key=#{geneKey}
+
+  </select>
+
+  <delete id="deleteByGeneKey" parameterType="String">
+    delete from kt_gene_kegg_pathway
+    where gene_key = #{geneKey,jdbcType=VARCHAR}
+
+  </delete>
+</mapper>

@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huasheng.dao.newdao.KtPlanDrugMessageDao" >
+  <resultMap id="BaseResultMap" type="com.huasheng.pojo.newpojo.KtPlanDrugMessage" >
+    <id column="plan_drug_message_key" property="planDrugMessageKey" jdbcType="VARCHAR" />
+    <result column="medication_plan_key" property="medicationPlanKey" jdbcType="VARCHAR" />
+    <result column="medication_plan_id" property="medicationPlanId" jdbcType="INTEGER" />
+    <result column="drug_name" property="drugName" jdbcType="VARCHAR" />
+    <result column="the_method" property="theMethod" jdbcType="VARCHAR" />
+    <result column="the_frequency" property="theFrequency" jdbcType="INTEGER" />
+    <result column="the_cycle" property="theCycle" jdbcType="INTEGER" />
+    <result column="the_day" property="theDay" jdbcType="VARCHAR" />
+    <result column="total_cycle" property="totalCycle" jdbcType="INTEGER" />
+    <result column="dose_max" property="doseMax" jdbcType="VARCHAR" />
+    <result column="dose_min" property="doseMin" jdbcType="VARCHAR" />
+    <result column="dose_unit" property="doseUnit" jdbcType="VARCHAR" />
+    <result column="infusion_time_max" property="infusionTimeMax" jdbcType="INTEGER" />
+    <result column="infusion_time_min" property="infusionTimeMin" jdbcType="INTEGER" />
+    <result column="cycle_max" property="cycleMax" jdbcType="INTEGER" />
+    <result column="cycle_min" property="cycleMin" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    plan_drug_message_key, medication_plan_key, medication_plan_id, drug_name, the_method, 
+    the_frequency, the_cycle, the_day, total_cycle, dose_max, dose_min, dose_unit, infusion_time_max, 
+    infusion_time_min, cycle_max, cycle_min
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from kt_plan_drug_message
+    where plan_drug_message_key = #{planDrugMessageKey,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from kt_plan_drug_message
+    where plan_drug_message_key = #{planDrugMessageKey,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.huasheng.pojo.newpojo.KtPlanDrugMessage" >
+    insert into kt_plan_drug_message (plan_drug_message_key, medication_plan_key, 
+      medication_plan_id, drug_name, the_method, 
+      the_frequency, the_cycle, the_day, 
+      total_cycle, dose_max, dose_min, 
+      dose_unit, infusion_time_max, infusion_time_min, 
+      cycle_max, cycle_min)
+    values (#{planDrugMessageKey,jdbcType=VARCHAR}, #{medicationPlanKey,jdbcType=VARCHAR}, 
+      #{medicationPlanId,jdbcType=INTEGER}, #{drugName,jdbcType=VARCHAR}, #{theMethod,jdbcType=VARCHAR}, 
+      #{theFrequency,jdbcType=INTEGER}, #{theCycle,jdbcType=INTEGER}, #{theDay,jdbcType=VARCHAR}, 
+      #{totalCycle,jdbcType=INTEGER}, #{doseMax,jdbcType=VARCHAR}, #{doseMin,jdbcType=VARCHAR}, 
+      #{doseUnit,jdbcType=VARCHAR}, #{infusionTimeMax,jdbcType=INTEGER}, #{infusionTimeMin,jdbcType=INTEGER}, 
+      #{cycleMax,jdbcType=INTEGER}, #{cycleMin,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.huasheng.pojo.newpojo.KtPlanDrugMessage" >
+    insert into kt_plan_drug_message
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="planDrugMessageKey != null" >
+        plan_drug_message_key,
+      </if>
+      <if test="medicationPlanKey != null" >
+        medication_plan_key,
+      </if>
+      <if test="medicationPlanId != null" >
+        medication_plan_id,
+      </if>
+      <if test="drugName != null" >
+        drug_name,
+      </if>
+      <if test="theMethod != null" >
+        the_method,
+      </if>
+      <if test="theFrequency != null" >
+        the_frequency,
+      </if>
+      <if test="theCycle != null" >
+        the_cycle,
+      </if>
+      <if test="theDay != null" >
+        the_day,
+      </if>
+      <if test="totalCycle != null" >
+        total_cycle,
+      </if>
+      <if test="doseMax != null" >
+        dose_max,
+      </if>
+      <if test="doseMin != null" >
+        dose_min,
+      </if>
+      <if test="doseUnit != null" >
+        dose_unit,
+      </if>
+      <if test="infusionTimeMax != null" >
+        infusion_time_max,
+      </if>
+      <if test="infusionTimeMin != null" >
+        infusion_time_min,
+      </if>
+      <if test="cycleMax != null" >
+        cycle_max,
+      </if>
+      <if test="cycleMin != null" >
+        cycle_min,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="planDrugMessageKey != null" >
+        #{planDrugMessageKey,jdbcType=VARCHAR},
+      </if>
+      <if test="medicationPlanKey != null" >
+        #{medicationPlanKey,jdbcType=VARCHAR},
+      </if>
+      <if test="medicationPlanId != null" >
+        #{medicationPlanId,jdbcType=INTEGER},
+      </if>
+      <if test="drugName != null" >
+        #{drugName,jdbcType=VARCHAR},
+      </if>
+      <if test="theMethod != null" >
+        #{theMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="theFrequency != null" >
+        #{theFrequency,jdbcType=INTEGER},
+      </if>
+      <if test="theCycle != null" >
+        #{theCycle,jdbcType=INTEGER},
+      </if>
+      <if test="theDay != null" >
+        #{theDay,jdbcType=VARCHAR},
+      </if>
+      <if test="totalCycle != null" >
+        #{totalCycle,jdbcType=INTEGER},
+      </if>
+      <if test="doseMax != null" >
+        #{doseMax,jdbcType=VARCHAR},
+      </if>
+      <if test="doseMin != null" >
+        #{doseMin,jdbcType=VARCHAR},
+      </if>
+      <if test="doseUnit != null" >
+        #{doseUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="infusionTimeMax != null" >
+        #{infusionTimeMax,jdbcType=INTEGER},
+      </if>
+      <if test="infusionTimeMin != null" >
+        #{infusionTimeMin,jdbcType=INTEGER},
+      </if>
+      <if test="cycleMax != null" >
+        #{cycleMax,jdbcType=INTEGER},
+      </if>
+      <if test="cycleMin != null" >
+        #{cycleMin,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huasheng.pojo.newpojo.KtPlanDrugMessage" >
+    update kt_plan_drug_message
+    <set >
+      <if test="medicationPlanKey != null" >
+        medication_plan_key = #{medicationPlanKey,jdbcType=VARCHAR},
+      </if>
+      <if test="medicationPlanId != null" >
+        medication_plan_id = #{medicationPlanId,jdbcType=INTEGER},
+      </if>
+      <if test="drugName != null" >
+        drug_name = #{drugName,jdbcType=VARCHAR},
+      </if>
+      <if test="theMethod != null" >
+        the_method = #{theMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="theFrequency != null" >
+        the_frequency = #{theFrequency,jdbcType=INTEGER},
+      </if>
+      <if test="theCycle != null" >
+        the_cycle = #{theCycle,jdbcType=INTEGER},
+      </if>
+      <if test="theDay != null" >
+        the_day = #{theDay,jdbcType=VARCHAR},
+      </if>
+      <if test="totalCycle != null" >
+        total_cycle = #{totalCycle,jdbcType=INTEGER},
+      </if>
+      <if test="doseMax != null" >
+        dose_max = #{doseMax,jdbcType=VARCHAR},
+      </if>
+      <if test="doseMin != null" >
+        dose_min = #{doseMin,jdbcType=VARCHAR},
+      </if>
+      <if test="doseUnit != null" >
+        dose_unit = #{doseUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="infusionTimeMax != null" >
+        infusion_time_max = #{infusionTimeMax,jdbcType=INTEGER},
+      </if>
+      <if test="infusionTimeMin != null" >
+        infusion_time_min = #{infusionTimeMin,jdbcType=INTEGER},
+      </if>
+      <if test="cycleMax != null" >
+        cycle_max = #{cycleMax,jdbcType=INTEGER},
+      </if>
+      <if test="cycleMin != null" >
+        cycle_min = #{cycleMin,jdbcType=INTEGER},
+      </if>
+    </set>
+    where plan_drug_message_key = #{planDrugMessageKey,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huasheng.pojo.newpojo.KtPlanDrugMessage" >
+    update kt_plan_drug_message
+    set medication_plan_key = #{medicationPlanKey,jdbcType=VARCHAR},
+      medication_plan_id = #{medicationPlanId,jdbcType=INTEGER},
+      drug_name = #{drugName,jdbcType=VARCHAR},
+      the_method = #{theMethod,jdbcType=VARCHAR},
+      the_frequency = #{theFrequency,jdbcType=INTEGER},
+      the_cycle = #{theCycle,jdbcType=INTEGER},
+      the_day = #{theDay,jdbcType=VARCHAR},
+      total_cycle = #{totalCycle,jdbcType=INTEGER},
+      dose_max = #{doseMax,jdbcType=VARCHAR},
+      dose_min = #{doseMin,jdbcType=VARCHAR},
+      dose_unit = #{doseUnit,jdbcType=VARCHAR},
+      infusion_time_max = #{infusionTimeMax,jdbcType=INTEGER},
+      infusion_time_min = #{infusionTimeMin,jdbcType=INTEGER},
+      cycle_max = #{cycleMax,jdbcType=INTEGER},
+      cycle_min = #{cycleMin,jdbcType=INTEGER}
+    where plan_drug_message_key = #{planDrugMessageKey,jdbcType=VARCHAR}
+  </update>
+
+  <select id="getKtPlanDrugMessageListByKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from kt_plan_drug_message
+    where medication_plan_key = #{medicationPlanKey,jdbcType=VARCHAR}
+  </select>
+
+  <insert id="insertPlanDrugMessageList" parameterType="List">
+    INSERT into kt_plan_drug_message(plan_drug_message_key,medication_plan_key,medication_plan_id,drug_name,the_method,the_frequency,the_cycle,
+    the_day,total_cycle,dose_max,dose_min,dose_unit,infusion_time_max,infusion_time_min,cycle_max,cycle_min) VALUES
+    <foreach collection="list" item="item" index="index" separator=",">
+      (#{item.planDrugMessageKey},#{item.medicationPlanKey},#{item.medicationPlanId},#{item.drugName},#{item.theMethod},#{item.theFrequency}
+      ,#{item.theCycle},#{item.theDay},#{item.totalCycle},#{item.doseMax},#{item.doseMin},#{item.doseUnit},#{item.infusionTimeMax},#{item.infusionTimeMin}
+      ,#{item.cycleMax},#{item.cycleMin})
+    </foreach>
+  </insert>
+  <delete id="deleteByMedicationPlanKey" parameterType="java.lang.String" >
+    delete from kt_plan_drug_message
+    where medication_plan_key = #{medicationPlanKey,jdbcType=VARCHAR}
+  </delete>
+</mapper>

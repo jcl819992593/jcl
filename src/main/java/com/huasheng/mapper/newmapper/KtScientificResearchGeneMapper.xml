@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huasheng.dao.newdao.KtScientificResearchGeneDao" >
+  <resultMap id="BaseResultMap" type="com.huasheng.pojo.newpojo.KtScientificResearchGene" >
+    <id column="research_key" property="researchKey" jdbcType="VARCHAR" />
+    <id column="gene_key" property="geneKey" jdbcType="VARCHAR" />
+    <result column="scientific_research_id" property="scientificResearchId" jdbcType="VARCHAR" />
+    <result column="gene_id" property="geneId" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    research_key, gene_key, scientific_research_id, gene_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.huasheng.pojo.newpojo.KtScientificResearchGene" >
+    select 
+    <include refid="Base_Column_List" />
+    from kt_scientific_research_gene
+    where research_key = #{researchKey,jdbcType=VARCHAR}
+
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="String" >
+    delete from kt_scientific_research_gene
+    where research_key = #{researchKey,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.huasheng.pojo.newpojo.KtScientificResearchGene" >
+    insert into kt_scientific_research_gene (research_key, gene_key, scientific_research_id, 
+      gene_id)
+    values (#{researchKey,jdbcType=VARCHAR}, #{geneKey,jdbcType=VARCHAR}, #{scientificResearchId,jdbcType=VARCHAR}, 
+      #{geneId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.huasheng.pojo.newpojo.KtScientificResearchGene" >
+    insert into kt_scientific_research_gene
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="researchKey != null" >
+        research_key,
+      </if>
+      <if test="geneKey != null" >
+        gene_key,
+      </if>
+      <if test="scientificResearchId != null" >
+        scientific_research_id,
+      </if>
+      <if test="geneId != null" >
+        gene_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="researchKey != null" >
+        #{researchKey,jdbcType=VARCHAR},
+      </if>
+      <if test="geneKey != null" >
+        #{geneKey,jdbcType=VARCHAR},
+      </if>
+      <if test="scientificResearchId != null" >
+        #{scientificResearchId,jdbcType=VARCHAR},
+      </if>
+      <if test="geneId != null" >
+        #{geneId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huasheng.pojo.newpojo.KtScientificResearchGene" >
+    update kt_scientific_research_gene
+    <set >
+      <if test="scientificResearchId != null" >
+        scientific_research_id = #{scientificResearchId,jdbcType=VARCHAR},
+      </if>
+      <if test="geneId != null" >
+        gene_id = #{geneId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where research_key = #{researchKey,jdbcType=VARCHAR}
+      and gene_key = #{geneKey,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huasheng.pojo.newpojo.KtScientificResearchGene" >
+    update kt_scientific_research_gene
+    set scientific_research_id = #{scientificResearchId,jdbcType=VARCHAR},
+      gene_id = #{geneId,jdbcType=VARCHAR}
+    where research_key = #{researchKey,jdbcType=VARCHAR}
+      and gene_key = #{geneKey,jdbcType=VARCHAR}
+  </update>
+  <insert id="insertMore" parameterType="List">
+    insert into kt_scientific_research_gene (research_key, gene_key, scientific_research_id,
+      gene_id)
+    values
+    <foreach collection="list" index="index" item="item" separator=",">
+    (#{item.researchKey,jdbcType=VARCHAR}, #{item.geneKey,jdbcType=VARCHAR}, #{item.scientificResearchId,jdbcType=VARCHAR},
+    #{item.geneId,jdbcType=VARCHAR})
+    </foreach>
+  </insert>
+</mapper>

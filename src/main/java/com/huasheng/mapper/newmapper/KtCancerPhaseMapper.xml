@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huasheng.dao.newdao.KtCancerPhaseDao" >
+  <resultMap id="BaseResultMap" type="com.huasheng.pojo.newpojo.KtCancerPhase" >
+    <id column="cancer_phase_key" property="cancerPhaseKey" jdbcType="VARCHAR" />
+    <result column="cancer_key" property="cancerKey" jdbcType="VARCHAR" />
+    <result column="doid" property="doid" jdbcType="INTEGER" />
+    <result column="phase_name" property="phaseName" jdbcType="VARCHAR" />
+    <result column="phase_text" property="phaseText" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    cancer_phase_key, cancer_key, doid, phase_name, phase_text
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from kt_cancer_phase
+    where cancer_phase_key = #{cancerPhaseKey,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from kt_cancer_phase
+    where cancer_phase_key = #{cancerPhaseKey,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.huasheng.pojo.newpojo.KtCancerPhase" >
+    insert into kt_cancer_phase (cancer_phase_key, cancer_key, doid, 
+      phase_name, phase_text)
+    values (#{cancerPhaseKey,jdbcType=VARCHAR}, #{cancerKey,jdbcType=VARCHAR}, #{doid,jdbcType=INTEGER}, 
+      #{phaseName,jdbcType=VARCHAR}, #{phaseText,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.huasheng.pojo.newpojo.KtCancerPhase" >
+    insert into kt_cancer_phase
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="cancerPhaseKey != null" >
+        cancer_phase_key,
+      </if>
+      <if test="cancerKey != null" >
+        cancer_key,
+      </if>
+      <if test="doid != null" >
+        doid,
+      </if>
+      <if test="phaseName != null" >
+        phase_name,
+      </if>
+      <if test="phaseText != null" >
+        phase_text,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="cancerPhaseKey != null" >
+        #{cancerPhaseKey,jdbcType=VARCHAR},
+      </if>
+      <if test="cancerKey != null" >
+        #{cancerKey,jdbcType=VARCHAR},
+      </if>
+      <if test="doid != null" >
+        #{doid,jdbcType=INTEGER},
+      </if>
+      <if test="phaseName != null" >
+        #{phaseName,jdbcType=VARCHAR},
+      </if>
+      <if test="phaseText != null" >
+        #{phaseText,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huasheng.pojo.newpojo.KtCancerPhase" >
+    update kt_cancer_phase
+    <set >
+      <if test="cancerKey != null" >
+        cancer_key = #{cancerKey,jdbcType=VARCHAR},
+      </if>
+      <if test="doid != null" >
+        doid = #{doid,jdbcType=INTEGER},
+      </if>
+      <if test="phaseName != null" >
+        phase_name = #{phaseName,jdbcType=VARCHAR},
+      </if>
+      <if test="phaseText != null" >
+        phase_text = #{phaseText,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where cancer_phase_key = #{cancerPhaseKey,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huasheng.pojo.newpojo.KtCancerPhase" >
+    update kt_cancer_phase
+    set cancer_key = #{cancerKey,jdbcType=VARCHAR},
+      doid = #{doid,jdbcType=INTEGER},
+      phase_name = #{phaseName,jdbcType=VARCHAR},
+      phase_text = #{phaseText,jdbcType=VARCHAR}
+    where cancer_phase_key = #{cancerPhaseKey,jdbcType=VARCHAR}
+  </update>
+
+  <select id="selectByCancerKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from kt_cancer_phase
+    where cancer_key = #{cancerKey,jdbcType=VARCHAR}
+  </select>
+
+  <insert id="insertList" parameterType="java.util.List">
+    INSERT INTO kt_cancer_phase (cancer_phase_key, cancer_key, doid, phase_name, phase_text) VALUES
+    <foreach collection="list" index="index"  separator="," item="rel" >
+      (#{rel.cancerPhaseKey,jdbcType=VARCHAR}, #{rel.cancerKey,jdbcType=VARCHAR}, #{rel.doid,jdbcType=INTEGER},
+      #{rel.phaseName,jdbcType=VARCHAR}, #{rel.phaseText,jdbcType=VARCHAR})
+    </foreach>
+  </insert>
+
+  <delete id="deleteByCancerKey" parameterType="java.lang.String" >
+    delete from kt_cancer_phase
+    where cancer_key = #{cancerKey,jdbcType=VARCHAR}
+  </delete>
+</mapper>

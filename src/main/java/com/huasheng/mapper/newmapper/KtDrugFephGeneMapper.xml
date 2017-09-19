@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huasheng.dao.newdao.KtDrugFephGeneDao" >
+  <resultMap id="BaseResultMap" type="com.huasheng.pojo.newpojo.KtDrugFephGene" >
+    <id column="drug_feph_key" property="drugFephKey" jdbcType="CHAR" />
+    <id column="gene_key" property="geneKey" jdbcType="VARCHAR" />
+    <result column="feph_id" property="fephId" jdbcType="INTEGER" />
+    <result column="gene_id" property="geneId" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    drug_feph_key, gene_key, feph_id, gene_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.huasheng.pojo.newpojo.KtDrugFephGene" >
+    select 
+    <include refid="Base_Column_List" />
+    from kt_drug_feph_gene
+    where drug_feph_key = #{drugFephKey,jdbcType=CHAR}
+      and gene_key = #{geneKey,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.huasheng.pojo.newpojo.KtDrugFephGene" >
+    delete from kt_drug_feph_gene
+    where drug_feph_key = #{drugFephKey,jdbcType=CHAR}
+      and gene_key = #{geneKey,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.huasheng.pojo.newpojo.KtDrugFephGene" >
+    insert into kt_drug_feph_gene (drug_feph_key, gene_key, feph_id, 
+      gene_id)
+    values (#{drugFephKey,jdbcType=CHAR}, #{geneKey,jdbcType=VARCHAR}, #{fephId,jdbcType=INTEGER}, 
+      #{geneId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.huasheng.pojo.newpojo.KtDrugFephGene" >
+    insert into kt_drug_feph_gene
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="drugFephKey != null" >
+        drug_feph_key,
+      </if>
+      <if test="geneKey != null" >
+        gene_key,
+      </if>
+      <if test="fephId != null" >
+        feph_id,
+      </if>
+      <if test="geneId != null" >
+        gene_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="drugFephKey != null" >
+        #{drugFephKey,jdbcType=CHAR},
+      </if>
+      <if test="geneKey != null" >
+        #{geneKey,jdbcType=VARCHAR},
+      </if>
+      <if test="fephId != null" >
+        #{fephId,jdbcType=INTEGER},
+      </if>
+      <if test="geneId != null" >
+        #{geneId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huasheng.pojo.newpojo.KtDrugFephGene" >
+    update kt_drug_feph_gene
+    <set >
+      <if test="fephId != null" >
+        feph_id = #{fephId,jdbcType=INTEGER},
+      </if>
+      <if test="geneId != null" >
+        gene_id = #{geneId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where drug_feph_key = #{drugFephKey,jdbcType=CHAR}
+      and gene_key = #{geneKey,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huasheng.pojo.newpojo.KtDrugFephGene" >
+    update kt_drug_feph_gene
+    set feph_id = #{fephId,jdbcType=INTEGER},
+      gene_id = #{geneId,jdbcType=INTEGER}
+    where drug_feph_key = #{drugFephKey,jdbcType=CHAR}
+      and gene_key = #{geneKey,jdbcType=VARCHAR}
+  </update>
+
+  <insert id="addKtDrugFephGene" parameterType="List">
+    INSERT into  kt_drug_feph_gene (drug_feph_key, gene_key, feph_id, gene_id) VALUES
+    <foreach collection="list" item="item" index="index" separator=",">
+      (#{item.drugFephKey}, #{item.geneKey}, #{item.fephId},#{item.geneId})
+    </foreach>
+  </insert>
+
+  <select id="getKtDrugFephGene" parameterType="java.lang.String" resultType="java.util.Map">
+    SELECT
+    gene.gene_key geneKey,
+    gene.gene_id geneId,
+    gene.gene_symbol geneSymbol,
+    fephGene.feph_id fephId
+    FROM
+    kt_gene gene
+    LEFT JOIN kt_drug_feph_gene fephGene ON gene.gene_key = fephGene.gene_key
+    LEFT JOIN kt_drug_feph feph ON fephGene.drug_feph_key = feph.drug_feph_key
+    LEFT JOIN kt_drug drug ON feph.drug_key = drug.drug_key
+    where drug.drug_key = #{drugKey,jdbcType=VARCHAR}
+  </select>
+</mapper>

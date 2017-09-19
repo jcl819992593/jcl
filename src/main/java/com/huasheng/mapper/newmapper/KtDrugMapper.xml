@@ -1,0 +1,663 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huasheng.dao.newdao.KtDrugDao" >
+  <resultMap id="BaseResultMap" type="com.huasheng.pojo.newpojo.KtDrug" >
+    <id column="drug_key" property="drugKey" jdbcType="VARCHAR" />
+    <result column="drug_id" property="drugId" jdbcType="INTEGER" />
+    <result column="generic_name" property="genericName" jdbcType="VARCHAR" />
+    <result column="name_en" property="nameEn" jdbcType="VARCHAR" />
+    <result column="name_chinese" property="nameChinese" jdbcType="VARCHAR" />
+    <result column="onco_drug" property="oncoDrug" jdbcType="BIT" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="drug_type" property="drugType" jdbcType="VARCHAR" />
+    <result column="chemical_formula" property="chemicalFormula" jdbcType="VARCHAR" />
+    <result column="molecular_weight" property="molecularWeight" jdbcType="VARCHAR" />
+    <result column="mechanism_of_action" property="mechanismOfAction" jdbcType="VARCHAR" />
+    <result column="toxicity" property="toxicity" jdbcType="VARCHAR" />
+    <result column="structured_indication_desc" property="structuredIndicationDesc" jdbcType="VARCHAR" />
+    <result column="absorption" property="absorption" jdbcType="VARCHAR" />
+    <result column="attention" property="attention" jdbcType="VARCHAR" />
+    <result column="volume_of_distribution" property="volumeOfDistribution" jdbcType="VARCHAR" />
+    <result column="protein_binding" property="proteinBinding" jdbcType="VARCHAR" />
+    <result column="major_metabolic_sites" property="majorMetabolicSites" jdbcType="VARCHAR" />
+    <result column="half_life" property="halfLife" jdbcType="VARCHAR" />
+    <result column="clearance" property="clearance" jdbcType="VARCHAR" />
+    <result column="pharmacodynamics" property="pharmacodynamics" jdbcType="VARCHAR" />
+    <result column="fda_label" property="fdaLabel" jdbcType="VARCHAR" />
+    <result column="route_of_elimination" property="routeOfElimination" jdbcType="VARCHAR" />
+    <result column="cpic_level" property="cpicLevel" jdbcType="VARCHAR" />
+    <result column="pharm_gkb_evidence_level" property="pharmGkbEvidenceLevel" jdbcType="VARCHAR" />
+    <result column="published_guidance" property="publishedGuidance" jdbcType="VARCHAR" />
+    <result column="summary" property="summary" jdbcType="VARCHAR" />
+    <result column="research_phase" property="researchPhase" jdbcType="INTEGER" />
+    <result column="second_phase" property="secondPhase" jdbcType="INTEGER" />
+    <result column="primary_external_id" property="primaryExternalId" jdbcType="VARCHAR" />
+    <result column="primary_external_source" property="primaryExternalSource" jdbcType="VARCHAR" />
+    <result column="created_at" property="createdAt" jdbcType="BIGINT" />
+    <result column="created_way" property="createdWay" jdbcType="INTEGER" />
+    <result column="created_by_key" property="createdByKey" jdbcType="CHAR" />
+    <result column="created_by_name" property="createdByName" jdbcType="VARCHAR" />
+    <result column="check_state" property="checkState" jdbcType="INTEGER" />
+    <result column="check_report" property="checkReport" jdbcType="VARCHAR" />
+    <result column="checked_by_key" property="checkedByKey" jdbcType="CHAR" />
+    <result column="checked_by_name" property="checkedByName" jdbcType="VARCHAR" />
+    <result column="translate_by_key" property="translateByKey" jdbcType="CHAR" />
+    <result column="translate_by_name" property="translateByName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    drug_key, drug_id, generic_name, name_en, name_chinese, onco_drug, description, drug_type,
+    chemical_formula, molecular_weight, mechanism_of_action, toxicity, structured_indication_desc,
+    absorption, attention, volume_of_distribution, protein_binding, major_metabolic_sites,
+    half_life, clearance, pharmacodynamics, fda_label, route_of_elimination, cpic_level,
+    pharm_gkb_evidence_level, published_guidance, summary, research_phase, second_phase,
+    primary_external_id, primary_external_source, created_at, created_way, created_by_key,
+    created_by_name, check_state, check_report, checked_by_key, checked_by_name, translate_by_key,
+    translate_by_name
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from kt_drug
+    where drug_key = #{drugKey,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from kt_drug
+    where drug_key = #{drugKey,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.huasheng.pojo.newpojo.KtDrug" >
+    insert into kt_drug (drug_key, drug_id, generic_name,
+    name_en, name_chinese, onco_drug,
+    description, drug_type, chemical_formula,
+    molecular_weight, mechanism_of_action, toxicity,
+    structured_indication_desc, absorption, attention,
+    volume_of_distribution, protein_binding, major_metabolic_sites,
+    half_life, clearance, pharmacodynamics,
+    fda_label, route_of_elimination, cpic_level,
+    pharm_gkb_evidence_level, published_guidance,
+    summary, research_phase, second_phase,
+    primary_external_id, primary_external_source,
+    created_at, created_way, created_by_key,
+    created_by_name, check_state, check_report,
+    checked_by_key, checked_by_name, translate_by_key,
+    translate_by_name)
+    values (#{drugKey,jdbcType=VARCHAR}, #{drugId,jdbcType=INTEGER}, #{genericName,jdbcType=VARCHAR},
+    #{nameEn,jdbcType=VARCHAR}, #{nameChinese,jdbcType=VARCHAR}, #{oncoDrug,jdbcType=BIT},
+    #{description,jdbcType=VARCHAR}, #{drugType,jdbcType=VARCHAR}, #{chemicalFormula,jdbcType=VARCHAR},
+    #{molecularWeight,jdbcType=VARCHAR}, #{mechanismOfAction,jdbcType=VARCHAR}, #{toxicity,jdbcType=VARCHAR},
+    #{structuredIndicationDesc,jdbcType=VARCHAR}, #{absorption,jdbcType=VARCHAR}, #{attention,jdbcType=VARCHAR},
+    #{volumeOfDistribution,jdbcType=VARCHAR}, #{proteinBinding,jdbcType=VARCHAR}, #{majorMetabolicSites,jdbcType=VARCHAR},
+    #{halfLife,jdbcType=VARCHAR}, #{clearance,jdbcType=VARCHAR}, #{pharmacodynamics,jdbcType=VARCHAR},
+    #{fdaLabel,jdbcType=VARCHAR}, #{routeOfElimination,jdbcType=VARCHAR}, #{cpicLevel,jdbcType=VARCHAR},
+    #{pharmGkbEvidenceLevel,jdbcType=VARCHAR}, #{publishedGuidance,jdbcType=VARCHAR},
+    #{summary,jdbcType=VARCHAR}, #{researchPhase,jdbcType=INTEGER}, #{secondPhase,jdbcType=INTEGER},
+    #{primaryExternalId,jdbcType=VARCHAR}, #{primaryExternalSource,jdbcType=VARCHAR},
+    #{createdAt,jdbcType=BIGINT}, #{createdWay,jdbcType=INTEGER}, #{createdByKey,jdbcType=CHAR},
+    #{createdByName,jdbcType=VARCHAR}, #{checkState,jdbcType=INTEGER}, #{checkReport,jdbcType=VARCHAR},
+    #{checkedByKey,jdbcType=CHAR}, #{checkedByName,jdbcType=VARCHAR}, #{translateByKey,jdbcType=CHAR},
+    #{translateByName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.huasheng.pojo.newpojo.KtDrug" >
+    insert into kt_drug
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="drugKey != null" >
+        drug_key,
+      </if>
+      <if test="drugId != null" >
+        drug_id,
+      </if>
+      <if test="genericName != null" >
+        generic_name,
+      </if>
+      <if test="nameEn != null" >
+        name_en,
+      </if>
+      <if test="nameChinese != null" >
+        name_chinese,
+      </if>
+      <if test="oncoDrug != null" >
+        onco_drug,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+      <if test="drugType != null" >
+        drug_type,
+      </if>
+      <if test="chemicalFormula != null" >
+        chemical_formula,
+      </if>
+      <if test="molecularWeight != null" >
+        molecular_weight,
+      </if>
+      <if test="mechanismOfAction != null" >
+        mechanism_of_action,
+      </if>
+      <if test="toxicity != null" >
+        toxicity,
+      </if>
+      <if test="structuredIndicationDesc != null" >
+        structured_indication_desc,
+      </if>
+      <if test="absorption != null" >
+        absorption,
+      </if>
+      <if test="attention != null" >
+        attention,
+      </if>
+      <if test="volumeOfDistribution != null" >
+        volume_of_distribution,
+      </if>
+      <if test="proteinBinding != null" >
+        protein_binding,
+      </if>
+      <if test="majorMetabolicSites != null" >
+        major_metabolic_sites,
+      </if>
+      <if test="halfLife != null" >
+        half_life,
+      </if>
+      <if test="clearance != null" >
+        clearance,
+      </if>
+      <if test="pharmacodynamics != null" >
+        pharmacodynamics,
+      </if>
+      <if test="fdaLabel != null" >
+        fda_label,
+      </if>
+      <if test="routeOfElimination != null" >
+        route_of_elimination,
+      </if>
+      <if test="cpicLevel != null" >
+        cpic_level,
+      </if>
+      <if test="pharmGkbEvidenceLevel != null" >
+        pharm_gkb_evidence_level,
+      </if>
+      <if test="publishedGuidance != null" >
+        published_guidance,
+      </if>
+      <if test="summary != null" >
+        summary,
+      </if>
+      <if test="researchPhase != null" >
+        research_phase,
+      </if>
+      <if test="secondPhase != null" >
+        second_phase,
+      </if>
+      <if test="primaryExternalId != null" >
+        primary_external_id,
+      </if>
+      <if test="primaryExternalSource != null" >
+        primary_external_source,
+      </if>
+      <if test="createdAt != null" >
+        created_at,
+      </if>
+      <if test="createdWay != null" >
+        created_way,
+      </if>
+      <if test="createdByKey != null" >
+        created_by_key,
+      </if>
+      <if test="createdByName != null" >
+        created_by_name,
+      </if>
+      <if test="checkState != null" >
+        check_state,
+      </if>
+      <if test="checkReport != null" >
+        check_report,
+      </if>
+      <if test="checkedByKey != null" >
+        checked_by_key,
+      </if>
+      <if test="checkedByName != null" >
+        checked_by_name,
+      </if>
+      <if test="translateByKey != null" >
+        translate_by_key,
+      </if>
+      <if test="translateByName != null" >
+        translate_by_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="drugKey != null" >
+        #{drugKey,jdbcType=VARCHAR},
+      </if>
+      <if test="drugId != null" >
+        #{drugId,jdbcType=INTEGER},
+      </if>
+      <if test="genericName != null" >
+        #{genericName,jdbcType=VARCHAR},
+      </if>
+      <if test="nameEn != null" >
+        #{nameEn,jdbcType=VARCHAR},
+      </if>
+      <if test="nameChinese != null" >
+        #{nameChinese,jdbcType=VARCHAR},
+      </if>
+      <if test="oncoDrug != null" >
+        #{oncoDrug,jdbcType=BIT},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="drugType != null" >
+        #{drugType,jdbcType=VARCHAR},
+      </if>
+      <if test="chemicalFormula != null" >
+        #{chemicalFormula,jdbcType=VARCHAR},
+      </if>
+      <if test="molecularWeight != null" >
+        #{molecularWeight,jdbcType=VARCHAR},
+      </if>
+      <if test="mechanismOfAction != null" >
+        #{mechanismOfAction,jdbcType=VARCHAR},
+      </if>
+      <if test="toxicity != null" >
+        #{toxicity,jdbcType=VARCHAR},
+      </if>
+      <if test="structuredIndicationDesc != null" >
+        #{structuredIndicationDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="absorption != null" >
+        #{absorption,jdbcType=VARCHAR},
+      </if>
+      <if test="attention != null" >
+        #{attention,jdbcType=VARCHAR},
+      </if>
+      <if test="volumeOfDistribution != null" >
+        #{volumeOfDistribution,jdbcType=VARCHAR},
+      </if>
+      <if test="proteinBinding != null" >
+        #{proteinBinding,jdbcType=VARCHAR},
+      </if>
+      <if test="majorMetabolicSites != null" >
+        #{majorMetabolicSites,jdbcType=VARCHAR},
+      </if>
+      <if test="halfLife != null" >
+        #{halfLife,jdbcType=VARCHAR},
+      </if>
+      <if test="clearance != null" >
+        #{clearance,jdbcType=VARCHAR},
+      </if>
+      <if test="pharmacodynamics != null" >
+        #{pharmacodynamics,jdbcType=VARCHAR},
+      </if>
+      <if test="fdaLabel != null" >
+        #{fdaLabel,jdbcType=VARCHAR},
+      </if>
+      <if test="routeOfElimination != null" >
+        #{routeOfElimination,jdbcType=VARCHAR},
+      </if>
+      <if test="cpicLevel != null" >
+        #{cpicLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="pharmGkbEvidenceLevel != null" >
+        #{pharmGkbEvidenceLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="publishedGuidance != null" >
+        #{publishedGuidance,jdbcType=VARCHAR},
+      </if>
+      <if test="summary != null" >
+        #{summary,jdbcType=VARCHAR},
+      </if>
+      <if test="researchPhase != null" >
+        #{researchPhase,jdbcType=INTEGER},
+      </if>
+      <if test="secondPhase != null" >
+        #{secondPhase,jdbcType=INTEGER},
+      </if>
+      <if test="primaryExternalId != null" >
+        #{primaryExternalId,jdbcType=VARCHAR},
+      </if>
+      <if test="primaryExternalSource != null" >
+        #{primaryExternalSource,jdbcType=VARCHAR},
+      </if>
+      <if test="createdAt != null" >
+        #{createdAt,jdbcType=BIGINT},
+      </if>
+      <if test="createdWay != null" >
+        #{createdWay,jdbcType=INTEGER},
+      </if>
+      <if test="createdByKey != null" >
+        #{createdByKey,jdbcType=CHAR},
+      </if>
+      <if test="createdByName != null" >
+        #{createdByName,jdbcType=VARCHAR},
+      </if>
+      <if test="checkState != null" >
+        #{checkState,jdbcType=INTEGER},
+      </if>
+      <if test="checkReport != null" >
+        #{checkReport,jdbcType=VARCHAR},
+      </if>
+      <if test="checkedByKey != null" >
+        #{checkedByKey,jdbcType=CHAR},
+      </if>
+      <if test="checkedByName != null" >
+        #{checkedByName,jdbcType=VARCHAR},
+      </if>
+      <if test="translateByKey != null" >
+        #{translateByKey,jdbcType=CHAR},
+      </if>
+      <if test="translateByName != null" >
+        #{translateByName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huasheng.pojo.newpojo.KtDrug" >
+    update kt_drug
+    <set >
+      <if test="drugId != null" >
+        drug_id = #{drugId,jdbcType=INTEGER},
+      </if>
+      <if test="genericName != null" >
+        generic_name = #{genericName,jdbcType=VARCHAR},
+      </if>
+      <if test="nameEn != null" >
+        name_en = #{nameEn,jdbcType=VARCHAR},
+      </if>
+      <if test="nameChinese != null" >
+        name_chinese = #{nameChinese,jdbcType=VARCHAR},
+      </if>
+      <if test="oncoDrug != null" >
+        onco_drug = #{oncoDrug,jdbcType=BIT},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="drugType != null" >
+        drug_type = #{drugType,jdbcType=VARCHAR},
+      </if>
+      <if test="chemicalFormula != null" >
+        chemical_formula = #{chemicalFormula,jdbcType=VARCHAR},
+      </if>
+      <if test="molecularWeight != null" >
+        molecular_weight = #{molecularWeight,jdbcType=VARCHAR},
+      </if>
+      <if test="mechanismOfAction != null" >
+        mechanism_of_action = #{mechanismOfAction,jdbcType=VARCHAR},
+      </if>
+      <if test="toxicity != null" >
+        toxicity = #{toxicity,jdbcType=VARCHAR},
+      </if>
+      <if test="structuredIndicationDesc != null" >
+        structured_indication_desc = #{structuredIndicationDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="absorption != null" >
+        absorption = #{absorption,jdbcType=VARCHAR},
+      </if>
+      <if test="attention != null" >
+        attention = #{attention,jdbcType=VARCHAR},
+      </if>
+      <if test="volumeOfDistribution != null" >
+        volume_of_distribution = #{volumeOfDistribution,jdbcType=VARCHAR},
+      </if>
+      <if test="proteinBinding != null" >
+        protein_binding = #{proteinBinding,jdbcType=VARCHAR},
+      </if>
+      <if test="majorMetabolicSites != null" >
+        major_metabolic_sites = #{majorMetabolicSites,jdbcType=VARCHAR},
+      </if>
+      <if test="halfLife != null" >
+        half_life = #{halfLife,jdbcType=VARCHAR},
+      </if>
+      <if test="clearance != null" >
+        clearance = #{clearance,jdbcType=VARCHAR},
+      </if>
+      <if test="pharmacodynamics != null" >
+        pharmacodynamics = #{pharmacodynamics,jdbcType=VARCHAR},
+      </if>
+      <if test="fdaLabel != null" >
+        fda_label = #{fdaLabel,jdbcType=VARCHAR},
+      </if>
+      <if test="routeOfElimination != null" >
+        route_of_elimination = #{routeOfElimination,jdbcType=VARCHAR},
+      </if>
+      <if test="cpicLevel != null" >
+        cpic_level = #{cpicLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="pharmGkbEvidenceLevel != null" >
+        pharm_gkb_evidence_level = #{pharmGkbEvidenceLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="publishedGuidance != null" >
+        published_guidance = #{publishedGuidance,jdbcType=VARCHAR},
+      </if>
+      <if test="summary != null" >
+        summary = #{summary,jdbcType=VARCHAR},
+      </if>
+      <if test="researchPhase != null" >
+        research_phase = #{researchPhase,jdbcType=INTEGER},
+      </if>
+      <if test="secondPhase != null" >
+        second_phase = #{secondPhase,jdbcType=INTEGER},
+      </if>
+      <if test="primaryExternalId != null" >
+        primary_external_id = #{primaryExternalId,jdbcType=VARCHAR},
+      </if>
+      <if test="primaryExternalSource != null" >
+        primary_external_source = #{primaryExternalSource,jdbcType=VARCHAR},
+      </if>
+      <if test="createdAt != null" >
+        created_at = #{createdAt,jdbcType=BIGINT},
+      </if>
+      <if test="createdWay != null" >
+        created_way = #{createdWay,jdbcType=INTEGER},
+      </if>
+      <if test="createdByKey != null" >
+        created_by_key = #{createdByKey,jdbcType=CHAR},
+      </if>
+      <if test="createdByName != null" >
+        created_by_name = #{createdByName,jdbcType=VARCHAR},
+      </if>
+      <if test="checkState != null" >
+        check_state = #{checkState,jdbcType=INTEGER},
+      </if>
+      <if test="checkReport != null" >
+        check_report = #{checkReport,jdbcType=VARCHAR},
+      </if>
+      <if test="checkedByKey != null" >
+        checked_by_key = #{checkedByKey,jdbcType=CHAR},
+      </if>
+      <if test="checkedByName != null" >
+        checked_by_name = #{checkedByName,jdbcType=VARCHAR},
+      </if>
+      <if test="translateByKey != null" >
+        translate_by_key = #{translateByKey,jdbcType=CHAR},
+      </if>
+      <if test="translateByName != null" >
+        translate_by_name = #{translateByName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where drug_key = #{drugKey,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huasheng.pojo.newpojo.KtDrug" >
+    update kt_drug
+    set drug_id = #{drugId,jdbcType=INTEGER},
+    generic_name = #{genericName,jdbcType=VARCHAR},
+    name_en = #{nameEn,jdbcType=VARCHAR},
+    name_chinese = #{nameChinese,jdbcType=VARCHAR},
+    onco_drug = #{oncoDrug,jdbcType=BIT},
+    description = #{description,jdbcType=VARCHAR},
+    drug_type = #{drugType,jdbcType=VARCHAR},
+    chemical_formula = #{chemicalFormula,jdbcType=VARCHAR},
+    molecular_weight = #{molecularWeight,jdbcType=VARCHAR},
+    mechanism_of_action = #{mechanismOfAction,jdbcType=VARCHAR},
+    toxicity = #{toxicity,jdbcType=VARCHAR},
+    structured_indication_desc = #{structuredIndicationDesc,jdbcType=VARCHAR},
+    absorption = #{absorption,jdbcType=VARCHAR},
+    attention = #{attention,jdbcType=VARCHAR},
+    volume_of_distribution = #{volumeOfDistribution,jdbcType=VARCHAR},
+    protein_binding = #{proteinBinding,jdbcType=VARCHAR},
+    major_metabolic_sites = #{majorMetabolicSites,jdbcType=VARCHAR},
+    half_life = #{halfLife,jdbcType=VARCHAR},
+    clearance = #{clearance,jdbcType=VARCHAR},
+    pharmacodynamics = #{pharmacodynamics,jdbcType=VARCHAR},
+    fda_label = #{fdaLabel,jdbcType=VARCHAR},
+    route_of_elimination = #{routeOfElimination,jdbcType=VARCHAR},
+    cpic_level = #{cpicLevel,jdbcType=VARCHAR},
+    pharm_gkb_evidence_level = #{pharmGkbEvidenceLevel,jdbcType=VARCHAR},
+    published_guidance = #{publishedGuidance,jdbcType=VARCHAR},
+    summary = #{summary,jdbcType=VARCHAR},
+    research_phase = #{researchPhase,jdbcType=INTEGER},
+    second_phase = #{secondPhase,jdbcType=INTEGER},
+    primary_external_id = #{primaryExternalId,jdbcType=VARCHAR},
+    primary_external_source = #{primaryExternalSource,jdbcType=VARCHAR}
+    <if test="createdAt != null" >
+      ,created_at = #{createdAt,jdbcType=CHAR}
+    </if>
+    <if test="createdWay != null" >
+      ,created_way = #{createdWay,jdbcType=CHAR}
+    </if>
+    <if test="createdByKey != null" >
+      ,created_by_key = #{createdByKey,jdbcType=CHAR}
+    </if>
+    <if test="createdByName != null" >
+      ,created_by_name = #{createdByName,jdbcType=VARCHAR}
+    </if>
+    <if test="checkState != null" >
+      ,check_state = #{checkState,jdbcType=INTEGER}
+    </if>
+    <if test="checkReport != null" >
+      ,check_report = #{checkReport,jdbcType=VARCHAR}
+    </if>
+    <if test="checkedByKey != null" >
+      ,checked_by_key = #{checkedByKey,jdbcType=CHAR}
+    </if>
+    <if test="checkedByName != null" >
+      ,checked_by_name = #{checkedByName,jdbcType=VARCHAR}
+    </if>
+    <if test="translateByKey != null" >
+      ,translate_by_key = #{translateByKey,jdbcType=CHAR}
+    </if>
+    <if test="translateByName != null" >
+      ,translate_by_name = #{translateByName,jdbcType=VARCHAR}
+    </if>
+    where drug_key = #{drugKey,jdbcType=VARCHAR}
+  </update>
+
+  <!--查询药物列表-->
+  <select id="getDrugList" resultType="java.util.Map" parameterType="java.util.Map">
+    SELECT
+    drug.drug_key drugKey,
+    drug.drug_id drugId,
+    drug.generic_name genericName,
+    group_concat(DISTINCT synonym.drug_synonym SEPARATOR '、') drugSynonym,
+    group_concat(DISTINCT otherName.other_name SEPARATOR '、') otherName,
+    drug.onco_drug oncoDrug,
+    drug.research_phase researchPhase,
+    drug.drug_type drugType,
+    drug.translate_by_name translatorName,
+    drug.created_way createdWay,
+    drug.check_report checkReport
+    FROM
+    kt_drug drug
+    LEFT JOIN kt_drug_synonym synonym ON drug.drug_key = synonym.drug_key
+    LEFT JOIN kt_drug_other_name otherName ON drug.drug_key = otherName.drug_key
+    LEFT JOIN kt_drug_international_brand brand ON drug.drug_key = brand.drug_key
+    <if test="actionTarget!='' and actionTarget!=null" >
+      ,kt_drug_action_target target
+    </if>
+    WHERE 1=1
+    <if test="drugName!='' and drugName!=null" >
+      AND (generic_name like #{drugName}
+      OR otherName.other_name LIKE #{drugName}
+      OR drug.name_chinese LIKE #{drugName}
+      OR synonym.drug_synonym LIKE #{drugName}
+      OR drug.name_en LIKE #{drugName}
+      OR brand.international_brand LIKE #{drugName})
+    </if>
+    <if test="oncoDrug!='' and oncoDrug!=null" >
+      AND onco_drug=#{oncoDrug}
+    </if>
+    <if test="drugType!='' and drugType!=null" >
+      AND drug_type=#{drugType}
+    </if>
+    <if test="researchPhase!='' and researchPhase!=null" >
+      AND research_phase=#{researchPhase}
+    </if>
+    <if test="actionTarget!='' and actionTarget!=null" >
+      AND action_target like #{actionTarget}
+    </if>
+    <if test="checkState!='' and checkState!=null" >
+      AND check_state=#{checkState}
+    </if>
+    <if test="createdWay!='' and createdWay!=null" >
+      AND drug.created_way =#{createdWay}
+    </if>
+    GROUP BY
+    drug.drug_key
+    ORDER BY drug.created_at desc
+  </select>
+
+  <update id="checkDrug" parameterType="com.huasheng.pojo.newpojo.KtDrug">
+    update kt_drug
+    set
+    check_state = #{checkState,jdbcType=BIGINT},
+    checked_by_key = #{checkedByKey,jdbcType=CHAR},
+    checked_by_name = #{checkedByName,jdbcType=VARCHAR},
+    check_report = #{checkReport,jdbcType=VARCHAR}
+    where drug_key = #{drugKey,jdbcType=VARCHAR}
+  </update>
+
+  <update id="assignTranslator" parameterType="com.huasheng.pojo.newpojo.KtDrug">
+    update kt_drug
+    set
+    check_state = #{checkState,jdbcType=BIGINT},
+    translate_by_key = #{translateByKey,jdbcType=CHAR},
+    translate_by_name = #{translateByName,jdbcType=VARCHAR}
+    where drug_key = #{drugKey,jdbcType=VARCHAR}
+  </update>
+
+  <select id="selectByDrugId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from kt_drug
+    where drug_id = #{drugId,jdbcType=VARCHAR}
+  </select>
+
+  <update id="checkEnDrug" parameterType="java.util.Map">
+    update kt_drug
+    set
+    check_state = #{checkState,jdbcType=BIGINT}
+    <if test="checkReport!='' and checkReport!=null">
+      ,check_report = #{checkReport,jdbcType=VARCHAR}
+    </if>
+    <if test="createdAt!='' and createdAt!=null">
+      ,created_at = #{createdAt,jdbcType=VARCHAR}
+    </if>
+    <if test="checkedByKey!='' and checkedByKey!=null">
+      ,checked_by_key = #{checkedByKey,jdbcType=VARCHAR}
+    </if>
+    <if test="checkedByName!='' and checkedByName!=null">
+      ,checked_by_name = #{checkedByName,jdbcType=VARCHAR}
+    </if>
+    where 1=1
+    <if test="drugKey!='' and drugKey!=null">
+      AND drug_key = #{drugKey,jdbcType=VARCHAR}
+    </if>
+    <if test="drugId!='' and drugId!=null">
+      AND drug_id = #{drugId,jdbcType=VARCHAR}
+    </if>
+  </update>
+  <!--药品未审核的数量-->
+   <select id="getDrugCountPending" parameterType="Map" resultType="Integer">
+     SELECT count(drug_key) from kt_drug where check_state=#{checkState} and created_way=#{createdWay}
+   </select>
+  <select id="getDrugCountTranslateMonth" parameterType="Map" resultType="Integer">
+    SELECT count(drug_key) from kt_drug where (created_at BETWEEN #{firstTime} and #{currentTime}) AND  check_state=#{checkState} and created_way=#{createdWay}
+  </select>
+
+  <delete id="deleteAllKtDrug" >
+    delete from kt_drug
+  </delete>
+  <select id="getNewDrugList" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from kt_drug
+  </select>
+</mapper>

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huasheng.dao.newdao.KtGeneOtherNameDao" >
+  <resultMap id="BaseResultMap" type="com.huasheng.pojo.newpojo.KtGeneOtherName" >
+    <id column="gene_other_name_key" property="geneOtherNameKey" jdbcType="VARCHAR" />
+    <result column="gene_key" property="geneKey" jdbcType="VARCHAR" />
+    <result column="gene_id" property="geneId" jdbcType="INTEGER" />
+    <result column="other_name" property="otherName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    gene_other_name_key, gene_key, gene_id, other_name
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from kt_gene_other_name
+    where gene_other_name_key = #{geneOtherNameKey,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from kt_gene_other_name
+    where gene_other_name_key = #{geneOtherNameKey,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.huasheng.pojo.newpojo.KtGeneOtherName" >
+    insert into kt_gene_other_name (gene_other_name_key, gene_key, gene_id, 
+      other_name)
+    values (#{geneOtherNameKey,jdbcType=VARCHAR}, #{geneKey,jdbcType=VARCHAR}, #{geneId,jdbcType=INTEGER}, 
+      #{otherName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.huasheng.pojo.newpojo.KtGeneOtherName" >
+    insert into kt_gene_other_name
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="geneOtherNameKey != null" >
+        gene_other_name_key,
+      </if>
+      <if test="geneKey != null" >
+        gene_key,
+      </if>
+      <if test="geneId != null" >
+        gene_id,
+      </if>
+      <if test="otherName != null" >
+        other_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="geneOtherNameKey != null" >
+        #{geneOtherNameKey,jdbcType=VARCHAR},
+      </if>
+      <if test="geneKey != null" >
+        #{geneKey,jdbcType=VARCHAR},
+      </if>
+      <if test="geneId != null" >
+        #{geneId,jdbcType=INTEGER},
+      </if>
+      <if test="otherName != null" >
+        #{otherName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huasheng.pojo.newpojo.KtGeneOtherName" >
+    update kt_gene_other_name
+    <set >
+      <if test="geneKey != null" >
+        gene_key = #{geneKey,jdbcType=VARCHAR},
+      </if>
+      <if test="geneId != null" >
+        gene_id = #{geneId,jdbcType=INTEGER},
+      </if>
+      <if test="otherName != null" >
+        other_name = #{otherName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where gene_other_name_key = #{geneOtherNameKey,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huasheng.pojo.newpojo.KtGeneOtherName" >
+    update kt_gene_other_name
+    set gene_key = #{geneKey,jdbcType=VARCHAR},
+      gene_id = #{geneId,jdbcType=INTEGER},
+      other_name = #{otherName,jdbcType=VARCHAR}
+    where gene_other_name_key = #{geneOtherNameKey,jdbcType=VARCHAR}
+  </update>
+  <!--批量插入基因其他名-->
+  <insert id="addKtGeneOtherName" parameterType="List">
+     insert into kt_gene_other_name (gene_other_name_key, gene_key, gene_id,
+      other_name)
+    values
+    <foreach collection="list" item="item" index="index" separator=",">
+      (#{item.geneOtherNameKey,jdbcType=VARCHAR}, #{item.geneKey,jdbcType=VARCHAR}, #{item.geneId,jdbcType=INTEGER},
+      #{item.otherName,jdbcType=VARCHAR})
+    </foreach>
+
+  </insert>
+ <!--根据基因主键查基因其他名称-->
+  <select id="selectByGeneKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from kt_gene_other_name
+    where gene_key = #{geneKey}
+  </select>
+  <delete id="deleteByGeneKey" parameterType="String">
+    delete from kt_gene_other_name
+    where gene_key = #{geneKey,jdbcType=VARCHAR}
+  </delete>
+</mapper>

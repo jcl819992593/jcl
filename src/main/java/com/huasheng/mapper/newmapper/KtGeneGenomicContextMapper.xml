@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huasheng.dao.newdao.KtGeneGenomicContextDao" >
+  <resultMap id="BaseResultMap" type="com.huasheng.pojo.newpojo.KtGeneGenomicContext" >
+    <id column="gene_genomic_context_key" property="geneGenomicContextKey" jdbcType="VARCHAR" />
+    <result column="gene_key" property="geneKey" jdbcType="VARCHAR" />
+    <result column="gene_id" property="geneId" jdbcType="INTEGER" />
+    <result column="chrloc" property="chrloc" jdbcType="VARCHAR" />
+    <result column="chrstop" property="chrstop" jdbcType="INTEGER" />
+    <result column="chrstart" property="chrstart" jdbcType="INTEGER" />
+    <result column="chraccver" property="chraccver" jdbcType="VARCHAR" />
+    <result column="exoncount" property="exoncount" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    gene_genomic_context_key, gene_key, gene_id, chrloc, chrstop, chrstart, chraccver, 
+    exoncount
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from kt_gene_genomic_context
+    where gene_genomic_context_key = #{geneGenomicContextKey,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from kt_gene_genomic_context
+    where gene_genomic_context_key = #{geneGenomicContextKey,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.huasheng.pojo.newpojo.KtGeneGenomicContext" >
+    insert into kt_gene_genomic_context (gene_genomic_context_key, gene_key, gene_id, 
+      chrloc, chrstop, chrstart, 
+      chraccver, exoncount)
+    values (#{geneGenomicContextKey,jdbcType=VARCHAR}, #{geneKey,jdbcType=VARCHAR}, #{geneId,jdbcType=INTEGER}, 
+      #{chrloc,jdbcType=VARCHAR}, #{chrstop,jdbcType=INTEGER}, #{chrstart,jdbcType=INTEGER}, 
+      #{chraccver,jdbcType=VARCHAR}, #{exoncount,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.huasheng.pojo.newpojo.KtGeneGenomicContext" >
+    insert into kt_gene_genomic_context
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="geneGenomicContextKey != null" >
+        gene_genomic_context_key,
+      </if>
+      <if test="geneKey != null" >
+        gene_key,
+      </if>
+      <if test="geneId != null" >
+        gene_id,
+      </if>
+      <if test="chrloc != null" >
+        chrloc,
+      </if>
+      <if test="chrstop != null" >
+        chrstop,
+      </if>
+      <if test="chrstart != null" >
+        chrstart,
+      </if>
+      <if test="chraccver != null" >
+        chraccver,
+      </if>
+      <if test="exoncount != null" >
+        exoncount,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="geneGenomicContextKey != null" >
+        #{geneGenomicContextKey,jdbcType=VARCHAR},
+      </if>
+      <if test="geneKey != null" >
+        #{geneKey,jdbcType=VARCHAR},
+      </if>
+      <if test="geneId != null" >
+        #{geneId,jdbcType=INTEGER},
+      </if>
+      <if test="chrloc != null" >
+        #{chrloc,jdbcType=VARCHAR},
+      </if>
+      <if test="chrstop != null" >
+        #{chrstop,jdbcType=INTEGER},
+      </if>
+      <if test="chrstart != null" >
+        #{chrstart,jdbcType=INTEGER},
+      </if>
+      <if test="chraccver != null" >
+        #{chraccver,jdbcType=VARCHAR},
+      </if>
+      <if test="exoncount != null" >
+        #{exoncount,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huasheng.pojo.newpojo.KtGeneGenomicContext" >
+    update kt_gene_genomic_context
+    <set >
+      <if test="geneKey != null" >
+        gene_key = #{geneKey,jdbcType=VARCHAR},
+      </if>
+      <if test="geneId != null" >
+        gene_id = #{geneId,jdbcType=INTEGER},
+      </if>
+      <if test="chrloc != null" >
+        chrloc = #{chrloc,jdbcType=VARCHAR},
+      </if>
+      <if test="chrstop != null" >
+        chrstop = #{chrstop,jdbcType=INTEGER},
+      </if>
+      <if test="chrstart != null" >
+        chrstart = #{chrstart,jdbcType=INTEGER},
+      </if>
+      <if test="chraccver != null" >
+        chraccver = #{chraccver,jdbcType=VARCHAR},
+      </if>
+      <if test="exoncount != null" >
+        exoncount = #{exoncount,jdbcType=INTEGER},
+      </if>
+    </set>
+    where gene_genomic_context_key = #{geneGenomicContextKey,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huasheng.pojo.newpojo.KtGeneGenomicContext" >
+    update kt_gene_genomic_context
+    set gene_key = #{geneKey,jdbcType=VARCHAR},
+      gene_id = #{geneId,jdbcType=INTEGER},
+      chrloc = #{chrloc,jdbcType=VARCHAR},
+      chrstop = #{chrstop,jdbcType=INTEGER},
+      chrstart = #{chrstart,jdbcType=INTEGER},
+      chraccver = #{chraccver,jdbcType=VARCHAR},
+      exoncount = #{exoncount,jdbcType=INTEGER}
+    where gene_genomic_context_key = #{geneGenomicContextKey,jdbcType=VARCHAR}
+  </update>
+
+  <select id="selectByGeneKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from kt_gene_genomic_context
+    where gene_key = #{geneKey,jdbcType=VARCHAR}
+  </select>
+   <delete id="deleteByGeneKey" parameterType="String">
+      delete from kt_gene_genomic_context
+      where gene_key = #{geneKey,jdbcType=VARCHAR}
+   </delete>
+
+  <delete id="deleteAllContext" >
+    delete from kt_gene_genomic_context
+
+  </delete>
+</mapper>

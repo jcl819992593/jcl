@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huasheng.dao.newdao.KtProteinDao" >
+  <resultMap id="BaseResultMap" type="com.huasheng.pojo.newpojo.KtProtein" >
+    <id column="protein_key" property="proteinKey" jdbcType="VARCHAR" />
+    <result column="gene_key" property="geneKey" jdbcType="VARCHAR" />
+    <result column="protein_id" property="proteinId" jdbcType="VARCHAR" />
+    <result column="gene_id" property="geneId" jdbcType="INTEGER" />
+    <result column="entry_name" property="entryName" jdbcType="VARCHAR" />
+    <result column="protein_name" property="proteinName" jdbcType="VARCHAR" />
+    <result column="mass" property="mass" jdbcType="INTEGER" />
+    <result column="length" property="length" jdbcType="INTEGER" />
+    <result column="function_description" property="functionDescription" jdbcType="VARCHAR" />
+    <result column="tissue_specificity" property="tissueSpecificity" jdbcType="VARCHAR" />
+    <result column="tissue_specificity_evidence_id" property="tissueSpecificityEvidenceId" jdbcType="INTEGER" />
+    <result column="created_at" property="createdAt" jdbcType="BIGINT" />
+    <result column="created_way" property="createdWay" jdbcType="INTEGER" />
+    <result column="created_by_key" property="createdByKey" jdbcType="CHAR" />
+    <result column="created_by_name" property="createdByName" jdbcType="VARCHAR" />
+    <result column="check_state" property="checkState" jdbcType="INTEGER" />
+    <result column="check_report" property="checkReport" jdbcType="VARCHAR" />
+    <result column="checked_by_key" property="checkedByKey" jdbcType="CHAR" />
+    <result column="checked_by_name" property="checkedByName" jdbcType="VARCHAR" />
+    <result column="translate_by_key" property="translateByKey" jdbcType="CHAR" />
+    <result column="translate_by_name" property="translateByName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    protein_key, gene_key, protein_id, gene_id, entry_name, protein_name, mass, length, 
+    function_description, tissue_specificity, tissue_specificity_evidence_id, created_at, 
+    created_way, created_by_key, created_by_name, check_state, check_report, checked_by_key, 
+    checked_by_name, translate_by_key, translate_by_name
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from kt_protein
+    where protein_key = #{proteinKey,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from kt_protein
+    where protein_key = #{proteinKey,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.huasheng.pojo.newpojo.KtProtein" >
+    insert into kt_protein (protein_key, gene_key, protein_id, 
+      gene_id, entry_name, protein_name, 
+      mass, length, function_description, 
+      tissue_specificity, tissue_specificity_evidence_id, 
+      created_at, created_way, created_by_key, 
+      created_by_name, check_state, check_report, 
+      checked_by_key, checked_by_name, translate_by_key, 
+      translate_by_name)
+    values (#{proteinKey,jdbcType=VARCHAR}, #{geneKey,jdbcType=VARCHAR}, #{proteinId,jdbcType=VARCHAR}, 
+      #{geneId,jdbcType=INTEGER}, #{entryName,jdbcType=VARCHAR}, #{proteinName,jdbcType=VARCHAR}, 
+      #{mass,jdbcType=INTEGER}, #{length,jdbcType=INTEGER}, #{functionDescription,jdbcType=VARCHAR}, 
+      #{tissueSpecificity,jdbcType=VARCHAR}, #{tissueSpecificityEvidenceId,jdbcType=INTEGER}, 
+      #{createdAt,jdbcType=BIGINT}, #{createdWay,jdbcType=INTEGER}, #{createdByKey,jdbcType=CHAR}, 
+      #{createdByName,jdbcType=VARCHAR}, #{checkState,jdbcType=INTEGER}, #{checkReport,jdbcType=VARCHAR}, 
+      #{checkedByKey,jdbcType=CHAR}, #{checkedByName,jdbcType=VARCHAR}, #{translateByKey,jdbcType=CHAR}, 
+      #{translateByName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.huasheng.pojo.newpojo.KtProtein" >
+    insert into kt_protein
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="proteinKey != null" >
+        protein_key,
+      </if>
+      <if test="geneKey != null" >
+        gene_key,
+      </if>
+      <if test="proteinId != null" >
+        protein_id,
+      </if>
+      <if test="geneId != null" >
+        gene_id,
+      </if>
+      <if test="entryName != null" >
+        entry_name,
+      </if>
+      <if test="proteinName != null" >
+        protein_name,
+      </if>
+      <if test="mass != null" >
+        mass,
+      </if>
+      <if test="length != null" >
+        length,
+      </if>
+      <if test="functionDescription != null" >
+        function_description,
+      </if>
+      <if test="tissueSpecificity != null" >
+        tissue_specificity,
+      </if>
+      <if test="tissueSpecificityEvidenceId != null" >
+        tissue_specificity_evidence_id,
+      </if>
+      <if test="createdAt != null" >
+        created_at,
+      </if>
+      <if test="createdWay != null" >
+        created_way,
+      </if>
+      <if test="createdByKey != null" >
+        created_by_key,
+      </if>
+      <if test="createdByName != null" >
+        created_by_name,
+      </if>
+      <if test="checkState != null" >
+        check_state,
+      </if>
+      <if test="checkReport != null" >
+        check_report,
+      </if>
+      <if test="checkedByKey != null" >
+        checked_by_key,
+      </if>
+      <if test="checkedByName != null" >
+        checked_by_name,
+      </if>
+      <if test="translateByKey != null" >
+        translate_by_key,
+      </if>
+      <if test="translateByName != null" >
+        translate_by_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="proteinKey != null" >
+        #{proteinKey,jdbcType=VARCHAR},
+      </if>
+      <if test="geneKey != null" >
+        #{geneKey,jdbcType=VARCHAR},
+      </if>
+      <if test="proteinId != null" >
+        #{proteinId,jdbcType=VARCHAR},
+      </if>
+      <if test="geneId != null" >
+        #{geneId,jdbcType=INTEGER},
+      </if>
+      <if test="entryName != null" >
+        #{entryName,jdbcType=VARCHAR},
+      </if>
+      <if test="proteinName != null" >
+        #{proteinName,jdbcType=VARCHAR},
+      </if>
+      <if test="mass != null" >
+        #{mass,jdbcType=INTEGER},
+      </if>
+      <if test="length != null" >
+        #{length,jdbcType=INTEGER},
+      </if>
+      <if test="functionDescription != null" >
+        #{functionDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="tissueSpecificity != null" >
+        #{tissueSpecificity,jdbcType=VARCHAR},
+      </if>
+      <if test="tissueSpecificityEvidenceId != null" >
+        #{tissueSpecificityEvidenceId,jdbcType=INTEGER},
+      </if>
+      <if test="createdAt != null" >
+        #{createdAt,jdbcType=BIGINT},
+      </if>
+      <if test="createdWay != null" >
+        #{createdWay,jdbcType=INTEGER},
+      </if>
+      <if test="createdByKey != null" >
+        #{createdByKey,jdbcType=CHAR},
+      </if>
+      <if test="createdByName != null" >
+        #{createdByName,jdbcType=VARCHAR},
+      </if>
+      <if test="checkState != null" >
+        #{checkState,jdbcType=INTEGER},
+      </if>
+      <if test="checkReport != null" >
+        #{checkReport,jdbcType=VARCHAR},
+      </if>
+      <if test="checkedByKey != null" >
+        #{checkedByKey,jdbcType=CHAR},
+      </if>
+      <if test="checkedByName != null" >
+        #{checkedByName,jdbcType=VARCHAR},
+      </if>
+      <if test="translateByKey != null" >
+        #{translateByKey,jdbcType=CHAR},
+      </if>
+      <if test="translateByName != null" >
+        #{translateByName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huasheng.pojo.newpojo.KtProtein" >
+    update kt_protein
+    <set >
+      <if test="geneKey != null" >
+        gene_key = #{geneKey,jdbcType=VARCHAR},
+      </if>
+      <if test="proteinId != null" >
+        protein_id = #{proteinId,jdbcType=VARCHAR},
+      </if>
+      <if test="geneId != null" >
+        gene_id = #{geneId,jdbcType=INTEGER},
+      </if>
+      <if test="entryName != null" >
+        entry_name = #{entryName,jdbcType=VARCHAR},
+      </if>
+      <if test="proteinName != null" >
+        protein_name = #{proteinName,jdbcType=VARCHAR},
+      </if>
+      <if test="mass != null" >
+        mass = #{mass,jdbcType=INTEGER},
+      </if>
+      <if test="length != null" >
+        length = #{length,jdbcType=INTEGER},
+      </if>
+      <if test="functionDescription != null" >
+        function_description = #{functionDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="tissueSpecificity != null" >
+        tissue_specificity = #{tissueSpecificity,jdbcType=VARCHAR},
+      </if>
+      <if test="tissueSpecificityEvidenceId != null" >
+        tissue_specificity_evidence_id = #{tissueSpecificityEvidenceId,jdbcType=INTEGER},
+      </if>
+      <if test="createdAt != null" >
+        created_at = #{createdAt,jdbcType=BIGINT},
+      </if>
+      <if test="createdWay != null" >
+        created_way = #{createdWay,jdbcType=INTEGER},
+      </if>
+      <if test="createdByKey != null" >
+        created_by_key = #{createdByKey,jdbcType=CHAR},
+      </if>
+      <if test="createdByName != null" >
+        created_by_name = #{createdByName,jdbcType=VARCHAR},
+      </if>
+      <if test="checkState != null" >
+        check_state = #{checkState,jdbcType=INTEGER},
+      </if>
+      <if test="checkReport != null" >
+        check_report = #{checkReport,jdbcType=VARCHAR},
+      </if>
+      <if test="checkedByKey != null" >
+        checked_by_key = #{checkedByKey,jdbcType=CHAR},
+      </if>
+      <if test="checkedByName != null" >
+        checked_by_name = #{checkedByName,jdbcType=VARCHAR},
+      </if>
+      <if test="translateByKey != null" >
+        translate_by_key = #{translateByKey,jdbcType=CHAR},
+      </if>
+      <if test="translateByName != null" >
+        translate_by_name = #{translateByName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where protein_key = #{proteinKey,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huasheng.pojo.newpojo.KtProtein" >
+    update kt_protein
+    set gene_key = #{geneKey,jdbcType=VARCHAR},
+      protein_id = #{proteinId,jdbcType=VARCHAR},
+      gene_id = #{geneId,jdbcType=INTEGER},
+      entry_name = #{entryName,jdbcType=VARCHAR},
+      protein_name = #{proteinName,jdbcType=VARCHAR},
+      mass = #{mass,jdbcType=INTEGER},
+      length = #{length,jdbcType=INTEGER},
+      function_description = #{functionDescription,jdbcType=VARCHAR},
+      tissue_specificity = #{tissueSpecificity,jdbcType=VARCHAR},
+      tissue_specificity_evidence_id = #{tissueSpecificityEvidenceId,jdbcType=INTEGER},
+      created_at = #{createdAt,jdbcType=BIGINT},
+      created_way = #{createdWay,jdbcType=INTEGER},
+      created_by_key = #{createdByKey,jdbcType=CHAR},
+      created_by_name = #{createdByName,jdbcType=VARCHAR},
+
+    <if test="checkReport!='' and checkReport != null" >
+      check_report = #{checkReport,jdbcType=VARCHAR},
+    </if>
+    <if test="checkedByKey!='' and checkedByKey != null" >
+      checked_by_key = #{checkedByKey,jdbcType=CHAR},
+    </if>
+    <if test="checkedByName!='' and checkedByName != null" >
+      checked_by_name = #{checkedByName,jdbcType=VARCHAR},
+    </if>
+    <if test="translateByKey!='' and translateByKey != null">
+      translate_by_key = #{translateByKey,jdbcType=CHAR},
+    </if>
+    <if test="translateByName!='' and translateByName != null">
+      translate_by_name = #{translateByName,jdbcType=VARCHAR},
+    </if>
+    check_state = #{checkState,jdbcType=INTEGER}
+    where protein_key = #{proteinKey,jdbcType=VARCHAR}
+  </update>
+  <!--蛋白列表-->
+  <select id="getProteinList" resultType="Map" parameterType="Map">
+    SELECT
+    a.protein_key  proteinKey,a.gene_key geneKey,a.protein_id proteinId,a.gene_id geneId,entry_name entryName,protein_name proteinName,
+    mass mass,length,function_description functionDescription,tissue_specificity tissueSpecificity,tissue_specificity_evidence_id tissueSpecificityEvidenceId,
+    created_at createdAt,check_state checkState,check_report checkReport,translate_by_name translateByName,
+    group_concat(DISTINCT b.synonym SEPARATOR '、')  synonym
+    FROM
+    kt_protein a
+    LEFT JOIN kt_protein_synonym b ON a.protein_key = b.protein_key where 1=1
+    <if test="proteinName !='' and proteinName!=null">
+      and (a.protein_name like CONCAT(CONCAT('%',#{proteinName},'%')) or entry_name  like CONCAT(CONCAT('%',#{proteinName},'%'))
+      or b.synonym like CONCAT(CONCAT('%',#{proteinName},'%')))
+    </if>
+    <if test="geneId !='' and geneId !=null">
+      and a.gene_id=#{geneId}
+    </if>
+    <if test="createdWay!='' and createdWay!=null" >
+      AND a.created_way =#{createdWay}
+    </if>
+    and a.check_state=#{checkState}
+    GROUP BY a.protein_key
+    ORDER BY a.created_at desc
+  </select>
+  <select id="getProteinByProteinKey" parameterType="String" resultType="Map">
+    SELECT
+    a.protein_key  proteinKey,a.gene_key geneKey,a.protein_id proteinId,a.gene_id geneId,entry_name entryName,protein_name proteinName,
+    mass mass,length,function_description functionDescription,tissue_specificity tissueSpecificity,tissue_specificity_evidence_id tissueSpecificityEvidenceId,
+    created_at createdAt,check_state checkState,created_way createdWay,translate_by_name translateByName,translate_by_key translateByKey,
+    group_concat(b.synonym SEPARATOR '、')  synonym
+    FROM
+    kt_protein a
+    LEFT JOIN kt_protein_synonym b ON a.protein_key = b.protein_key where a.protein_key=#{proteinKey}
+  </select>
+  <update id="updateProteinCheckState" parameterType="com.huasheng.pojo.newpojo.KtProtein">
+    update kt_protein
+    set
+    check_state = #{checkState,jdbcType=BIGINT},
+    checked_by_key = #{checkedByKey,jdbcType=CHAR},
+    checked_by_name = #{checkedByName,jdbcType=VARCHAR},
+          check_report = #{checkReport}
+    where protein_key = #{proteinKey,jdbcType=VARCHAR}
+  </update>
+  <update id="updateTranslator" parameterType="com.huasheng.pojo.newpojo.KtProtein">
+    update kt_protein
+    set
+    check_state = #{checkState,jdbcType=BIGINT},
+    translate_by_key = #{translateByKey,jdbcType=CHAR},
+    translate_by_name = #{translateByName,jdbcType=VARCHAR}
+    where protein_key = #{proteinKey,jdbcType=VARCHAR}
+  </update>
+  <select id="getProteinPending" parameterType="Map" resultType="Integer">
+    SELECT count(protein_key) from kt_protein where check_state=#{checkState} and created_way=#{createdWay}
+  </select>
+  <select id="getProteinByGeneKey" parameterType="String" resultMap="BaseResultMap">
+    SELECT <include refid="Base_Column_List" /> from kt_protein  where gene_key = #{geneKey,jdbcType=VARCHAR}
+  </select>
+
+  <select id="getProteinTranslateMonth" parameterType="Map" resultType="Integer">
+    SELECT count(protein_key) from kt_protein where (created_at BETWEEN #{firstTime} and #{currentTime}) AND check_state=#{checkState} and created_way=#{createdWay}
+  </select>
+</mapper>

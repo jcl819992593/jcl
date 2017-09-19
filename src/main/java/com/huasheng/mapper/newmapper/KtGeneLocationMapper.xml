@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huasheng.dao.newdao.KtGeneLocationDao" >
+  <resultMap id="BaseResultMap" type="com.huasheng.pojo.newpojo.KtGeneLocation" >
+    <id column="gene_location_key" property="geneLocationKey" jdbcType="VARCHAR" />
+    <result column="gene_key" property="geneKey" jdbcType="VARCHAR" />
+    <result column="gene_id" property="geneId" jdbcType="INTEGER" />
+    <result column="ref_assembly" property="refAssembly" jdbcType="VARCHAR" />
+    <result column="chromosome" property="chromosome" jdbcType="VARCHAR" />
+    <result column="gene_start" property="geneStart" jdbcType="VARCHAR" />
+    <result column="gene_stop" property="geneStop" jdbcType="VARCHAR" />
+    <result column="gene_size" property="geneSize" jdbcType="INTEGER" />
+    <result column="orientatio" property="orientatio" jdbcType="VARCHAR" />
+    <result column="exoncount" property="exoncount" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    gene_location_key, gene_key, gene_id, ref_assembly, chromosome, gene_start, gene_stop, 
+    gene_size, orientatio, exoncount
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from kt_gene_location
+    where gene_location_key = #{geneLocationKey,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from kt_gene_location
+    where gene_location_key = #{geneLocationKey,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.huasheng.pojo.newpojo.KtGeneLocation" >
+    insert into kt_gene_location (gene_location_key, gene_key, gene_id, 
+      ref_assembly, chromosome, gene_start, 
+      gene_stop, gene_size, orientatio, 
+      exoncount)
+    values (#{geneLocationKey,jdbcType=VARCHAR}, #{geneKey,jdbcType=VARCHAR}, #{geneId,jdbcType=INTEGER}, 
+      #{refAssembly,jdbcType=VARCHAR}, #{chromosome,jdbcType=VARCHAR}, #{geneStart,jdbcType=VARCHAR}, 
+      #{geneStop,jdbcType=VARCHAR}, #{geneSize,jdbcType=INTEGER}, #{orientatio,jdbcType=VARCHAR}, 
+      #{exoncount,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.huasheng.pojo.newpojo.KtGeneLocation" >
+    insert into kt_gene_location
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="geneLocationKey != null" >
+        gene_location_key,
+      </if>
+      <if test="geneKey != null" >
+        gene_key,
+      </if>
+      <if test="geneId != null" >
+        gene_id,
+      </if>
+      <if test="refAssembly != null" >
+        ref_assembly,
+      </if>
+      <if test="chromosome != null" >
+        chromosome,
+      </if>
+      <if test="geneStart != null" >
+        gene_start,
+      </if>
+      <if test="geneStop != null" >
+        gene_stop,
+      </if>
+      <if test="geneSize != null" >
+        gene_size,
+      </if>
+      <if test="orientatio != null" >
+        orientatio,
+      </if>
+      <if test="exoncount != null" >
+        exoncount,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="geneLocationKey != null" >
+        #{geneLocationKey,jdbcType=VARCHAR},
+      </if>
+      <if test="geneKey != null" >
+        #{geneKey,jdbcType=VARCHAR},
+      </if>
+      <if test="geneId != null" >
+        #{geneId,jdbcType=INTEGER},
+      </if>
+      <if test="refAssembly != null" >
+        #{refAssembly,jdbcType=VARCHAR},
+      </if>
+      <if test="chromosome != null" >
+        #{chromosome,jdbcType=VARCHAR},
+      </if>
+      <if test="geneStart != null" >
+        #{geneStart,jdbcType=VARCHAR},
+      </if>
+      <if test="geneStop != null" >
+        #{geneStop,jdbcType=VARCHAR},
+      </if>
+      <if test="geneSize != null" >
+        #{geneSize,jdbcType=INTEGER},
+      </if>
+      <if test="orientatio != null" >
+        #{orientatio,jdbcType=VARCHAR},
+      </if>
+      <if test="exoncount != null" >
+        #{exoncount,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huasheng.pojo.newpojo.KtGeneLocation" >
+    update kt_gene_location
+    <set >
+      <if test="geneKey != null" >
+        gene_key = #{geneKey,jdbcType=VARCHAR},
+      </if>
+      <if test="geneId != null" >
+        gene_id = #{geneId,jdbcType=INTEGER},
+      </if>
+      <if test="refAssembly != null" >
+        ref_assembly = #{refAssembly,jdbcType=VARCHAR},
+      </if>
+      <if test="chromosome != null" >
+        chromosome = #{chromosome,jdbcType=VARCHAR},
+      </if>
+      <if test="geneStart != null" >
+        gene_start = #{geneStart,jdbcType=VARCHAR},
+      </if>
+      <if test="geneStop != null" >
+        gene_stop = #{geneStop,jdbcType=VARCHAR},
+      </if>
+      <if test="geneSize != null" >
+        gene_size = #{geneSize,jdbcType=INTEGER},
+      </if>
+      <if test="orientatio != null" >
+        orientatio = #{orientatio,jdbcType=VARCHAR},
+      </if>
+      <if test="exoncount != null" >
+        exoncount = #{exoncount,jdbcType=INTEGER},
+      </if>
+    </set>
+    where gene_location_key = #{geneLocationKey,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huasheng.pojo.newpojo.KtGeneLocation" >
+    update kt_gene_location
+    set gene_key = #{geneKey,jdbcType=VARCHAR},
+      gene_id = #{geneId,jdbcType=INTEGER},
+      ref_assembly = #{refAssembly,jdbcType=VARCHAR},
+      chromosome = #{chromosome,jdbcType=VARCHAR},
+      gene_start = #{geneStart,jdbcType=VARCHAR},
+      gene_stop = #{geneStop,jdbcType=VARCHAR},
+      gene_size = #{geneSize,jdbcType=INTEGER},
+      orientatio = #{orientatio,jdbcType=VARCHAR},
+      exoncount = #{exoncount,jdbcType=INTEGER}
+    where gene_location_key = #{geneLocationKey,jdbcType=VARCHAR}
+  </update>
+
+  <select id="selectByGeneKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from kt_gene_location
+    where gene_key = #{geneKey,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByGeneKey" parameterType="String">
+     delete from kt_gene_location
+    where gene_key = #{geneKey,jdbcType=VARCHAR}
+  </delete>
+</mapper>

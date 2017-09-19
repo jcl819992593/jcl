@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huasheng.dao.newdao.KtClinicalTrialGeneDao" >
+  <resultMap id="BaseResultMap" type="com.huasheng.pojo.newpojo.KtClinicalTrialGene" >
+    <id column="clinical_trial_key" property="clinicalTrialKey" jdbcType="VARCHAR" />
+    <id column="gene_key" property="geneKey" jdbcType="VARCHAR" />
+    <result column="clinical_trial_id" property="clinicalTrialId" jdbcType="VARCHAR" />
+    <result column="gene_id" property="geneId" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    clinical_trial_key, gene_key, clinical_trial_id, gene_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.huasheng.pojo.newpojo.KtClinicalTrialGene" >
+    select 
+    <include refid="Base_Column_List" />
+    from kt_clinical_trial_gene
+    where clinical_trial_key = #{clinicalTrialKey,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.huasheng.pojo.newpojo.KtClinicalTrialGene" >
+    delete from kt_clinical_trial_gene
+    where clinical_trial_key = #{clinicalTrialKey,jdbcType=VARCHAR}
+      and gene_key = #{geneKey,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.huasheng.pojo.newpojo.KtClinicalTrialGene" >
+    insert into kt_clinical_trial_gene (clinical_trial_key, gene_key, clinical_trial_id, 
+      gene_id)
+    values (#{clinicalTrialKey,jdbcType=VARCHAR}, #{geneKey,jdbcType=VARCHAR}, #{clinicalTrialId,jdbcType=VARCHAR},
+      #{geneId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.huasheng.pojo.newpojo.KtClinicalTrialGene" >
+    insert into kt_clinical_trial_gene
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="clinicalTrialKey != null" >
+        clinical_trial_key,
+      </if>
+      <if test="geneKey != null" >
+        gene_key,
+      </if>
+      <if test="clinicalTrialId != null" >
+        clinical_trial_id,
+      </if>
+      <if test="geneId != null" >
+        gene_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="clinicalTrialKey != null" >
+        #{clinicalTrialKey,jdbcType=VARCHAR},
+      </if>
+      <if test="geneKey != null" >
+        #{geneKey,jdbcType=VARCHAR},
+      </if>
+      <if test="clinicalTrialId != null" >
+        #{clinicalTrialId,jdbcType=VARCHAR},
+      </if>
+      <if test="geneId != null" >
+        #{geneId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huasheng.pojo.newpojo.KtClinicalTrialGene" >
+    update kt_clinical_trial_gene
+    <set >
+      <if test="clinicalTrialId != null" >
+        clinical_trial_id = #{clinicalTrialId,jdbcType=VARCHAR},
+      </if>
+      <if test="geneId != null" >
+        gene_id = #{geneId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where clinical_trial_key = #{clinicalTrialKey,jdbcType=VARCHAR}
+      and gene_key = #{geneKey,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huasheng.pojo.newpojo.KtClinicalTrialGene" >
+    update kt_clinical_trial_gene
+    set clinical_trial_id = #{clinicalTrialId,jdbcType=VARCHAR},
+      gene_id = #{geneId,jdbcType=INTEGER},
+    gene_key = #{geneKey,jdbcType=VARCHAR}
+    where clinical_trial_key = #{clinicalTrialKey,jdbcType=VARCHAR}
+  </update>
+
+  <select id="getClinicalTrialByClinicalTrialKey" resultMap="BaseResultMap" parameterType="com.huasheng.pojo.newpojo.KtClinicalTrialGene" >
+    select
+    <include refid="Base_Column_List" />
+    from kt_clinical_trial_gene
+    where clinical_trial_key = #{clinicalTrialKey,jdbcType=VARCHAR}
+  </select>
+</mapper>

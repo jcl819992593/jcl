@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huasheng.dao.newdao.KtKeggPathwayDao" >
+  <resultMap id="BaseResultMap" type="com.huasheng.pojo.newpojo.KtKeggPathway" >
+    <id column="pathway_key" property="pathwayKey" jdbcType="VARCHAR" />
+    <result column="kegg_id" property="keggId" jdbcType="VARCHAR" />
+    <result column="pathway_name" property="pathwayName" jdbcType="VARCHAR" />
+    <result column="kegg_link" property="keggLink" jdbcType="VARCHAR" />
+    <result column="selleck_link" property="selleckLink" jdbcType="VARCHAR" />
+    <result column="created_at" property="createdAt" jdbcType="BIGINT" />
+    <result column="created_way" property="createdWay" jdbcType="INTEGER" />
+    <result column="created_by_key" property="createdByKey" jdbcType="CHAR" />
+    <result column="created_by_name" property="createdByName" jdbcType="VARCHAR" />
+    <result column="check_state" property="checkState" jdbcType="INTEGER" />
+    <result column="check_report" property="checkReport" jdbcType="VARCHAR" />
+    <result column="checked_by_key" property="checkedByKey" jdbcType="CHAR" />
+    <result column="checked_by_name" property="checkedByName" jdbcType="VARCHAR" />
+    <result column="translate_by_key" property="translateByKey" jdbcType="CHAR" />
+    <result column="translate_by_name" property="translateByName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    pathway_key, kegg_id, pathway_name, kegg_link, selleck_link, created_at, created_way, 
+    created_by_key, created_by_name, check_state, check_report, checked_by_key, checked_by_name, 
+    translate_by_key, translate_by_name
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from kt_kegg_pathway
+    where pathway_key = #{pathwayKey,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from kt_kegg_pathway
+    where pathway_key = #{pathwayKey,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.huasheng.pojo.newpojo.KtKeggPathway" >
+    insert into kt_kegg_pathway (pathway_key, kegg_id, pathway_name, 
+      kegg_link, selleck_link, created_at, 
+      created_way, created_by_key, created_by_name, 
+      check_state, check_report, checked_by_key, 
+      checked_by_name, translate_by_key, translate_by_name
+      )
+    values (#{pathwayKey,jdbcType=VARCHAR}, #{keggId,jdbcType=VARCHAR}, #{pathwayName,jdbcType=VARCHAR}, 
+      #{keggLink,jdbcType=VARCHAR}, #{selleckLink,jdbcType=VARCHAR}, #{createdAt,jdbcType=BIGINT}, 
+      #{createdWay,jdbcType=INTEGER}, #{createdByKey,jdbcType=CHAR}, #{createdByName,jdbcType=VARCHAR}, 
+      #{checkState,jdbcType=INTEGER}, #{checkReport,jdbcType=VARCHAR}, #{checkedByKey,jdbcType=CHAR}, 
+      #{checkedByName,jdbcType=VARCHAR}, #{translateByKey,jdbcType=CHAR}, #{translateByName,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.huasheng.pojo.newpojo.KtKeggPathway" >
+    insert into kt_kegg_pathway
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="pathwayKey != null" >
+        pathway_key,
+      </if>
+      <if test="keggId != null" >
+        kegg_id,
+      </if>
+      <if test="pathwayName != null" >
+        pathway_name,
+      </if>
+      <if test="keggLink != null" >
+        kegg_link,
+      </if>
+      <if test="selleckLink != null" >
+        selleck_link,
+      </if>
+      <if test="createdAt != null" >
+        created_at,
+      </if>
+      <if test="createdWay != null" >
+        created_way,
+      </if>
+      <if test="createdByKey != null" >
+        created_by_key,
+      </if>
+      <if test="createdByName != null" >
+        created_by_name,
+      </if>
+      <if test="checkState != null" >
+        check_state,
+      </if>
+      <if test="checkReport != null" >
+        check_report,
+      </if>
+      <if test="checkedByKey != null" >
+        checked_by_key,
+      </if>
+      <if test="checkedByName != null" >
+        checked_by_name,
+      </if>
+      <if test="translateByKey != null" >
+        translate_by_key,
+      </if>
+      <if test="translateByName != null" >
+        translate_by_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="pathwayKey != null" >
+        #{pathwayKey,jdbcType=VARCHAR},
+      </if>
+      <if test="keggId != null" >
+        #{keggId,jdbcType=VARCHAR},
+      </if>
+      <if test="pathwayName != null" >
+        #{pathwayName,jdbcType=VARCHAR},
+      </if>
+      <if test="keggLink != null" >
+        #{keggLink,jdbcType=VARCHAR},
+      </if>
+      <if test="selleckLink != null" >
+        #{selleckLink,jdbcType=VARCHAR},
+      </if>
+      <if test="createdAt != null" >
+        #{createdAt,jdbcType=BIGINT},
+      </if>
+      <if test="createdWay != null" >
+        #{createdWay,jdbcType=INTEGER},
+      </if>
+      <if test="createdByKey != null" >
+        #{createdByKey,jdbcType=CHAR},
+      </if>
+      <if test="createdByName != null" >
+        #{createdByName,jdbcType=VARCHAR},
+      </if>
+      <if test="checkState != null" >
+        #{checkState,jdbcType=INTEGER},
+      </if>
+      <if test="checkReport != null" >
+        #{checkReport,jdbcType=VARCHAR},
+      </if>
+      <if test="checkedByKey != null" >
+        #{checkedByKey,jdbcType=CHAR},
+      </if>
+      <if test="checkedByName != null" >
+        #{checkedByName,jdbcType=VARCHAR},
+      </if>
+      <if test="translateByKey != null" >
+        #{translateByKey,jdbcType=CHAR},
+      </if>
+      <if test="translateByName != null" >
+        #{translateByName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huasheng.pojo.newpojo.KtKeggPathway" >
+    update kt_kegg_pathway
+    <set >
+      <if test="keggId != null" >
+        kegg_id = #{keggId,jdbcType=VARCHAR},
+      </if>
+      <if test="pathwayName != null" >
+        pathway_name = #{pathwayName,jdbcType=VARCHAR},
+      </if>
+      <if test="keggLink != null" >
+        kegg_link = #{keggLink,jdbcType=VARCHAR},
+      </if>
+      <if test="selleckLink != null" >
+        selleck_link = #{selleckLink,jdbcType=VARCHAR},
+      </if>
+      <if test="createdAt != null" >
+        created_at = #{createdAt,jdbcType=BIGINT},
+      </if>
+      <if test="createdWay != null" >
+        created_way = #{createdWay,jdbcType=INTEGER},
+      </if>
+      <if test="createdByKey != null" >
+        created_by_key = #{createdByKey,jdbcType=CHAR},
+      </if>
+      <if test="createdByName != null" >
+        created_by_name = #{createdByName,jdbcType=VARCHAR},
+      </if>
+      <if test="checkState != null" >
+        check_state = #{checkState,jdbcType=INTEGER},
+      </if>
+      <if test="checkReport != null" >
+        check_report = #{checkReport,jdbcType=VARCHAR},
+      </if>
+      <if test="checkedByKey != null" >
+        checked_by_key = #{checkedByKey,jdbcType=CHAR},
+      </if>
+      <if test="checkedByName != null" >
+        checked_by_name = #{checkedByName,jdbcType=VARCHAR},
+      </if>
+      <if test="translateByKey != null" >
+        translate_by_key = #{translateByKey,jdbcType=CHAR},
+      </if>
+      <if test="translateByName != null" >
+        translate_by_name = #{translateByName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where pathway_key = #{pathwayKey,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huasheng.pojo.newpojo.KtKeggPathway" >
+    update kt_kegg_pathway
+    set kegg_id = #{keggId,jdbcType=VARCHAR},
+      pathway_name = #{pathwayName,jdbcType=VARCHAR},
+      kegg_link = #{keggLink,jdbcType=VARCHAR},
+      selleck_link = #{selleckLink,jdbcType=VARCHAR},
+      created_at = #{createdAt,jdbcType=BIGINT},
+      created_way = #{createdWay,jdbcType=INTEGER},
+      created_by_key = #{createdByKey,jdbcType=CHAR},
+      created_by_name = #{createdByName,jdbcType=VARCHAR},
+    <if test="checkReport!='' and checkReport != null" >
+      check_report = #{checkReport,jdbcType=VARCHAR},
+    </if>
+    <if test="checkedByKey!='' and checkedByKey != null" >
+      checked_by_key = #{checkedByKey,jdbcType=CHAR},
+    </if>
+    <if test="checkedByName!='' and checkedByName != null" >
+      checked_by_name = #{checkedByName,jdbcType=VARCHAR},
+    </if>
+    <if test="translateByKey!='' and translateByKey != null">
+      translate_by_key = #{translateByKey,jdbcType=CHAR},
+    </if>
+    <if test="translateByName!='' and translateByName != null">
+      translate_by_name = #{translateByName,jdbcType=VARCHAR},
+    </if>
+    check_state = #{checkState,jdbcType=INTEGER}
+    where pathway_key = #{pathwayKey,jdbcType=VARCHAR}
+  </update>
+  <select id="getPathwayList" resultMap="BaseResultMap" parameterType="java.lang.String">
+    select
+    <include refid="Base_Column_List" />
+    FROM
+    kt_kegg_pathway pathway
+    WHERE 1=1
+    <if test="_parameter!='' and _parameter!=null" >
+      and pathway.pathway_name LIKE concat(concat('%',#{_parameter}),'%')
+    </if>
+  </select>
+    <!--列表-->
+  <select id="getPathwayPage" resultMap="BaseResultMap" parameterType="Map">
+    select
+    <include refid="Base_Column_List" />
+    FROM
+    kt_kegg_pathway
+    WHERE 1=1
+    <if test="keggId!='' and keggId!=null" >
+      and kegg_id = #{keggId}
+    </if>
+    <if test="pathwayName!='' and pathwayName!=null" >
+      and pathway_name like CONCAT(CONCAT('%',#{pathwayName},'%'))
+    </if>
+    <if test="checkState!='' and checkState!=null">
+      and check_state=#{checkState}
+    </if>
+    <if test="createdWay!='' and createdWay!=null" >
+      AND created_way =#{createdWay}
+    </if>
+      ORDER BY
+      created_at DESC
+  </select>
+  <update id="updateKeggPathwayCheckState" parameterType="com.huasheng.pojo.newpojo.KtKeggPathway">
+    update kt_kegg_pathway
+    set
+    check_state = #{checkState,jdbcType=BIGINT},
+    checked_by_key = #{checkedByKey,jdbcType=CHAR},
+    checked_by_name = #{checkedByName,jdbcType=VARCHAR},
+    check_report = #{checkReport}
+    where pathway_key = #{pathwayKey,jdbcType=VARCHAR}
+  </update>
+
+  <update id="updateTranslator" parameterType="com.huasheng.pojo.newpojo.KtKeggPathway">
+    update kt_kegg_pathway
+    set
+    check_state = #{checkState,jdbcType=BIGINT},
+    translate_by_key = #{translateByKey,jdbcType=CHAR},
+    translate_by_name = #{translateByName,jdbcType=VARCHAR}
+    where pathway_key = #{pathwayKey,jdbcType=VARCHAR}
+  </update>
+  <select id="getKeggPathwayPending" parameterType="Map" resultType="Integer">
+     SELECT count(pathway_key) from kt_kegg_pathway where check_state=#{checkState} and created_way=#{createdWay}
+  </select>
+  <select id="getByArray" parameterType="java.util.List" resultType="com.huasheng.pojo.newpojo.KtDrugKeggPathway">
+    SELECT
+    pathway_key pathwayKey,
+    kegg_id keggId,
+    pathway_name pathwayName
+    FROM
+    kt_kegg_pathway
+    WHERE 1=1
+    <if test="list!=null">
+      AND
+      pathway_key IN
+      (
+      <foreach collection="list" item="item" index="index" separator=",">
+        <!--若参数是实体集合则用这个#{item.pathwayKey}-->
+        <!--若参数是普通集合则用这个#{item}-->
+        #{item.pathwayKey}
+      </foreach>
+      )
+    </if>
+  </select>
+
+  <select id="getKeggPathwayTranslateMonth" parameterType="Map" resultType="Integer">
+    SELECT count(pathway_key) from kt_kegg_pathway where (created_at BETWEEN #{firstTime} and #{currentTime}) AND check_state=#{checkState} and created_way=#{createdWay}
+  </select>
+
+  <delete id="deleteAllPathway">
+    delete from kt_kegg_pathway
+  </delete>
+</mapper>

@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huasheng.dao.newdao.KtPlanInstructionDao" >
+  <resultMap id="BaseResultMap" type="com.huasheng.pojo.newpojo.KtPlanInstruction" >
+    <id column="plan_instruction_key" property="planInstructionKey" jdbcType="VARCHAR" />
+    <result column="medication_plan_key" property="medicationPlanKey" jdbcType="VARCHAR" />
+    <result column="instruction_id" property="instructionId" jdbcType="INTEGER" />
+    <result column="medication_plan_id" property="medicationPlanId" jdbcType="INTEGER" />
+    <result column="the_name" property="theName" jdbcType="VARCHAR" />
+    <result column="the_course" property="theCourse" jdbcType="VARCHAR" />
+    <result column="the_order" property="theOrder" jdbcType="INTEGER" />
+    <result column="review_required" property="reviewRequired" jdbcType="BIT" />
+    <result column="drug_ids" property="drugIds" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    plan_instruction_key, medication_plan_key, instruction_id, medication_plan_id, the_name, 
+    the_course, the_order, review_required, drug_ids
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from kt_plan_instruction
+    where plan_instruction_key = #{planInstructionKey,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from kt_plan_instruction
+    where plan_instruction_key = #{planInstructionKey,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.huasheng.pojo.newpojo.KtPlanInstruction" >
+    insert into kt_plan_instruction (plan_instruction_key, medication_plan_key, 
+      instruction_id, medication_plan_id, the_name, 
+      the_course, the_order, review_required, 
+      drug_ids)
+    values (#{planInstructionKey,jdbcType=VARCHAR}, #{medicationPlanKey,jdbcType=VARCHAR}, 
+      #{instructionId,jdbcType=INTEGER}, #{medicationPlanId,jdbcType=INTEGER}, #{theName,jdbcType=VARCHAR}, 
+      #{theCourse,jdbcType=VARCHAR}, #{theOrder,jdbcType=INTEGER}, #{reviewRequired,jdbcType=BIT}, 
+      #{drugIds,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.huasheng.pojo.newpojo.KtPlanInstruction" >
+    insert into kt_plan_instruction
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="planInstructionKey != null" >
+        plan_instruction_key,
+      </if>
+      <if test="medicationPlanKey != null" >
+        medication_plan_key,
+      </if>
+      <if test="instructionId != null" >
+        instruction_id,
+      </if>
+      <if test="medicationPlanId != null" >
+        medication_plan_id,
+      </if>
+      <if test="theName != null" >
+        the_name,
+      </if>
+      <if test="theCourse != null" >
+        the_course,
+      </if>
+      <if test="theOrder != null" >
+        the_order,
+      </if>
+      <if test="reviewRequired != null" >
+        review_required,
+      </if>
+      <if test="drugIds != null" >
+        drug_ids,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="planInstructionKey != null" >
+        #{planInstructionKey,jdbcType=VARCHAR},
+      </if>
+      <if test="medicationPlanKey != null" >
+        #{medicationPlanKey,jdbcType=VARCHAR},
+      </if>
+      <if test="instructionId != null" >
+        #{instructionId,jdbcType=INTEGER},
+      </if>
+      <if test="medicationPlanId != null" >
+        #{medicationPlanId,jdbcType=INTEGER},
+      </if>
+      <if test="theName != null" >
+        #{theName,jdbcType=VARCHAR},
+      </if>
+      <if test="theCourse != null" >
+        #{theCourse,jdbcType=VARCHAR},
+      </if>
+      <if test="theOrder != null" >
+        #{theOrder,jdbcType=INTEGER},
+      </if>
+      <if test="reviewRequired != null" >
+        #{reviewRequired,jdbcType=BIT},
+      </if>
+      <if test="drugIds != null" >
+        #{drugIds,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huasheng.pojo.newpojo.KtPlanInstruction" >
+    update kt_plan_instruction
+    <set >
+      <if test="medicationPlanKey != null" >
+        medication_plan_key = #{medicationPlanKey,jdbcType=VARCHAR},
+      </if>
+      <if test="instructionId != null" >
+        instruction_id = #{instructionId,jdbcType=INTEGER},
+      </if>
+      <if test="medicationPlanId != null" >
+        medication_plan_id = #{medicationPlanId,jdbcType=INTEGER},
+      </if>
+      <if test="theName != null" >
+        the_name = #{theName,jdbcType=VARCHAR},
+      </if>
+      <if test="theCourse != null" >
+        the_course = #{theCourse,jdbcType=VARCHAR},
+      </if>
+      <if test="theOrder != null" >
+        the_order = #{theOrder,jdbcType=INTEGER},
+      </if>
+      <if test="reviewRequired != null" >
+        review_required = #{reviewRequired,jdbcType=BIT},
+      </if>
+      <if test="drugIds != null" >
+        drug_ids = #{drugIds,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where plan_instruction_key = #{planInstructionKey,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huasheng.pojo.newpojo.KtPlanInstruction" >
+    update kt_plan_instruction
+    set medication_plan_key = #{medicationPlanKey,jdbcType=VARCHAR},
+      instruction_id = #{instructionId,jdbcType=INTEGER},
+      medication_plan_id = #{medicationPlanId,jdbcType=INTEGER},
+      the_name = #{theName,jdbcType=VARCHAR},
+      the_course = #{theCourse,jdbcType=VARCHAR},
+      the_order = #{theOrder,jdbcType=INTEGER},
+      review_required = #{reviewRequired,jdbcType=BIT},
+      drug_ids = #{drugIds,jdbcType=VARCHAR}
+    where plan_instruction_key = #{planInstructionKey,jdbcType=VARCHAR}
+  </update>
+
+  <select id="getPlanInstructionList" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from kt_plan_instruction
+    where medication_plan_key = #{medicationPlanKey,jdbcType=VARCHAR}
+  </select>
+
+  <insert id="insertPlanInstructionList" parameterType="List">
+    INSERT into kt_plan_instruction(plan_instruction_key,medication_plan_key,instruction_id,medication_plan_id,the_name
+    ,the_course,the_order,review_required,drug_ids) VALUES
+    <foreach collection="list" item="item" index="index" separator=",">
+      (#{item.planInstructionKey},#{item.medicationPlanKey},#{item.instructionId},#{item.medicationPlanId},#{item.theName}
+      ,#{item.theCourse},#{item.theOrder},#{item.reviewRequired},#{item.drugIds})
+    </foreach>
+  </insert>
+  <delete id="deleteByMedicationPlanKey" parameterType="java.lang.String" >
+    delete from kt_plan_instruction
+    where medication_plan_key = #{medicationPlanKey,jdbcType=VARCHAR}
+  </delete>
+</mapper>

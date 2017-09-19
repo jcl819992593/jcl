@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huasheng.dao.newdao.KtDrugSynonymDao" >
+  <resultMap id="BaseResultMap" type="com.huasheng.pojo.newpojo.KtDrugSynonym" >
+    <id column="synonym_key" property="synonymKey" jdbcType="VARCHAR" />
+    <result column="drug_key" property="drugKey" jdbcType="VARCHAR" />
+    <result column="drug_id" property="drugId" jdbcType="INTEGER" />
+    <result column="drug_synonym" property="drugSynonym" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    synonym_key, drug_key, drug_id, drug_synonym
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from kt_drug_synonym
+    where synonym_key = #{synonymKey,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from kt_drug_synonym
+    where synonym_key = #{synonymKey,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.huasheng.pojo.newpojo.KtDrugSynonym" >
+    insert into kt_drug_synonym (synonym_key, drug_key, drug_id, 
+      drug_synonym)
+    values (#{synonymKey,jdbcType=VARCHAR}, #{drugKey,jdbcType=VARCHAR}, #{drugId,jdbcType=INTEGER}, 
+      #{drugSynonym,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.huasheng.pojo.newpojo.KtDrugSynonym" >
+    insert into kt_drug_synonym
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="synonymKey != null" >
+        synonym_key,
+      </if>
+      <if test="drugKey != null" >
+        drug_key,
+      </if>
+      <if test="drugId != null" >
+        drug_id,
+      </if>
+      <if test="drugSynonym != null" >
+        drug_synonym,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="synonymKey != null" >
+        #{synonymKey,jdbcType=VARCHAR},
+      </if>
+      <if test="drugKey != null" >
+        #{drugKey,jdbcType=VARCHAR},
+      </if>
+      <if test="drugId != null" >
+        #{drugId,jdbcType=INTEGER},
+      </if>
+      <if test="drugSynonym != null" >
+        #{drugSynonym,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huasheng.pojo.newpojo.KtDrugSynonym" >
+    update kt_drug_synonym
+    <set >
+      <if test="drugKey != null" >
+        drug_key = #{drugKey,jdbcType=VARCHAR},
+      </if>
+      <if test="drugId != null" >
+        drug_id = #{drugId,jdbcType=INTEGER},
+      </if>
+      <if test="drugSynonym != null" >
+        drug_synonym = #{drugSynonym,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where synonym_key = #{synonymKey,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huasheng.pojo.newpojo.KtDrugSynonym" >
+    update kt_drug_synonym
+    set drug_key = #{drugKey,jdbcType=VARCHAR},
+      drug_id = #{drugId,jdbcType=INTEGER},
+      drug_synonym = #{drugSynonym,jdbcType=VARCHAR}
+    where synonym_key = #{synonymKey,jdbcType=VARCHAR}
+  </update>
+  <insert id="addKtDrugSynonymMore" parameterType="List">
+    INSERT into kt_drug_synonym(synonym_key,drug_key,drug_id,drug_synonym) VALUES
+    <foreach collection="list" item="item" index="index" separator=",">
+      (#{item.synonymKey},#{item.drugKey},#{item.drugId},#{item.drugSynonym})
+    </foreach>
+  </insert>
+  <!--根据drugKey查询别名信息-->
+  <select id="selectByDrugKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from kt_drug_synonym
+    where drug_key = #{drugKey,jdbcType=VARCHAR}
+  </select>
+
+  <delete id="deleteByDrugKey" parameterType="java.lang.String" >
+    delete from kt_drug_synonym
+    where drug_key = #{drugKey,jdbcType=VARCHAR}
+  </delete>
+</mapper>

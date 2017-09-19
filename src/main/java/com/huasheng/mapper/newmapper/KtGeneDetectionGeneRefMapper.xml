@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huasheng.dao.newdao.KtGeneDetectionGeneRefDao" >
+  <resultMap id="BaseResultMap" type="com.huasheng.pojo.newpojo.KtGeneDetectionGeneRef" >
+    <id column="detection_key" property="detectionKey" jdbcType="VARCHAR" />
+    <id column="gene_key" property="geneKey" jdbcType="VARCHAR" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="com.huasheng.pojo.newpojo.KtGeneDetectionGeneRef" >
+    delete from kt_gene_detection_gene_ref
+    where detection_key = #{detectionKey,jdbcType=VARCHAR}
+      and gene_key = #{geneKey,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.huasheng.pojo.newpojo.KtGeneDetectionGeneRef" >
+    insert into kt_gene_detection_gene_ref (detection_key, gene_key)
+    values (#{detectionKey,jdbcType=VARCHAR}, #{geneKey,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.huasheng.pojo.newpojo.KtGeneDetectionGeneRef" >
+    insert into kt_gene_detection_gene_ref
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="detectionKey != null" >
+        detection_key,
+      </if>
+      <if test="geneKey != null" >
+        gene_key,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="detectionKey != null" >
+        #{detectionKey,jdbcType=VARCHAR},
+      </if>
+      <if test="geneKey != null" >
+        #{geneKey,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <insert id="insertMore" parameterType="java.util.List">
+    insert into kt_gene_detection_gene_ref (detection_key, gene_key)
+    values
+    <foreach collection="list" item="item" index="index" separator=",">
+      (#{item.detectionKey,jdbcType=VARCHAR}, #{item.geneKey,jdbcType=VARCHAR})
+    </foreach>
+  </insert>
+  <delete id="deleteByDetectionKey" parameterType="java.lang.String">
+    delete from kt_gene_detection_gene_ref
+    where detection_key = #{detectionKey,jdbcType=VARCHAR}
+  </delete>
+</mapper>

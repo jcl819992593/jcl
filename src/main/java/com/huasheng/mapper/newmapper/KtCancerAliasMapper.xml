@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huasheng.dao.newdao.KtCancerAliasDao" >
+  <resultMap id="BaseResultMap" type="com.huasheng.pojo.newpojo.KtCancerAlias" >
+    <id column="cancer_alias_key" property="cancerAliasKey" jdbcType="VARCHAR" />
+    <result column="cancer_key" property="cancerKey" jdbcType="VARCHAR" />
+    <result column="doid" property="doid" jdbcType="INTEGER" />
+    <result column="pingyin" property="pingyin" jdbcType="VARCHAR" />
+    <result column="alias_name" property="aliasName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    cancer_alias_key, cancer_key, doid, pingyin, alias_name
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from kt_cancer_alias
+    where cancer_alias_key = #{cancerAliasKey,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from kt_cancer_alias
+    where cancer_alias_key = #{cancerAliasKey,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.huasheng.pojo.newpojo.KtCancerAlias" >
+    insert into kt_cancer_alias (cancer_alias_key, cancer_key, doid, 
+      pingyin, alias_name)
+    values (#{cancerAliasKey,jdbcType=VARCHAR}, #{cancerKey,jdbcType=VARCHAR}, #{doid,jdbcType=INTEGER}, 
+      #{pingyin,jdbcType=VARCHAR}, #{aliasName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.huasheng.pojo.newpojo.KtCancerAlias" >
+    insert into kt_cancer_alias
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="cancerAliasKey != null" >
+        cancer_alias_key,
+      </if>
+      <if test="cancerKey != null" >
+        cancer_key,
+      </if>
+      <if test="doid != null" >
+        doid,
+      </if>
+      <if test="pingyin != null" >
+        pingyin,
+      </if>
+      <if test="aliasName != null" >
+        alias_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="cancerAliasKey != null" >
+        #{cancerAliasKey,jdbcType=VARCHAR},
+      </if>
+      <if test="cancerKey != null" >
+        #{cancerKey,jdbcType=VARCHAR},
+      </if>
+      <if test="doid != null" >
+        #{doid,jdbcType=INTEGER},
+      </if>
+      <if test="pingyin != null" >
+        #{pingyin,jdbcType=VARCHAR},
+      </if>
+      <if test="aliasName != null" >
+        #{aliasName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huasheng.pojo.newpojo.KtCancerAlias" >
+    update kt_cancer_alias
+    <set >
+      <if test="cancerKey != null" >
+        cancer_key = #{cancerKey,jdbcType=VARCHAR},
+      </if>
+      <if test="doid != null" >
+        doid = #{doid,jdbcType=INTEGER},
+      </if>
+      <if test="pingyin != null" >
+        pingyin = #{pingyin,jdbcType=VARCHAR},
+      </if>
+      <if test="aliasName != null" >
+        alias_name = #{aliasName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where cancer_alias_key = #{cancerAliasKey,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huasheng.pojo.newpojo.KtCancerAlias" >
+    update kt_cancer_alias
+    set cancer_key = #{cancerKey,jdbcType=VARCHAR},
+      doid = #{doid,jdbcType=INTEGER},
+      pingyin = #{pingyin,jdbcType=VARCHAR},
+      alias_name = #{aliasName,jdbcType=VARCHAR}
+    where cancer_alias_key = #{cancerAliasKey,jdbcType=VARCHAR}
+  </update>
+
+  <select id="selectByCancerKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from kt_cancer_alias
+    where cancer_key = #{cancerKey,jdbcType=VARCHAR}
+  </select>
+
+  <insert id="insertList" parameterType="java.util.List">
+    INSERT INTO kt_cancer_alias (cancer_alias_key, cancer_key, doid, pingyin, alias_name) VALUES
+    <foreach collection="list" index="index"  separator="," item="rel" >
+      (#{rel.cancerAliasKey,jdbcType=VARCHAR}, #{rel.cancerKey,jdbcType=VARCHAR}, #{rel.doid,jdbcType=INTEGER},
+      #{rel.pingyin,jdbcType=VARCHAR}, #{rel.aliasName,jdbcType=VARCHAR})
+    </foreach>
+  </insert>
+  <delete id="deleteByCancerKey" parameterType="java.lang.String" >
+    delete from kt_cancer_alias
+    where cancer_key = #{cancerKey,jdbcType=VARCHAR}
+  </delete>
+</mapper>

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huasheng.dao.newdao.KtDrugKeggPathwayDao" >
+  <resultMap id="BaseResultMap" type="com.huasheng.pojo.newpojo.KtDrugKeggPathway" >
+    <id column="drug_key" property="drugKey" jdbcType="VARCHAR" />
+    <id column="pathway_key" property="pathwayKey" jdbcType="VARCHAR" />
+    <result column="drug_id" property="drugId" jdbcType="INTEGER" />
+    <result column="kegg_id" property="keggId" jdbcType="VARCHAR" />
+    <result column="pathway_name" property="pathwayName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    drug_key, pathway_key, drug_id, kegg_id, pathway_name
+  </sql>
+  <insert id="insert" parameterType="com.huasheng.pojo.newpojo.KtDrugKeggPathway" >
+    insert into kt_drug_kegg_pathway (drug_key, pathway_key, drug_id, 
+      kegg_id, pathway_name)
+    values (#{drugKey,jdbcType=VARCHAR}, #{pathwayKey,jdbcType=VARCHAR}, #{drugId,jdbcType=INTEGER}, 
+      #{keggId,jdbcType=VARCHAR}, #{pathwayName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.huasheng.pojo.newpojo.KtDrugKeggPathway" >
+    insert into kt_drug_kegg_pathway
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="drugKey != null" >
+        drug_key,
+      </if>
+      <if test="pathwayKey != null" >
+        pathway_key,
+      </if>
+      <if test="drugId != null" >
+        drug_id,
+      </if>
+      <if test="keggId != null" >
+        kegg_id,
+      </if>
+      <if test="pathwayName != null" >
+        pathway_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="drugKey != null" >
+        #{drugKey,jdbcType=VARCHAR},
+      </if>
+      <if test="pathwayKey != null" >
+        #{pathwayKey,jdbcType=VARCHAR},
+      </if>
+      <if test="drugId != null" >
+        #{drugId,jdbcType=INTEGER},
+      </if>
+      <if test="keggId != null" >
+        #{keggId,jdbcType=VARCHAR},
+      </if>
+      <if test="pathwayName != null" >
+        #{pathwayName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huasheng.pojo.newpojo.KtDrugKeggPathway" >
+    update kt_drug_kegg_pathway
+    <set >
+      <if test="drugId != null" >
+        drug_id = #{drugId,jdbcType=INTEGER},
+      </if>
+      <if test="keggId != null" >
+        kegg_id = #{keggId,jdbcType=VARCHAR},
+      </if>
+      <if test="pathwayName != null" >
+        pathway_name = #{pathwayName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where drug_key = #{drugKey,jdbcType=VARCHAR}
+      and pathway_key = #{pathwayKey,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huasheng.pojo.newpojo.KtDrugKeggPathway" >
+    update kt_drug_kegg_pathway
+    set drug_id = #{drugId,jdbcType=INTEGER},
+      kegg_id = #{keggId,jdbcType=VARCHAR},
+      pathway_name = #{pathwayName,jdbcType=VARCHAR}
+    where drug_key = #{drugKey,jdbcType=VARCHAR}
+      and pathway_key = #{pathwayKey,jdbcType=VARCHAR}
+  </update>
+
+  <insert id="addKtDrugKeggPathwayMore" parameterType="java.util.List">
+    INSERT INTO kt_drug_kegg_pathway (drug_key,pathway_key,drug_id,kegg_id,pathway_name) VALUES
+    <foreach collection="list" item="item" index="index" separator=",">
+      (#{item.drugKey},#{item.pathwayKey},#{item.drugId},#{item.keggId},#{item.pathwayName})
+    </foreach>
+
+  </insert>
+
+  <select id="selectByDrugKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from kt_drug_kegg_pathway
+    where drug_key = #{drugKey,jdbcType=VARCHAR}
+    ORDER BY
+    kegg_id ASC
+  </select>
+
+  <delete id="deleteByDrugKey" parameterType="java.lang.String" >
+    delete from kt_drug_kegg_pathway
+    where drug_key = #{drugKey,jdbcType=VARCHAR}
+  </delete>
+</mapper>

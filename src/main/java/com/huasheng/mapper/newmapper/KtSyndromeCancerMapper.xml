@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huasheng.dao.newdao.KtSyndromeCancerDao" >
+  <resultMap id="BaseResultMap" type="com.huasheng.pojo.newpojo.KtSyndromeCancer" >
+    <id column="syndrome_key" property="syndromeKey" jdbcType="VARCHAR" />
+    <id column="cancer_key" property="cancerKey" jdbcType="VARCHAR" />
+    <result column="cancer_id" property="cancerId" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    syndrome_key, cancer_key, cancer_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.huasheng.pojo.newpojo.KtSyndromeCancer" >
+    select 
+    <include refid="Base_Column_List" />
+    from kt_syndrome_cancer
+    where syndrome_key = #{syndromeKey,jdbcType=VARCHAR}
+      and cancer_key = #{cancerKey,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.huasheng.pojo.newpojo.KtSyndromeCancer" >
+    delete from kt_syndrome_cancer
+    where syndrome_key = #{syndromeKey,jdbcType=VARCHAR}
+      and cancer_key = #{cancerKey,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.huasheng.pojo.newpojo.KtSyndromeCancer" >
+    insert into kt_syndrome_cancer (syndrome_key, cancer_key, cancer_id
+      )
+    values (#{syndromeKey,jdbcType=VARCHAR}, #{cancerKey,jdbcType=VARCHAR}, #{cancerId,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.huasheng.pojo.newpojo.KtSyndromeCancer" >
+    insert into kt_syndrome_cancer
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="syndromeKey != null" >
+        syndrome_key,
+      </if>
+      <if test="cancerKey != null" >
+        cancer_key,
+      </if>
+      <if test="cancerId != null" >
+        cancer_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="syndromeKey != null" >
+        #{syndromeKey,jdbcType=VARCHAR},
+      </if>
+      <if test="cancerKey != null" >
+        #{cancerKey,jdbcType=VARCHAR},
+      </if>
+      <if test="cancerId != null" >
+        #{cancerId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huasheng.pojo.newpojo.KtSyndromeCancer" >
+    update kt_syndrome_cancer
+    <set >
+      <if test="cancerId != null" >
+        cancer_id = #{cancerId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where syndrome_key = #{syndromeKey,jdbcType=VARCHAR}
+      and cancer_key = #{cancerKey,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huasheng.pojo.newpojo.KtSyndromeCancer" >
+    update kt_syndrome_cancer
+    set cancer_id = #{cancerId,jdbcType=INTEGER}
+    where syndrome_key = #{syndromeKey,jdbcType=VARCHAR}
+      and cancer_key = #{cancerKey,jdbcType=VARCHAR}
+  </update>
+  <insert id="insertMore" parameterType="List">
+     insert into kt_syndrome_cancer (syndrome_key, cancer_key, cancer_id
+      )
+    values
+     <foreach collection="list" item="item" index="index" separator=",">
+     (#{item.syndromeKey,jdbcType=VARCHAR}, #{item.cancerKey,jdbcType=VARCHAR}, #{item.cancerId,jdbcType=INTEGER}
+      )
+     </foreach>
+  </insert>
+
+  <select id="getSyndromeCancerList" resultMap="BaseResultMap" parameterType="com.huasheng.pojo.newpojo.KtSyndromeCancer" >
+    select
+    <include refid="Base_Column_List" />
+    from kt_syndrome_cancer
+    where syndrome_key = #{syndromeKey,jdbcType=VARCHAR}
+  </select>
+
+  <delete id="deleteByKey" parameterType="String" >
+    delete from kt_syndrome_cancer
+    where syndrome_key = #{syndromeKey,jdbcType=VARCHAR}
+  </delete>
+</mapper>

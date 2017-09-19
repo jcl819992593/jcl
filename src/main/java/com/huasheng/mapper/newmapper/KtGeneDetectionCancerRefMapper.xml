@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huasheng.dao.newdao.KtGeneDetectionCancerRefDao" >
+  <resultMap id="BaseResultMap" type="com.huasheng.pojo.newpojo.KtGeneDetectionCancerRef" >
+    <id column="detection_key" property="detectionKey" jdbcType="VARCHAR" />
+    <id column="cancer_key" property="cancerKey" jdbcType="VARCHAR" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="com.huasheng.pojo.newpojo.KtGeneDetectionCancerRef" >
+    delete from kt_gene_detection_cancer_ref
+    where detection_key = #{detectionKey,jdbcType=VARCHAR}
+      and cancer_key = #{cancerKey,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.huasheng.pojo.newpojo.KtGeneDetectionCancerRef" >
+    insert into kt_gene_detection_cancer_ref (detection_key, cancer_key)
+    values (#{detectionKey,jdbcType=VARCHAR}, #{cancerKey,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.huasheng.pojo.newpojo.KtGeneDetectionCancerRef" >
+    insert into kt_gene_detection_cancer_ref
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="detectionKey != null" >
+        detection_key,
+      </if>
+      <if test="cancerKey != null" >
+        cancer_key,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="detectionKey != null" >
+        #{detectionKey,jdbcType=VARCHAR},
+      </if>
+      <if test="cancerKey != null" >
+        #{cancerKey,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <insert id="insertMore" parameterType="java.util.List">
+    insert into kt_gene_detection_cancer_ref (detection_key, cancer_key)
+    values
+    <foreach collection="list" item="item" index="index" separator=",">
+      (#{item.detectionKey,jdbcType=VARCHAR}, #{item.cancerKey,jdbcType=VARCHAR})
+    </foreach>
+  </insert>
+  <delete id="deleteByDetectionKey" parameterType="java.lang.String">
+    delete from kt_gene_detection_cancer_ref
+    where detection_key = #{detectionKey,jdbcType=VARCHAR}
+  </delete>
+</mapper>

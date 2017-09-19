@@ -19,14 +19,34 @@
     <!-- 加载配置文件 -->
     <context:property-placeholder location="classpath:resource/*.properties" />
     <!-- 数据库连接池 -->
-    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
+    <bean id="oldDataSource" class="com.alibaba.druid.pool.DruidDataSource"
           destroy-method="close">
-        <property name="url" value="${jdbc.url}" />
-        <property name="username" value="${jdbc.username}" />
-        <property name="password" value="${jdbc.password}" />
-        <property name="driverClassName" value="${jdbc.driver}" />
+        <property name="url" value="${jdbc.url.old}" />
+        <property name="username" value="${jdbc.username.old}" />
+        <property name="password" value="${jdbc.password.old}" />
+        <property name="driverClassName" value="${jdbc.driver.old}" />
         <property name="maxActive" value="10" />
         <property name="minIdle" value="5" />
+    </bean>
+
+    <bean id="newDataSource" class="com.alibaba.druid.pool.DruidDataSource"
+          destroy-method="close">
+        <property name="url" value="${jdbc.url.new}" />
+        <property name="username" value="${jdbc.username.new}" />
+        <property name="password" value="${jdbc.password.new}" />
+        <property name="driverClassName" value="${jdbc.driver.new}" />
+        <property name="maxActive" value="10" />
+        <property name="minIdle" value="5" />
+    </bean>
+
+    <bean id="dataSource" class="com.huasheng.datasource.DbcontextHolder"><!-- 这里写选择数据源的类地址 下面跟着给出-->
+        <property name="defaultTargetDataSource" ref="newDataSource"/><!-- 设置默认为此mySqlDataSource数据源-->
+        <property name="targetDataSources">
+            <map>
+                <entry key="oldDataSource" value-ref="oldDataSource"/>
+                <entry key="newDataSource" value-ref="newDataSource"/>
+            </map>
+        </property>
     </bean>
     <!-- mybatis和spring完美整合，不需要mybatis的配置映射文件 -->
     <!-- 配置sqlsessionFactory -->
@@ -36,14 +56,15 @@
         <!--扫描mapper下面的所有xml文件-->
         <property name="mapperLocations">
             <list>
-                <value>classpath:com/huasheng/mapper/*.xml</value>
+                <value>classpath:com/huasheng/mapper/newmapper/*.xml</value>
+                <value>classpath:com/huasheng/mapper/oldmapper/*.xml</value>
             </list>
         </property>
     </bean>
 
     <!-- DAO接口所在包名，Spring会自动查找其下的类 -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.huasheng.dao"/>
+        <property name="basePackage" value="com.huasheng.dao.newdao,com.huasheng.dao.olddao"/>
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
     </bean>
 

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huasheng.dao.newdao.KtPlanCancerDao" >
+  <resultMap id="BaseResultMap" type="com.huasheng.pojo.newpojo.KtPlanCancer" >
+    <id column="medication_plan_key" property="medicationPlanKey" jdbcType="VARCHAR" />
+    <id column="cancer_key" property="cancerKey" jdbcType="VARCHAR" />
+    <result column="medicine_plan_id" property="medicinePlanId" jdbcType="INTEGER" />
+    <result column="doid" property="doid" jdbcType="INTEGER" />
+    <result column="doid_name" property="doidName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    medication_plan_key, cancer_key, medicine_plan_id, doid, doid_name
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.huasheng.pojo.newpojo.KtPlanCancer" >
+    select 
+    <include refid="Base_Column_List" />
+    from kt_plan_cancer
+    where medication_plan_key = #{medicationPlanKey,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.huasheng.pojo.newpojo.KtPlanCancer" >
+    delete from kt_plan_cancer
+    where medication_plan_key = #{medicationPlanKey,jdbcType=VARCHAR}
+      and cancer_key = #{cancerKey,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.huasheng.pojo.newpojo.KtPlanCancer" >
+    insert into kt_plan_cancer (medication_plan_key, cancer_key, medicine_plan_id, 
+      doid, doid_name)
+    values (#{medicationPlanKey,jdbcType=VARCHAR}, #{cancerKey,jdbcType=VARCHAR}, #{medicinePlanId,jdbcType=INTEGER}, 
+      #{doid,jdbcType=INTEGER}, #{doidName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.huasheng.pojo.newpojo.KtPlanCancer" >
+    insert into kt_plan_cancer
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="medicationPlanKey != null" >
+        medication_plan_key,
+      </if>
+      <if test="cancerKey != null" >
+        cancer_key,
+      </if>
+      <if test="medicinePlanId != null" >
+        medicine_plan_id,
+      </if>
+      <if test="doid != null" >
+        doid,
+      </if>
+      <if test="doidName != null" >
+        doid_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="medicationPlanKey != null" >
+        #{medicationPlanKey,jdbcType=VARCHAR},
+      </if>
+      <if test="cancerKey != null" >
+        #{cancerKey,jdbcType=VARCHAR},
+      </if>
+      <if test="medicinePlanId != null" >
+        #{medicinePlanId,jdbcType=INTEGER},
+      </if>
+      <if test="doid != null" >
+        #{doid,jdbcType=INTEGER},
+      </if>
+      <if test="doidName != null" >
+        #{doidName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huasheng.pojo.newpojo.KtPlanCancer" >
+    update kt_plan_cancer
+    <set >
+      <if test="medicinePlanId != null" >
+        medicine_plan_id = #{medicinePlanId,jdbcType=INTEGER},
+      </if>
+      <if test="doid != null" >
+        doid = #{doid,jdbcType=INTEGER},
+      </if>
+      <if test="doidName != null" >
+        doid_name = #{doidName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where medication_plan_key = #{medicationPlanKey,jdbcType=VARCHAR}
+      and cancer_key = #{cancerKey,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huasheng.pojo.newpojo.KtPlanCancer" >
+    update kt_plan_cancer
+    set medicine_plan_id = #{medicinePlanId,jdbcType=INTEGER},
+      doid = #{doid,jdbcType=INTEGER},
+      doid_name = #{doidName,jdbcType=VARCHAR},
+    cancer_key = #{cancerKey,jdbcType=VARCHAR}
+    where medication_plan_key = #{medicationPlanKey,jdbcType=VARCHAR}
+  </update>
+
+  <select id="getPlanCancerListByKey" resultMap="BaseResultMap" parameterType="com.huasheng.pojo.newpojo.KtPlanCancer" >
+    select
+    <include refid="Base_Column_List" />
+    from kt_plan_cancer
+    where medication_plan_key = #{medicationPlanKey,jdbcType=VARCHAR}
+  </select>
+</mapper>

@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huasheng.dao.newdao.KtSyndromeGeneCancerDao" >
+  <resultMap id="BaseResultMap" type="com.huasheng.pojo.newpojo.KtSyndromeGeneCancer" >
+    <id column="syndrome_key" property="syndromeKey" jdbcType="VARCHAR" />
+    <result column="en_name" property="enName" jdbcType="VARCHAR" />
+    <result column="cn_name" property="cnName" jdbcType="VARCHAR" />
+    <result column="short_name" property="shortName" jdbcType="VARCHAR" />
+    <result column="the_description" property="theDescription" jdbcType="VARCHAR" />
+    <result column="the_source" property="theSource" jdbcType="VARCHAR" />
+    <result column="created_at" property="createdAt" jdbcType="BIGINT" />
+    <result column="created_way" property="createdWay" jdbcType="INTEGER" />
+    <result column="created_by_key" property="createdByKey" jdbcType="CHAR" />
+    <result column="created_by_name" property="createdByName" jdbcType="VARCHAR" />
+    <result column="check_state" property="checkState" jdbcType="INTEGER" />
+    <result column="check_report" property="checkReport" jdbcType="VARCHAR" />
+    <result column="checked_by_key" property="checkedByKey" jdbcType="CHAR" />
+    <result column="checked_by_name" property="checkedByName" jdbcType="VARCHAR" />
+    <result column="translate_by_key" property="translateByKey" jdbcType="CHAR" />
+    <result column="translate_by_name" property="translateByName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    syndrome_key, en_name, cn_name, short_name, the_description, the_source, created_at, 
+    created_way, created_by_key, created_by_name, check_state, check_report, checked_by_key, 
+    checked_by_name, translate_by_key, translate_by_name
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from kt_syndrome_gene_cancer
+    where syndrome_key = #{syndromeKey,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from kt_syndrome_gene_cancer
+    where syndrome_key = #{syndromeKey,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.huasheng.pojo.newpojo.KtSyndromeGeneCancer" >
+    insert into kt_syndrome_gene_cancer (syndrome_key, en_name, cn_name, 
+      short_name, the_description, the_source, 
+      created_at, created_way, created_by_key, 
+      created_by_name, check_state, check_report, 
+      checked_by_key, checked_by_name, translate_by_key, 
+      translate_by_name)
+    values (#{syndromeKey,jdbcType=VARCHAR}, #{enName,jdbcType=VARCHAR}, #{cnName,jdbcType=VARCHAR}, 
+      #{shortName,jdbcType=VARCHAR}, #{theDescription,jdbcType=VARCHAR}, #{theSource,jdbcType=VARCHAR}, 
+      #{createdAt,jdbcType=BIGINT}, #{createdWay,jdbcType=INTEGER}, #{createdByKey,jdbcType=CHAR}, 
+      #{createdByName,jdbcType=VARCHAR}, #{checkState,jdbcType=INTEGER}, #{checkReport,jdbcType=VARCHAR}, 
+      #{checkedByKey,jdbcType=CHAR}, #{checkedByName,jdbcType=VARCHAR}, #{translateByKey,jdbcType=CHAR}, 
+      #{translateByName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.huasheng.pojo.newpojo.KtSyndromeGeneCancer" >
+    insert into kt_syndrome_gene_cancer
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="syndromeKey != null" >
+        syndrome_key,
+      </if>
+      <if test="enName != null" >
+        en_name,
+      </if>
+      <if test="cnName != null" >
+        cn_name,
+      </if>
+      <if test="shortName != null" >
+        short_name,
+      </if>
+      <if test="theDescription != null" >
+        the_description,
+      </if>
+      <if test="theSource != null" >
+        the_source,
+      </if>
+      <if test="createdAt != null" >
+        created_at,
+      </if>
+      <if test="createdWay != null" >
+        created_way,
+      </if>
+      <if test="createdByKey != null" >
+        created_by_key,
+      </if>
+      <if test="createdByName != null" >
+        created_by_name,
+      </if>
+      <if test="checkState != null" >
+        check_state,
+      </if>
+      <if test="checkReport != null" >
+        check_report,
+      </if>
+      <if test="checkedByKey != null" >
+        checked_by_key,
+      </if>
+      <if test="checkedByName != null" >
+        checked_by_name,
+      </if>
+      <if test="translateByKey != null" >
+        translate_by_key,
+      </if>
+      <if test="translateByName != null" >
+        translate_by_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="syndromeKey != null" >
+        #{syndromeKey,jdbcType=VARCHAR},
+      </if>
+      <if test="enName != null" >
+        #{enName,jdbcType=VARCHAR},
+      </if>
+      <if test="cnName != null" >
+        #{cnName,jdbcType=VARCHAR},
+      </if>
+      <if test="shortName != null" >
+        #{shortName,jdbcType=VARCHAR},
+      </if>
+      <if test="theDescription != null" >
+        #{theDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="theSource != null" >
+        #{theSource,jdbcType=VARCHAR},
+      </if>
+      <if test="createdAt != null" >
+        #{createdAt,jdbcType=BIGINT},
+      </if>
+      <if test="createdWay != null" >
+        #{createdWay,jdbcType=INTEGER},
+      </if>
+      <if test="createdByKey != null" >
+        #{createdByKey,jdbcType=CHAR},
+      </if>
+      <if test="createdByName != null" >
+        #{createdByName,jdbcType=VARCHAR},
+      </if>
+      <if test="checkState != null" >
+        #{checkState,jdbcType=INTEGER},
+      </if>
+      <if test="checkReport != null" >
+        #{checkReport,jdbcType=VARCHAR},
+      </if>
+      <if test="checkedByKey != null" >
+        #{checkedByKey,jdbcType=CHAR},
+      </if>
+      <if test="checkedByName != null" >
+        #{checkedByName,jdbcType=VARCHAR},
+      </if>
+      <if test="translateByKey != null" >
+        #{translateByKey,jdbcType=CHAR},
+      </if>
+      <if test="translateByName != null" >
+        #{translateByName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huasheng.pojo.newpojo.KtSyndromeGeneCancer" >
+    update kt_syndrome_gene_cancer
+    <set >
+      <if test="enName != null" >
+        en_name = #{enName,jdbcType=VARCHAR},
+      </if>
+      <if test="cnName != null" >
+        cn_name = #{cnName,jdbcType=VARCHAR},
+      </if>
+      <if test="shortName != null" >
+        short_name = #{shortName,jdbcType=VARCHAR},
+      </if>
+      <if test="theDescription != null" >
+        the_description = #{theDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="theSource != null" >
+        the_source = #{theSource,jdbcType=VARCHAR},
+      </if>
+      <if test="createdAt != null" >
+        created_at = #{createdAt,jdbcType=BIGINT},
+      </if>
+      <if test="createdWay != null" >
+        created_way = #{createdWay,jdbcType=INTEGER},
+      </if>
+      <if test="createdByKey != null" >
+        created_by_key = #{createdByKey,jdbcType=CHAR},
+      </if>
+      <if test="createdByName != null" >
+        created_by_name = #{createdByName,jdbcType=VARCHAR},
+      </if>
+      <if test="checkState != null" >
+        check_state = #{checkState,jdbcType=INTEGER},
+      </if>
+      <if test="checkReport != null" >
+        check_report = #{checkReport,jdbcType=VARCHAR},
+      </if>
+      <if test="checkedByKey != null" >
+        checked_by_key = #{checkedByKey,jdbcType=CHAR},
+      </if>
+      <if test="checkedByName != null" >
+        checked_by_name = #{checkedByName,jdbcType=VARCHAR},
+      </if>
+      <if test="translateByKey != null" >
+        translate_by_key = #{translateByKey,jdbcType=CHAR},
+      </if>
+      <if test="translateByName != null" >
+        translate_by_name = #{translateByName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where syndrome_key = #{syndromeKey,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huasheng.pojo.newpojo.KtSyndromeGeneCancer" >
+    update kt_syndrome_gene_cancer
+    set en_name = #{enName,jdbcType=VARCHAR},
+      cn_name = #{cnName,jdbcType=VARCHAR},
+      short_name = #{shortName,jdbcType=VARCHAR},
+      the_description = #{theDescription,jdbcType=VARCHAR},
+      the_source = #{theSource,jdbcType=VARCHAR},
+      created_at = #{createdAt,jdbcType=BIGINT},
+      created_way = #{createdWay,jdbcType=INTEGER},
+      created_by_key = #{createdByKey,jdbcType=CHAR},
+      created_by_name = #{createdByName,jdbcType=VARCHAR},
+    <if test="checkReport!='' and checkReport != null" >
+      check_report = #{checkReport,jdbcType=VARCHAR},
+    </if>
+    <if test="checkedByKey!='' and checkedByKey != null" >
+      checked_by_key = #{checkedByKey,jdbcType=CHAR},
+    </if>
+    <if test="checkedByName!='' and checkedByName != null" >
+      checked_by_name = #{checkedByName,jdbcType=VARCHAR},
+    </if>
+    <if test="translateByKey!='' and translateByKey != null">
+      translate_by_key = #{translateByKey,jdbcType=CHAR},
+    </if>
+    <if test="translateByName!='' and translateByName != null">
+      translate_by_name = #{translateByName,jdbcType=VARCHAR},
+    </if>
+    check_state = #{checkState,jdbcType=INTEGER}
+    where syndrome_key = #{syndromeKey,jdbcType=VARCHAR}
+  </update>
+  <select id="getSyndromeGeneCancerList" parameterType="Map" resultType="Map" >
+   SELECT
+    a.syndrome_key  syndromeKey,
+	  en_name  enName,
+      cn_name  cnName,
+      short_name  shortName,
+      the_description  theDescription,
+      the_source  theSource,
+      created_at  createdAt,
+      created_way  createdWay,
+      created_by_key  createdByKey,
+      created_by_name  createdByName,
+      check_state  checkState,
+      check_report  checkReport,
+      checked_by_key  checkedByKey,
+      checked_by_name  checkedByName,
+      translate_by_key  translateByKey,
+      translate_by_name  translateByName,
+      GROUP_CONCAT(DISTINCT b.gene_id SEPARATOR ',' ) geneId,
+     GROUP_CONCAT(DISTINCT c.cancer_id SEPARATOR ',' ) cancerId
+    FROM
+	kt_syndrome_gene_cancer a
+   LEFT JOIN kt_syndrome_gene b ON a.syndrome_key = b.syndrome_key
+   LEFT JOIN kt_syndrome_cancer c ON a.syndrome_key = c.syndrome_key
+   WHERE
+	1 =1
+
+    <if test="enName!='' and enName!=null">
+      and en_name like CONCAT('%',#{enName},'%')
+    </if>
+    <if test="cnName!='' and cnName!=null">
+      and cn_name like CONCAT('%',#{cnName},'%')
+    </if>
+    <if test="checkState!='' and checkState!=null">
+      and check_state=#{checkState}
+    </if>
+    <if test="createdWay!='' and createdWay!=null" >
+      AND created_way =#{createdWay}
+    </if>
+    GROUP BY a.syndrome_key
+    ORDER BY a.created_at desc
+
+  </select>
+<update id="updateCheckState" parameterType="com.huasheng.pojo.newpojo.KtSyndromeGeneCancer">
+  update kt_syndrome_gene_cancer
+    set
+    check_state = #{checkState,jdbcType=BIGINT},
+    checked_by_key = #{checkedByKey,jdbcType=CHAR},
+    checked_by_name = #{checkedByName,jdbcType=VARCHAR},
+    check_report = #{checkReport}
+    where syndrome_key = #{syndromeKey,jdbcType=VARCHAR}
+</update>
+<select id="getSyndromeCount" resultType="Integer" parameterType="Map">
+  SELECT count(syndrome_key) from kt_syndrome_gene_cancer where created_way =#{createdWay} and check_state=#{checkState}
+</select>
+
+  <select id="getSyndromeCountMonth" resultType="Integer" parameterType="Map">
+    SELECT count(syndrome_key) from kt_syndrome_gene_cancer where (created_at BETWEEN #{firstTime} and #{currentTime}) AND created_way =#{createdWay} and check_state=#{checkState}
+  </select>
+
+  <delete id="deleteAllSyndrome" >
+    delete from kt_syndrome_gene_cancer
+  </delete>
+</mapper>

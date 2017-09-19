@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huasheng.dao.newdao.KtIndicationDao" >
+  <resultMap id="BaseResultMap" type="com.huasheng.pojo.newpojo.KtIndication" >
+    <id column="indication_key" property="indicationKey" jdbcType="VARCHAR" />
+    <result column="stitch_compound_id" property="stitchCompoundId" jdbcType="VARCHAR" />
+    <result column="umls_concept_id" property="umlsConceptId" jdbcType="VARCHAR" />
+    <result column="method_of_detection" property="methodOfDetection" jdbcType="VARCHAR" />
+    <result column="concept_name" property="conceptName" jdbcType="VARCHAR" />
+    <result column="meddra_concept_type" property="meddraConceptType" jdbcType="VARCHAR" />
+    <result column="umls_concept_id_of_meddra" property="umlsConceptIdOfMeddra" jdbcType="VARCHAR" />
+    <result column="meddra_concept_name" property="meddraConceptName" jdbcType="VARCHAR" />
+    <result column="created_at" property="createdAt" jdbcType="BIGINT" />
+    <result column="created_way" property="createdWay" jdbcType="INTEGER" />
+    <result column="created_by_key" property="createdByKey" jdbcType="CHAR" />
+    <result column="created_by_name" property="createdByName" jdbcType="VARCHAR" />
+    <result column="check_state" property="checkState" jdbcType="INTEGER" />
+    <result column="check_report" property="checkReport" jdbcType="VARCHAR" />
+    <result column="checked_by_key" property="checkedByKey" jdbcType="CHAR" />
+    <result column="checked_by_name" property="checkedByName" jdbcType="VARCHAR" />
+    <result column="translate_by_key" property="translateByKey" jdbcType="CHAR" />
+    <result column="translate_by_name" property="translateByName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    indication_key, stitch_compound_id, umls_concept_id, method_of_detection, concept_name, 
+    meddra_concept_type, umls_concept_id_of_meddra, meddra_concept_name, created_at, 
+    created_way, created_by_key, created_by_name, check_state, check_report, checked_by_key, 
+    checked_by_name, translate_by_key, translate_by_name
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from kt_indication
+    where indication_key = #{indicationKey,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from kt_indication
+    where indication_key = #{indicationKey,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.huasheng.pojo.newpojo.KtIndication" >
+    insert into kt_indication (indication_key, stitch_compound_id, 
+      umls_concept_id, method_of_detection, concept_name, 
+      meddra_concept_type, umls_concept_id_of_meddra, 
+      meddra_concept_name, created_at, created_way, 
+      created_by_key, created_by_name, check_state, 
+      check_report, checked_by_key, checked_by_name, 
+      translate_by_key, translate_by_name)
+    values (#{indicationKey,jdbcType=VARCHAR}, #{stitchCompoundId,jdbcType=VARCHAR}, 
+      #{umlsConceptId,jdbcType=VARCHAR}, #{methodOfDetection,jdbcType=VARCHAR}, #{conceptName,jdbcType=VARCHAR}, 
+      #{meddraConceptType,jdbcType=VARCHAR}, #{umlsConceptIdOfMeddra,jdbcType=VARCHAR}, 
+      #{meddraConceptName,jdbcType=VARCHAR}, #{createdAt,jdbcType=BIGINT}, #{createdWay,jdbcType=INTEGER}, 
+      #{createdByKey,jdbcType=CHAR}, #{createdByName,jdbcType=VARCHAR}, #{checkState,jdbcType=INTEGER}, 
+      #{checkReport,jdbcType=VARCHAR}, #{checkedByKey,jdbcType=CHAR}, #{checkedByName,jdbcType=VARCHAR}, 
+      #{translateByKey,jdbcType=CHAR}, #{translateByName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.huasheng.pojo.newpojo.KtIndication" >
+    insert into kt_indication
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="indicationKey != null" >
+        indication_key,
+      </if>
+      <if test="stitchCompoundId != null" >
+        stitch_compound_id,
+      </if>
+      <if test="umlsConceptId != null" >
+        umls_concept_id,
+      </if>
+      <if test="methodOfDetection != null" >
+        method_of_detection,
+      </if>
+      <if test="conceptName != null" >
+        concept_name,
+      </if>
+      <if test="meddraConceptType != null" >
+        meddra_concept_type,
+      </if>
+      <if test="umlsConceptIdOfMeddra != null" >
+        umls_concept_id_of_meddra,
+      </if>
+      <if test="meddraConceptName != null" >
+        meddra_concept_name,
+      </if>
+      <if test="createdAt != null" >
+        created_at,
+      </if>
+      <if test="createdWay != null" >
+        created_way,
+      </if>
+      <if test="createdByKey != null" >
+        created_by_key,
+      </if>
+      <if test="createdByName != null" >
+        created_by_name,
+      </if>
+      <if test="checkState != null" >
+        check_state,
+      </if>
+      <if test="checkReport != null" >
+        check_report,
+      </if>
+      <if test="checkedByKey != null" >
+        checked_by_key,
+      </if>
+      <if test="checkedByName != null" >
+        checked_by_name,
+      </if>
+      <if test="translateByKey != null" >
+        translate_by_key,
+      </if>
+      <if test="translateByName != null" >
+        translate_by_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="indicationKey != null" >
+        #{indicationKey,jdbcType=VARCHAR},
+      </if>
+      <if test="stitchCompoundId != null" >
+        #{stitchCompoundId,jdbcType=VARCHAR},
+      </if>
+      <if test="umlsConceptId != null" >
+        #{umlsConceptId,jdbcType=VARCHAR},
+      </if>
+      <if test="methodOfDetection != null" >
+        #{methodOfDetection,jdbcType=VARCHAR},
+      </if>
+      <if test="conceptName != null" >
+        #{conceptName,jdbcType=VARCHAR},
+      </if>
+      <if test="meddraConceptType != null" >
+        #{meddraConceptType,jdbcType=VARCHAR},
+      </if>
+      <if test="umlsConceptIdOfMeddra != null" >
+        #{umlsConceptIdOfMeddra,jdbcType=VARCHAR},
+      </if>
+      <if test="meddraConceptName != null" >
+        #{meddraConceptName,jdbcType=VARCHAR},
+      </if>
+      <if test="createdAt != null" >
+        #{createdAt,jdbcType=BIGINT},
+      </if>
+      <if test="createdWay != null" >
+        #{createdWay,jdbcType=INTEGER},
+      </if>
+      <if test="createdByKey != null" >
+        #{createdByKey,jdbcType=CHAR},
+      </if>
+      <if test="createdByName != null" >
+        #{createdByName,jdbcType=VARCHAR},
+      </if>
+      <if test="checkState != null" >
+        #{checkState,jdbcType=INTEGER},
+      </if>
+      <if test="checkReport != null" >
+        #{checkReport,jdbcType=VARCHAR},
+      </if>
+      <if test="checkedByKey != null" >
+        #{checkedByKey,jdbcType=CHAR},
+      </if>
+      <if test="checkedByName != null" >
+        #{checkedByName,jdbcType=VARCHAR},
+      </if>
+      <if test="translateByKey != null" >
+        #{translateByKey,jdbcType=CHAR},
+      </if>
+      <if test="translateByName != null" >
+        #{translateByName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huasheng.pojo.newpojo.KtIndication" >
+    update kt_indication
+    <set >
+      <if test="stitchCompoundId != null" >
+        stitch_compound_id = #{stitchCompoundId,jdbcType=VARCHAR},
+      </if>
+      <if test="umlsConceptId != null" >
+        umls_concept_id = #{umlsConceptId,jdbcType=VARCHAR},
+      </if>
+      <if test="methodOfDetection != null" >
+        method_of_detection = #{methodOfDetection,jdbcType=VARCHAR},
+      </if>
+      <if test="conceptName != null" >
+        concept_name = #{conceptName,jdbcType=VARCHAR},
+      </if>
+      <if test="meddraConceptType != null" >
+        meddra_concept_type = #{meddraConceptType,jdbcType=VARCHAR},
+      </if>
+      <if test="umlsConceptIdOfMeddra != null" >
+        umls_concept_id_of_meddra = #{umlsConceptIdOfMeddra,jdbcType=VARCHAR},
+      </if>
+      <if test="meddraConceptName != null" >
+        meddra_concept_name = #{meddraConceptName,jdbcType=VARCHAR},
+      </if>
+      <if test="createdAt != null" >
+        created_at = #{createdAt,jdbcType=BIGINT},
+      </if>
+      <if test="createdWay != null" >
+        created_way = #{createdWay,jdbcType=INTEGER},
+      </if>
+      <if test="createdByKey != null" >
+        created_by_key = #{createdByKey,jdbcType=CHAR},
+      </if>
+      <if test="createdByName != null" >
+        created_by_name = #{createdByName,jdbcType=VARCHAR},
+      </if>
+      <if test="checkState != null" >
+        check_state = #{checkState,jdbcType=INTEGER},
+      </if>
+      <if test="checkReport != null" >
+        check_report = #{checkReport,jdbcType=VARCHAR},
+      </if>
+      <if test="checkedByKey != null" >
+        checked_by_key = #{checkedByKey,jdbcType=CHAR},
+      </if>
+      <if test="checkedByName != null" >
+        checked_by_name = #{checkedByName,jdbcType=VARCHAR},
+      </if>
+      <if test="translateByKey != null" >
+        translate_by_key = #{translateByKey,jdbcType=CHAR},
+      </if>
+      <if test="translateByName != null" >
+        translate_by_name = #{translateByName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where indication_key = #{indicationKey,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huasheng.pojo.newpojo.KtIndication" >
+    update kt_indication
+    set stitch_compound_id = #{stitchCompoundId,jdbcType=VARCHAR},
+      umls_concept_id = #{umlsConceptId,jdbcType=VARCHAR},
+      method_of_detection = #{methodOfDetection,jdbcType=VARCHAR},
+      concept_name = #{conceptName,jdbcType=VARCHAR},
+      meddra_concept_type = #{meddraConceptType,jdbcType=VARCHAR},
+      umls_concept_id_of_meddra = #{umlsConceptIdOfMeddra,jdbcType=VARCHAR},
+      meddra_concept_name = #{meddraConceptName,jdbcType=VARCHAR},
+      created_at = #{createdAt,jdbcType=BIGINT},
+      created_way = #{createdWay,jdbcType=INTEGER},
+      created_by_key = #{createdByKey,jdbcType=CHAR},
+      created_by_name = #{createdByName,jdbcType=VARCHAR},
+      check_state = #{checkState,jdbcType=INTEGER},
+      check_report = #{checkReport,jdbcType=VARCHAR},
+      checked_by_key = #{checkedByKey,jdbcType=CHAR},
+      checked_by_name = #{checkedByName,jdbcType=VARCHAR},
+      translate_by_key = #{translateByKey,jdbcType=CHAR},
+      translate_by_name = #{translateByName,jdbcType=VARCHAR}
+    where indication_key = #{indicationKey,jdbcType=VARCHAR}
+  </update>
+
+  <select id="getIndicationPage" resultMap="BaseResultMap" parameterType="Map">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM
+    kt_indication
+    WHERE  1=1
+    <if test="stitchCompoundId!='' and stitchCompoundId!=null">
+      AND stitch_compound_id=#{stitchCompoundId}
+    </if>
+    <if test="umlsConceptId!='' and umlsConceptId!=null">
+      AND umls_concept_id=#{umlsConceptId}
+    </if>
+    <if test="checkState!='' and checkState!=null">
+      AND check_state=#{checkState}
+    </if>
+    <if test="createdWay!='' and createdWay!=null" >
+      AND created_way =#{createdWay}
+    </if>
+  </select>
+  <update id="updateCheckState" parameterType="com.huasheng.pojo.newpojo.KtIndication">
+     UPDATE kt_indication
+     SET
+     check_state = #{checkState,jdbcType=BIGINT},
+     checked_by_key = #{checkedByKey,jdbcType=CHAR},
+     checked_by_name = #{checkedByName,jdbcType=VARCHAR},
+     check_report = #{checkReport}
+     WHERE indication_key = #{indicationKey,jdbcType=VARCHAR}
+  </update>
+  <select id="getIndicationPending" parameterType="Map" resultType="Integer">
+        SELECT count(indication_key) from kt_indication where check_state=#{checkState} and created_way=#{createdWay}
+  </select>
+
+  <select id="getIndicationMonth" parameterType="Map" resultType="Integer">
+    SELECT count(indication_key) from kt_indication where (created_at BETWEEN #{firstTime} and #{currentTime}) AND check_state=#{checkState} and created_way=#{createdWay}
+  </select>
+
+  <select id="getKtIndicationByList" parameterType="java.util.List" resultType="com.huasheng.pojo.newpojo.KtDrugIndication">
+    SELECT
+    indication.indication_key indicationKey,
+    indication.meddra_concept_name meddraConceptName
+    FROM
+    kt_indication indication
+    WHERE 1=1
+    <if test="list!=null" >
+      AND
+      indication_key IN
+      (
+      <foreach collection="list" item="item" index="index" separator=",">
+        #{item.indicationKey}
+      </foreach>
+      )
+    </if>
+  </select>
+  <delete id="deleteAllIndication" >
+    delete from kt_indication
+  </delete>
+</mapper>

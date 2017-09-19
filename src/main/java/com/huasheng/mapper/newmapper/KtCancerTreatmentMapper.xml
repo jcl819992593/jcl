@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huasheng.dao.newdao.KtCancerTreatmentDao" >
+  <resultMap id="BaseResultMap" type="com.huasheng.pojo.newpojo.KtCancerTreatment" >
+    <id column="cancer_treatment_key" property="cancerTreatmentKey" jdbcType="VARCHAR" />
+    <result column="cancer_key" property="cancerKey" jdbcType="VARCHAR" />
+    <result column="doid" property="doid" jdbcType="INTEGER" />
+    <result column="treatment" property="treatment" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    cancer_treatment_key, cancer_key, doid, treatment
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from kt_cancer_treatment
+    where cancer_treatment_key = #{cancerTreatmentKey,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from kt_cancer_treatment
+    where cancer_treatment_key = #{cancerTreatmentKey,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.huasheng.pojo.newpojo.KtCancerTreatment" >
+    insert into kt_cancer_treatment (cancer_treatment_key, cancer_key, doid, 
+      treatment)
+    values (#{cancerTreatmentKey,jdbcType=VARCHAR}, #{cancerKey,jdbcType=VARCHAR}, #{doid,jdbcType=INTEGER}, 
+      #{treatment,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.huasheng.pojo.newpojo.KtCancerTreatment" >
+    insert into kt_cancer_treatment
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="cancerTreatmentKey != null" >
+        cancer_treatment_key,
+      </if>
+      <if test="cancerKey != null" >
+        cancer_key,
+      </if>
+      <if test="doid != null" >
+        doid,
+      </if>
+      <if test="treatment != null" >
+        treatment,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="cancerTreatmentKey != null" >
+        #{cancerTreatmentKey,jdbcType=VARCHAR},
+      </if>
+      <if test="cancerKey != null" >
+        #{cancerKey,jdbcType=VARCHAR},
+      </if>
+      <if test="doid != null" >
+        #{doid,jdbcType=INTEGER},
+      </if>
+      <if test="treatment != null" >
+        #{treatment,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huasheng.pojo.newpojo.KtCancerTreatment" >
+    update kt_cancer_treatment
+    <set >
+      <if test="cancerKey != null" >
+        cancer_key = #{cancerKey,jdbcType=VARCHAR},
+      </if>
+      <if test="doid != null" >
+        doid = #{doid,jdbcType=INTEGER},
+      </if>
+      <if test="treatment != null" >
+        treatment = #{treatment,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where cancer_treatment_key = #{cancerTreatmentKey,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huasheng.pojo.newpojo.KtCancerTreatment" >
+    update kt_cancer_treatment
+    set cancer_key = #{cancerKey,jdbcType=VARCHAR},
+      doid = #{doid,jdbcType=INTEGER},
+      treatment = #{treatment,jdbcType=VARCHAR}
+    where cancer_treatment_key = #{cancerTreatmentKey,jdbcType=VARCHAR}
+  </update>
+
+  <select id="selectByCancerKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from kt_cancer_treatment
+    where cancer_key = #{cancerKey,jdbcType=VARCHAR}
+  </select>
+</mapper>

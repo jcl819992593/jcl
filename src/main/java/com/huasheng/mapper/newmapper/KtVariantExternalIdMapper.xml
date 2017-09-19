@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huasheng.dao.newdao.KtVariantExternalIdDao" >
+  <resultMap id="BaseResultMap" type="com.huasheng.pojo.newpojo.KtVariantExternalId" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="variant_key" property="variantKey" jdbcType="VARCHAR" />
+    <result column="variant_id" property="variantId" jdbcType="INTEGER" />
+    <result column="source" property="source" jdbcType="VARCHAR" />
+    <result column="source_id" property="sourceId" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, variant_key, variant_id, source, source_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from kt_variant_external_id
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from kt_variant_external_id
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.huasheng.pojo.newpojo.KtVariantExternalId" >
+    insert into kt_variant_external_id (id, variant_key, variant_id, 
+      source, source_id)
+    values (#{id,jdbcType=VARCHAR}, #{variantKey,jdbcType=VARCHAR}, #{variantId,jdbcType=INTEGER}, 
+      #{source,jdbcType=VARCHAR}, #{sourceId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.huasheng.pojo.newpojo.KtVariantExternalId" >
+    insert into kt_variant_external_id
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="variantKey != null" >
+        variant_key,
+      </if>
+      <if test="variantId != null" >
+        variant_id,
+      </if>
+      <if test="source != null" >
+        source,
+      </if>
+      <if test="sourceId != null" >
+        source_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="variantKey != null" >
+        #{variantKey,jdbcType=VARCHAR},
+      </if>
+      <if test="variantId != null" >
+        #{variantId,jdbcType=INTEGER},
+      </if>
+      <if test="source != null" >
+        #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="sourceId != null" >
+        #{sourceId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huasheng.pojo.newpojo.KtVariantExternalId" >
+    update kt_variant_external_id
+    <set >
+      <if test="variantKey != null" >
+        variant_key = #{variantKey,jdbcType=VARCHAR},
+      </if>
+      <if test="variantId != null" >
+        variant_id = #{variantId,jdbcType=INTEGER},
+      </if>
+      <if test="source != null" >
+        source = #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="sourceId != null" >
+        source_id = #{sourceId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huasheng.pojo.newpojo.KtVariantExternalId" >
+    update kt_variant_external_id
+    set variant_key = #{variantKey,jdbcType=VARCHAR},
+      variant_id = #{variantId,jdbcType=INTEGER},
+      source = #{source,jdbcType=VARCHAR},
+      source_id = #{sourceId,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

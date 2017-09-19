@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huasheng.dao.newdao.KtDataDictionaryDao" >
+  <resultMap id="BaseResultMap" type="com.huasheng.pojo.newpojo.KtDataDictionary" >
+    <id column="dictionary_key" property="dictionaryKey" jdbcType="VARCHAR" />
+    <result column="dictionary_name" property="dictionaryName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    dictionary_key, dictionary_name
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from kt_data_dictionary
+    where dictionary_key = #{dictionaryKey,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from kt_data_dictionary
+    where dictionary_key = #{dictionaryKey,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.huasheng.pojo.newpojo.KtDataDictionary" >
+    insert into kt_data_dictionary (dictionary_key, dictionary_name)
+    values (#{dictionaryKey,jdbcType=VARCHAR}, #{dictionaryName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.huasheng.pojo.newpojo.KtDataDictionary" >
+    insert into kt_data_dictionary
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="dictionaryKey != null" >
+        dictionary_key,
+      </if>
+      <if test="dictionaryName != null" >
+        dictionary_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="dictionaryKey != null" >
+        #{dictionaryKey,jdbcType=VARCHAR},
+      </if>
+      <if test="dictionaryName != null" >
+        #{dictionaryName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huasheng.pojo.newpojo.KtDataDictionary" >
+    update kt_data_dictionary
+    <set >
+      <if test="dictionaryName != null" >
+        dictionary_name = #{dictionaryName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where dictionary_key = #{dictionaryKey,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huasheng.pojo.newpojo.KtDataDictionary" >
+    update kt_data_dictionary
+    set dictionary_name = #{dictionaryName,jdbcType=VARCHAR}
+    where dictionary_key = #{dictionaryKey,jdbcType=VARCHAR}
+   </update>
+  <select id="getDataDictionaryAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from kt_data_dictionary
+  </select>
+</mapper>

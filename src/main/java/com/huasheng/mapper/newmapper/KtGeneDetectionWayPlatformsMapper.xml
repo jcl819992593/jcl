@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huasheng.dao.newdao.KtGeneDetectionWayPlatformsDao" >
+  <resultMap id="BaseResultMap" type="com.huasheng.pojo.newpojo.KtGeneDetectionWayPlatforms" >
+    <id column="detection_way_key" property="detectionWayKey" jdbcType="VARCHAR" />
+    <id column="item_key" property="itemKey" jdbcType="VARCHAR" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="com.huasheng.pojo.newpojo.KtGeneDetectionWayPlatforms" >
+    delete from kt_gene_detection_way_platforms
+    where detection_way_key = #{detectionWayKey,jdbcType=VARCHAR}
+      and item_key = #{itemKey,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.huasheng.pojo.newpojo.KtGeneDetectionWayPlatforms" >
+    insert into kt_gene_detection_way_platforms (detection_way_key, item_key)
+    values (#{detectionWayKey,jdbcType=VARCHAR}, #{itemKey,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.huasheng.pojo.newpojo.KtGeneDetectionWayPlatforms" >
+    insert into kt_gene_detection_way_platforms
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="detectionWayKey != null" >
+        detection_way_key,
+      </if>
+      <if test="itemKey != null" >
+        item_key,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="detectionWayKey != null" >
+        #{detectionWayKey,jdbcType=VARCHAR},
+      </if>
+      <if test="itemKey != null" >
+        #{itemKey,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <insert id="insertMore" parameterType="java.util.List">
+    insert into kt_gene_detection_way_platforms (detection_way_key, item_key)
+    values
+    <foreach collection="list" item="item" index="index" separator=",">
+      (#{item.detectionWayKey,jdbcType=VARCHAR}, #{item.itemKey,jdbcType=VARCHAR})
+    </foreach>
+  </insert>
+</mapper>
