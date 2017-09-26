@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huasheng.dao.olddao.OldKtEvidenceDao" >
+  <resultMap id="BaseResultMap" type="com.huasheng.pojo.oldpojo.OldKtEvidence" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="evidence_id" property="evidenceId" jdbcType="INTEGER" />
+    <result column="variant_id" property="variantId" jdbcType="INTEGER" />
+    <result column="evidence_type" property="evidenceType" jdbcType="VARCHAR" />
+    <result column="evidence_level" property="evidenceLevel" jdbcType="INTEGER" />
+    <result column="evidence_direction" property="evidenceDirection" jdbcType="VARCHAR" />
+    <result column="summary" property="summary" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, evidence_id, variant_id, evidence_type, evidence_level, evidence_direction, summary
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from kt_evidence
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from kt_evidence
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.huasheng.pojo.oldpojo.OldKtEvidence" >
+    insert into kt_evidence (id, evidence_id, variant_id, 
+      evidence_type, evidence_level, evidence_direction, 
+      summary)
+    values (#{id,jdbcType=VARCHAR}, #{evidenceId,jdbcType=INTEGER}, #{variantId,jdbcType=INTEGER}, 
+      #{evidenceType,jdbcType=VARCHAR}, #{evidenceLevel,jdbcType=INTEGER}, #{evidenceDirection,jdbcType=VARCHAR}, 
+      #{summary,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.huasheng.pojo.oldpojo.OldKtEvidence" >
+    insert into kt_evidence
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="evidenceId != null" >
+        evidence_id,
+      </if>
+      <if test="variantId != null" >
+        variant_id,
+      </if>
+      <if test="evidenceType != null" >
+        evidence_type,
+      </if>
+      <if test="evidenceLevel != null" >
+        evidence_level,
+      </if>
+      <if test="evidenceDirection != null" >
+        evidence_direction,
+      </if>
+      <if test="summary != null" >
+        summary,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="evidenceId != null" >
+        #{evidenceId,jdbcType=INTEGER},
+      </if>
+      <if test="variantId != null" >
+        #{variantId,jdbcType=INTEGER},
+      </if>
+      <if test="evidenceType != null" >
+        #{evidenceType,jdbcType=VARCHAR},
+      </if>
+      <if test="evidenceLevel != null" >
+        #{evidenceLevel,jdbcType=INTEGER},
+      </if>
+      <if test="evidenceDirection != null" >
+        #{evidenceDirection,jdbcType=VARCHAR},
+      </if>
+      <if test="summary != null" >
+        #{summary,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huasheng.pojo.oldpojo.OldKtEvidence" >
+    update kt_evidence
+    <set >
+      <if test="evidenceId != null" >
+        evidence_id = #{evidenceId,jdbcType=INTEGER},
+      </if>
+      <if test="variantId != null" >
+        variant_id = #{variantId,jdbcType=INTEGER},
+      </if>
+      <if test="evidenceType != null" >
+        evidence_type = #{evidenceType,jdbcType=VARCHAR},
+      </if>
+      <if test="evidenceLevel != null" >
+        evidence_level = #{evidenceLevel,jdbcType=INTEGER},
+      </if>
+      <if test="evidenceDirection != null" >
+        evidence_direction = #{evidenceDirection,jdbcType=VARCHAR},
+      </if>
+      <if test="summary != null" >
+        summary = #{summary,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huasheng.pojo.oldpojo.OldKtEvidence" >
+    update kt_evidence
+    set evidence_id = #{evidenceId,jdbcType=INTEGER},
+      variant_id = #{variantId,jdbcType=INTEGER},
+      evidence_type = #{evidenceType,jdbcType=VARCHAR},
+      evidence_level = #{evidenceLevel,jdbcType=INTEGER},
+      evidence_direction = #{evidenceDirection,jdbcType=VARCHAR},
+      summary = #{summary,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="getOldKtEvidenceList" resultType="com.huasheng.pojo.oldpojo.OldKtEvidence">
+    SELECT
+    ke.id id,
+    ke.evidence_id evidenceId,
+    ke.variant_id variantId,
+    ke.evidence_type evidenceType,
+    ke.evidence_level evidenceLevel,
+    ke.evidence_direction evidenceDirection,
+    ke.summary summary,
+    ed.doid doid,
+    ed.doid_name doidName
+    FROM
+    kt_evidence ke
+    LEFT JOIN kt_evidence_doid ed ON ke.evidence_id = ed.evidence_id
+  </select>
+
+</mapper>

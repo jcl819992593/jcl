@@ -617,7 +617,7 @@
     select
     <include refid="Base_Column_List" />
     from kt_drug
-    where drug_id = #{drugId,jdbcType=VARCHAR}
+    where drug_id = #{drugId,jdbcType=VARCHAR} and created_way=3
   </select>
 
   <update id="checkEnDrug" parameterType="java.util.Map">
@@ -660,4 +660,48 @@
     <include refid="Base_Column_List" />
     from kt_drug
   </select>
+  <!--
+insert into kt_drug (
+    values (#{drugKey,jdbcType=VARCHAR}, #{drugId,jdbcType=INTEGER}, #{genericName,jdbcType=VARCHAR},
+    #{nameEn,jdbcType=VARCHAR}, #{nameChinese,jdbcType=VARCHAR}, #{oncoDrug,jdbcType=BIT},
+    #{description,jdbcType=VARCHAR}, #{drugType,jdbcType=VARCHAR}, #{chemicalFormula,jdbcType=VARCHAR},
+    #{molecularWeight,jdbcType=VARCHAR}, #{mechanismOfAction,jdbcType=VARCHAR}, #{toxicity,jdbcType=VARCHAR},
+    #{structuredIndicationDesc,jdbcType=VARCHAR}, #{absorption,jdbcType=VARCHAR}, #{attention,jdbcType=VARCHAR},
+    #{volumeOfDistribution,jdbcType=VARCHAR}, #{proteinBinding,jdbcType=VARCHAR}, #{majorMetabolicSites,jdbcType=VARCHAR},
+    #{halfLife,jdbcType=VARCHAR}, #{clearance,jdbcType=VARCHAR}, #{pharmacodynamics,jdbcType=VARCHAR},
+    #{fdaLabel,jdbcType=VARCHAR}, #{routeOfElimination,jdbcType=VARCHAR}, #{cpicLevel,jdbcType=VARCHAR},
+    #{pharmGkbEvidenceLevel,jdbcType=VARCHAR}, #{publishedGuidance,jdbcType=VARCHAR},
+    #{summary,jdbcType=VARCHAR}, #{researchPhase,jdbcType=INTEGER}, #{secondPhase,jdbcType=INTEGER},
+    #{primaryExternalId,jdbcType=VARCHAR}, #{primaryExternalSource,jdbcType=VARCHAR},
+    #{createdAt,jdbcType=BIGINT}, #{createdWay,jdbcType=INTEGER}, #{createdByKey,jdbcType=CHAR},
+    #{createdByName,jdbcType=VARCHAR}, #{checkState,jdbcType=INTEGER}, #{checkReport,jdbcType=VARCHAR},
+    #{checkedByKey,jdbcType=CHAR}, #{checkedByName,jdbcType=VARCHAR}, #{translateByKey,jdbcType=CHAR},
+    #{translateByName,jdbcType=VARCHAR})
+  -->
+  <insert id="insertDrugList" parameterType="List">
+    INSERT into kt_drug(drug_key, drug_id, generic_name,
+    name_en, name_chinese, onco_drug,
+    description, drug_type, chemical_formula,
+    molecular_weight, mechanism_of_action, toxicity,
+    structured_indication_desc, absorption, attention,
+    volume_of_distribution, protein_binding, major_metabolic_sites,
+    half_life, clearance, pharmacodynamics,
+    fda_label, route_of_elimination, cpic_level,
+    pharm_gkb_evidence_level, published_guidance,
+    summary, research_phase, second_phase,
+    primary_external_id, primary_external_source,
+    created_at, created_way, created_by_key,
+    created_by_name, check_state, check_report,
+    checked_by_key, checked_by_name, translate_by_key,translate_by_name) VALUES
+    <foreach collection="list" item="item" index="index" separator=",">
+      (#{item.drugKey},#{item.drugId},#{item.genericName},#{item.nameEn},#{item.nameChinese},
+      #{item.oncoDrug},#{item.description},#{item.drugType},#{item.chemicalFormula},#{item.molecularWeight},
+      #{item.mechanismOfAction},#{item.toxicity},#{item.structuredIndicationDesc},#{item.absorption},#{item.attention},
+      #{item.volumeOfDistribution},#{item.proteinBinding},#{item.majorMetabolicSites},#{item.halfLife},#{item.clearance},
+      #{item.pharmacodynamics},#{item.fdaLabel},#{item.routeOfElimination},#{item.cpicLevel},#{item.pharmGkbEvidenceLevel},
+      #{item.publishedGuidance},#{item.summary},#{item.researchPhase},#{item.secondPhase},#{item.primaryExternalId},
+      #{item.primaryExternalSource},#{item.createdAt},#{item.createdWay},#{item.createdByKey},#{item.createdByName},
+      #{item.checkState},#{item.checkReport},#{item.checkedByKey},#{item.checkedByName},#{item.translateByKey},#{item.translateByName})
+    </foreach>
+  </insert>
 </mapper>

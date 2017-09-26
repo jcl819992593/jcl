@@ -38,4 +38,7 @@ public interface KtKeggPathwayDao {
     int getKeggPathwayTranslateMonth(Map<String, Object> map);
 
     int deleteAllPathway();
+
+    int insertList(List<KtKeggPathway> list);
+
 }

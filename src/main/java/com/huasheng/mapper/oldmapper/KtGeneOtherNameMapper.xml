@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huasheng.dao.olddao.OldKtGeneOtherNameDao" >
+  <resultMap id="BaseResultMap" type="com.huasheng.pojo.oldpojo.OldKtGeneOtherName" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="gene_id" property="geneId" jdbcType="INTEGER" />
+    <result column="other_name" property="otherName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, gene_id, other_name
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from kt_gene_other_name
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from kt_gene_other_name
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.huasheng.pojo.oldpojo.OldKtGeneOtherName" >
+    insert into kt_gene_other_name (id, gene_id, other_name
+      )
+    values (#{id,jdbcType=VARCHAR}, #{geneId,jdbcType=INTEGER}, #{otherName,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.huasheng.pojo.oldpojo.OldKtGeneOtherName" >
+    insert into kt_gene_other_name
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="geneId != null" >
+        gene_id,
+      </if>
+      <if test="otherName != null" >
+        other_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="geneId != null" >
+        #{geneId,jdbcType=INTEGER},
+      </if>
+      <if test="otherName != null" >
+        #{otherName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huasheng.pojo.oldpojo.OldKtGeneOtherName" >
+    update kt_gene_other_name
+    <set >
+      <if test="geneId != null" >
+        gene_id = #{geneId,jdbcType=INTEGER},
+      </if>
+      <if test="otherName != null" >
+        other_name = #{otherName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huasheng.pojo.oldpojo.OldKtGeneOtherName" >
+    update kt_gene_other_name
+    set gene_id = #{geneId,jdbcType=INTEGER},
+      other_name = #{otherName,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+
+  <select id="getOldGeneOtherNameList" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from kt_gene_other_name
+  </select>
+
+</mapper>

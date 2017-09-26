@@ -22,6 +22,14 @@
     from kt_plan_instruction
     where plan_instruction_key = #{planInstructionKey,jdbcType=VARCHAR}
   </select>
+
+  <select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from kt_plan_instruction
+    where instruction_id = #{instructionId,jdbcType=INTEGER}
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from kt_plan_instruction
     where plan_instruction_key = #{planInstructionKey,jdbcType=VARCHAR}

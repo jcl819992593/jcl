@@ -37,4 +37,6 @@ public interface KtDrugDao {
     int deleteAllKtDrug();
 
     List<KtDrug> getNewDrugList();
+
+    int insertDrugList(List<KtDrug> list);
 }

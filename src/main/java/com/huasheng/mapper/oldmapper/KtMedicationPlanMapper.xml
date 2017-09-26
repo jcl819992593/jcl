@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huasheng.dao.olddao.OldKtMedicationPlanDao" >
+  <resultMap id="BaseResultMap" type="com.huasheng.pojo.oldpojo.OldKtMedicationPlan" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="medicine_plan_id" property="medicinePlanId" jdbcType="INTEGER" />
+    <result column="regimen_name" property="regimenName" jdbcType="VARCHAR" />
+    <result column="program_name_c" property="programNameC" jdbcType="VARCHAR" />
+    <result column="disease_name" property="diseaseName" jdbcType="VARCHAR" />
+    <result column="chemotherapy_type" property="chemotherapyType" jdbcType="VARCHAR" />
+    <result column="chemotherapy_name" property="chemotherapyName" jdbcType="VARCHAR" />
+    <result column="regimen_description" property="regimenDescription" jdbcType="VARCHAR" />
+    <result column="approval_agency" property="approvalAgency" jdbcType="VARCHAR" />
+    <result column="approval_link" property="approvalLink" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, medicine_plan_id, regimen_name, program_name_c, disease_name, chemotherapy_type, 
+    chemotherapy_name, regimen_description, approval_agency, approval_link
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from kt_medication_plan
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from kt_medication_plan
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.huasheng.pojo.oldpojo.OldKtMedicationPlan" >
+    insert into kt_medication_plan (id, medicine_plan_id, regimen_name, 
+      program_name_c, disease_name, chemotherapy_type, 
+      chemotherapy_name, regimen_description, approval_agency, 
+      approval_link)
+    values (#{id,jdbcType=VARCHAR}, #{medicinePlanId,jdbcType=INTEGER}, #{regimenName,jdbcType=VARCHAR}, 
+      #{programNameC,jdbcType=VARCHAR}, #{diseaseName,jdbcType=VARCHAR}, #{chemotherapyType,jdbcType=VARCHAR}, 
+      #{chemotherapyName,jdbcType=VARCHAR}, #{regimenDescription,jdbcType=VARCHAR}, #{approvalAgency,jdbcType=VARCHAR}, 
+      #{approvalLink,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.huasheng.pojo.oldpojo.OldKtMedicationPlan" >
+    insert into kt_medication_plan
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="medicinePlanId != null" >
+        medicine_plan_id,
+      </if>
+      <if test="regimenName != null" >
+        regimen_name,
+      </if>
+      <if test="programNameC != null" >
+        program_name_c,
+      </if>
+      <if test="diseaseName != null" >
+        disease_name,
+      </if>
+      <if test="chemotherapyType != null" >
+        chemotherapy_type,
+      </if>
+      <if test="chemotherapyName != null" >
+        chemotherapy_name,
+      </if>
+      <if test="regimenDescription != null" >
+        regimen_description,
+      </if>
+      <if test="approvalAgency != null" >
+        approval_agency,
+      </if>
+      <if test="approvalLink != null" >
+        approval_link,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="medicinePlanId != null" >
+        #{medicinePlanId,jdbcType=INTEGER},
+      </if>
+      <if test="regimenName != null" >
+        #{regimenName,jdbcType=VARCHAR},
+      </if>
+      <if test="programNameC != null" >
+        #{programNameC,jdbcType=VARCHAR},
+      </if>
+      <if test="diseaseName != null" >
+        #{diseaseName,jdbcType=VARCHAR},
+      </if>
+      <if test="chemotherapyType != null" >
+        #{chemotherapyType,jdbcType=VARCHAR},
+      </if>
+      <if test="chemotherapyName != null" >
+        #{chemotherapyName,jdbcType=VARCHAR},
+      </if>
+      <if test="regimenDescription != null" >
+        #{regimenDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="approvalAgency != null" >
+        #{approvalAgency,jdbcType=VARCHAR},
+      </if>
+      <if test="approvalLink != null" >
+        #{approvalLink,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huasheng.pojo.oldpojo.OldKtMedicationPlan" >
+    update kt_medication_plan
+    <set >
+      <if test="medicinePlanId != null" >
+        medicine_plan_id = #{medicinePlanId,jdbcType=INTEGER},
+      </if>
+      <if test="regimenName != null" >
+        regimen_name = #{regimenName,jdbcType=VARCHAR},
+      </if>
+      <if test="programNameC != null" >
+        program_name_c = #{programNameC,jdbcType=VARCHAR},
+      </if>
+      <if test="diseaseName != null" >
+        disease_name = #{diseaseName,jdbcType=VARCHAR},
+      </if>
+      <if test="chemotherapyType != null" >
+        chemotherapy_type = #{chemotherapyType,jdbcType=VARCHAR},
+      </if>
+      <if test="chemotherapyName != null" >
+        chemotherapy_name = #{chemotherapyName,jdbcType=VARCHAR},
+      </if>
+      <if test="regimenDescription != null" >
+        regimen_description = #{regimenDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="approvalAgency != null" >
+        approval_agency = #{approvalAgency,jdbcType=VARCHAR},
+      </if>
+      <if test="approvalLink != null" >
+        approval_link = #{approvalLink,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huasheng.pojo.oldpojo.OldKtMedicationPlan" >
+    update kt_medication_plan
+    set medicine_plan_id = #{medicinePlanId,jdbcType=INTEGER},
+      regimen_name = #{regimenName,jdbcType=VARCHAR},
+      program_name_c = #{programNameC,jdbcType=VARCHAR},
+      disease_name = #{diseaseName,jdbcType=VARCHAR},
+      chemotherapy_type = #{chemotherapyType,jdbcType=VARCHAR},
+      chemotherapy_name = #{chemotherapyName,jdbcType=VARCHAR},
+      regimen_description = #{regimenDescription,jdbcType=VARCHAR},
+      approval_agency = #{approvalAgency,jdbcType=VARCHAR},
+      approval_link = #{approvalLink,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="getOldKtMedicationPlanList" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from kt_medication_plan
+  </select>
+</mapper>

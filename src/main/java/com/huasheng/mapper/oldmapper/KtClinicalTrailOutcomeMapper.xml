@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huasheng.dao.olddao.OldKtClinicalTrailOutcomeDao" >
+  <resultMap id="BaseResultMap" type="com.huasheng.pojo.oldpojo.OldKtClinicalTrailOutcome" >
+    <id column="id" property="id" jdbcType="CHAR" />
+    <result column="clinical_trail_id" property="clinicalTrailId" jdbcType="CHAR" />
+    <result column="category" property="category" jdbcType="VARCHAR" />
+    <result column="classification" property="classification" jdbcType="VARCHAR" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="result_group" property="resultGroup" jdbcType="VARCHAR" />
+    <result column="unit" property="unit" jdbcType="VARCHAR" />
+    <result column="param_type" property="paramType" jdbcType="VARCHAR" />
+    <result column="param_value" property="paramValue" jdbcType="DOUBLE" />
+    <result column="disp_type" property="dispType" jdbcType="VARCHAR" />
+    <result column="disp_value" property="dispValue" jdbcType="DOUBLE" />
+    <result column="disp_min" property="dispMin" jdbcType="DOUBLE" />
+    <result column="disp_max" property="dispMax" jdbcType="DOUBLE" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, clinical_trail_id, category, classification, title, result_group, unit, param_type, 
+    param_value, disp_type, disp_value, disp_min, disp_max
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from kt_clinical_trail_outcome
+    where id = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from kt_clinical_trail_outcome
+    where id = #{id,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.huasheng.pojo.oldpojo.OldKtClinicalTrailOutcome" >
+    insert into kt_clinical_trail_outcome (id, clinical_trail_id, category, 
+      classification, title, result_group, 
+      unit, param_type, param_value, 
+      disp_type, disp_value, disp_min, 
+      disp_max)
+    values (#{id,jdbcType=CHAR}, #{clinicalTrailId,jdbcType=CHAR}, #{category,jdbcType=VARCHAR}, 
+      #{classification,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, #{resultGroup,jdbcType=VARCHAR}, 
+      #{unit,jdbcType=VARCHAR}, #{paramType,jdbcType=VARCHAR}, #{paramValue,jdbcType=DOUBLE}, 
+      #{dispType,jdbcType=VARCHAR}, #{dispValue,jdbcType=DOUBLE}, #{dispMin,jdbcType=DOUBLE}, 
+      #{dispMax,jdbcType=DOUBLE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.huasheng.pojo.oldpojo.OldKtClinicalTrailOutcome" >
+    insert into kt_clinical_trail_outcome
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="clinicalTrailId != null" >
+        clinical_trail_id,
+      </if>
+      <if test="category != null" >
+        category,
+      </if>
+      <if test="classification != null" >
+        classification,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="resultGroup != null" >
+        result_group,
+      </if>
+      <if test="unit != null" >
+        unit,
+      </if>
+      <if test="paramType != null" >
+        param_type,
+      </if>
+      <if test="paramValue != null" >
+        param_value,
+      </if>
+      <if test="dispType != null" >
+        disp_type,
+      </if>
+      <if test="dispValue != null" >
+        disp_value,
+      </if>
+      <if test="dispMin != null" >
+        disp_min,
+      </if>
+      <if test="dispMax != null" >
+        disp_max,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="clinicalTrailId != null" >
+        #{clinicalTrailId,jdbcType=CHAR},
+      </if>
+      <if test="category != null" >
+        #{category,jdbcType=VARCHAR},
+      </if>
+      <if test="classification != null" >
+        #{classification,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="resultGroup != null" >
+        #{resultGroup,jdbcType=VARCHAR},
+      </if>
+      <if test="unit != null" >
+        #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="paramType != null" >
+        #{paramType,jdbcType=VARCHAR},
+      </if>
+      <if test="paramValue != null" >
+        #{paramValue,jdbcType=DOUBLE},
+      </if>
+      <if test="dispType != null" >
+        #{dispType,jdbcType=VARCHAR},
+      </if>
+      <if test="dispValue != null" >
+        #{dispValue,jdbcType=DOUBLE},
+      </if>
+      <if test="dispMin != null" >
+        #{dispMin,jdbcType=DOUBLE},
+      </if>
+      <if test="dispMax != null" >
+        #{dispMax,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huasheng.pojo.oldpojo.OldKtClinicalTrailOutcome" >
+    update kt_clinical_trail_outcome
+    <set >
+      <if test="clinicalTrailId != null" >
+        clinical_trail_id = #{clinicalTrailId,jdbcType=CHAR},
+      </if>
+      <if test="category != null" >
+        category = #{category,jdbcType=VARCHAR},
+      </if>
+      <if test="classification != null" >
+        classification = #{classification,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="resultGroup != null" >
+        result_group = #{resultGroup,jdbcType=VARCHAR},
+      </if>
+      <if test="unit != null" >
+        unit = #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="paramType != null" >
+        param_type = #{paramType,jdbcType=VARCHAR},
+      </if>
+      <if test="paramValue != null" >
+        param_value = #{paramValue,jdbcType=DOUBLE},
+      </if>
+      <if test="dispType != null" >
+        disp_type = #{dispType,jdbcType=VARCHAR},
+      </if>
+      <if test="dispValue != null" >
+        disp_value = #{dispValue,jdbcType=DOUBLE},
+      </if>
+      <if test="dispMin != null" >
+        disp_min = #{dispMin,jdbcType=DOUBLE},
+      </if>
+      <if test="dispMax != null" >
+        disp_max = #{dispMax,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huasheng.pojo.oldpojo.OldKtClinicalTrailOutcome" >
+    update kt_clinical_trail_outcome
+    set clinical_trail_id = #{clinicalTrailId,jdbcType=CHAR},
+      category = #{category,jdbcType=VARCHAR},
+      classification = #{classification,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
+      result_group = #{resultGroup,jdbcType=VARCHAR},
+      unit = #{unit,jdbcType=VARCHAR},
+      param_type = #{paramType,jdbcType=VARCHAR},
+      param_value = #{paramValue,jdbcType=DOUBLE},
+      disp_type = #{dispType,jdbcType=VARCHAR},
+      disp_value = #{dispValue,jdbcType=DOUBLE},
+      disp_min = #{dispMin,jdbcType=DOUBLE},
+      disp_max = #{dispMax,jdbcType=DOUBLE}
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  <select id="getOldClinicalTrailOutcomeList" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from kt_clinical_trail_outcome
+  </select>
+</mapper>

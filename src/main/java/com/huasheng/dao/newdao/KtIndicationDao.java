@@ -46,4 +46,6 @@ public interface KtIndicationDao {
     List<KtDrugIndication> getKtIndicationByList(List<KtDrugStructuredIndication> list);
 
     int deleteAllIndication();
+
+    int insertIndicationList(List<KtIndication> list);
 }

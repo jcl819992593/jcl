@@ -2,6 +2,7 @@ package com.huasheng.dao.newdao;
 
 import com.huasheng.pojo.newpojo.KtGeneKeggPathway;
 
+import java.util.List;
 import java.util.Map;
 
 public interface KtGeneKeggPathwayDao {
@@ -20,4 +21,6 @@ public interface KtGeneKeggPathwayDao {
     Map<String,Object> selectByGeneKey(String geneKey);
 
     int deleteByGeneKey(String geneKey);
+
+    int insertList(List<KtGeneKeggPathway> list);
 }

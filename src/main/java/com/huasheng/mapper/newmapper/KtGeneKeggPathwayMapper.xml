@@ -99,4 +99,13 @@ where a.gene_key=#{geneKey}
     where gene_key = #{geneKey,jdbcType=VARCHAR}
 
   </delete>
+
+  <insert id="insertList" parameterType="List">
+    insert into kt_gene_kegg_pathway (gene_key, pathway_key, gene_id,
+    kegg_id) VALUES
+    <foreach collection="list" item="item" index="index" separator=",">
+      (#{item.geneKey,jdbcType=VARCHAR}, #{item.pathwayKey,jdbcType=VARCHAR}, #{item.geneId,jdbcType=VARCHAR},
+      #{item.keggId,jdbcType=VARCHAR})
+    </foreach>
+  </insert>
 </mapper>

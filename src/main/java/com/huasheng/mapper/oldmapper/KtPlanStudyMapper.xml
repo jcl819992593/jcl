@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huasheng.dao.olddao.OldKtPlanStudyDao" >
+  <resultMap id="BaseResultMap" type="com.huasheng.pojo.oldpojo.OldKtPlanStudy" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="medication_plan_id" property="medicationPlanId" jdbcType="INTEGER" />
+    <result column="pmid" property="pmid" jdbcType="INTEGER" />
+    <result column="study" property="study" jdbcType="VARCHAR" />
+    <result column="efficacy" property="efficacy" jdbcType="VARCHAR" />
+    <result column="evidence" property="evidence" jdbcType="VARCHAR" />
+    <result column="comparator" property="comparator" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, medication_plan_id, pmid, study, efficacy, evidence, comparator
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from kt_plan_study
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from kt_plan_study
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.huasheng.pojo.oldpojo.OldKtPlanStudy" >
+    insert into kt_plan_study (id, medication_plan_id, pmid, 
+      study, efficacy, evidence, 
+      comparator)
+    values (#{id,jdbcType=VARCHAR}, #{medicationPlanId,jdbcType=INTEGER}, #{pmid,jdbcType=INTEGER}, 
+      #{study,jdbcType=VARCHAR}, #{efficacy,jdbcType=VARCHAR}, #{evidence,jdbcType=VARCHAR}, 
+      #{comparator,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.huasheng.pojo.oldpojo.OldKtPlanStudy" >
+    insert into kt_plan_study
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="medicationPlanId != null" >
+        medication_plan_id,
+      </if>
+      <if test="pmid != null" >
+        pmid,
+      </if>
+      <if test="study != null" >
+        study,
+      </if>
+      <if test="efficacy != null" >
+        efficacy,
+      </if>
+      <if test="evidence != null" >
+        evidence,
+      </if>
+      <if test="comparator != null" >
+        comparator,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="medicationPlanId != null" >
+        #{medicationPlanId,jdbcType=INTEGER},
+      </if>
+      <if test="pmid != null" >
+        #{pmid,jdbcType=INTEGER},
+      </if>
+      <if test="study != null" >
+        #{study,jdbcType=VARCHAR},
+      </if>
+      <if test="efficacy != null" >
+        #{efficacy,jdbcType=VARCHAR},
+      </if>
+      <if test="evidence != null" >
+        #{evidence,jdbcType=VARCHAR},
+      </if>
+      <if test="comparator != null" >
+        #{comparator,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huasheng.pojo.oldpojo.OldKtPlanStudy" >
+    update kt_plan_study
+    <set >
+      <if test="medicationPlanId != null" >
+        medication_plan_id = #{medicationPlanId,jdbcType=INTEGER},
+      </if>
+      <if test="pmid != null" >
+        pmid = #{pmid,jdbcType=INTEGER},
+      </if>
+      <if test="study != null" >
+        study = #{study,jdbcType=VARCHAR},
+      </if>
+      <if test="efficacy != null" >
+        efficacy = #{efficacy,jdbcType=VARCHAR},
+      </if>
+      <if test="evidence != null" >
+        evidence = #{evidence,jdbcType=VARCHAR},
+      </if>
+      <if test="comparator != null" >
+        comparator = #{comparator,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huasheng.pojo.oldpojo.OldKtPlanStudy" >
+    update kt_plan_study
+    set medication_plan_id = #{medicationPlanId,jdbcType=INTEGER},
+      pmid = #{pmid,jdbcType=INTEGER},
+      study = #{study,jdbcType=VARCHAR},
+      efficacy = #{efficacy,jdbcType=VARCHAR},
+      evidence = #{evidence,jdbcType=VARCHAR},
+      comparator = #{comparator,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+
+  <select id="getOldPlanStudyList" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from kt_plan_study
+  </select>
+
+</mapper>

@@ -275,4 +275,19 @@
   <delete id="deleteAllSideEffect"  >
     delete from kt_side_effect
   </delete>
+
+  <insert id="insertSideEffectList" parameterType="List">
+    insert into kt_side_effect (side_effect_key, umls_concept_id, meddra_id,
+    kind_of_term, side_effect_name, created_at,
+    created_way, created_by_key, created_by_name,
+    check_state, check_report, checked_by_key,
+    checked_by_name, translate_by_key, translate_by_name) VALUES
+    <foreach collection="list" item="item" index="index" separator=",">
+      (#{item.sideEffectKey}, #{item.umlsConceptId}, #{item.meddraId},
+      #{item.kindOfTerm,jdbcType=VARCHAR}, #{item.sideEffectName,jdbcType=VARCHAR}, #{item.createdAt},
+      #{item.createdWay}, #{item.createdByKey}, #{item.createdByName},
+      #{item.checkState}, #{item.checkReport}, #{item.checkedByKey},
+      #{item.checkedByName}, #{item.translateByKey}, #{item.translateByName})
+    </foreach>
+  </insert>
 </mapper>

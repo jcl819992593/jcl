@@ -303,4 +303,22 @@
   <delete id="deleteAllIndication" >
     delete from kt_indication
   </delete>
+  <insert id="insertIndicationList" parameterType="List">
+    insert into kt_indication (indication_key, stitch_compound_id,
+    umls_concept_id, method_of_detection, concept_name,
+    meddra_concept_type, umls_concept_id_of_meddra,
+    meddra_concept_name, created_at, created_way,
+    created_by_key, created_by_name, check_state,
+    check_report, checked_by_key, checked_by_name,
+    translate_by_key, translate_by_name) VALUES
+    <foreach collection="list" item="item" index="index" separator=",">
+      (#{item.indicationKey,jdbcType=VARCHAR}, #{item.stitchCompoundId,jdbcType=VARCHAR},
+      #{item.umlsConceptId,jdbcType=VARCHAR}, #{item.methodOfDetection,jdbcType=VARCHAR}, #{item.conceptName,jdbcType=VARCHAR},
+      #{item.meddraConceptType,jdbcType=VARCHAR}, #{item.umlsConceptIdOfMeddra,jdbcType=VARCHAR},
+      #{item.meddraConceptName,jdbcType=VARCHAR}, #{item.createdAt,jdbcType=BIGINT}, #{item.createdWay,jdbcType=INTEGER},
+      #{item.createdByKey,jdbcType=CHAR}, #{item.createdByName,jdbcType=VARCHAR}, #{item.checkState,jdbcType=INTEGER},
+      #{item.checkReport,jdbcType=VARCHAR}, #{item.checkedByKey,jdbcType=CHAR}, #{item.checkedByName,jdbcType=VARCHAR},
+      #{item.translateByKey,jdbcType=CHAR}, #{item.translateByName,jdbcType=VARCHAR})
+    </foreach>
+  </insert>
 </mapper>

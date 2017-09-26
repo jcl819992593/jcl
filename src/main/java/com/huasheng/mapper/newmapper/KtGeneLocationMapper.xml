@@ -161,4 +161,18 @@
      delete from kt_gene_location
     where gene_key = #{geneKey,jdbcType=VARCHAR}
   </delete>
+
+  <insert id="insertList" parameterType="List">
+    insert into kt_gene_location (gene_location_key, gene_key, gene_id,
+    ref_assembly, chromosome, gene_start,
+    gene_stop, gene_size, orientatio,
+    exoncount) VALUES
+    <foreach collection="list" item="item" index="index" separator=",">
+      (#{item.geneLocationKey,jdbcType=VARCHAR}, #{item.geneKey,jdbcType=VARCHAR}, #{item.geneId,jdbcType=INTEGER},
+      #{item.refAssembly,jdbcType=VARCHAR}, #{item.chromosome,jdbcType=VARCHAR}, #{item.geneStart,jdbcType=VARCHAR},
+      #{item.geneStop,jdbcType=VARCHAR}, #{item.geneSize,jdbcType=INTEGER}, #{item.orientatio,jdbcType=VARCHAR},
+      #{item.exoncount,jdbcType=INTEGER})
+    </foreach>
+  </insert>
+
 </mapper>

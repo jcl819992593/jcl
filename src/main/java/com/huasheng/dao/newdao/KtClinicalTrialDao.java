@@ -31,4 +31,8 @@ public interface KtClinicalTrialDao {
     int getClinicalTrialCountMonth(Map<String, Object> map);
 
     int deleteAllClinicalTrial();
+
+    int insertClinicalTrialList(List<KtClinicalTrial> list);
+
+    KtClinicalTrial selectByClinicalId(String clinicalTrialId);
 }

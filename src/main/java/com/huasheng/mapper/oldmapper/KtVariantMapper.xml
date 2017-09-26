@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huasheng.dao.olddao.OldKtVariantDao" >
+  <resultMap id="BaseResultMap" type="com.huasheng.pojo.oldpojo.OldKtVariant" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="variant_id" property="variantId" jdbcType="INTEGER" />
+    <result column="gene_id" property="geneId" jdbcType="INTEGER" />
+    <result column="grch" property="grch" jdbcType="INTEGER" />
+    <result column="genomic_position" property="genomicPosition" jdbcType="VARCHAR" />
+    <result column="aa_mutation" property="aaMutation" jdbcType="VARCHAR" />
+    <result column="cds_mutation" property="cdsMutation" jdbcType="VARCHAR" />
+    <result column="variant_type" property="variantType" jdbcType="VARCHAR" />
+    <result column="cosmic_id" property="cosmicId" jdbcType="VARCHAR" />
+    <result column="dbsnp_id" property="dbsnpId" jdbcType="VARCHAR" />
+    <result column="mutation_effect" property="mutationEffect" jdbcType="VARCHAR" />
+    <result column="oncogenicity" property="oncogenicity" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.huasheng.pojo.oldpojo.OldKtVariant" extends="BaseResultMap" >
+    <result column="mutation_detection" property="mutationDetection" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, variant_id, gene_id, grch, genomic_position, aa_mutation, cds_mutation, variant_type, 
+    cosmic_id, dbsnp_id, mutation_effect, oncogenicity, remark
+  </sql>
+  <sql id="Blob_Column_List" >
+    mutation_detection
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from kt_variant
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from kt_variant
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.huasheng.pojo.oldpojo.OldKtVariant" >
+    insert into kt_variant (id, variant_id, gene_id, 
+      grch, genomic_position, aa_mutation, 
+      cds_mutation, variant_type, cosmic_id, 
+      dbsnp_id, mutation_effect, oncogenicity, 
+      remark, mutation_detection)
+    values (#{id,jdbcType=VARCHAR}, #{variantId,jdbcType=INTEGER}, #{geneId,jdbcType=INTEGER}, 
+      #{grch,jdbcType=INTEGER}, #{genomicPosition,jdbcType=VARCHAR}, #{aaMutation,jdbcType=VARCHAR}, 
+      #{cdsMutation,jdbcType=VARCHAR}, #{variantType,jdbcType=VARCHAR}, #{cosmicId,jdbcType=VARCHAR}, 
+      #{dbsnpId,jdbcType=VARCHAR}, #{mutationEffect,jdbcType=VARCHAR}, #{oncogenicity,jdbcType=VARCHAR}, 
+      #{remark,jdbcType=VARCHAR}, #{mutationDetection,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.huasheng.pojo.oldpojo.OldKtVariant" >
+    insert into kt_variant
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="variantId != null" >
+        variant_id,
+      </if>
+      <if test="geneId != null" >
+        gene_id,
+      </if>
+      <if test="grch != null" >
+        grch,
+      </if>
+      <if test="genomicPosition != null" >
+        genomic_position,
+      </if>
+      <if test="aaMutation != null" >
+        aa_mutation,
+      </if>
+      <if test="cdsMutation != null" >
+        cds_mutation,
+      </if>
+      <if test="variantType != null" >
+        variant_type,
+      </if>
+      <if test="cosmicId != null" >
+        cosmic_id,
+      </if>
+      <if test="dbsnpId != null" >
+        dbsnp_id,
+      </if>
+      <if test="mutationEffect != null" >
+        mutation_effect,
+      </if>
+      <if test="oncogenicity != null" >
+        oncogenicity,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="mutationDetection != null" >
+        mutation_detection,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="variantId != null" >
+        #{variantId,jdbcType=INTEGER},
+      </if>
+      <if test="geneId != null" >
+        #{geneId,jdbcType=INTEGER},
+      </if>
+      <if test="grch != null" >
+        #{grch,jdbcType=INTEGER},
+      </if>
+      <if test="genomicPosition != null" >
+        #{genomicPosition,jdbcType=VARCHAR},
+      </if>
+      <if test="aaMutation != null" >
+        #{aaMutation,jdbcType=VARCHAR},
+      </if>
+      <if test="cdsMutation != null" >
+        #{cdsMutation,jdbcType=VARCHAR},
+      </if>
+      <if test="variantType != null" >
+        #{variantType,jdbcType=VARCHAR},
+      </if>
+      <if test="cosmicId != null" >
+        #{cosmicId,jdbcType=VARCHAR},
+      </if>
+      <if test="dbsnpId != null" >
+        #{dbsnpId,jdbcType=VARCHAR},
+      </if>
+      <if test="mutationEffect != null" >
+        #{mutationEffect,jdbcType=VARCHAR},
+      </if>
+      <if test="oncogenicity != null" >
+        #{oncogenicity,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="mutationDetection != null" >
+        #{mutationDetection,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huasheng.pojo.oldpojo.OldKtVariant" >
+    update kt_variant
+    <set >
+      <if test="variantId != null" >
+        variant_id = #{variantId,jdbcType=INTEGER},
+      </if>
+      <if test="geneId != null" >
+        gene_id = #{geneId,jdbcType=INTEGER},
+      </if>
+      <if test="grch != null" >
+        grch = #{grch,jdbcType=INTEGER},
+      </if>
+      <if test="genomicPosition != null" >
+        genomic_position = #{genomicPosition,jdbcType=VARCHAR},
+      </if>
+      <if test="aaMutation != null" >
+        aa_mutation = #{aaMutation,jdbcType=VARCHAR},
+      </if>
+      <if test="cdsMutation != null" >
+        cds_mutation = #{cdsMutation,jdbcType=VARCHAR},
+      </if>
+      <if test="variantType != null" >
+        variant_type = #{variantType,jdbcType=VARCHAR},
+      </if>
+      <if test="cosmicId != null" >
+        cosmic_id = #{cosmicId,jdbcType=VARCHAR},
+      </if>
+      <if test="dbsnpId != null" >
+        dbsnp_id = #{dbsnpId,jdbcType=VARCHAR},
+      </if>
+      <if test="mutationEffect != null" >
+        mutation_effect = #{mutationEffect,jdbcType=VARCHAR},
+      </if>
+      <if test="oncogenicity != null" >
+        oncogenicity = #{oncogenicity,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="mutationDetection != null" >
+        mutation_detection = #{mutationDetection,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.huasheng.pojo.oldpojo.OldKtVariant" >
+    update kt_variant
+    set variant_id = #{variantId,jdbcType=INTEGER},
+      gene_id = #{geneId,jdbcType=INTEGER},
+      grch = #{grch,jdbcType=INTEGER},
+      genomic_position = #{genomicPosition,jdbcType=VARCHAR},
+      aa_mutation = #{aaMutation,jdbcType=VARCHAR},
+      cds_mutation = #{cdsMutation,jdbcType=VARCHAR},
+      variant_type = #{variantType,jdbcType=VARCHAR},
+      cosmic_id = #{cosmicId,jdbcType=VARCHAR},
+      dbsnp_id = #{dbsnpId,jdbcType=VARCHAR},
+      mutation_effect = #{mutationEffect,jdbcType=VARCHAR},
+      oncogenicity = #{oncogenicity,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      mutation_detection = #{mutationDetection,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huasheng.pojo.oldpojo.OldKtVariant" >
+    update kt_variant
+    set variant_id = #{variantId,jdbcType=INTEGER},
+      gene_id = #{geneId,jdbcType=INTEGER},
+      grch = #{grch,jdbcType=INTEGER},
+      genomic_position = #{genomicPosition,jdbcType=VARCHAR},
+      aa_mutation = #{aaMutation,jdbcType=VARCHAR},
+      cds_mutation = #{cdsMutation,jdbcType=VARCHAR},
+      variant_type = #{variantType,jdbcType=VARCHAR},
+      cosmic_id = #{cosmicId,jdbcType=VARCHAR},
+      dbsnp_id = #{dbsnpId,jdbcType=VARCHAR},
+      mutation_effect = #{mutationEffect,jdbcType=VARCHAR},
+      oncogenicity = #{oncogenicity,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="getOldKtVariantList" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from kt_variant
+  </select>
+</mapper>

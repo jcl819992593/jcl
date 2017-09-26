@@ -29,4 +29,6 @@ public interface KtEvidenceDao {
     int getEvidenceCountMonth(Map<String, Object> map);
 
     int deleteAllSyndrome();
+
+    int insertEvidenceList(List<KtEvidence> list);
 }

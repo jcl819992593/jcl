@@ -31,4 +31,6 @@ public interface KtSyndromeGeneCancerDao {
     int getSyndromeCountMonth(Map<String, Object> map);
 
     int deleteAllSyndrome();
+
+    int insertList(List<KtSyndromeGeneCancer> list);
 }

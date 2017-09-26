@@ -27,4 +27,6 @@ public interface KtDocumentDao {
     int getDocumentCountMonth(Map<String, Object> map);
 
     int deleteAllDocument();
+
+    int insertList(List<KtDocument> list);
 }

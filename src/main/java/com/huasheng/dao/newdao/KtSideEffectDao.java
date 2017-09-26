@@ -30,4 +30,6 @@ public interface KtSideEffectDao {
     List<KtDrugAdverseReaction> getSideEffectsByList(List<KtDrugAdverseReaction> sideEffects);
 
     int deleteAllSideEffect();
+
+    int insertSideEffectList(List<KtSideEffect> list);
 }

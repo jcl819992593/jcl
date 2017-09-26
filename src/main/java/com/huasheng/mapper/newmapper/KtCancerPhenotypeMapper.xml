@@ -120,4 +120,15 @@
     from kt_cancer_phenotype
     where cancer_key = #{cancerKey,jdbcType=VARCHAR}
   </select>
+
+  <insert id="insertList" parameterType="List">
+    insert into kt_cancer_phenotype (cancer_phenotype_key, cancer_key, doid,
+    name_en, name_cn, mim_id,
+    remark) VALUES
+    <foreach collection="list" item="item" index="index" separator=",">
+      (#{item.cancerPhenotypeKey,jdbcType=VARCHAR}, #{item.cancerKey,jdbcType=VARCHAR}, #{item.doid,jdbcType=INTEGER},
+      #{item.nameEn,jdbcType=VARCHAR}, #{item.nameCn,jdbcType=VARCHAR}, #{item.mimId,jdbcType=VARCHAR},
+      #{item.remark,jdbcType=VARCHAR})
+    </foreach>
+  </insert>
 </mapper>

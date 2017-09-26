@@ -30,6 +30,13 @@
     from kt_chemical_category
     where chemical_category_key = #{chemicalCategoryKey,jdbcType=VARCHAR}
   </select>
+  <select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  select
+  <include refid="Base_Column_List" />
+  from kt_chemical_category
+  where chemont_id = #{id,jdbcType=INTEGER}
+    and created_way = 3
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from kt_chemical_category
     where chemical_category_key = #{chemicalCategoryKey,jdbcType=VARCHAR}
@@ -260,4 +267,37 @@
   <delete id="deleteAllChemicalCategory"  >
     delete from kt_chemical_category
   </delete>
+  <insert id="insertChemicalCategoryList" parameterType="List">
+    insert into kt_chemical_category (chemical_category_key, chemont_id, classification_name,
+    category_definition, parent_id, parent_key,
+    created_at, created_way, created_by_key,
+    created_by_name, check_state, check_report,
+    checked_by_key, checked_by_name, translate_by_key,
+    translate_by_name) VALUES
+    <foreach collection="list" item="item" index="index" separator=",">
+      (#{item.chemicalCategoryKey,jdbcType=VARCHAR}, #{item.chemontId,jdbcType=VARCHAR}, #{item.classificationName,jdbcType=VARCHAR},
+      #{item.categoryDefinition,jdbcType=VARCHAR}, #{item.parentId,jdbcType=INTEGER}, #{item.parentKey,jdbcType=VARCHAR},
+      #{item.createdAt,jdbcType=BIGINT}, #{item.createdWay,jdbcType=INTEGER}, #{item.createdByKey,jdbcType=CHAR},
+      #{item.createdByName,jdbcType=VARCHAR}, #{item.checkState,jdbcType=INTEGER}, #{item.checkReport,jdbcType=VARCHAR},
+      #{item.checkedByKey,jdbcType=CHAR}, #{item.checkedByName,jdbcType=VARCHAR}, #{item.translateByKey,jdbcType=CHAR},
+      #{item.translateByName,jdbcType=VARCHAR})
+    </foreach>
+  </insert>
+
+  <select id="getChemicalCategoryLists" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from kt_chemical_category
+    where created_way = 3
+  </select>
+
+  <update id="updateList"  parameterType="java.util.List">
+    <foreach collection="list" item="item" index="index" separator=",">
+      update kt_chemical_category
+      <set>
+        parent_key=#{item.parentKey}
+      </set>
+      where chemical_category_key = #{item.chemicalCategoryKey}
+    </foreach>
+  </update>
 </mapper>

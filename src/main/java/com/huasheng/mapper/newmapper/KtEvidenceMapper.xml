@@ -337,7 +337,7 @@
         check_report = #{checkReport}
         where evidence_key = #{evidenceKey,jdbcType=VARCHAR}
     </update>
-    <select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.String">
+    <select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.Integer">
         select
         <include refid="Base_Column_List" />
         from kt_evidence
@@ -353,7 +353,25 @@
 
   <delete id="deleteAllSyndrome" >
     delete from kt_evidence
-
   </delete>
+
+  <insert id="insertEvidenceList" parameterType="List">
+    insert into kt_evidence (evidence_key, evidence_id, cancer_key,
+    doid, doid_name, variant_key,
+    variant_id, evidence_type, evidence_level,
+    evidence_direction, summary, created_at,
+    created_way, created_by_key, created_by_name,
+    check_state, check_report, checked_by_key,
+    checked_by_name, translate_by_key, translate_by_name) VALUES
+    <foreach collection="list" item="item" index="index" separator=",">
+      (#{item.evidenceKey,jdbcType=VARCHAR}, #{item.evidenceId,jdbcType=INTEGER}, #{item.cancerKey,jdbcType=VARCHAR},
+      #{item.doid,jdbcType=INTEGER}, #{item.doidName,jdbcType=VARCHAR}, #{item.variantKey,jdbcType=VARCHAR},
+      #{item.variantId,jdbcType=INTEGER}, #{item.evidenceType,jdbcType=VARCHAR}, #{item.evidenceLevel,jdbcType=INTEGER},
+      #{item.evidenceDirection,jdbcType=VARCHAR}, #{item.summary,jdbcType=VARCHAR}, #{item.createdAt,jdbcType=BIGINT},
+      #{item.createdWay,jdbcType=INTEGER}, #{item.createdByKey,jdbcType=CHAR}, #{item.createdByName,jdbcType=VARCHAR},
+      #{item.checkState,jdbcType=INTEGER}, #{item.checkReport,jdbcType=VARCHAR}, #{item.checkedByKey,jdbcType=CHAR},
+      #{item.checkedByName,jdbcType=VARCHAR}, #{item.translateByKey,jdbcType=CHAR}, #{item.translateByName,jdbcType=VARCHAR})
+    </foreach>
+  </insert>
 
 </mapper>

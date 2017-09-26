@@ -142,4 +142,15 @@
     delete from kt_gene_genomic_context
 
   </delete>
+
+  <insert id="insertlist" parameterType="List">
+    insert into kt_gene_genomic_context (gene_genomic_context_key, gene_key, gene_id,
+    chrloc, chrstop, chrstart,
+    chraccver, exoncount) VALUES
+    <foreach collection="list" item="item" index="index" separator=",">
+      (#{item.geneGenomicContextKey,jdbcType=VARCHAR}, #{item.geneKey,jdbcType=VARCHAR}, #{item.geneId,jdbcType=INTEGER},
+      #{item.chrloc,jdbcType=VARCHAR}, #{item.chrstop,jdbcType=INTEGER}, #{item.chrstart,jdbcType=INTEGER},
+      #{item.chraccver,jdbcType=VARCHAR}, #{item.exoncount,jdbcType=INTEGER})
+    </foreach>
+  </insert>
 </mapper>

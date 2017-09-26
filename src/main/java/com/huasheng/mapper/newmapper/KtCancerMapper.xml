@@ -494,4 +494,46 @@ SELECT
   <delete id="deleteAllCancer" >
     delete from kt_cancer
   </delete>
+
+  <insert id="insertCancerList" parameterType="List">
+    insert into kt_cancer (cancer_key, doid, cancer_name,
+    parent_ids, parent_keys, english_name,
+    cancer_definition, pathogenesis, clinicalfeatures,
+    diagnostics, histopathology, the_picture,
+    is_common, the_source, the_link,
+    subtype_base, cancer_incidence, created_at,
+    created_way, created_by_key, created_by_name,
+    check_state, check_report, checked_by_key,
+    checked_by_name, translate_by_key, translate_by_name) VALUES
+    <foreach collection="list" item="item" index="index" separator=",">
+      (#{item.cancerKey,jdbcType=VARCHAR}, #{item.doid,jdbcType=VARCHAR}, #{item.cancerName,jdbcType=VARCHAR},
+      #{item.parentIds,jdbcType=VARCHAR}, #{item.parentKeys,jdbcType=VARCHAR}, #{item.englishName,jdbcType=VARCHAR},
+      #{item.cancerDefinition,jdbcType=VARCHAR}, #{item.pathogenesis,jdbcType=VARCHAR}, #{item.clinicalfeatures,jdbcType=VARCHAR},
+      #{item.diagnostics,jdbcType=VARCHAR}, #{item.histopathology,jdbcType=VARCHAR}, #{item.thePicture,jdbcType=VARCHAR},
+      #{item.isCommon,jdbcType=BIT}, #{item.theSource,jdbcType=VARCHAR}, #{item.theLink,jdbcType=VARCHAR},
+      #{item.subtypeBase,jdbcType=INTEGER}, #{item.cancerIncidence,jdbcType=VARCHAR}, #{item.createdAt,jdbcType=BIGINT},
+      #{item.createdWay,jdbcType=INTEGER}, #{item.createdByKey,jdbcType=CHAR}, #{item.createdByName,jdbcType=VARCHAR},
+      #{item.checkState,jdbcType=INTEGER}, #{item.checkReport,jdbcType=VARCHAR}, #{item.checkedByKey,jdbcType=CHAR},
+      #{item.checkedByName,jdbcType=VARCHAR}, #{item.translateByKey,jdbcType=CHAR}, #{item.translateByName,jdbcType=VARCHAR})
+    </foreach>
+  </insert>
+  <select id="getCancerLists" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from kt_cancer
+    where created_way=3
+  </select>
+  <select id="getCancerKeys" resultType="java.lang.String" parameterType="java.util.List">
+    select
+    cancer_key cancerKey
+    from kt_cancer
+    WHERE
+    doid IN
+      (
+      <foreach collection="list" item="item" index="index" separator=",">
+        #{item}
+      </foreach>
+      )
+    AND created_way=3
+  </select>
 </mapper>

@@ -23,11 +23,11 @@
         <tx:attributes>
             <!-- 传播行为 -->
             <tx:method name="save*" propagation="REQUIRED" />
-            <tx:method name="insert*" propagation="REQUIRED" />
-            <tx:method name="add*" propagation="REQUIRED" />
+            <tx:method name="insert*" propagation="SUPPORTS" />
+            <tx:method name="add*" propagation="SUPPORTS" />
             <tx:method name="create*" propagation="REQUIRED" />
             <tx:method name="delete*" propagation="REQUIRED" />
-            <tx:method name="update*" propagation="REQUIRED" />
+            <tx:method name="update*" propagation="SUPPORTS" />
             <tx:method name="find*" propagation="SUPPORTS" read-only="true" />
             <tx:method name="select*" propagation="SUPPORTS" read-only="true" />
             <tx:method name="get*" propagation="SUPPORTS" read-only="true" />

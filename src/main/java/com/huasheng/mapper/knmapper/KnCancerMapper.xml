@@ -1,0 +1,407 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huasheng.dao.kndao.KnCancerDao" >
+  <resultMap id="BaseResultMap" type="com.huasheng.pojo.knpojo.KnCancer" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="parent_id" property="parentId" jdbcType="VARCHAR" />
+    <result column="parent_ids" property="parentIds" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="gene_describe" property="geneDescribe" jdbcType="VARCHAR" />
+    <result column="drug_describe" property="drugDescribe" jdbcType="VARCHAR" />
+    <result column="englishname" property="englishname" jdbcType="VARCHAR" />
+    <result column="attribute2" property="attribute2" jdbcType="VARCHAR" />
+    <result column="attribute1" property="attribute1" jdbcType="VARCHAR" />
+    <result column="treatment" property="treatment" jdbcType="VARCHAR" />
+    <result column="drug_Classification" property="drugClassification" jdbcType="VARCHAR" />
+    <result column="definition" property="definition" jdbcType="VARCHAR" />
+    <result column="pathogenesis" property="pathogenesis" jdbcType="VARCHAR" />
+    <result column="clinicalfeatures" property="clinicalfeatures" jdbcType="VARCHAR" />
+    <result column="diagnostics" property="diagnostics" jdbcType="VARCHAR" />
+    <result column="histopathology" property="histopathology" jdbcType="VARCHAR" />
+    <result column="picture" property="picture" jdbcType="VARCHAR" />
+    <result column="common" property="common" jdbcType="INTEGER" />
+    <result column="sort" property="sort" jdbcType="INTEGER" />
+    <result column="pinyin" property="pinyin" jdbcType="VARCHAR" />
+    <result column="incidence" property="incidence" jdbcType="VARCHAR" />
+    <result column="source" property="source" jdbcType="VARCHAR" />
+    <result column="link" property="link" jdbcType="VARCHAR" />
+    <result column="subtype_base" property="subtypeBase" jdbcType="INTEGER" />
+    <result column="is_display" property="isDisplay" jdbcType="CHAR" />
+    <result column="create_by" property="createBy" jdbcType="VARCHAR" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="update_by" property="updateBy" jdbcType="VARCHAR" />
+    <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+    <result column="del_flag" property="delFlag" jdbcType="CHAR" />
+    <result column="remarks" property="remarks" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, parent_id, parent_ids, name, gene_describe, drug_describe, englishname, attribute2, 
+    attribute1, treatment, drug_Classification, definition, pathogenesis, clinicalfeatures, 
+    diagnostics, histopathology, picture, common, sort, pinyin, incidence, source, link, 
+    subtype_base, is_display, create_by, create_date, update_by, update_date, del_flag, 
+    remarks
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from kn_cancer
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from kn_cancer
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.huasheng.pojo.knpojo.KnCancer" >
+    insert into kn_cancer (id, parent_id, parent_ids, 
+      name, gene_describe, drug_describe, 
+      englishname, attribute2, attribute1, 
+      treatment, drug_Classification, definition, 
+      pathogenesis, clinicalfeatures, diagnostics, 
+      histopathology, picture, common, 
+      sort, pinyin, incidence, 
+      source, link, subtype_base, 
+      is_display, create_by, create_date, 
+      update_by, update_date, del_flag, 
+      remarks)
+    values (#{id,jdbcType=VARCHAR}, #{parentId,jdbcType=VARCHAR}, #{parentIds,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{geneDescribe,jdbcType=VARCHAR}, #{drugDescribe,jdbcType=VARCHAR}, 
+      #{englishname,jdbcType=VARCHAR}, #{attribute2,jdbcType=VARCHAR}, #{attribute1,jdbcType=VARCHAR}, 
+      #{treatment,jdbcType=VARCHAR}, #{drugClassification,jdbcType=VARCHAR}, #{definition,jdbcType=VARCHAR}, 
+      #{pathogenesis,jdbcType=VARCHAR}, #{clinicalfeatures,jdbcType=VARCHAR}, #{diagnostics,jdbcType=VARCHAR}, 
+      #{histopathology,jdbcType=VARCHAR}, #{picture,jdbcType=VARCHAR}, #{common,jdbcType=INTEGER}, 
+      #{sort,jdbcType=INTEGER}, #{pinyin,jdbcType=VARCHAR}, #{incidence,jdbcType=VARCHAR}, 
+      #{source,jdbcType=VARCHAR}, #{link,jdbcType=VARCHAR}, #{subtypeBase,jdbcType=INTEGER}, 
+      #{isDisplay,jdbcType=CHAR}, #{createBy,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, 
+      #{updateBy,jdbcType=VARCHAR}, #{updateDate,jdbcType=TIMESTAMP}, #{delFlag,jdbcType=CHAR}, 
+      #{remarks,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.huasheng.pojo.knpojo.KnCancer" >
+    insert into kn_cancer
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="parentId != null" >
+        parent_id,
+      </if>
+      <if test="parentIds != null" >
+        parent_ids,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="geneDescribe != null" >
+        gene_describe,
+      </if>
+      <if test="drugDescribe != null" >
+        drug_describe,
+      </if>
+      <if test="englishname != null" >
+        englishname,
+      </if>
+      <if test="attribute2 != null" >
+        attribute2,
+      </if>
+      <if test="attribute1 != null" >
+        attribute1,
+      </if>
+      <if test="treatment != null" >
+        treatment,
+      </if>
+      <if test="drugClassification != null" >
+        drug_Classification,
+      </if>
+      <if test="definition != null" >
+        definition,
+      </if>
+      <if test="pathogenesis != null" >
+        pathogenesis,
+      </if>
+      <if test="clinicalfeatures != null" >
+        clinicalfeatures,
+      </if>
+      <if test="diagnostics != null" >
+        diagnostics,
+      </if>
+      <if test="histopathology != null" >
+        histopathology,
+      </if>
+      <if test="picture != null" >
+        picture,
+      </if>
+      <if test="common != null" >
+        common,
+      </if>
+      <if test="sort != null" >
+        sort,
+      </if>
+      <if test="pinyin != null" >
+        pinyin,
+      </if>
+      <if test="incidence != null" >
+        incidence,
+      </if>
+      <if test="source != null" >
+        source,
+      </if>
+      <if test="link != null" >
+        link,
+      </if>
+      <if test="subtypeBase != null" >
+        subtype_base,
+      </if>
+      <if test="isDisplay != null" >
+        is_display,
+      </if>
+      <if test="createBy != null" >
+        create_by,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="updateBy != null" >
+        update_by,
+      </if>
+      <if test="updateDate != null" >
+        update_date,
+      </if>
+      <if test="delFlag != null" >
+        del_flag,
+      </if>
+      <if test="remarks != null" >
+        remarks,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null" >
+        #{parentId,jdbcType=VARCHAR},
+      </if>
+      <if test="parentIds != null" >
+        #{parentIds,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="geneDescribe != null" >
+        #{geneDescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="drugDescribe != null" >
+        #{drugDescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="englishname != null" >
+        #{englishname,jdbcType=VARCHAR},
+      </if>
+      <if test="attribute2 != null" >
+        #{attribute2,jdbcType=VARCHAR},
+      </if>
+      <if test="attribute1 != null" >
+        #{attribute1,jdbcType=VARCHAR},
+      </if>
+      <if test="treatment != null" >
+        #{treatment,jdbcType=VARCHAR},
+      </if>
+      <if test="drugClassification != null" >
+        #{drugClassification,jdbcType=VARCHAR},
+      </if>
+      <if test="definition != null" >
+        #{definition,jdbcType=VARCHAR},
+      </if>
+      <if test="pathogenesis != null" >
+        #{pathogenesis,jdbcType=VARCHAR},
+      </if>
+      <if test="clinicalfeatures != null" >
+        #{clinicalfeatures,jdbcType=VARCHAR},
+      </if>
+      <if test="diagnostics != null" >
+        #{diagnostics,jdbcType=VARCHAR},
+      </if>
+      <if test="histopathology != null" >
+        #{histopathology,jdbcType=VARCHAR},
+      </if>
+      <if test="picture != null" >
+        #{picture,jdbcType=VARCHAR},
+      </if>
+      <if test="common != null" >
+        #{common,jdbcType=INTEGER},
+      </if>
+      <if test="sort != null" >
+        #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="pinyin != null" >
+        #{pinyin,jdbcType=VARCHAR},
+      </if>
+      <if test="incidence != null" >
+        #{incidence,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null" >
+        #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="link != null" >
+        #{link,jdbcType=VARCHAR},
+      </if>
+      <if test="subtypeBase != null" >
+        #{subtypeBase,jdbcType=INTEGER},
+      </if>
+      <if test="isDisplay != null" >
+        #{isDisplay,jdbcType=CHAR},
+      </if>
+      <if test="createBy != null" >
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null" >
+        #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null" >
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=CHAR},
+      </if>
+      <if test="remarks != null" >
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huasheng.pojo.knpojo.KnCancer" >
+    update kn_cancer
+    <set >
+      <if test="parentId != null" >
+        parent_id = #{parentId,jdbcType=VARCHAR},
+      </if>
+      <if test="parentIds != null" >
+        parent_ids = #{parentIds,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="geneDescribe != null" >
+        gene_describe = #{geneDescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="drugDescribe != null" >
+        drug_describe = #{drugDescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="englishname != null" >
+        englishname = #{englishname,jdbcType=VARCHAR},
+      </if>
+      <if test="attribute2 != null" >
+        attribute2 = #{attribute2,jdbcType=VARCHAR},
+      </if>
+      <if test="attribute1 != null" >
+        attribute1 = #{attribute1,jdbcType=VARCHAR},
+      </if>
+      <if test="treatment != null" >
+        treatment = #{treatment,jdbcType=VARCHAR},
+      </if>
+      <if test="drugClassification != null" >
+        drug_Classification = #{drugClassification,jdbcType=VARCHAR},
+      </if>
+      <if test="definition != null" >
+        definition = #{definition,jdbcType=VARCHAR},
+      </if>
+      <if test="pathogenesis != null" >
+        pathogenesis = #{pathogenesis,jdbcType=VARCHAR},
+      </if>
+      <if test="clinicalfeatures != null" >
+        clinicalfeatures = #{clinicalfeatures,jdbcType=VARCHAR},
+      </if>
+      <if test="diagnostics != null" >
+        diagnostics = #{diagnostics,jdbcType=VARCHAR},
+      </if>
+      <if test="histopathology != null" >
+        histopathology = #{histopathology,jdbcType=VARCHAR},
+      </if>
+      <if test="picture != null" >
+        picture = #{picture,jdbcType=VARCHAR},
+      </if>
+      <if test="common != null" >
+        common = #{common,jdbcType=INTEGER},
+      </if>
+      <if test="sort != null" >
+        sort = #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="pinyin != null" >
+        pinyin = #{pinyin,jdbcType=VARCHAR},
+      </if>
+      <if test="incidence != null" >
+        incidence = #{incidence,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null" >
+        source = #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="link != null" >
+        link = #{link,jdbcType=VARCHAR},
+      </if>
+      <if test="subtypeBase != null" >
+        subtype_base = #{subtypeBase,jdbcType=INTEGER},
+      </if>
+      <if test="isDisplay != null" >
+        is_display = #{isDisplay,jdbcType=CHAR},
+      </if>
+      <if test="createBy != null" >
+        create_by = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null" >
+        update_by = #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null" >
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delFlag != null" >
+        del_flag = #{delFlag,jdbcType=CHAR},
+      </if>
+      <if test="remarks != null" >
+        remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huasheng.pojo.knpojo.KnCancer" >
+    update kn_cancer
+    set parent_id = #{parentId,jdbcType=VARCHAR},
+      parent_ids = #{parentIds,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      gene_describe = #{geneDescribe,jdbcType=VARCHAR},
+      drug_describe = #{drugDescribe,jdbcType=VARCHAR},
+      englishname = #{englishname,jdbcType=VARCHAR},
+      attribute2 = #{attribute2,jdbcType=VARCHAR},
+      attribute1 = #{attribute1,jdbcType=VARCHAR},
+      treatment = #{treatment,jdbcType=VARCHAR},
+      drug_Classification = #{drugClassification,jdbcType=VARCHAR},
+      definition = #{definition,jdbcType=VARCHAR},
+      pathogenesis = #{pathogenesis,jdbcType=VARCHAR},
+      clinicalfeatures = #{clinicalfeatures,jdbcType=VARCHAR},
+      diagnostics = #{diagnostics,jdbcType=VARCHAR},
+      histopathology = #{histopathology,jdbcType=VARCHAR},
+      picture = #{picture,jdbcType=VARCHAR},
+      common = #{common,jdbcType=INTEGER},
+      sort = #{sort,jdbcType=INTEGER},
+      pinyin = #{pinyin,jdbcType=VARCHAR},
+      incidence = #{incidence,jdbcType=VARCHAR},
+      source = #{source,jdbcType=VARCHAR},
+      link = #{link,jdbcType=VARCHAR},
+      subtype_base = #{subtypeBase,jdbcType=INTEGER},
+      is_display = #{isDisplay,jdbcType=CHAR},
+      create_by = #{createBy,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_by = #{updateBy,jdbcType=VARCHAR},
+      update_date = #{updateDate,jdbcType=TIMESTAMP},
+      del_flag = #{delFlag,jdbcType=CHAR},
+      remarks = #{remarks,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+
+  <select id="getKnCancerList" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from kn_cancer
+  </select>
+</mapper>

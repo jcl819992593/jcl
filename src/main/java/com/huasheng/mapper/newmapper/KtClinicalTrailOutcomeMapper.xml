@@ -200,14 +200,19 @@
     where clinical_trial_outcome_key = #{clinicalTrialOutcomeKey,jdbcType=VARCHAR}
   </update>
 
-  <insert id="insertList" parameterType="java.util.List">
-    INSERT INTO kt_clinical_trial_outcome (clinical_trial_outcome_key,clinical_trial_key, clinical_trial_id, category, classification,
-    title,result_group,unit,param_type,param_value,disp_type,disp_value,disp_min,disp_max) VALUES
-    <foreach collection="list" index="index"  separator="," item="item" >
-      (#{item.clinicalTrialOutcomeKey,jdbcType=VARCHAR},#{item.clinicalTrialKey,jdbcType=VARCHAR}, #{item.clinicalTrialId,jdbcType=VARCHAR}, #{item.category,jdbcType=VARCHAR},
-      #{item.classification,jdbcType=VARCHAR}, #{item.title,jdbcType=VARCHAR},#{item.resultGroup,jdbcType=VARCHAR},
-      #{item.unit,jdbcType=VARCHAR},#{item.paramType,jdbcType=VARCHAR},#{item.paramValue,jdbcType=DOUBLE},#{item.dispType,jdbcType=VARCHAR},
-      #{item.dispValue,jdbcType=DOUBLE},#{item.dispMin,jdbcType=DOUBLE},#{item.dispMax,jdbcType=DOUBLE})
+
+  <insert id="insertList" parameterType="List">
+    insert into kt_clinical_trial_outcome (clinical_trial_outcome_key, clinical_trial_key,
+    clinical_trial_id, category, classification,
+    title, result_group, unit,
+    param_type, param_value, disp_type,
+    disp_value, disp_min, disp_max) VALUES
+    <foreach collection="list" item="item" index="index" separator=",">
+      (#{item.clinicalTrialOutcomeKey,jdbcType=VARCHAR}, #{item.clinicalTrialKey,jdbcType=VARCHAR},
+      #{item.clinicalTrialId,jdbcType=VARCHAR}, #{item.category,jdbcType=VARCHAR}, #{item.classification,jdbcType=VARCHAR},
+      #{item.title,jdbcType=VARCHAR}, #{item.resultGroup,jdbcType=VARCHAR}, #{item.unit,jdbcType=VARCHAR},
+      #{item.paramType,jdbcType=VARCHAR}, #{item.paramValue,jdbcType=DOUBLE}, #{item.dispType,jdbcType=VARCHAR},
+      #{item.dispValue,jdbcType=DOUBLE}, #{item.dispMin,jdbcType=DOUBLE}, #{item.dispMax,jdbcType=DOUBLE})
     </foreach>
   </insert>
 

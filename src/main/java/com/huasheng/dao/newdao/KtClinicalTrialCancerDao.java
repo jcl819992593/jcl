@@ -3,6 +3,8 @@ package com.huasheng.dao.newdao;
 
 import com.huasheng.pojo.newpojo.KtClinicalTrialCancer;
 
+import java.util.List;
+
 public interface KtClinicalTrialCancerDao {
     int deleteByPrimaryKey(KtClinicalTrialCancer key);
 
@@ -17,4 +19,6 @@ public interface KtClinicalTrialCancerDao {
     int updateByPrimaryKey(KtClinicalTrialCancer record);
 
     KtClinicalTrialCancer getClinicalTrialCancerByClinicalTrialKey(String clinicalTrialKey);
+
+    int insertList(List<KtClinicalTrialCancer> list);
 }

@@ -22,4 +22,6 @@ public interface KtEvidenceDrugDao {
     boolean insertMore(List<KtEvidenceDrug> evidenceDrugList);
 
     void deleteByEvidenceKey(String evidenceKey);
+
+    int insertList(List<KtEvidenceDrug> list);
 }

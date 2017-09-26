@@ -39,12 +39,23 @@
         <property name="minIdle" value="5" />
     </bean>
 
+    <bean id="knDataSource" class="com.alibaba.druid.pool.DruidDataSource"
+          destroy-method="close">
+        <property name="url" value="${jdbc.url.kn}" />
+        <property name="username" value="${jdbc.username.kn}" />
+        <property name="password" value="${jdbc.password.kn}" />
+        <property name="driverClassName" value="${jdbc.driver.kn}" />
+        <property name="maxActive" value="10" />
+        <property name="minIdle" value="5" />
+    </bean>
+
     <bean id="dataSource" class="com.huasheng.datasource.DbcontextHolder"><!-- 这里写选择数据源的类地址 下面跟着给出-->
         <property name="defaultTargetDataSource" ref="newDataSource"/><!-- 设置默认为此mySqlDataSource数据源-->
         <property name="targetDataSources">
             <map>
                 <entry key="oldDataSource" value-ref="oldDataSource"/>
                 <entry key="newDataSource" value-ref="newDataSource"/>
+                <entry key="knDataSource" value-ref="knDataSource"/>
             </map>
         </property>
     </bean>
@@ -58,13 +69,14 @@
             <list>
                 <value>classpath:com/huasheng/mapper/newmapper/*.xml</value>
                 <value>classpath:com/huasheng/mapper/oldmapper/*.xml</value>
+                <value>classpath:com/huasheng/mapper/knmapper/*.xml</value>
             </list>
         </property>
     </bean>
 
     <!-- DAO接口所在包名，Spring会自动查找其下的类 -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.huasheng.dao.newdao,com.huasheng.dao.olddao"/>
+        <property name="basePackage" value="com.huasheng.dao.newdao,com.huasheng.dao.olddao,com.huasheng.dao.kndao"/>
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
     </bean>
 

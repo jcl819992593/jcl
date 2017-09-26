@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huasheng.dao.olddao.OldKtDrugCategoryDao" >
+  <resultMap id="BaseResultMap" type="com.huasheng.pojo.oldpojo.OldKtDrugCategory" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="drug_id" property="drugId" jdbcType="INTEGER" />
+    <result column="mesh_id" property="meshId" jdbcType="VARCHAR" />
+    <result column="category_name" property="categoryName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, drug_id, mesh_id, category_name
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from kt_drug_category
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from kt_drug_category
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.huasheng.pojo.oldpojo.OldKtDrugCategory" >
+    insert into kt_drug_category (id, drug_id, mesh_id, 
+      category_name)
+    values (#{id,jdbcType=VARCHAR}, #{drugId,jdbcType=INTEGER}, #{meshId,jdbcType=VARCHAR}, 
+      #{categoryName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.huasheng.pojo.oldpojo.OldKtDrugCategory" >
+    insert into kt_drug_category
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="drugId != null" >
+        drug_id,
+      </if>
+      <if test="meshId != null" >
+        mesh_id,
+      </if>
+      <if test="categoryName != null" >
+        category_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="drugId != null" >
+        #{drugId,jdbcType=INTEGER},
+      </if>
+      <if test="meshId != null" >
+        #{meshId,jdbcType=VARCHAR},
+      </if>
+      <if test="categoryName != null" >
+        #{categoryName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huasheng.pojo.oldpojo.OldKtDrugCategory" >
+    update kt_drug_category
+    <set >
+      <if test="drugId != null" >
+        drug_id = #{drugId,jdbcType=INTEGER},
+      </if>
+      <if test="meshId != null" >
+        mesh_id = #{meshId,jdbcType=VARCHAR},
+      </if>
+      <if test="categoryName != null" >
+        category_name = #{categoryName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huasheng.pojo.oldpojo.OldKtDrugCategory" >
+    update kt_drug_category
+    set drug_id = #{drugId,jdbcType=INTEGER},
+      mesh_id = #{meshId,jdbcType=VARCHAR},
+      category_name = #{categoryName,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="getOldDrugCategoryList" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from kt_drug_category
+  </select>
+</mapper>

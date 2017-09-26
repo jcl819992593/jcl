@@ -247,4 +247,19 @@
   <delete id="deleteAllDocument">
     delete from kt_document
   </delete>
+
+  <insert id="insertList" parameterType="List">
+    insert into kt_document (document_key, document_title,
+    document_age_limit, document_file_path,document_file_name,document_file_time, created_at,
+    created_way, created_by_key, created_by_name,
+    check_state, check_report, checked_by_key,
+    checked_by_name) VALUES
+    <foreach collection="list" item="item" index="index" separator=",">
+      (#{item.documentKey,jdbcType=CHAR}, #{item.documentTitle,jdbcType=VARCHAR},
+      #{item.documentAgeLimit,jdbcType=INTEGER}, #{item.documentFilePath,jdbcType=VARCHAR},#{item.documentFileName,jdbcType=VARCHAR},#{item.documentFileTime,jdbcType=BIGINT}, #{item.createdAt,jdbcType=BIGINT},
+      #{item.createdWay,jdbcType=INTEGER}, #{item.createdByKey,jdbcType=CHAR}, #{item.createdByName,jdbcType=VARCHAR},
+      #{item.checkState,jdbcType=INTEGER}, #{item.checkReport,jdbcType=VARCHAR}, #{item.checkedByKey,jdbcType=CHAR},
+      #{item.checkedByName,jdbcType=VARCHAR})
+    </foreach>
+  </insert>
 </mapper>

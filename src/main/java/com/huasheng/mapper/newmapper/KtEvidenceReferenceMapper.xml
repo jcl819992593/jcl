@@ -109,4 +109,15 @@
     from kt_evidence_reference
     where evidence_key = #{evidenceKey,jdbcType=VARCHAR}
   </select>
+
+  <insert id="insertList" parameterType="List">
+    insert into kt_evidence_reference (evidence_reference_key, evidence_key,
+    evidence_id, ref_type, reference_id,
+    external_id) VALUES
+    <foreach collection="list" item="item" index="index" separator=",">
+      (#{item.evidenceReferenceKey,jdbcType=VARCHAR}, #{item.evidenceKey,jdbcType=VARCHAR},
+      #{item.evidenceId,jdbcType=INTEGER}, #{item.refType,jdbcType=VARCHAR}, #{item.referenceId,jdbcType=INTEGER},
+      #{item.externalId,jdbcType=INTEGER})
+    </foreach>
+  </insert>
 </mapper>

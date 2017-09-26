@@ -2,6 +2,8 @@ package com.huasheng.dao.newdao;
 
 import com.huasheng.pojo.newpojo.KtGeneGenomicContext;
 
+import java.util.List;
+
 public interface KtGeneGenomicContextDao {
     int deleteByPrimaryKey(String geneGenomicContextKey);
 
@@ -20,4 +22,6 @@ public interface KtGeneGenomicContextDao {
     void deleteByGeneKey(String geneKey);
 
     int deleteAllContext();
+
+    int insertlist(List<KtGeneGenomicContext> list);
 }

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huasheng.dao.olddao.OldKtPlanReferenceDao" >
+  <resultMap id="BaseResultMap" type="com.huasheng.pojo.oldpojo.OldKtPlanReference" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="medicine_plan_id" property="medicinePlanId" jdbcType="INTEGER" />
+    <result column="reference_id" property="referenceId" jdbcType="INTEGER" />
+    <result column="ref_type" property="refType" jdbcType="VARCHAR" />
+    <result column="external_id" property="externalId" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, medicine_plan_id, reference_id, ref_type, external_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from kt_plan_reference
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from kt_plan_reference
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.huasheng.pojo.oldpojo.OldKtPlanReference" >
+    insert into kt_plan_reference (id, medicine_plan_id, reference_id, 
+      ref_type, external_id)
+    values (#{id,jdbcType=VARCHAR}, #{medicinePlanId,jdbcType=INTEGER}, #{referenceId,jdbcType=INTEGER}, 
+      #{refType,jdbcType=VARCHAR}, #{externalId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.huasheng.pojo.oldpojo.OldKtPlanReference" >
+    insert into kt_plan_reference
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="medicinePlanId != null" >
+        medicine_plan_id,
+      </if>
+      <if test="referenceId != null" >
+        reference_id,
+      </if>
+      <if test="refType != null" >
+        ref_type,
+      </if>
+      <if test="externalId != null" >
+        external_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="medicinePlanId != null" >
+        #{medicinePlanId,jdbcType=INTEGER},
+      </if>
+      <if test="referenceId != null" >
+        #{referenceId,jdbcType=INTEGER},
+      </if>
+      <if test="refType != null" >
+        #{refType,jdbcType=VARCHAR},
+      </if>
+      <if test="externalId != null" >
+        #{externalId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huasheng.pojo.oldpojo.OldKtPlanReference" >
+    update kt_plan_reference
+    <set >
+      <if test="medicinePlanId != null" >
+        medicine_plan_id = #{medicinePlanId,jdbcType=INTEGER},
+      </if>
+      <if test="referenceId != null" >
+        reference_id = #{referenceId,jdbcType=INTEGER},
+      </if>
+      <if test="refType != null" >
+        ref_type = #{refType,jdbcType=VARCHAR},
+      </if>
+      <if test="externalId != null" >
+        external_id = #{externalId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huasheng.pojo.oldpojo.OldKtPlanReference" >
+    update kt_plan_reference
+    set medicine_plan_id = #{medicinePlanId,jdbcType=INTEGER},
+      reference_id = #{referenceId,jdbcType=INTEGER},
+      ref_type = #{refType,jdbcType=VARCHAR},
+      external_id = #{externalId,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="getOldPlanReferenceList" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from kt_plan_reference
+  </select>
+</mapper>

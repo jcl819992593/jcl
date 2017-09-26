@@ -35,4 +35,6 @@ public interface KtVariantDao {
     KtVariant getVariantById(Integer variantId);
 
     int getVariantTranslateMonth(Map<String, Object> map);
+
+    int insertVariantList(List<KtVariant> list);
 }

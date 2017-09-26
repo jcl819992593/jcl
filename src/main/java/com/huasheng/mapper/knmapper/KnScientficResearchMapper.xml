@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huasheng.dao.kndao.KnScientficResearchDao" >
+  <resultMap id="BaseResultMap" type="com.huasheng.pojo.knpojo.KnScientficResearch" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="create_by" property="createBy" jdbcType="VARCHAR" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="update_by" property="updateBy" jdbcType="VARCHAR" />
+    <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+    <result column="del_flag" property="delFlag" jdbcType="CHAR" />
+    <result column="remarks" property="remarks" jdbcType="VARCHAR" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="time" property="time" jdbcType="TIMESTAMP" />
+    <result column="abstracts" property="abstracts" jdbcType="VARCHAR" />
+    <result column="result" property="result" jdbcType="VARCHAR" />
+    <result column="approach" property="approach" jdbcType="VARCHAR" />
+    <result column="background" property="background" jdbcType="VARCHAR" />
+    <result column="conclusion" property="conclusion" jdbcType="VARCHAR" />
+    <result column="author" property="author" jdbcType="VARCHAR" />
+    <result column="source" property="source" jdbcType="VARCHAR" />
+    <result column="journal" property="journal" jdbcType="VARCHAR" />
+    <result column="pmid" property="pmid" jdbcType="VARCHAR" />
+    <result column="sort" property="sort" jdbcType="VARCHAR" />
+    <result column="url" property="url" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, create_by, create_date, update_by, update_date, del_flag, remarks, title, time, 
+    abstracts, result, approach, background, conclusion, author, source, journal, pmid, 
+    sort, url
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from kn_scientfic_research
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from kn_scientfic_research
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.huasheng.pojo.knpojo.KnScientficResearch" >
+    insert into kn_scientfic_research (id, create_by, create_date, 
+      update_by, update_date, del_flag, 
+      remarks, title, time, 
+      abstracts, result, approach, 
+      background, conclusion, author, 
+      source, journal, pmid, 
+      sort, url)
+    values (#{id,jdbcType=VARCHAR}, #{createBy,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, 
+      #{updateBy,jdbcType=VARCHAR}, #{updateDate,jdbcType=TIMESTAMP}, #{delFlag,jdbcType=CHAR}, 
+      #{remarks,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, #{time,jdbcType=TIMESTAMP}, 
+      #{abstracts,jdbcType=VARCHAR}, #{result,jdbcType=VARCHAR}, #{approach,jdbcType=VARCHAR}, 
+      #{background,jdbcType=VARCHAR}, #{conclusion,jdbcType=VARCHAR}, #{author,jdbcType=VARCHAR}, 
+      #{source,jdbcType=VARCHAR}, #{journal,jdbcType=VARCHAR}, #{pmid,jdbcType=VARCHAR}, 
+      #{sort,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.huasheng.pojo.knpojo.KnScientficResearch" >
+    insert into kn_scientfic_research
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="createBy != null" >
+        create_by,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="updateBy != null" >
+        update_by,
+      </if>
+      <if test="updateDate != null" >
+        update_date,
+      </if>
+      <if test="delFlag != null" >
+        del_flag,
+      </if>
+      <if test="remarks != null" >
+        remarks,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="time != null" >
+        time,
+      </if>
+      <if test="abstracts != null" >
+        abstracts,
+      </if>
+      <if test="result != null" >
+        result,
+      </if>
+      <if test="approach != null" >
+        approach,
+      </if>
+      <if test="background != null" >
+        background,
+      </if>
+      <if test="conclusion != null" >
+        conclusion,
+      </if>
+      <if test="author != null" >
+        author,
+      </if>
+      <if test="source != null" >
+        source,
+      </if>
+      <if test="journal != null" >
+        journal,
+      </if>
+      <if test="pmid != null" >
+        pmid,
+      </if>
+      <if test="sort != null" >
+        sort,
+      </if>
+      <if test="url != null" >
+        url,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="createBy != null" >
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null" >
+        #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null" >
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=CHAR},
+      </if>
+      <if test="remarks != null" >
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null" >
+        #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="abstracts != null" >
+        #{abstracts,jdbcType=VARCHAR},
+      </if>
+      <if test="result != null" >
+        #{result,jdbcType=VARCHAR},
+      </if>
+      <if test="approach != null" >
+        #{approach,jdbcType=VARCHAR},
+      </if>
+      <if test="background != null" >
+        #{background,jdbcType=VARCHAR},
+      </if>
+      <if test="conclusion != null" >
+        #{conclusion,jdbcType=VARCHAR},
+      </if>
+      <if test="author != null" >
+        #{author,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null" >
+        #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="journal != null" >
+        #{journal,jdbcType=VARCHAR},
+      </if>
+      <if test="pmid != null" >
+        #{pmid,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null" >
+        #{sort,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        #{url,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huasheng.pojo.knpojo.KnScientficResearch" >
+    update kn_scientfic_research
+    <set >
+      <if test="createBy != null" >
+        create_by = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null" >
+        update_by = #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null" >
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delFlag != null" >
+        del_flag = #{delFlag,jdbcType=CHAR},
+      </if>
+      <if test="remarks != null" >
+        remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null" >
+        time = #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="abstracts != null" >
+        abstracts = #{abstracts,jdbcType=VARCHAR},
+      </if>
+      <if test="result != null" >
+        result = #{result,jdbcType=VARCHAR},
+      </if>
+      <if test="approach != null" >
+        approach = #{approach,jdbcType=VARCHAR},
+      </if>
+      <if test="background != null" >
+        background = #{background,jdbcType=VARCHAR},
+      </if>
+      <if test="conclusion != null" >
+        conclusion = #{conclusion,jdbcType=VARCHAR},
+      </if>
+      <if test="author != null" >
+        author = #{author,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null" >
+        source = #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="journal != null" >
+        journal = #{journal,jdbcType=VARCHAR},
+      </if>
+      <if test="pmid != null" >
+        pmid = #{pmid,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null" >
+        sort = #{sort,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huasheng.pojo.knpojo.KnScientficResearch" >
+    update kn_scientfic_research
+    set create_by = #{createBy,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_by = #{updateBy,jdbcType=VARCHAR},
+      update_date = #{updateDate,jdbcType=TIMESTAMP},
+      del_flag = #{delFlag,jdbcType=CHAR},
+      remarks = #{remarks,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
+      time = #{time,jdbcType=TIMESTAMP},
+      abstracts = #{abstracts,jdbcType=VARCHAR},
+      result = #{result,jdbcType=VARCHAR},
+      approach = #{approach,jdbcType=VARCHAR},
+      background = #{background,jdbcType=VARCHAR},
+      conclusion = #{conclusion,jdbcType=VARCHAR},
+      author = #{author,jdbcType=VARCHAR},
+      source = #{source,jdbcType=VARCHAR},
+      journal = #{journal,jdbcType=VARCHAR},
+      pmid = #{pmid,jdbcType=VARCHAR},
+      sort = #{sort,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="getKnScientficResearchList" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from kn_scientfic_research
+  </select>
+
+</mapper>

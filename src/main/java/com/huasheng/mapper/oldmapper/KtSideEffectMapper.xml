@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huasheng.dao.olddao.OldKtSideEffectDao" >
+  <resultMap id="BaseResultMap" type="com.huasheng.pojo.oldpojo.OldKtSideEffect" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="umls_concept_id" property="umlsConceptId" jdbcType="VARCHAR" />
+    <result column="meddra_id" property="meddraId" jdbcType="VARCHAR" />
+    <result column="kind_of_term" property="kindOfTerm" jdbcType="VARCHAR" />
+    <result column="side_effect_name" property="sideEffectName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, umls_concept_id, meddra_id, kind_of_term, side_effect_name
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from kt_side_effect
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from kt_side_effect
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.huasheng.pojo.oldpojo.OldKtSideEffect" >
+    insert into kt_side_effect (id, umls_concept_id, meddra_id, 
+      kind_of_term, side_effect_name)
+    values (#{id,jdbcType=VARCHAR}, #{umlsConceptId,jdbcType=VARCHAR}, #{meddraId,jdbcType=VARCHAR}, 
+      #{kindOfTerm,jdbcType=VARCHAR}, #{sideEffectName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.huasheng.pojo.oldpojo.OldKtSideEffect" >
+    insert into kt_side_effect
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="umlsConceptId != null" >
+        umls_concept_id,
+      </if>
+      <if test="meddraId != null" >
+        meddra_id,
+      </if>
+      <if test="kindOfTerm != null" >
+        kind_of_term,
+      </if>
+      <if test="sideEffectName != null" >
+        side_effect_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="umlsConceptId != null" >
+        #{umlsConceptId,jdbcType=VARCHAR},
+      </if>
+      <if test="meddraId != null" >
+        #{meddraId,jdbcType=VARCHAR},
+      </if>
+      <if test="kindOfTerm != null" >
+        #{kindOfTerm,jdbcType=VARCHAR},
+      </if>
+      <if test="sideEffectName != null" >
+        #{sideEffectName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huasheng.pojo.oldpojo.OldKtSideEffect" >
+    update kt_side_effect
+    <set >
+      <if test="umlsConceptId != null" >
+        umls_concept_id = #{umlsConceptId,jdbcType=VARCHAR},
+      </if>
+      <if test="meddraId != null" >
+        meddra_id = #{meddraId,jdbcType=VARCHAR},
+      </if>
+      <if test="kindOfTerm != null" >
+        kind_of_term = #{kindOfTerm,jdbcType=VARCHAR},
+      </if>
+      <if test="sideEffectName != null" >
+        side_effect_name = #{sideEffectName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huasheng.pojo.oldpojo.OldKtSideEffect" >
+    update kt_side_effect
+    set umls_concept_id = #{umlsConceptId,jdbcType=VARCHAR},
+      meddra_id = #{meddraId,jdbcType=VARCHAR},
+      kind_of_term = #{kindOfTerm,jdbcType=VARCHAR},
+      side_effect_name = #{sideEffectName,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+
+  <select id="getOldKtSideEffectList" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from kt_side_effect
+  </select>
+</mapper>

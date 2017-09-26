@@ -85,4 +85,13 @@
     from kt_drug_sequence
     where drug_key = #{drugKey,jdbcType=VARCHAR}
   </select>
+
+  <insert id="insertDrugSequenceList" parameterType="List">
+    insert into kt_drug_sequence (sequence_key, drug_key, drug_id,
+    sequence) VALUES
+    <foreach collection="list" item="item" index="index" separator=",">
+      (#{item.sequenceKey,jdbcType=VARCHAR}, #{item.drugKey,jdbcType=VARCHAR}, #{item.drugId,jdbcType=INTEGER},
+      #{item.sequence,jdbcType=VARCHAR})
+    </foreach>
+  </insert>
 </mapper>

@@ -36,6 +36,14 @@
     from kt_protein
     where protein_key = #{proteinKey,jdbcType=VARCHAR}
   </select>
+
+  <select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from kt_protein
+    where protein_id = #{proteinId,jdbcType=VARCHAR}
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from kt_protein
     where protein_key = #{proteinKey,jdbcType=VARCHAR}
@@ -353,4 +361,26 @@
   <select id="getProteinTranslateMonth" parameterType="Map" resultType="Integer">
     SELECT count(protein_key) from kt_protein where (created_at BETWEEN #{firstTime} and #{currentTime}) AND check_state=#{checkState} and created_way=#{createdWay}
   </select>
+
+
+  <insert id="insertProteinList" parameterType="List">
+    insert into kt_protein (protein_key, gene_key, protein_id,
+    gene_id, entry_name, protein_name,
+    mass, length, function_description,
+    tissue_specificity, tissue_specificity_evidence_id,
+    created_at, created_way, created_by_key,
+    created_by_name, check_state, check_report,
+    checked_by_key, checked_by_name, translate_by_key,
+    translate_by_name) VALUES
+    <foreach collection="list" item="item" index="index" separator=",">
+      (#{item.proteinKey,jdbcType=VARCHAR}, #{item.geneKey,jdbcType=VARCHAR}, #{item.proteinId,jdbcType=VARCHAR},
+      #{item.geneId,jdbcType=INTEGER}, #{item.entryName,jdbcType=VARCHAR}, #{item.proteinName,jdbcType=VARCHAR},
+      #{item.mass,jdbcType=INTEGER}, #{item.length,jdbcType=INTEGER}, #{item.functionDescription,jdbcType=VARCHAR},
+      #{item.tissueSpecificity,jdbcType=VARCHAR}, #{item.tissueSpecificityEvidenceId,jdbcType=INTEGER},
+      #{item.createdAt,jdbcType=BIGINT}, #{item.createdWay,jdbcType=INTEGER}, #{item.createdByKey,jdbcType=CHAR},
+      #{item.createdByName,jdbcType=VARCHAR}, #{item.checkState,jdbcType=INTEGER}, #{item.checkReport,jdbcType=VARCHAR},
+      #{item.checkedByKey,jdbcType=CHAR}, #{item.checkedByName,jdbcType=VARCHAR}, #{item.translateByKey,jdbcType=CHAR},
+      #{item.translateByName,jdbcType=VARCHAR})
+    </foreach>
+  </insert>
 </mapper>

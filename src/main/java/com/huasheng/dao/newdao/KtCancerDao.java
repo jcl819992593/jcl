@@ -50,4 +50,10 @@ public interface KtCancerDao {
     int getCancerCountMonth(Map<String, Object> map);
 
     int deleteAllCancer();
+
+    int insertCancerList(List<KtCancer> list);
+
+    List<KtCancer> getCancerLists();
+
+    List<String> getCancerKeys(List<String> doids);
 }

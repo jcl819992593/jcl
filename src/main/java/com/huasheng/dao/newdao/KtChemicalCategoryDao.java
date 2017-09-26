@@ -30,4 +30,12 @@ public interface KtChemicalCategoryDao {
     int getChemicalMonth(Map<String, Object> map);
 
     int deleteAllChemicalCategory();
+
+    int insertChemicalCategoryList(List<KtChemicalCategory> list);
+
+    KtChemicalCategory selectById(Integer id);
+
+    List<KtChemicalCategory> getChemicalCategoryLists();
+
+    int updateList(List<KtChemicalCategory> list);
 }

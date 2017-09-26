@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huasheng.dao.kndao.KnDrugAliasDao" >
+  <resultMap id="BaseResultMap" type="com.huasheng.pojo.knpojo.KnDrugAlias" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="create_by" property="createBy" jdbcType="VARCHAR" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="update_by" property="updateBy" jdbcType="VARCHAR" />
+    <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+    <result column="del_flag" property="delFlag" jdbcType="CHAR" />
+    <result column="remarks" property="remarks" jdbcType="VARCHAR" />
+    <result column="alias_name" property="aliasName" jdbcType="VARCHAR" />
+    <result column="drug_id" property="drugId" jdbcType="VARCHAR" />
+    <result column="pinyin" property="pinyin" jdbcType="VARCHAR" />
+    <result column="name_cn" property="nameCn" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, create_by, create_date, update_by, update_date, del_flag, remarks, alias_name, 
+    drug_id, pinyin, name_cn
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from kn_drug_alias
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from kn_drug_alias
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.huasheng.pojo.knpojo.KnDrugAlias" >
+    insert into kn_drug_alias (id, create_by, create_date, 
+      update_by, update_date, del_flag, 
+      remarks, alias_name, drug_id, 
+      pinyin, name_cn)
+    values (#{id,jdbcType=VARCHAR}, #{createBy,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, 
+      #{updateBy,jdbcType=VARCHAR}, #{updateDate,jdbcType=TIMESTAMP}, #{delFlag,jdbcType=CHAR}, 
+      #{remarks,jdbcType=VARCHAR}, #{aliasName,jdbcType=VARCHAR}, #{drugId,jdbcType=VARCHAR}, 
+      #{pinyin,jdbcType=VARCHAR}, #{nameCn,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.huasheng.pojo.knpojo.KnDrugAlias" >
+    insert into kn_drug_alias
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="createBy != null" >
+        create_by,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="updateBy != null" >
+        update_by,
+      </if>
+      <if test="updateDate != null" >
+        update_date,
+      </if>
+      <if test="delFlag != null" >
+        del_flag,
+      </if>
+      <if test="remarks != null" >
+        remarks,
+      </if>
+      <if test="aliasName != null" >
+        alias_name,
+      </if>
+      <if test="drugId != null" >
+        drug_id,
+      </if>
+      <if test="pinyin != null" >
+        pinyin,
+      </if>
+      <if test="nameCn != null" >
+        name_cn,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="createBy != null" >
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null" >
+        #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null" >
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=CHAR},
+      </if>
+      <if test="remarks != null" >
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="aliasName != null" >
+        #{aliasName,jdbcType=VARCHAR},
+      </if>
+      <if test="drugId != null" >
+        #{drugId,jdbcType=VARCHAR},
+      </if>
+      <if test="pinyin != null" >
+        #{pinyin,jdbcType=VARCHAR},
+      </if>
+      <if test="nameCn != null" >
+        #{nameCn,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huasheng.pojo.knpojo.KnDrugAlias" >
+    update kn_drug_alias
+    <set >
+      <if test="createBy != null" >
+        create_by = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null" >
+        update_by = #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null" >
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delFlag != null" >
+        del_flag = #{delFlag,jdbcType=CHAR},
+      </if>
+      <if test="remarks != null" >
+        remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="aliasName != null" >
+        alias_name = #{aliasName,jdbcType=VARCHAR},
+      </if>
+      <if test="drugId != null" >
+        drug_id = #{drugId,jdbcType=VARCHAR},
+      </if>
+      <if test="pinyin != null" >
+        pinyin = #{pinyin,jdbcType=VARCHAR},
+      </if>
+      <if test="nameCn != null" >
+        name_cn = #{nameCn,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huasheng.pojo.knpojo.KnDrugAlias" >
+    update kn_drug_alias
+    set create_by = #{createBy,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_by = #{updateBy,jdbcType=VARCHAR},
+      update_date = #{updateDate,jdbcType=TIMESTAMP},
+      del_flag = #{delFlag,jdbcType=CHAR},
+      remarks = #{remarks,jdbcType=VARCHAR},
+      alias_name = #{aliasName,jdbcType=VARCHAR},
+      drug_id = #{drugId,jdbcType=VARCHAR},
+      pinyin = #{pinyin,jdbcType=VARCHAR},
+      name_cn = #{nameCn,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+
+  <select id="getKnDrugAliasList" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from kn_drug_alias
+  </select>
+</mapper>

@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huasheng.dao.olddao.OldKtClinicalTrialDao" >
+  <resultMap id="BaseResultMap" type="com.huasheng.pojo.oldpojo.OldKtClinicalTrial" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="clinical_trial_id" property="clinicalTrialId" jdbcType="VARCHAR" />
+    <result column="synonyms" property="synonyms" jdbcType="VARCHAR" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="cfda" property="cfda" jdbcType="VARCHAR" />
+    <result column="phase" property="phase" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="start_date" property="startDate" jdbcType="VARCHAR" />
+    <result column="countries" property="countries" jdbcType="VARCHAR" />
+    <result column="group_case" property="groupCase" jdbcType="VARCHAR" />
+    <result column="pathological_state" property="pathologicalState" jdbcType="VARCHAR" />
+    <result column="exist_treatment" property="existTreatment" jdbcType="VARCHAR" />
+    <result column="related_gene" property="relatedGene" jdbcType="VARCHAR" />
+    <result column="random" property="random" jdbcType="BIT" />
+    <result column="double_blind" property="doubleBlind" jdbcType="VARCHAR" />
+    <result column="treatment_type" property="treatmentType" jdbcType="VARCHAR" />
+    <result column="pmid" property="pmid" jdbcType="VARCHAR" />
+    <result column="test_center" property="testCenter" jdbcType="VARCHAR" />
+    <result column="organization" property="organization" jdbcType="VARCHAR" />
+    <result column="url" property="url" jdbcType="VARCHAR" />
+    <result column="gene_detection" property="geneDetection" jdbcType="VARCHAR" />
+    <result column="contrast" property="contrast" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, clinical_trial_id, synonyms, title, status, cfda, phase, type, start_date, countries, 
+    group_case, pathological_state, exist_treatment, related_gene, random, double_blind, 
+    treatment_type, pmid, test_center, organization, url, gene_detection, contrast
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from kt_clinical_trial
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from kt_clinical_trial
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.huasheng.pojo.oldpojo.OldKtClinicalTrial" >
+    insert into kt_clinical_trial (id, clinical_trial_id, synonyms, 
+      title, status, cfda, 
+      phase, type, start_date, 
+      countries, group_case, pathological_state, 
+      exist_treatment, related_gene, random, 
+      double_blind, treatment_type, pmid, 
+      test_center, organization, url, 
+      gene_detection, contrast)
+    values (#{id,jdbcType=VARCHAR}, #{clinicalTrialId,jdbcType=VARCHAR}, #{synonyms,jdbcType=VARCHAR}, 
+      #{title,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{cfda,jdbcType=VARCHAR}, 
+      #{phase,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, #{startDate,jdbcType=VARCHAR}, 
+      #{countries,jdbcType=VARCHAR}, #{groupCase,jdbcType=VARCHAR}, #{pathologicalState,jdbcType=VARCHAR}, 
+      #{existTreatment,jdbcType=VARCHAR}, #{relatedGene,jdbcType=VARCHAR}, #{random,jdbcType=BIT}, 
+      #{doubleBlind,jdbcType=VARCHAR}, #{treatmentType,jdbcType=VARCHAR}, #{pmid,jdbcType=VARCHAR}, 
+      #{testCenter,jdbcType=VARCHAR}, #{organization,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, 
+      #{geneDetection,jdbcType=VARCHAR}, #{contrast,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.huasheng.pojo.oldpojo.OldKtClinicalTrial" >
+    insert into kt_clinical_trial
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="clinicalTrialId != null" >
+        clinical_trial_id,
+      </if>
+      <if test="synonyms != null" >
+        synonyms,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="cfda != null" >
+        cfda,
+      </if>
+      <if test="phase != null" >
+        phase,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="startDate != null" >
+        start_date,
+      </if>
+      <if test="countries != null" >
+        countries,
+      </if>
+      <if test="groupCase != null" >
+        group_case,
+      </if>
+      <if test="pathologicalState != null" >
+        pathological_state,
+      </if>
+      <if test="existTreatment != null" >
+        exist_treatment,
+      </if>
+      <if test="relatedGene != null" >
+        related_gene,
+      </if>
+      <if test="random != null" >
+        random,
+      </if>
+      <if test="doubleBlind != null" >
+        double_blind,
+      </if>
+      <if test="treatmentType != null" >
+        treatment_type,
+      </if>
+      <if test="pmid != null" >
+        pmid,
+      </if>
+      <if test="testCenter != null" >
+        test_center,
+      </if>
+      <if test="organization != null" >
+        organization,
+      </if>
+      <if test="url != null" >
+        url,
+      </if>
+      <if test="geneDetection != null" >
+        gene_detection,
+      </if>
+      <if test="contrast != null" >
+        contrast,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="clinicalTrialId != null" >
+        #{clinicalTrialId,jdbcType=VARCHAR},
+      </if>
+      <if test="synonyms != null" >
+        #{synonyms,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="cfda != null" >
+        #{cfda,jdbcType=VARCHAR},
+      </if>
+      <if test="phase != null" >
+        #{phase,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="startDate != null" >
+        #{startDate,jdbcType=VARCHAR},
+      </if>
+      <if test="countries != null" >
+        #{countries,jdbcType=VARCHAR},
+      </if>
+      <if test="groupCase != null" >
+        #{groupCase,jdbcType=VARCHAR},
+      </if>
+      <if test="pathologicalState != null" >
+        #{pathologicalState,jdbcType=VARCHAR},
+      </if>
+      <if test="existTreatment != null" >
+        #{existTreatment,jdbcType=VARCHAR},
+      </if>
+      <if test="relatedGene != null" >
+        #{relatedGene,jdbcType=VARCHAR},
+      </if>
+      <if test="random != null" >
+        #{random,jdbcType=BIT},
+      </if>
+      <if test="doubleBlind != null" >
+        #{doubleBlind,jdbcType=VARCHAR},
+      </if>
+      <if test="treatmentType != null" >
+        #{treatmentType,jdbcType=VARCHAR},
+      </if>
+      <if test="pmid != null" >
+        #{pmid,jdbcType=VARCHAR},
+      </if>
+      <if test="testCenter != null" >
+        #{testCenter,jdbcType=VARCHAR},
+      </if>
+      <if test="organization != null" >
+        #{organization,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="geneDetection != null" >
+        #{geneDetection,jdbcType=VARCHAR},
+      </if>
+      <if test="contrast != null" >
+        #{contrast,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huasheng.pojo.oldpojo.OldKtClinicalTrial" >
+    update kt_clinical_trial
+    <set >
+      <if test="clinicalTrialId != null" >
+        clinical_trial_id = #{clinicalTrialId,jdbcType=VARCHAR},
+      </if>
+      <if test="synonyms != null" >
+        synonyms = #{synonyms,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="cfda != null" >
+        cfda = #{cfda,jdbcType=VARCHAR},
+      </if>
+      <if test="phase != null" >
+        phase = #{phase,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="startDate != null" >
+        start_date = #{startDate,jdbcType=VARCHAR},
+      </if>
+      <if test="countries != null" >
+        countries = #{countries,jdbcType=VARCHAR},
+      </if>
+      <if test="groupCase != null" >
+        group_case = #{groupCase,jdbcType=VARCHAR},
+      </if>
+      <if test="pathologicalState != null" >
+        pathological_state = #{pathologicalState,jdbcType=VARCHAR},
+      </if>
+      <if test="existTreatment != null" >
+        exist_treatment = #{existTreatment,jdbcType=VARCHAR},
+      </if>
+      <if test="relatedGene != null" >
+        related_gene = #{relatedGene,jdbcType=VARCHAR},
+      </if>
+      <if test="random != null" >
+        random = #{random,jdbcType=BIT},
+      </if>
+      <if test="doubleBlind != null" >
+        double_blind = #{doubleBlind,jdbcType=VARCHAR},
+      </if>
+      <if test="treatmentType != null" >
+        treatment_type = #{treatmentType,jdbcType=VARCHAR},
+      </if>
+      <if test="pmid != null" >
+        pmid = #{pmid,jdbcType=VARCHAR},
+      </if>
+      <if test="testCenter != null" >
+        test_center = #{testCenter,jdbcType=VARCHAR},
+      </if>
+      <if test="organization != null" >
+        organization = #{organization,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="geneDetection != null" >
+        gene_detection = #{geneDetection,jdbcType=VARCHAR},
+      </if>
+      <if test="contrast != null" >
+        contrast = #{contrast,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huasheng.pojo.oldpojo.OldKtClinicalTrial" >
+    update kt_clinical_trial
+    set clinical_trial_id = #{clinicalTrialId,jdbcType=VARCHAR},
+      synonyms = #{synonyms,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      cfda = #{cfda,jdbcType=VARCHAR},
+      phase = #{phase,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      start_date = #{startDate,jdbcType=VARCHAR},
+      countries = #{countries,jdbcType=VARCHAR},
+      group_case = #{groupCase,jdbcType=VARCHAR},
+      pathological_state = #{pathologicalState,jdbcType=VARCHAR},
+      exist_treatment = #{existTreatment,jdbcType=VARCHAR},
+      related_gene = #{relatedGene,jdbcType=VARCHAR},
+      random = #{random,jdbcType=BIT},
+      double_blind = #{doubleBlind,jdbcType=VARCHAR},
+      treatment_type = #{treatmentType,jdbcType=VARCHAR},
+      pmid = #{pmid,jdbcType=VARCHAR},
+      test_center = #{testCenter,jdbcType=VARCHAR},
+      organization = #{organization,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR},
+      gene_detection = #{geneDetection,jdbcType=VARCHAR},
+      contrast = #{contrast,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+
+  <select id="getOldKtClinicalTrialList" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from kt_clinical_trial
+  </select>
+</mapper>

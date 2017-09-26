@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huasheng.dao.kndao.KnGeneDao" >
+  <resultMap id="BaseResultMap" type="com.huasheng.pojo.knpojo.KnGene" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="create_by" property="createBy" jdbcType="VARCHAR" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="update_by" property="updateBy" jdbcType="VARCHAR" />
+    <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+    <result column="del_flag" property="delFlag" jdbcType="CHAR" />
+    <result column="remarks" property="remarks" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="position" property="position" jdbcType="VARCHAR" />
+    <result column="gene_type" property="geneType" jdbcType="VARCHAR" />
+    <result column="mutation_frequency" property="mutationFrequency" jdbcType="VARCHAR" />
+    <result column="coded_protein" property="codedProtein" jdbcType="VARCHAR" />
+    <result column="protein_application" property="proteinApplication" jdbcType="VARCHAR" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="alias_name" property="aliasName" jdbcType="VARCHAR" />
+    <result column="picture" property="picture" jdbcType="VARCHAR" />
+    <result column="tumor_phenotype" property="tumorPhenotype" jdbcType="VARCHAR" />
+    <result column="tumor_phenotype_notes" property="tumorPhenotypeNotes" jdbcType="VARCHAR" />
+    <result column="phenotype" property="phenotype" jdbcType="VARCHAR" />
+    <result column="phenotype_notes" property="phenotypeNotes" jdbcType="VARCHAR" />
+    <result column="gene_min_id" property="geneMinId" jdbcType="VARCHAR" />
+    <result column="inheritance_mode" property="inheritanceMode" jdbcType="VARCHAR" />
+    <result column="mode_grade" property="modeGrade" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, create_by, create_date, update_by, update_date, del_flag, remarks, name, position, 
+    gene_type, mutation_frequency, coded_protein, protein_application, description, alias_name, 
+    picture, tumor_phenotype, tumor_phenotype_notes, phenotype, phenotype_notes, gene_min_id, 
+    inheritance_mode, mode_grade
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from kn_gene
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from kn_gene
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.huasheng.pojo.knpojo.KnGene" >
+    insert into kn_gene (id, create_by, create_date, 
+      update_by, update_date, del_flag, 
+      remarks, name, position, 
+      gene_type, mutation_frequency, coded_protein, 
+      protein_application, description, alias_name, 
+      picture, tumor_phenotype, tumor_phenotype_notes, 
+      phenotype, phenotype_notes, gene_min_id, 
+      inheritance_mode, mode_grade)
+    values (#{id,jdbcType=VARCHAR}, #{createBy,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, 
+      #{updateBy,jdbcType=VARCHAR}, #{updateDate,jdbcType=TIMESTAMP}, #{delFlag,jdbcType=CHAR}, 
+      #{remarks,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{position,jdbcType=VARCHAR}, 
+      #{geneType,jdbcType=VARCHAR}, #{mutationFrequency,jdbcType=VARCHAR}, #{codedProtein,jdbcType=VARCHAR}, 
+      #{proteinApplication,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{aliasName,jdbcType=VARCHAR}, 
+      #{picture,jdbcType=VARCHAR}, #{tumorPhenotype,jdbcType=VARCHAR}, #{tumorPhenotypeNotes,jdbcType=VARCHAR}, 
+      #{phenotype,jdbcType=VARCHAR}, #{phenotypeNotes,jdbcType=VARCHAR}, #{geneMinId,jdbcType=VARCHAR}, 
+      #{inheritanceMode,jdbcType=VARCHAR}, #{modeGrade,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.huasheng.pojo.knpojo.KnGene" >
+    insert into kn_gene
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="createBy != null" >
+        create_by,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="updateBy != null" >
+        update_by,
+      </if>
+      <if test="updateDate != null" >
+        update_date,
+      </if>
+      <if test="delFlag != null" >
+        del_flag,
+      </if>
+      <if test="remarks != null" >
+        remarks,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="position != null" >
+        position,
+      </if>
+      <if test="geneType != null" >
+        gene_type,
+      </if>
+      <if test="mutationFrequency != null" >
+        mutation_frequency,
+      </if>
+      <if test="codedProtein != null" >
+        coded_protein,
+      </if>
+      <if test="proteinApplication != null" >
+        protein_application,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+      <if test="aliasName != null" >
+        alias_name,
+      </if>
+      <if test="picture != null" >
+        picture,
+      </if>
+      <if test="tumorPhenotype != null" >
+        tumor_phenotype,
+      </if>
+      <if test="tumorPhenotypeNotes != null" >
+        tumor_phenotype_notes,
+      </if>
+      <if test="phenotype != null" >
+        phenotype,
+      </if>
+      <if test="phenotypeNotes != null" >
+        phenotype_notes,
+      </if>
+      <if test="geneMinId != null" >
+        gene_min_id,
+      </if>
+      <if test="inheritanceMode != null" >
+        inheritance_mode,
+      </if>
+      <if test="modeGrade != null" >
+        mode_grade,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="createBy != null" >
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null" >
+        #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null" >
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=CHAR},
+      </if>
+      <if test="remarks != null" >
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="position != null" >
+        #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="geneType != null" >
+        #{geneType,jdbcType=VARCHAR},
+      </if>
+      <if test="mutationFrequency != null" >
+        #{mutationFrequency,jdbcType=VARCHAR},
+      </if>
+      <if test="codedProtein != null" >
+        #{codedProtein,jdbcType=VARCHAR},
+      </if>
+      <if test="proteinApplication != null" >
+        #{proteinApplication,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="aliasName != null" >
+        #{aliasName,jdbcType=VARCHAR},
+      </if>
+      <if test="picture != null" >
+        #{picture,jdbcType=VARCHAR},
+      </if>
+      <if test="tumorPhenotype != null" >
+        #{tumorPhenotype,jdbcType=VARCHAR},
+      </if>
+      <if test="tumorPhenotypeNotes != null" >
+        #{tumorPhenotypeNotes,jdbcType=VARCHAR},
+      </if>
+      <if test="phenotype != null" >
+        #{phenotype,jdbcType=VARCHAR},
+      </if>
+      <if test="phenotypeNotes != null" >
+        #{phenotypeNotes,jdbcType=VARCHAR},
+      </if>
+      <if test="geneMinId != null" >
+        #{geneMinId,jdbcType=VARCHAR},
+      </if>
+      <if test="inheritanceMode != null" >
+        #{inheritanceMode,jdbcType=VARCHAR},
+      </if>
+      <if test="modeGrade != null" >
+        #{modeGrade,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huasheng.pojo.knpojo.KnGene" >
+    update kn_gene
+    <set >
+      <if test="createBy != null" >
+        create_by = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null" >
+        update_by = #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null" >
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delFlag != null" >
+        del_flag = #{delFlag,jdbcType=CHAR},
+      </if>
+      <if test="remarks != null" >
+        remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="position != null" >
+        position = #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="geneType != null" >
+        gene_type = #{geneType,jdbcType=VARCHAR},
+      </if>
+      <if test="mutationFrequency != null" >
+        mutation_frequency = #{mutationFrequency,jdbcType=VARCHAR},
+      </if>
+      <if test="codedProtein != null" >
+        coded_protein = #{codedProtein,jdbcType=VARCHAR},
+      </if>
+      <if test="proteinApplication != null" >
+        protein_application = #{proteinApplication,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="aliasName != null" >
+        alias_name = #{aliasName,jdbcType=VARCHAR},
+      </if>
+      <if test="picture != null" >
+        picture = #{picture,jdbcType=VARCHAR},
+      </if>
+      <if test="tumorPhenotype != null" >
+        tumor_phenotype = #{tumorPhenotype,jdbcType=VARCHAR},
+      </if>
+      <if test="tumorPhenotypeNotes != null" >
+        tumor_phenotype_notes = #{tumorPhenotypeNotes,jdbcType=VARCHAR},
+      </if>
+      <if test="phenotype != null" >
+        phenotype = #{phenotype,jdbcType=VARCHAR},
+      </if>
+      <if test="phenotypeNotes != null" >
+        phenotype_notes = #{phenotypeNotes,jdbcType=VARCHAR},
+      </if>
+      <if test="geneMinId != null" >
+        gene_min_id = #{geneMinId,jdbcType=VARCHAR},
+      </if>
+      <if test="inheritanceMode != null" >
+        inheritance_mode = #{inheritanceMode,jdbcType=VARCHAR},
+      </if>
+      <if test="modeGrade != null" >
+        mode_grade = #{modeGrade,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huasheng.pojo.knpojo.KnGene" >
+    update kn_gene
+    set create_by = #{createBy,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_by = #{updateBy,jdbcType=VARCHAR},
+      update_date = #{updateDate,jdbcType=TIMESTAMP},
+      del_flag = #{delFlag,jdbcType=CHAR},
+      remarks = #{remarks,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      position = #{position,jdbcType=VARCHAR},
+      gene_type = #{geneType,jdbcType=VARCHAR},
+      mutation_frequency = #{mutationFrequency,jdbcType=VARCHAR},
+      coded_protein = #{codedProtein,jdbcType=VARCHAR},
+      protein_application = #{proteinApplication,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      alias_name = #{aliasName,jdbcType=VARCHAR},
+      picture = #{picture,jdbcType=VARCHAR},
+      tumor_phenotype = #{tumorPhenotype,jdbcType=VARCHAR},
+      tumor_phenotype_notes = #{tumorPhenotypeNotes,jdbcType=VARCHAR},
+      phenotype = #{phenotype,jdbcType=VARCHAR},
+      phenotype_notes = #{phenotypeNotes,jdbcType=VARCHAR},
+      gene_min_id = #{geneMinId,jdbcType=VARCHAR},
+      inheritance_mode = #{inheritanceMode,jdbcType=VARCHAR},
+      mode_grade = #{modeGrade,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+
+  <select id="getKnGeneList" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from kn_gene
+  </select>
+</mapper>

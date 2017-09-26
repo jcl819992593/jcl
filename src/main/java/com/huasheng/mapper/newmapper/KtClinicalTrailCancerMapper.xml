@@ -86,4 +86,13 @@
     where clinical_trial_key = #{clinicalTrialKey,jdbcType=VARCHAR}
 
   </select>
+
+  <insert id="insertList" parameterType="List">
+    insert into kt_clinical_trial_cancer (clinical_trial_key, cancer_key, doid,
+    clinical_trial_id) VALUES
+    <foreach collection="list" item="item" index="index" separator=",">
+      (#{item.clinicalTrialKey,jdbcType=VARCHAR}, #{item.cancerKey,jdbcType=VARCHAR}, #{item.doid,jdbcType=INTEGER},
+      #{item.clinicalTrialId,jdbcType=VARCHAR})
+    </foreach>
+  </insert>
 </mapper>

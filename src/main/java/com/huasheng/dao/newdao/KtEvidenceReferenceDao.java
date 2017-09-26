@@ -2,6 +2,8 @@ package com.huasheng.dao.newdao;
 
 import com.huasheng.pojo.newpojo.KtEvidenceReference;
 
+import java.util.List;
+
 public interface KtEvidenceReferenceDao {
     int deleteByPrimaryKey(String evidenceReferenceKey);
 
@@ -16,4 +18,6 @@ public interface KtEvidenceReferenceDao {
     int updateByPrimaryKey(KtEvidenceReference record);
 
     KtEvidenceReference selectByEvidenceKey(String evidenceKey);
+
+    int insertList(List<KtEvidenceReference> list);
 }

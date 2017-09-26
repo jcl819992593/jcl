@@ -33,6 +33,13 @@
     from kt_gene
     where gene_key = #{geneKey,jdbcType=VARCHAR}
   </select>
+
+  <select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from kt_gene
+    where gene_id = #{geneId,jdbcType=INTEGER} and created_way=3
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from kt_gene
     where gene_key = #{geneKey,jdbcType=VARCHAR}
@@ -380,4 +387,23 @@
   <delete id="deleteAllGene" >
     delete from kt_gene
   </delete>
+
+  <insert id="insertGeneList" parameterType="List">
+    insert into kt_gene (gene_key, gene_id, gene_type,
+    gene_symbol, gene_full_name, entrez_gene_summary,
+    cytogenetic_band, has_cosmic_mutations, cancer_gene,
+    created_at, created_way, created_by_key,
+    created_by_name, check_state, check_report,
+    checked_by_key, checked_by_name, translate_by_key,
+    translate_by_name) VALUES
+    <foreach collection="list" item="item" index="index" separator=",">
+      (#{item.geneKey,jdbcType=VARCHAR}, #{item.geneId,jdbcType=INTEGER}, #{item.geneType,jdbcType=VARCHAR},
+      #{item.geneSymbol,jdbcType=VARCHAR}, #{item.geneFullName,jdbcType=VARCHAR}, #{item.entrezGeneSummary,jdbcType=VARCHAR},
+      #{item.cytogeneticBand,jdbcType=VARCHAR}, #{item.hasCosmicMutations,jdbcType=BIT}, #{item.cancerGene,jdbcType=VARCHAR},
+      #{item.createdAt,jdbcType=BIGINT}, #{item.createdWay,jdbcType=INTEGER}, #{item.createdByKey,jdbcType=CHAR},
+      #{item.createdByName,jdbcType=VARCHAR}, #{item.checkState,jdbcType=INTEGER}, #{item.checkReport,jdbcType=VARCHAR},
+      #{item.checkedByKey,jdbcType=CHAR}, #{item.checkedByName,jdbcType=VARCHAR}, #{item.translateByKey,jdbcType=CHAR},
+      #{item.translateByName,jdbcType=VARCHAR})
+    </foreach>
+  </insert>
 </mapper>

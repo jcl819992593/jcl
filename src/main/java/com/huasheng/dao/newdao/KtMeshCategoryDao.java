@@ -35,4 +35,8 @@ public interface KtMeshCategoryDao {
     List<KtDrugCategory> getMeshCategoryByList(List<KtDrugCategory> list);
 
     int deleteAllMeshCategory();
+
+    int insertMeshCategoryList(List<KtMeshCategory> list);
+
+    KtMeshCategory selectByMeshId(String meshId);
 }

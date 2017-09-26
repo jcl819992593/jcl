@@ -495,4 +495,37 @@
   <delete id="deleteAll" parameterType="java.lang.String" >
     delete from kt_drug_product
   </delete>
+
+  <!--
+  values (#{productKey,jdbcType=VARCHAR}, #{drugKey,jdbcType=VARCHAR}, #{drugId,jdbcType=INTEGER},
+      #{productName,jdbcType=VARCHAR}, #{tradeName,jdbcType=VARCHAR}, #{drugAttribute,jdbcType=VARCHAR},
+      #{dosageForm,jdbcType=VARCHAR}, #{productRoute,jdbcType=VARCHAR}, #{dosageStrength,jdbcType=VARCHAR},
+      #{isMedicalInsurance,jdbcType=BIT}, #{referencePrice,jdbcType=VARCHAR}, #{labeller,jdbcType=VARCHAR},
+      #{generic,jdbcType=BIT}, #{productSource,jdbcType=VARCHAR}, #{country,jdbcType=VARCHAR},
+      #{marketingStart,jdbcType=TIMESTAMP}, #{marketingEnd,jdbcType=TIMESTAMP}, #{packageImage,jdbcType=VARCHAR},
+      #{approved,jdbcType=BIT}, #{createdAt,jdbcType=BIGINT}, #{createdWay,jdbcType=INTEGER},
+      #{createdByKey,jdbcType=CHAR}, #{createdByName,jdbcType=VARCHAR}, #{checkState,jdbcType=INTEGER},
+      #{checkReport,jdbcType=VARCHAR}, #{checkedByKey,jdbcType=CHAR}, #{checkedByName,jdbcType=VARCHAR},
+      #{translateByKey,jdbcType=CHAR}, #{translateByName,jdbcType=VARCHAR})
+  -->
+  <insert id="insertDrugProductList" parameterType="List">
+    insert into kt_drug_product (product_key, drug_key, drug_id,
+    product_name, trade_name, drug_attribute,
+    dosage_form, product_route, dosage_strength,
+    is_medical_insurance, reference_price, labeller,
+    generic, product_source, country,
+    marketing_start, marketing_end, package_image,
+    approved, created_at, created_way,
+    created_by_key, created_by_name, check_state,
+    check_report, checked_by_key, checked_by_name,
+    translate_by_key, translate_by_name) VALUES
+    <foreach collection="list" item="item" index="index" separator=",">
+      (#{item.productKey},#{item.drugKey},#{item.drugId},#{item.productName},#{item.tradeName},
+      #{item.drugAttribute},#{item.dosageForm},#{item.productRoute},#{item.dosageStrength},#{item.isMedicalInsurance},
+      #{item.referencePrice},#{item.labeller},#{item.generic},#{item.productSource},#{item.country},
+      #{item.marketingStart},#{item.marketingEnd},#{item.packageImage},#{item.approved},#{item.createdAt},
+      #{item.createdWay},#{item.createdByKey},#{item.createdByName},#{item.checkState},#{item.checkReport},
+      #{item.checkedByKey},#{item.checkedByName},#{item.translateByKey},#{item.translateByName})
+    </foreach>
+  </insert>
 </mapper>

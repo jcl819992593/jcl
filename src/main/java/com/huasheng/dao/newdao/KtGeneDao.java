@@ -32,4 +32,8 @@ public interface KtGeneDao {
     int getGeneTranslateMonth(Map<String, Object> map);
 
     int deleteAllGene();
+
+    int insertGeneList(List<KtGene> list);
+
+    KtGene selectById(Integer geneId);
 }

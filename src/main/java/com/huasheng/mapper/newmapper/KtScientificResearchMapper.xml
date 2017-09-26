@@ -348,4 +348,25 @@
   <delete id="deleteAllScientificResearch"  >
     delete from kt_scientific_research
   </delete>
+
+  <insert id="insertList" parameterType="List">
+    insert into kt_scientific_research (research_key, scientific_research_id,
+    the_title, the_time, the_abstracts,
+    the_result, the_approach, the_background,
+    the_conclusion, the_author, the_source,
+    the_journal, the_url, the_pmid,
+    the_sort, created_at, created_way,
+    created_by_key, created_by_name, check_state,
+    check_report, checked_by_key, checked_by_name) VALUES
+    <foreach collection="list" item="item" index="index" separator=",">
+      (#{item.researchKey,jdbcType=VARCHAR}, #{item.scientificResearchId,jdbcType=VARCHAR},
+      #{item.theTitle,jdbcType=VARCHAR}, #{item.theTime,jdbcType=TIMESTAMP}, #{item.theAbstracts,jdbcType=VARCHAR},
+      #{item.theResult,jdbcType=VARCHAR}, #{item.theApproach,jdbcType=VARCHAR}, #{item.theBackground,jdbcType=VARCHAR},
+      #{item.theConclusion,jdbcType=VARCHAR}, #{item.theAuthor,jdbcType=VARCHAR}, #{item.theSource,jdbcType=VARCHAR},
+      #{item.theJournal,jdbcType=VARCHAR}, #{item.theUrl,jdbcType=VARCHAR}, #{item.thePmid,jdbcType=VARCHAR},
+      #{item.theSort,jdbcType=VARCHAR}, #{item.createdAt,jdbcType=BIGINT}, #{item.createdWay,jdbcType=INTEGER},
+      #{item.createdByKey,jdbcType=CHAR}, #{item.createdByName,jdbcType=VARCHAR}, #{item.checkState,jdbcType=INTEGER},
+      #{item.checkReport,jdbcType=VARCHAR}, #{item.checkedByKey,jdbcType=CHAR}, #{item.checkedByName,jdbcType=VARCHAR})
+    </foreach>
+  </insert>
 </mapper>

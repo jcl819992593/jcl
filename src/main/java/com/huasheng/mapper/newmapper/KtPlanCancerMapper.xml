@@ -96,4 +96,13 @@
     from kt_plan_cancer
     where medication_plan_key = #{medicationPlanKey,jdbcType=VARCHAR}
   </select>
+
+  <insert id="insertList" parameterType="List">
+    insert into kt_plan_cancer (medication_plan_key, cancer_key, medicine_plan_id,
+    doid, doid_name) VALUES
+    <foreach collection="list" item="item" index="index" separator=",">
+      (#{item.medicationPlanKey,jdbcType=VARCHAR}, #{item.cancerKey,jdbcType=VARCHAR}, #{item.medicinePlanId,jdbcType=INTEGER},
+      #{item.doid,jdbcType=INTEGER}, #{item.doidName,jdbcType=VARCHAR})
+    </foreach>
+  </insert>
 </mapper>

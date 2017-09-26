@@ -22,4 +22,6 @@ public interface KtPlanInstructionDao {
     int insertPlanInstructionList(List<KtPlanInstruction> list);
 
     int deleteByMedicationPlanKey(String medicationPlanKey);
+
+    KtPlanInstruction selectById(Integer instructionId);
 }

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huasheng.dao.olddao.OldKtChemicalClassificationDao" >
+  <resultMap id="BaseResultMap" type="com.huasheng.pojo.oldpojo.OldKtChemicalClassification" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="chemont_id" property="chemontId" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="definition" property="definition" jdbcType="VARCHAR" />
+    <result column="parent_id" property="parentId" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, chemont_id, name, definition, parent_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from kt_chemical_classification
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from kt_chemical_classification
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.huasheng.pojo.oldpojo.OldKtChemicalClassification" >
+    insert into kt_chemical_classification (id, chemont_id, name, 
+      definition, parent_id)
+    values (#{id,jdbcType=VARCHAR}, #{chemontId,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{definition,jdbcType=VARCHAR}, #{parentId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.huasheng.pojo.oldpojo.OldKtChemicalClassification" >
+    insert into kt_chemical_classification
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="chemontId != null" >
+        chemont_id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="definition != null" >
+        definition,
+      </if>
+      <if test="parentId != null" >
+        parent_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="chemontId != null" >
+        #{chemontId,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="definition != null" >
+        #{definition,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null" >
+        #{parentId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huasheng.pojo.oldpojo.OldKtChemicalClassification" >
+    update kt_chemical_classification
+    <set >
+      <if test="chemontId != null" >
+        chemont_id = #{chemontId,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="definition != null" >
+        definition = #{definition,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null" >
+        parent_id = #{parentId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huasheng.pojo.oldpojo.OldKtChemicalClassification" >
+    update kt_chemical_classification
+    set chemont_id = #{chemontId,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      definition = #{definition,jdbcType=VARCHAR},
+      parent_id = #{parentId,jdbcType=INTEGER}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="getChemicalList" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from kt_chemical_classification
+  </select>
+</mapper>

@@ -28,4 +28,6 @@ public interface KtScientificResearchDao {
     int getScientificResearchCountMonth(Map<String, Object> map);
 
     int deleteAllScientificResearch();
+
+    int insertList(List<KtScientificResearch> list);
 }

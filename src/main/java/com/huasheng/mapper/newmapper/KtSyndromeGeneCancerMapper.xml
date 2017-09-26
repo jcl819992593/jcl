@@ -294,4 +294,21 @@
   <delete id="deleteAllSyndrome" >
     delete from kt_syndrome_gene_cancer
   </delete>
+
+  <insert id="insertList" parameterType="List">
+    insert into kt_syndrome_gene_cancer (syndrome_key, en_name, cn_name,
+    short_name, the_description, the_source,
+    created_at, created_way, created_by_key,
+    created_by_name, check_state, check_report,
+    checked_by_key, checked_by_name, translate_by_key,
+    translate_by_name) VALUES
+    <foreach collection="list" item="item" index="index" separator=",">
+      (#{item.syndromeKey,jdbcType=VARCHAR}, #{item.enName,jdbcType=VARCHAR}, #{item.cnName,jdbcType=VARCHAR},
+      #{item.shortName,jdbcType=VARCHAR}, #{item.theDescription,jdbcType=VARCHAR}, #{item.theSource,jdbcType=VARCHAR},
+      #{item.createdAt,jdbcType=BIGINT}, #{item.createdWay,jdbcType=INTEGER}, #{item.createdByKey,jdbcType=CHAR},
+      #{item.createdByName,jdbcType=VARCHAR}, #{item.checkState,jdbcType=INTEGER}, #{item.checkReport,jdbcType=VARCHAR},
+      #{item.checkedByKey,jdbcType=CHAR}, #{item.checkedByName,jdbcType=VARCHAR}, #{item.translateByKey,jdbcType=CHAR},
+      #{item.translateByName,jdbcType=VARCHAR})
+    </foreach>
+  </insert>
 </mapper>

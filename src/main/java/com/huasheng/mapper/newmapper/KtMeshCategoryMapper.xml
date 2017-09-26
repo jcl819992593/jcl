@@ -29,6 +29,14 @@
     from kt_mesh_category
     where mesh_category_key = #{meshCategoryKey,jdbcType=VARCHAR}
   </select>
+
+  <select id="selectByMeshId" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from kt_mesh_category
+    where mesh_id = #{meshId,jdbcType=VARCHAR}
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from kt_mesh_category
     where mesh_category_key = #{meshCategoryKey,jdbcType=VARCHAR}
@@ -247,4 +255,19 @@
   <delete id="deleteAllMeshCategory"  >
     delete from kt_mesh_category
   </delete>
+
+  <insert id="insertMeshCategoryList" parameterType="List">
+    insert into kt_mesh_category (mesh_category_key, mesh_id, category_name,
+    created_at, created_way, created_by_key,
+    created_by_name, check_state, checked_by_key,
+    checked_by_name, translate_by_key, translate_by_name,
+    check_report) VALUES
+    <foreach collection="list" item="item" index="index" separator=",">
+      (#{item.meshCategoryKey,jdbcType=VARCHAR}, #{item.meshId,jdbcType=VARCHAR}, #{item.categoryName,jdbcType=VARCHAR},
+      #{item.createdAt,jdbcType=BIGINT}, #{item.createdWay,jdbcType=INTEGER}, #{item.createdByKey,jdbcType=CHAR},
+      #{item.createdByName,jdbcType=VARCHAR}, #{item.checkState,jdbcType=INTEGER}, #{item.checkedByKey,jdbcType=CHAR},
+      #{item.checkedByName,jdbcType=VARCHAR}, #{item.translateByKey,jdbcType=CHAR}, #{item.translateByName,jdbcType=VARCHAR},
+      #{item.checkReport,jdbcType=LONGVARCHAR})
+    </foreach>
+  </insert>
 </mapper>

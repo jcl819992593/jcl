@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huasheng.dao.olddao.OldKtDrugExternalIdDao" >
+  <resultMap id="BaseResultMap" type="com.huasheng.pojo.oldpojo.OldKtDrugExternalId" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="drug_id" property="drugId" jdbcType="INTEGER" />
+    <result column="source" property="source" jdbcType="VARCHAR" />
+    <result column="external_id" property="externalId" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, drug_id, source, external_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from kt_drug_external_id
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from kt_drug_external_id
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.huasheng.pojo.oldpojo.OldKtDrugExternalId" >
+    insert into kt_drug_external_id (id, drug_id, source, 
+      external_id)
+    values (#{id,jdbcType=VARCHAR}, #{drugId,jdbcType=INTEGER}, #{source,jdbcType=VARCHAR}, 
+      #{externalId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.huasheng.pojo.oldpojo.OldKtDrugExternalId" >
+    insert into kt_drug_external_id
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="drugId != null" >
+        drug_id,
+      </if>
+      <if test="source != null" >
+        source,
+      </if>
+      <if test="externalId != null" >
+        external_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="drugId != null" >
+        #{drugId,jdbcType=INTEGER},
+      </if>
+      <if test="source != null" >
+        #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="externalId != null" >
+        #{externalId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huasheng.pojo.oldpojo.OldKtDrugExternalId" >
+    update kt_drug_external_id
+    <set >
+      <if test="drugId != null" >
+        drug_id = #{drugId,jdbcType=INTEGER},
+      </if>
+      <if test="source != null" >
+        source = #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="externalId != null" >
+        external_id = #{externalId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huasheng.pojo.oldpojo.OldKtDrugExternalId" >
+    update kt_drug_external_id
+    set drug_id = #{drugId,jdbcType=INTEGER},
+      source = #{source,jdbcType=VARCHAR},
+      external_id = #{externalId,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+
+  <select id="getOldKtDrugExternalIdList" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from kt_drug_external_id
+  </select>
+</mapper>

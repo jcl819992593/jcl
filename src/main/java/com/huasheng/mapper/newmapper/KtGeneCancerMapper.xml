@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huasheng.dao.newdao.KtGeneCancerDao" >
+  <resultMap id="BaseResultMap" type="com.huasheng.pojo.newpojo.KtGeneCancer" >
+    <id column="gene_key" property="geneKey" jdbcType="VARCHAR" />
+    <id column="cancer_key" property="cancerKey" jdbcType="VARCHAR" />
+    <result column="gene_id" property="geneId" jdbcType="INTEGER" />
+    <result column="doid" property="doid" jdbcType="INTEGER" />
+    <result column="mutation_frequency" property="mutationFrequency" jdbcType="VARCHAR" />
+    <result column="protein_application" property="proteinApplication" jdbcType="VARCHAR" />
+    <result column="gene_detection_description" property="geneDetectionDescription" jdbcType="VARCHAR" />
+    <result column="gene_detection_description_short" property="geneDetectionDescriptionShort" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    gene_key, cancer_key, gene_id, doid, mutation_frequency, protein_application, gene_detection_description, 
+    gene_detection_description_short
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from kt_gene_cancer
+    where gene_key = #{geneKey,jdbcType=VARCHAR}
+      and cancer_key = #{cancerKey,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.huasheng.pojo.newpojo.KtGeneCancer" >
+    delete from kt_gene_cancer
+    where gene_key = #{geneKey,jdbcType=VARCHAR}
+      and cancer_key = #{cancerKey,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.huasheng.pojo.newpojo.KtGeneCancer" >
+    insert into kt_gene_cancer (gene_key, cancer_key, gene_id, 
+      doid, mutation_frequency, protein_application, 
+      gene_detection_description, gene_detection_description_short
+      )
+    values (#{geneKey,jdbcType=VARCHAR}, #{cancerKey,jdbcType=VARCHAR}, #{geneId,jdbcType=INTEGER}, 
+      #{doid,jdbcType=INTEGER}, #{mutationFrequency,jdbcType=VARCHAR}, #{proteinApplication,jdbcType=VARCHAR}, 
+      #{geneDetectionDescription,jdbcType=VARCHAR}, #{geneDetectionDescriptionShort,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.huasheng.pojo.newpojo.KtGeneCancer" >
+    insert into kt_gene_cancer
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="geneKey != null" >
+        gene_key,
+      </if>
+      <if test="cancerKey != null" >
+        cancer_key,
+      </if>
+      <if test="geneId != null" >
+        gene_id,
+      </if>
+      <if test="doid != null" >
+        doid,
+      </if>
+      <if test="mutationFrequency != null" >
+        mutation_frequency,
+      </if>
+      <if test="proteinApplication != null" >
+        protein_application,
+      </if>
+      <if test="geneDetectionDescription != null" >
+        gene_detection_description,
+      </if>
+      <if test="geneDetectionDescriptionShort != null" >
+        gene_detection_description_short,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="geneKey != null" >
+        #{geneKey,jdbcType=VARCHAR},
+      </if>
+      <if test="cancerKey != null" >
+        #{cancerKey,jdbcType=VARCHAR},
+      </if>
+      <if test="geneId != null" >
+        #{geneId,jdbcType=INTEGER},
+      </if>
+      <if test="doid != null" >
+        #{doid,jdbcType=INTEGER},
+      </if>
+      <if test="mutationFrequency != null" >
+        #{mutationFrequency,jdbcType=VARCHAR},
+      </if>
+      <if test="proteinApplication != null" >
+        #{proteinApplication,jdbcType=VARCHAR},
+      </if>
+      <if test="geneDetectionDescription != null" >
+        #{geneDetectionDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="geneDetectionDescriptionShort != null" >
+        #{geneDetectionDescriptionShort,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huasheng.pojo.newpojo.KtGeneCancer" >
+    update kt_gene_cancer
+    <set >
+      <if test="geneId != null" >
+        gene_id = #{geneId,jdbcType=INTEGER},
+      </if>
+      <if test="doid != null" >
+        doid = #{doid,jdbcType=INTEGER},
+      </if>
+      <if test="mutationFrequency != null" >
+        mutation_frequency = #{mutationFrequency,jdbcType=VARCHAR},
+      </if>
+      <if test="proteinApplication != null" >
+        protein_application = #{proteinApplication,jdbcType=VARCHAR},
+      </if>
+      <if test="geneDetectionDescription != null" >
+        gene_detection_description = #{geneDetectionDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="geneDetectionDescriptionShort != null" >
+        gene_detection_description_short = #{geneDetectionDescriptionShort,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where gene_key = #{geneKey,jdbcType=VARCHAR}
+      and cancer_key = #{cancerKey,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huasheng.pojo.newpojo.KtGeneCancer" >
+    update kt_gene_cancer
+    set gene_id = #{geneId,jdbcType=INTEGER},
+      doid = #{doid,jdbcType=INTEGER},
+      mutation_frequency = #{mutationFrequency,jdbcType=VARCHAR},
+      protein_application = #{proteinApplication,jdbcType=VARCHAR},
+      gene_detection_description = #{geneDetectionDescription,jdbcType=VARCHAR},
+      gene_detection_description_short = #{geneDetectionDescriptionShort,jdbcType=VARCHAR}
+    where gene_key = #{geneKey,jdbcType=VARCHAR}
+      and cancer_key = #{cancerKey,jdbcType=VARCHAR}
+  </update>
+
+  <insert id="insertList" parameterType="List">
+    insert into kt_gene_cancer (gene_key, cancer_key, gene_id,
+    doid, mutation_frequency, protein_application,
+    gene_detection_description, gene_detection_description_short) VALUES
+    <foreach collection="list" item="item" index="index" separator=",">
+      (#{item.geneKey,jdbcType=VARCHAR}, #{item.cancerKey,jdbcType=VARCHAR}, #{item.geneId,jdbcType=INTEGER},
+      #{item.doid,jdbcType=INTEGER}, #{item.mutationFrequency,jdbcType=VARCHAR}, #{item.proteinApplication,jdbcType=VARCHAR},
+      #{item.geneDetectionDescription,jdbcType=VARCHAR}, #{item.geneDetectionDescriptionShort,jdbcType=VARCHAR})
+    </foreach>
+  </insert>
+
+</mapper>

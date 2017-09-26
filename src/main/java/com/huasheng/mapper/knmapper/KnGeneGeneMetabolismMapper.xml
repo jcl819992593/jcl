@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huasheng.dao.kndao.KnGeneGeneMetabolismDao" >
+  <resultMap id="BaseResultMap" type="com.huasheng.pojo.knpojo.KnGeneGeneMetabolism" >
+    <result column="gene_id" property="geneId" jdbcType="VARCHAR" />
+    <result column="gene_metabolism_id" property="geneMetabolismId" jdbcType="VARCHAR" />
+  </resultMap>
+  <insert id="insert" parameterType="com.huasheng.pojo.knpojo.KnGeneGeneMetabolism" >
+    insert into kn_gene_gene_metabolism (gene_id, gene_metabolism_id)
+    values (#{geneId,jdbcType=VARCHAR}, #{geneMetabolismId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.huasheng.pojo.knpojo.KnGeneGeneMetabolism" >
+    insert into kn_gene_gene_metabolism
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="geneId != null" >
+        gene_id,
+      </if>
+      <if test="geneMetabolismId != null" >
+        gene_metabolism_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="geneId != null" >
+        #{geneId,jdbcType=VARCHAR},
+      </if>
+      <if test="geneMetabolismId != null" >
+        #{geneMetabolismId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="getKnGeneGeneMetabolismList" resultType="com.huasheng.pojo.knpojo.KnGeneGeneMetabolism">
+    select
+    gene_id geneId,
+    gene_metabolism_id geneMetabolismId
+    from kn_gene_gene_metabolism
+  </select>
+
+</mapper>

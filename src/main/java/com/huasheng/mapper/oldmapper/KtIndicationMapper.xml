@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huasheng.dao.olddao.OldKtIndicationDao" >
+  <resultMap id="BaseResultMap" type="com.huasheng.pojo.oldpojo.OldKtIndication" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="stitch_compound_id" property="stitchCompoundId" jdbcType="VARCHAR" />
+    <result column="umls_concept_id" property="umlsConceptId" jdbcType="VARCHAR" />
+    <result column="method_of_detection" property="methodOfDetection" jdbcType="VARCHAR" />
+    <result column="concept_name" property="conceptName" jdbcType="VARCHAR" />
+    <result column="meddra_concept_type" property="meddraConceptType" jdbcType="VARCHAR" />
+    <result column="umls_concept_id_of_meddra" property="umlsConceptIdOfMeddra" jdbcType="VARCHAR" />
+    <result column="meddra_concept_name" property="meddraConceptName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, stitch_compound_id, umls_concept_id, method_of_detection, concept_name, meddra_concept_type, 
+    umls_concept_id_of_meddra, meddra_concept_name
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from kt_indication
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from kt_indication
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.huasheng.pojo.oldpojo.OldKtIndication" >
+    insert into kt_indication (id, stitch_compound_id, umls_concept_id, 
+      method_of_detection, concept_name, meddra_concept_type, 
+      umls_concept_id_of_meddra, meddra_concept_name
+      )
+    values (#{id,jdbcType=VARCHAR}, #{stitchCompoundId,jdbcType=VARCHAR}, #{umlsConceptId,jdbcType=VARCHAR}, 
+      #{methodOfDetection,jdbcType=VARCHAR}, #{conceptName,jdbcType=VARCHAR}, #{meddraConceptType,jdbcType=VARCHAR}, 
+      #{umlsConceptIdOfMeddra,jdbcType=VARCHAR}, #{meddraConceptName,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.huasheng.pojo.oldpojo.OldKtIndication" >
+    insert into kt_indication
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="stitchCompoundId != null" >
+        stitch_compound_id,
+      </if>
+      <if test="umlsConceptId != null" >
+        umls_concept_id,
+      </if>
+      <if test="methodOfDetection != null" >
+        method_of_detection,
+      </if>
+      <if test="conceptName != null" >
+        concept_name,
+      </if>
+      <if test="meddraConceptType != null" >
+        meddra_concept_type,
+      </if>
+      <if test="umlsConceptIdOfMeddra != null" >
+        umls_concept_id_of_meddra,
+      </if>
+      <if test="meddraConceptName != null" >
+        meddra_concept_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="stitchCompoundId != null" >
+        #{stitchCompoundId,jdbcType=VARCHAR},
+      </if>
+      <if test="umlsConceptId != null" >
+        #{umlsConceptId,jdbcType=VARCHAR},
+      </if>
+      <if test="methodOfDetection != null" >
+        #{methodOfDetection,jdbcType=VARCHAR},
+      </if>
+      <if test="conceptName != null" >
+        #{conceptName,jdbcType=VARCHAR},
+      </if>
+      <if test="meddraConceptType != null" >
+        #{meddraConceptType,jdbcType=VARCHAR},
+      </if>
+      <if test="umlsConceptIdOfMeddra != null" >
+        #{umlsConceptIdOfMeddra,jdbcType=VARCHAR},
+      </if>
+      <if test="meddraConceptName != null" >
+        #{meddraConceptName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huasheng.pojo.oldpojo.OldKtIndication" >
+    update kt_indication
+    <set >
+      <if test="stitchCompoundId != null" >
+        stitch_compound_id = #{stitchCompoundId,jdbcType=VARCHAR},
+      </if>
+      <if test="umlsConceptId != null" >
+        umls_concept_id = #{umlsConceptId,jdbcType=VARCHAR},
+      </if>
+      <if test="methodOfDetection != null" >
+        method_of_detection = #{methodOfDetection,jdbcType=VARCHAR},
+      </if>
+      <if test="conceptName != null" >
+        concept_name = #{conceptName,jdbcType=VARCHAR},
+      </if>
+      <if test="meddraConceptType != null" >
+        meddra_concept_type = #{meddraConceptType,jdbcType=VARCHAR},
+      </if>
+      <if test="umlsConceptIdOfMeddra != null" >
+        umls_concept_id_of_meddra = #{umlsConceptIdOfMeddra,jdbcType=VARCHAR},
+      </if>
+      <if test="meddraConceptName != null" >
+        meddra_concept_name = #{meddraConceptName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huasheng.pojo.oldpojo.OldKtIndication" >
+    update kt_indication
+    set stitch_compound_id = #{stitchCompoundId,jdbcType=VARCHAR},
+      umls_concept_id = #{umlsConceptId,jdbcType=VARCHAR},
+      method_of_detection = #{methodOfDetection,jdbcType=VARCHAR},
+      concept_name = #{conceptName,jdbcType=VARCHAR},
+      meddra_concept_type = #{meddraConceptType,jdbcType=VARCHAR},
+      umls_concept_id_of_meddra = #{umlsConceptIdOfMeddra,jdbcType=VARCHAR},
+      meddra_concept_name = #{meddraConceptName,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="getOldKtIndicationList" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from kt_indication
+  </select>
+
+</mapper>

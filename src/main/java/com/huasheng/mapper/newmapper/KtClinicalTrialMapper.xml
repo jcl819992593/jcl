@@ -51,6 +51,12 @@
     from kt_clinical_trial
     where clinical_trial_key = #{clinicalTrialKey,jdbcType=VARCHAR}
   </select>
+  <select id="selectByClinicalId" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from kt_clinical_trial
+    where clinical_trial_id = #{clinicalTrialId,jdbcType=VARCHAR}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from kt_clinical_trial
     where clinical_trial_key = #{clinicalTrialKey,jdbcType=VARCHAR}
@@ -555,4 +561,33 @@
   <delete id="deleteAllClinicalTrial"  >
     delete from kt_clinical_trial
   </delete>
+
+  <insert id="insertClinicalTrialList" parameterType="List">
+    insert into kt_clinical_trial (clinical_trial_key, clinical_trial_id,
+    synonyms, the_title, the_status,
+    the_cfda, the_phase, the_type,
+    start_date, countries, group_case,
+    pathological_state, exist_treatment, related_gene,
+    random, double_blind, treatment_type,
+    the_pmid, test_center, test_type,
+    organization, the_url, gene_detection,
+    contract, created_at, created_way,
+    created_by_key, created_by_name, check_state,
+    check_report, checked_by_key, checked_by_name,
+    translate_by_key, translate_by_name) VALUES
+    <foreach collection="list" item="item" index="index" separator=",">
+      (#{item.clinicalTrialKey,jdbcType=VARCHAR}, #{item.clinicalTrialId,jdbcType=VARCHAR},
+      #{item.synonyms,jdbcType=VARCHAR}, #{item.theTitle,jdbcType=VARCHAR}, #{item.theStatus,jdbcType=VARCHAR},
+      #{item.theCfda,jdbcType=VARCHAR}, #{item.thePhase,jdbcType=VARCHAR}, #{item.theType,jdbcType=VARCHAR},
+      #{item.startDate,jdbcType=VARCHAR}, #{item.countries,jdbcType=VARCHAR}, #{item.groupCase,jdbcType=VARCHAR},
+      #{item.pathologicalState,jdbcType=VARCHAR}, #{item.existTreatment,jdbcType=VARCHAR}, #{item.relatedGene,jdbcType=VARCHAR},
+      #{item.random,jdbcType=BIT}, #{item.doubleBlind,jdbcType=VARCHAR}, #{item.treatmentType,jdbcType=VARCHAR},
+      #{item.thePmid,jdbcType=VARCHAR}, #{item.testCenter,jdbcType=VARCHAR}, #{item.testType,jdbcType=VARCHAR},
+      #{item.organization,jdbcType=VARCHAR}, #{item.theUrl,jdbcType=VARCHAR}, #{item.geneDetection,jdbcType=VARCHAR},
+      #{item.contract,jdbcType=VARCHAR}, #{item.createdAt,jdbcType=BIGINT}, #{item.createdWay,jdbcType=INTEGER},
+      #{item.createdByKey,jdbcType=CHAR}, #{item.createdByName,jdbcType=VARCHAR}, #{item.checkState,jdbcType=INTEGER},
+      #{item.checkReport,jdbcType=VARCHAR}, #{item.checkedByKey,jdbcType=CHAR}, #{item.checkedByName,jdbcType=VARCHAR},
+      #{item.translateByKey,jdbcType=CHAR}, #{item.translateByName,jdbcType=VARCHAR})
+    </foreach>
+  </insert>
 </mapper>

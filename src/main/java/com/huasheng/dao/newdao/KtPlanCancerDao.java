@@ -2,6 +2,8 @@ package com.huasheng.dao.newdao;
 
 import com.huasheng.pojo.newpojo.KtPlanCancer;
 
+import java.util.List;
+
 public interface KtPlanCancerDao {
     int deleteByPrimaryKey(KtPlanCancer key);
 
@@ -16,4 +18,6 @@ public interface KtPlanCancerDao {
     int updateByPrimaryKey(KtPlanCancer record);
 
     KtPlanCancer getPlanCancerListByKey(String medicationPlanKey);
+
+    int insertList(List<KtPlanCancer> list);
 }

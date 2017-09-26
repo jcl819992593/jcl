@@ -3,6 +3,8 @@ package com.huasheng.dao.newdao;
 
 import com.huasheng.pojo.newpojo.KtDrugSequence;
 
+import java.util.List;
+
 public interface KtDrugSequenceDao {
     int deleteByPrimaryKey(String sequenceKey);
 
@@ -17,5 +19,7 @@ public interface KtDrugSequenceDao {
     int updateByPrimaryKey(KtDrugSequence record);
 
     KtDrugSequence selectByDrugKey(String drugKey);
+
+    int insertDrugSequenceList(List<KtDrugSequence> list);
 
 }

@@ -60,4 +60,6 @@ public interface KtDrugProductDao {
     int getDrugCountTranslateMonth(Map<String, Object> map);
 
     int deleteAll();
+
+    int insertDrugProductList(List<KtDrugProduct> list);
 }

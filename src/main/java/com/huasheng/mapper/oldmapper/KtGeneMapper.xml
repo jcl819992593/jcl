@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huasheng.dao.olddao.OldKtGeneDao" >
+  <resultMap id="BaseResultMap" type="com.huasheng.pojo.oldpojo.OldKtGene" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="gene_id" property="geneId" jdbcType="INTEGER" />
+    <result column="gene_type" property="geneType" jdbcType="VARCHAR" />
+    <result column="gene_symbol" property="geneSymbol" jdbcType="VARCHAR" />
+    <result column="gene_full_name" property="geneFullName" jdbcType="VARCHAR" />
+    <result column="entrez_gene_summary" property="entrezGeneSummary" jdbcType="VARCHAR" />
+    <result column="cytogenetic_band" property="cytogeneticBand" jdbcType="VARCHAR" />
+    <result column="has_cosmic_mutations" property="hasCosmicMutations" jdbcType="BIT" />
+    <result column="cancer_gene" property="cancerGene" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, gene_id, gene_type, gene_symbol, gene_full_name, entrez_gene_summary, cytogenetic_band, 
+    has_cosmic_mutations, cancer_gene
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from kt_gene
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from kt_gene
+    where gene_id = #{geneId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from kt_gene
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.huasheng.pojo.oldpojo.OldKtGene" >
+    insert into kt_gene (id, gene_id, gene_type, 
+      gene_symbol, gene_full_name, entrez_gene_summary, 
+      cytogenetic_band, has_cosmic_mutations, cancer_gene
+      )
+    values (#{id,jdbcType=VARCHAR}, #{geneId,jdbcType=INTEGER}, #{geneType,jdbcType=VARCHAR}, 
+      #{geneSymbol,jdbcType=VARCHAR}, #{geneFullName,jdbcType=VARCHAR}, #{entrezGeneSummary,jdbcType=VARCHAR}, 
+      #{cytogeneticBand,jdbcType=VARCHAR}, #{hasCosmicMutations,jdbcType=BIT}, #{cancerGene,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.huasheng.pojo.oldpojo.OldKtGene" >
+    insert into kt_gene
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="geneId != null" >
+        gene_id,
+      </if>
+      <if test="geneType != null" >
+        gene_type,
+      </if>
+      <if test="geneSymbol != null" >
+        gene_symbol,
+      </if>
+      <if test="geneFullName != null" >
+        gene_full_name,
+      </if>
+      <if test="entrezGeneSummary != null" >
+        entrez_gene_summary,
+      </if>
+      <if test="cytogeneticBand != null" >
+        cytogenetic_band,
+      </if>
+      <if test="hasCosmicMutations != null" >
+        has_cosmic_mutations,
+      </if>
+      <if test="cancerGene != null" >
+        cancer_gene,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="geneId != null" >
+        #{geneId,jdbcType=INTEGER},
+      </if>
+      <if test="geneType != null" >
+        #{geneType,jdbcType=VARCHAR},
+      </if>
+      <if test="geneSymbol != null" >
+        #{geneSymbol,jdbcType=VARCHAR},
+      </if>
+      <if test="geneFullName != null" >
+        #{geneFullName,jdbcType=VARCHAR},
+      </if>
+      <if test="entrezGeneSummary != null" >
+        #{entrezGeneSummary,jdbcType=VARCHAR},
+      </if>
+      <if test="cytogeneticBand != null" >
+        #{cytogeneticBand,jdbcType=VARCHAR},
+      </if>
+      <if test="hasCosmicMutations != null" >
+        #{hasCosmicMutations,jdbcType=BIT},
+      </if>
+      <if test="cancerGene != null" >
+        #{cancerGene,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huasheng.pojo.oldpojo.OldKtGene" >
+    update kt_gene
+    <set >
+      <if test="geneId != null" >
+        gene_id = #{geneId,jdbcType=INTEGER},
+      </if>
+      <if test="geneType != null" >
+        gene_type = #{geneType,jdbcType=VARCHAR},
+      </if>
+      <if test="geneSymbol != null" >
+        gene_symbol = #{geneSymbol,jdbcType=VARCHAR},
+      </if>
+      <if test="geneFullName != null" >
+        gene_full_name = #{geneFullName,jdbcType=VARCHAR},
+      </if>
+      <if test="entrezGeneSummary != null" >
+        entrez_gene_summary = #{entrezGeneSummary,jdbcType=VARCHAR},
+      </if>
+      <if test="cytogeneticBand != null" >
+        cytogenetic_band = #{cytogeneticBand,jdbcType=VARCHAR},
+      </if>
+      <if test="hasCosmicMutations != null" >
+        has_cosmic_mutations = #{hasCosmicMutations,jdbcType=BIT},
+      </if>
+      <if test="cancerGene != null" >
+        cancer_gene = #{cancerGene,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huasheng.pojo.oldpojo.OldKtGene" >
+    update kt_gene
+    set gene_id = #{geneId,jdbcType=INTEGER},
+      gene_type = #{geneType,jdbcType=VARCHAR},
+      gene_symbol = #{geneSymbol,jdbcType=VARCHAR},
+      gene_full_name = #{geneFullName,jdbcType=VARCHAR},
+      entrez_gene_summary = #{entrezGeneSummary,jdbcType=VARCHAR},
+      cytogenetic_band = #{cytogeneticBand,jdbcType=VARCHAR},
+      has_cosmic_mutations = #{hasCosmicMutations,jdbcType=BIT},
+      cancer_gene = #{cancerGene,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+
+  <select id="getOldGeneList" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from kt_gene
+  </select>
+
+</mapper>

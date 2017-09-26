@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huasheng.dao.olddao.OldKtDrugProductEtnIdDao" >
+  <resultMap id="BaseResultMap" type="com.huasheng.pojo.oldpojo.OldKtDrugProductEtnId" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="dpd_id" property="dpdId" jdbcType="VARCHAR" />
+    <result column="ndc_id" property="ndcId" jdbcType="VARCHAR" />
+    <result column="ndc_product_code" property="ndcProductCode" jdbcType="VARCHAR" />
+    <result column="cfda_id" property="cfdaId" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, dpd_id, ndc_id, ndc_product_code, cfda_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from kt_drug_product_etn_id
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from kt_drug_product_etn_id
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.huasheng.pojo.oldpojo.OldKtDrugProductEtnId" >
+    insert into kt_drug_product_etn_id (id, dpd_id, ndc_id, 
+      ndc_product_code, cfda_id)
+    values (#{id,jdbcType=VARCHAR}, #{dpdId,jdbcType=VARCHAR}, #{ndcId,jdbcType=VARCHAR}, 
+      #{ndcProductCode,jdbcType=VARCHAR}, #{cfdaId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.huasheng.pojo.oldpojo.OldKtDrugProductEtnId" >
+    insert into kt_drug_product_etn_id
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="dpdId != null" >
+        dpd_id,
+      </if>
+      <if test="ndcId != null" >
+        ndc_id,
+      </if>
+      <if test="ndcProductCode != null" >
+        ndc_product_code,
+      </if>
+      <if test="cfdaId != null" >
+        cfda_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="dpdId != null" >
+        #{dpdId,jdbcType=VARCHAR},
+      </if>
+      <if test="ndcId != null" >
+        #{ndcId,jdbcType=VARCHAR},
+      </if>
+      <if test="ndcProductCode != null" >
+        #{ndcProductCode,jdbcType=VARCHAR},
+      </if>
+      <if test="cfdaId != null" >
+        #{cfdaId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huasheng.pojo.oldpojo.OldKtDrugProductEtnId" >
+    update kt_drug_product_etn_id
+    <set >
+      <if test="dpdId != null" >
+        dpd_id = #{dpdId,jdbcType=VARCHAR},
+      </if>
+      <if test="ndcId != null" >
+        ndc_id = #{ndcId,jdbcType=VARCHAR},
+      </if>
+      <if test="ndcProductCode != null" >
+        ndc_product_code = #{ndcProductCode,jdbcType=VARCHAR},
+      </if>
+      <if test="cfdaId != null" >
+        cfda_id = #{cfdaId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huasheng.pojo.oldpojo.OldKtDrugProductEtnId" >
+    update kt_drug_product_etn_id
+    set dpd_id = #{dpdId,jdbcType=VARCHAR},
+      ndc_id = #{ndcId,jdbcType=VARCHAR},
+      ndc_product_code = #{ndcProductCode,jdbcType=VARCHAR},
+      cfda_id = #{cfdaId,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="getOldKtDrugProductEtnIdList" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from kt_drug_product_etn_id
+  </select>
+
+</mapper>

@@ -27,4 +27,8 @@ public interface KtMedicationPlanDao {
     int getMedicationPlanCountMonth(Map<String, Object> map);
 
     int deleteAllMedicationPlan();
+
+    int insertMedicationPlanList(List<KtMedicationPlan> list);
+
+    KtMedicationPlan selectById(Integer medicinePlanId);
 }

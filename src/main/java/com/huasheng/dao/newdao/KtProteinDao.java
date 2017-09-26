@@ -30,4 +30,8 @@ public interface KtProteinDao {
     KtProtein getProteinByGeneKey(String geneKey);
 
     int getProteinTranslateMonth(Map<String, Object> map);
+
+    int insertProteinList(List<KtProtein> list);
+
+    KtProtein selectById(String proteinId);
 }
