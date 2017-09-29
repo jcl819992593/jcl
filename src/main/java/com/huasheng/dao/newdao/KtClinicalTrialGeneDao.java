@@ -3,6 +3,8 @@ package com.huasheng.dao.newdao;
 
 import com.huasheng.pojo.newpojo.KtClinicalTrialGene;
 
+import java.util.List;
+
 public interface KtClinicalTrialGeneDao {
     int deleteByPrimaryKey(KtClinicalTrialGene key);
 
@@ -17,4 +19,6 @@ public interface KtClinicalTrialGeneDao {
     int updateByPrimaryKey(KtClinicalTrialGene record);
 
     KtClinicalTrialGene getClinicalTrialByClinicalTrialKey(String clinicalTrialKey);
+
+    int insertList(List<KtClinicalTrialGene> ktClinicalTrialGeneList);
 }

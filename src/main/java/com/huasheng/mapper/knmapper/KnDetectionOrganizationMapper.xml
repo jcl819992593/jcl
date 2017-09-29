@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huasheng.dao.kndao.KnDetectionOrganizationDao" >
+  <resultMap id="BaseResultMap" type="com.huasheng.pojo.knpojo.KnDetectionOrganization" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="detection_organization_name" property="detectionOrganizationName" jdbcType="VARCHAR" />
+    <result column="detection_sample" property="detectionSample" jdbcType="VARCHAR" />
+    <result column="detection_method" property="detectionMethod" jdbcType="VARCHAR" />
+    <result column="detection_prices" property="detectionPrices" jdbcType="DOUBLE" />
+    <result column="create_by" property="createBy" jdbcType="VARCHAR" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="update_by" property="updateBy" jdbcType="VARCHAR" />
+    <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+    <result column="del_flag" property="delFlag" jdbcType="CHAR" />
+    <result column="remarks" property="remarks" jdbcType="VARCHAR" />
+    <result column="detection_id" property="detectionId" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, detection_organization_name, detection_sample, detection_method, detection_prices, 
+    create_by, create_date, update_by, update_date, del_flag, remarks, detection_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from kn_detection_organization
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from kn_detection_organization
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.huasheng.pojo.knpojo.KnDetectionOrganization" >
+    insert into kn_detection_organization (id, detection_organization_name, detection_sample, 
+      detection_method, detection_prices, create_by, 
+      create_date, update_by, update_date, 
+      del_flag, remarks, detection_id
+      )
+    values (#{id,jdbcType=VARCHAR}, #{detectionOrganizationName,jdbcType=VARCHAR}, #{detectionSample,jdbcType=VARCHAR}, 
+      #{detectionMethod,jdbcType=VARCHAR}, #{detectionPrices,jdbcType=DOUBLE}, #{createBy,jdbcType=VARCHAR}, 
+      #{createDate,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=VARCHAR}, #{updateDate,jdbcType=TIMESTAMP}, 
+      #{delFlag,jdbcType=CHAR}, #{remarks,jdbcType=VARCHAR}, #{detectionId,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.huasheng.pojo.knpojo.KnDetectionOrganization" >
+    insert into kn_detection_organization
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="detectionOrganizationName != null" >
+        detection_organization_name,
+      </if>
+      <if test="detectionSample != null" >
+        detection_sample,
+      </if>
+      <if test="detectionMethod != null" >
+        detection_method,
+      </if>
+      <if test="detectionPrices != null" >
+        detection_prices,
+      </if>
+      <if test="createBy != null" >
+        create_by,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="updateBy != null" >
+        update_by,
+      </if>
+      <if test="updateDate != null" >
+        update_date,
+      </if>
+      <if test="delFlag != null" >
+        del_flag,
+      </if>
+      <if test="remarks != null" >
+        remarks,
+      </if>
+      <if test="detectionId != null" >
+        detection_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="detectionOrganizationName != null" >
+        #{detectionOrganizationName,jdbcType=VARCHAR},
+      </if>
+      <if test="detectionSample != null" >
+        #{detectionSample,jdbcType=VARCHAR},
+      </if>
+      <if test="detectionMethod != null" >
+        #{detectionMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="detectionPrices != null" >
+        #{detectionPrices,jdbcType=DOUBLE},
+      </if>
+      <if test="createBy != null" >
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null" >
+        #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null" >
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=CHAR},
+      </if>
+      <if test="remarks != null" >
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="detectionId != null" >
+        #{detectionId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huasheng.pojo.knpojo.KnDetectionOrganization" >
+    update kn_detection_organization
+    <set >
+      <if test="detectionOrganizationName != null" >
+        detection_organization_name = #{detectionOrganizationName,jdbcType=VARCHAR},
+      </if>
+      <if test="detectionSample != null" >
+        detection_sample = #{detectionSample,jdbcType=VARCHAR},
+      </if>
+      <if test="detectionMethod != null" >
+        detection_method = #{detectionMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="detectionPrices != null" >
+        detection_prices = #{detectionPrices,jdbcType=DOUBLE},
+      </if>
+      <if test="createBy != null" >
+        create_by = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null" >
+        update_by = #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null" >
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delFlag != null" >
+        del_flag = #{delFlag,jdbcType=CHAR},
+      </if>
+      <if test="remarks != null" >
+        remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="detectionId != null" >
+        detection_id = #{detectionId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huasheng.pojo.knpojo.KnDetectionOrganization" >
+    update kn_detection_organization
+    set detection_organization_name = #{detectionOrganizationName,jdbcType=VARCHAR},
+      detection_sample = #{detectionSample,jdbcType=VARCHAR},
+      detection_method = #{detectionMethod,jdbcType=VARCHAR},
+      detection_prices = #{detectionPrices,jdbcType=DOUBLE},
+      create_by = #{createBy,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_by = #{updateBy,jdbcType=VARCHAR},
+      update_date = #{updateDate,jdbcType=TIMESTAMP},
+      del_flag = #{delFlag,jdbcType=CHAR},
+      remarks = #{remarks,jdbcType=VARCHAR},
+      detection_id = #{detectionId,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+
+  <select id="getOrganizationList" resultMap="BaseResultMap"  >
+    select
+    <include refid="Base_Column_List" />
+    from kn_detection_organization
+  </select>
+</mapper>

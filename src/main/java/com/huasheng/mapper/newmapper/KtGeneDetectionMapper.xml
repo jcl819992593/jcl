@@ -344,4 +344,23 @@
   <select id="getDeneDetectionCountMonth" parameterType="Map" resultType="Integer">
       select count(detection_key) from kt_gene_detection where (created_at BETWEEN #{firstTime} and #{currentTime}) AND check_state=#{checkState} and created_way=#{createdWay}
   </select>
+  <insert id="insertList" parameterType="List" >
+    insert into kt_gene_detection (detection_key, detection_name, detection_content,
+    detection_significance, detection_price,
+    detection_brokerage, detection_description,
+    created_at, created_way, created_by_key,
+    created_by_name, check_state, check_report,
+    checked_by_key, checked_by_name, translate_by_key,
+    translate_by_name)
+    values
+     <foreach collection="list" index="index" item="item" separator=",">
+     (#{item.detectionKey,jdbcType=VARCHAR}, #{item.detectionName,jdbcType=VARCHAR}, #{item.detectionContent,jdbcType=VARCHAR},
+    #{item.detectionSignificance,jdbcType=VARCHAR}, #{item.detectionPrice,jdbcType=INTEGER},
+    #{item.detectionBrokerage,jdbcType=INTEGER}, #{item.detectionDescription,jdbcType=VARCHAR},
+    #{item.createdAt,jdbcType=BIGINT}, #{item.createdWay,jdbcType=INTEGER}, #{item.createdByKey,jdbcType=CHAR},
+    #{item.createdByName,jdbcType=VARCHAR}, #{item.checkState,jdbcType=INTEGER}, #{item.checkReport,jdbcType=VARCHAR},
+    #{item.checkedByKey,jdbcType=CHAR}, #{item.checkedByName,jdbcType=VARCHAR}, #{item.translateByKey,jdbcType=CHAR},
+    #{item.translateByName,jdbcType=VARCHAR})
+     </foreach>
+  </insert>
 </mapper>

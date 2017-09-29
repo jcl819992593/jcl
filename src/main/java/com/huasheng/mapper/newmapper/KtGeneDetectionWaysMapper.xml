@@ -118,4 +118,7 @@
     WHERE kgdw.detection_key=#{detectionKey,jdbcType=VARCHAR}
     GROUP BY kgdw.detection_way_key
   </select>
+  <select id="getCount" resultType="Integer">
+       SELECT count(*) from kt_gene_detection_ways
+  </select>
 </mapper>

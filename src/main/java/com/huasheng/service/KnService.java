@@ -73,4 +73,28 @@ public interface KnService {
      * @return
      */
     List<KnGeneMetabolism> getKnGeneMetabolismList();
+
+    /**
+     * 临床试验
+     * @return
+     */
+    List<KnClinicalTrials> getKnClinicalTrialsList();
+    List<KnClinicalTrialsGene> getKnClinicalTrialsGeneList();
+    List<KnClinicalTrialsCancer> getKnClinicalTrialsCancerList();
+    List<KnClinicalTrialsDrug> getKnClinicalTrialsDrugList();
+
+    /**
+     * 基因检测
+     * @return
+     */
+    List<KnDetectionItem> getKnDetectionItem();
+    List<KnDetectionitemCancer> getKnDetectionitemCancerList();
+    List<KnDetectionitemDrug> getKnDetectionitemDrugList();
+    List<KnDetectionSubitem> getKnDetectionSubitemList();
+
+    List<KnDetectionSubitemCancer> getKnDetectionCancerListNew();
+
+    List<KnDetectionOrganization> getKnDetectionOrganizationList();
+
+    List<KnDetectionitemDetectionitemorganization> getItemOrganizationList();
 }

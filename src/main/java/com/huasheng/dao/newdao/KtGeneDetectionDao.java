@@ -29,4 +29,6 @@ public interface KtGeneDetectionDao {
     int deleteAllDetection();
 
     int getDeneDetectionCountMonth(Map<String, Object> map);
+
+    int insertList(List<KtGeneDetection> ktGeneDetectionList);
 }

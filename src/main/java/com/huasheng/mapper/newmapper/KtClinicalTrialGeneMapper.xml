@@ -85,4 +85,13 @@
     from kt_clinical_trial_gene
     where clinical_trial_key = #{clinicalTrialKey,jdbcType=VARCHAR}
   </select>
+  <insert id="insertList" parameterType="List" >
+    insert into kt_clinical_trial_gene (clinical_trial_key, gene_key, clinical_trial_id,
+    gene_id) values
+    <foreach collection="list" index="index" item="item" separator=",">
+      (#{item.clinicalTrialKey,jdbcType=VARCHAR}, #{item.geneKey,jdbcType=VARCHAR}, #{item.clinicalTrialId,jdbcType=VARCHAR},
+    #{item.geneId,jdbcType=INTEGER})
+    </foreach>
+  </insert>
+
 </mapper>

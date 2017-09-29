@@ -23,4 +23,6 @@ public interface KtGeneDetectionWaysDao {
     void deleteByDetectionKey(String detectionKey);
 
     List<Map<String,Object>> getWaysList(String detectionKey);
+
+    int getCount();
 }

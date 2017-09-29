@@ -124,6 +124,23 @@ public class NewDBServiceImpl implements NewDBService {
     private KtKeggPathwayDao keggPathwayDao;
     @Autowired
     private KtGeneKeggPathwayDao geneKeggPathwayDao;
+    @Autowired
+    private KtClinicalTrialGeneDao ktClinicalTrialGeneDao;
+    @Autowired
+    private KtCancerDao ktCancerDao;
+    @Autowired
+    private KtClinicalTrialCancerDao ktClinicalTrialCancerDao;
+    @Autowired
+    private KtDrugClinicalTrialDao ktDrugClinicalTrialDao;
+    @Autowired
+    private KtGeneDetectionDao ktGeneDetectionDao;
+    @Autowired
+    private KtGeneDetectionCancerRefDao ktGeneDetectionCancerRefDao;
+    @Autowired
+    private KtGeneDetectionDrugRefDao ktGeneDetectionDrugRefDao;
+    @Autowired
+    private KtGeneDetectionWaysDao ktGeneDetectionWaysDao;
+
 
     @Override
     public int insertDrugList(List<KnDrug> knDrugList) {
@@ -1444,6 +1461,233 @@ public class NewDBServiceImpl implements NewDBService {
             }
         }
         return keggPathways==null||keggPathways.size()==0?0:keggPathwayDao.insertList(keggPathways);
+    }
+
+    @Override
+    public int insertKtClinicalTrials(List<KnClinicalTrials> clinicalTrialsList) {
+        DbcontextHolder.setDbType("newDataSource");
+        List<KtClinicalTrial> ktClinicalTrialsList=new ArrayList<KtClinicalTrial>();
+        for(KnClinicalTrials knClinicalTrials:clinicalTrialsList){
+            KtClinicalTrial ktClinicalTrial=clinicalTrialDao.selectByPrimaryKey(knClinicalTrials.getId());
+            if(ktClinicalTrial==null){
+               KtClinicalTrial ktClinicalTrial2=new KtClinicalTrial();
+               ktClinicalTrial2.setClinicalTrialKey(knClinicalTrials.getId());
+               ktClinicalTrial2.setClinicalTrialId("0");
+               ktClinicalTrial2.setTheTitle(knClinicalTrials.getTestName());
+               ktClinicalTrial2.setTheCfda(knClinicalTrials.getCfda());
+               ktClinicalTrial2.setThePhase(knClinicalTrials.getFda());
+               ktClinicalTrial2.setTheType(knClinicalTrials.getTrialType());
+               ktClinicalTrial2.setGroupCase(knClinicalTrials.getGroupCase());
+               ktClinicalTrial2.setPathologicalState(knClinicalTrials.getPathologicalState());
+               ktClinicalTrial2.setExistTreatment(knClinicalTrials.getExistTreatment());
+               if(!StringUtils.isEmpty(knClinicalTrials.getTrialRandom())&& knClinicalTrials.getTrialRandom().equals("随机")){
+                   ktClinicalTrial2.setRandom(true);
+               }
+               if(!StringUtils.isEmpty(knClinicalTrials.getTrialRandom())&& knClinicalTrials.getTrialRandom().equals("非随机")){
+                    ktClinicalTrial2.setRandom(false);
+               }
+               ktClinicalTrial2.setDoubleBlind(knClinicalTrials.getDoubleBlind());
+               ktClinicalTrial2.setTreatmentType(knClinicalTrials.getTreatType());
+               ktClinicalTrial2.setThePmid(knClinicalTrials.getPmid());
+               ktClinicalTrial2.setTestCenter(knClinicalTrials.getTrialCenter());
+               ktClinicalTrial2.setOrganization(knClinicalTrials.getTrialOrganization());
+               ktClinicalTrial2.setTheUrl(knClinicalTrials.getLink());
+               ktClinicalTrial2.setGeneDetection(knClinicalTrials.getGeneTest());
+               ktClinicalTrial2.setContract(knClinicalTrials.getTrialCompare());
+               ktClinicalTrial2.setCreatedAt(System.currentTimeMillis());
+               ktClinicalTrial2.setCreatedWay(createdWay);
+               ktClinicalTrial2.setCheckState(checkState);
+               ktClinicalTrialsList.add(ktClinicalTrial2);
+            }
+        }
+        return ktClinicalTrialsList==null||ktClinicalTrialsList.size()==0?0:clinicalTrialDao.insertClinicalTrialList(ktClinicalTrialsList);
+    }
+
+    @Override
+    public int insertKnKnClinicalTrialsGene(List<KnClinicalTrialsGene> clinicalTrialsGenesList) {
+        DbcontextHolder.setDbType("newDataSource");
+        List<KtClinicalTrialGene> ktClinicalTrialGeneList=new ArrayList<KtClinicalTrialGene>();
+        for(KnClinicalTrialsGene knClinicalTrialsGene:clinicalTrialsGenesList){
+            KtGene gene = geneDao.selectByPrimaryKey(knClinicalTrialsGene.getGeneId());
+            KtClinicalTrial ktClinicalTrial=clinicalTrialDao.selectByPrimaryKey(knClinicalTrialsGene.getClinicalTrialsId());
+            if(gene!=null&&ktClinicalTrial!=null){
+                KtClinicalTrialGene ktClinicalTrialGene=new KtClinicalTrialGene();
+                ktClinicalTrialGene.setClinicalTrialKey(knClinicalTrialsGene.getClinicalTrialsId());
+                ktClinicalTrialGene.setclinicalTrialId(ktClinicalTrial.getClinicalTrialId());
+                ktClinicalTrialGene.setGeneId(gene.getGeneId());
+                ktClinicalTrialGene.setGeneKey(knClinicalTrialsGene.getGeneId());
+                ktClinicalTrialGeneList.add(ktClinicalTrialGene);
+            }
+        }
+        return ktClinicalTrialGeneList==null||ktClinicalTrialGeneList.size()==0?0:ktClinicalTrialGeneDao.insertList(ktClinicalTrialGeneList);
+    }
+
+    @Override
+    public int insertKnClinicalTrailCancerList(List<KnClinicalTrialsCancer> knClinicalTrialsCancerList) {
+        DbcontextHolder.setDbType("newDataSource");
+        List<KtClinicalTrialCancer> ktClinicalTrialCancerList=new ArrayList<KtClinicalTrialCancer>();
+        for(KnClinicalTrialsCancer knClinicalTrialsCancer:knClinicalTrialsCancerList){
+            KtClinicalTrial ktClinicalTrial=clinicalTrialDao.selectByPrimaryKey(knClinicalTrialsCancer.getClinicalTrialsId());
+            KtCancer ktCancer=ktCancerDao.selectByPrimaryKey(knClinicalTrialsCancer.getCancerId());
+            if(ktCancer!=null && ktClinicalTrial!=null){
+                KtClinicalTrialCancer ktClinicalTrialCancer=new KtClinicalTrialCancer();
+                ktClinicalTrialCancer.setCancerKey(knClinicalTrialsCancer.getCancerId());
+                ktClinicalTrialCancer.setDoid(Integer.valueOf(ktCancer.getDoid()));
+                ktClinicalTrialCancer.setclinicalTrialId(ktClinicalTrial.getClinicalTrialId());
+                ktClinicalTrialCancer.setClinicalTrialKey(knClinicalTrialsCancer.getClinicalTrialsId());
+                ktClinicalTrialCancerList.add(ktClinicalTrialCancer);
+            }
+        }
+        return ktClinicalTrialCancerList==null||ktClinicalTrialCancerList.size()==0?0:ktClinicalTrialCancerDao.insertList(ktClinicalTrialCancerList);
+    }
+
+    @Override
+    public int insertKnClinicalTrialsDrugList(List<KnClinicalTrialsDrug> knClinicalTrialsDrugList) {
+        DbcontextHolder.setDbType("newDataSource");
+        List<KtDrugClinicalTrial> ktDrugClinicalTrialList=new ArrayList<KtDrugClinicalTrial>();
+        for(KnClinicalTrialsDrug knClinicalTrialsDrug:knClinicalTrialsDrugList){
+            KtClinicalTrial ktClinicalTrial=clinicalTrialDao.selectByPrimaryKey(knClinicalTrialsDrug.getClinicalTrialsId());
+            KtDrug ktDrug=drugDao.selectByPrimaryKey(knClinicalTrialsDrug.getDrugId());
+            if(ktClinicalTrial!=null&&ktDrug!=null){
+                KtDrugClinicalTrial ktDrugClinicalTrial=new KtDrugClinicalTrial();
+                ktDrugClinicalTrial.setDrugKey(knClinicalTrialsDrug.getDrugId());
+                ktDrugClinicalTrial.setDrugId(ktDrug.getDrugId());
+                ktDrugClinicalTrial.setClinicalTrialKey(knClinicalTrialsDrug.getClinicalTrialsId());
+                ktDrugClinicalTrial.setClinicalTrialId(ktClinicalTrial.getClinicalTrialId());
+                ktDrugClinicalTrialList.add(ktDrugClinicalTrial);
+            }
+        }
+        return ktDrugClinicalTrialList==null||ktDrugClinicalTrialList.size()==0?0:ktDrugClinicalTrialDao.insertList(ktDrugClinicalTrialList);
+    }
+
+    @Override
+    public int insertKnDetectionItemList(List<KnDetectionItem> knDetectionItemList) {
+        DbcontextHolder.setDbType("newDataSource");
+        List<KtGeneDetection> ktGeneDetectionList=new ArrayList<KtGeneDetection>();
+        for(KnDetectionItem knDetectionItem:knDetectionItemList){
+           KtGeneDetection ktGeneDetection=ktGeneDetectionDao.selectByPrimaryKey(knDetectionItem.getId());
+           if(ktGeneDetection==null){
+               KtGeneDetection ktGeneDetection1=new KtGeneDetection();
+               ktGeneDetection1.setDetectionKey(knDetectionItem.getId());
+               ktGeneDetection1.setDetectionName(knDetectionItem.getDetectionItemName());
+               if(knDetectionItem.getKnDetectionSubitemList()!=null){
+                   StringBuffer sf=new StringBuffer();
+                   StringBuffer sf2=new StringBuffer();
+                   for(int i=0;i<knDetectionItem.getKnDetectionSubitemList().size();i++){
+                     if(knDetectionItem.getKnDetectionSubitemList().get(i)!=null){
+                         sf.append(",").append(knDetectionItem.getKnDetectionSubitemList().get(i).getDetectContent());
+                         sf2.append(",").append(knDetectionItem.getKnDetectionSubitemList().get(i).getDetectionSignificance());
+                     }
+                   }
+                   if(!StringUtils.isEmpty(sf.toString())){
+                       ktGeneDetection1.setDetectionContent(sf.deleteCharAt(0).toString());
+                   }
+                   if(!StringUtils.isEmpty(sf2.toString())){
+                       ktGeneDetection1.setDetectionSignificance(sf2.deleteCharAt(0).toString());
+                   }
+
+               }
+               ktGeneDetection1.setCreatedAt(System.currentTimeMillis());
+               ktGeneDetection1.setCreatedWay(createdWay);
+               ktGeneDetection1.setCheckState(checkState);
+               ktGeneDetectionList.add(ktGeneDetection1);
+           }
+        }
+        return ktGeneDetectionList==null||ktGeneDetectionList.size()==0?0:ktGeneDetectionDao.insertList(ktGeneDetectionList);
+    }
+
+    @Override
+    public int insertKnDetectionitemCancerList(List<KnDetectionitemCancer> knDetectionitemCancerList) {
+        DbcontextHolder.setDbType("newDataSource");
+        List<KtGeneDetectionCancerRef> ktGeneDetectionCancerRefList=new ArrayList<KtGeneDetectionCancerRef>();
+        for(KnDetectionitemCancer knDetectionitemCancer:knDetectionitemCancerList){
+            KtCancer ktCancer=ktCancerDao.selectByPrimaryKey(knDetectionitemCancer.getCancerId());
+            KtGeneDetection ktGeneDetection=ktGeneDetectionDao.selectByPrimaryKey(knDetectionitemCancer.getDetectionitemId());
+            if(ktCancer!=null&&ktGeneDetection!=null){
+               KtGeneDetectionCancerRef ktGeneDetectionCancerRef=new KtGeneDetectionCancerRef();
+               ktGeneDetectionCancerRef.setCancerKey(knDetectionitemCancer.getCancerId());
+               ktGeneDetectionCancerRef.setDetectionKey(knDetectionitemCancer.getDetectionitemId());
+                ktGeneDetectionCancerRefList.add(ktGeneDetectionCancerRef);
+            }
+        }
+        if(ktGeneDetectionCancerRefList!=null){
+            int i=ktGeneDetectionCancerRefDao.getKtGeneDetectionCancerRefCount();
+            if(i==ktGeneDetectionCancerRefList.size()){
+                return i;
+            }
+        }
+        int i= ktGeneDetectionCancerRefList==null?0:ktGeneDetectionCancerRefDao.insertMore(ktGeneDetectionCancerRefList);
+        return i;
+    }
+
+    @Override
+    public int insertKnDetectionitemDrugList(List<KnDetectionitemDrug> knDetectionitemDrugList) {
+        DbcontextHolder.setDbType("newDataSource");
+        List<KtGeneDetectionDrugRef> ktGeneDetectionDrugRefList=new ArrayList<KtGeneDetectionDrugRef>();
+        for(KnDetectionitemDrug knDetectionitemDrug:knDetectionitemDrugList){
+            KtGeneDetection ktGeneDetection=ktGeneDetectionDao.selectByPrimaryKey(knDetectionitemDrug.getDetectionitemId());
+            KtDrug ktDrug=drugDao.selectByPrimaryKey(knDetectionitemDrug.getDrugId());
+            if(ktGeneDetection!=null&&ktDrug!=null){
+                KtGeneDetectionDrugRef ktGeneDetectionDrugRef=new KtGeneDetectionDrugRef();
+                ktGeneDetectionDrugRef.setDetectionKey(knDetectionitemDrug.getDetectionitemId());
+                ktGeneDetectionDrugRef.setDrugKey(knDetectionitemDrug.getDrugId());
+                ktGeneDetectionDrugRefList.add(ktGeneDetectionDrugRef);
+            }
+        }
+        if(ktGeneDetectionDrugRefList!=null){
+            int i=ktGeneDetectionDrugRefDao.getCount();
+            if(i==ktGeneDetectionDrugRefList.size()){
+                return i;
+            }
+        }
+        return ktGeneDetectionDrugRefList==null?0:ktGeneDetectionDrugRefDao.insertMore(ktGeneDetectionDrugRefList);
+    }
+
+    @Override
+    public int insertKnDetectionItemSubList(List<KnDetectionSubitem> knDetectionSubitemList) {
+        DbcontextHolder.setDbType("newDataSource");
+        List<KtGeneDetection> ktGeneDetectionList=new ArrayList<KtGeneDetection>();
+        for(KnDetectionSubitem knDetectionSubitem:knDetectionSubitemList){
+            KtGeneDetection ktGeneDetection=ktGeneDetectionDao.selectByPrimaryKey(knDetectionSubitem.getId());
+            if(ktGeneDetection==null){
+                KtGeneDetection ktGeneDetection1=new KtGeneDetection();
+                ktGeneDetection1.setDetectionKey(knDetectionSubitem.getId());
+                ktGeneDetection1.setDetectionName(knDetectionSubitem.getDetectionSubitemName());
+
+                ktGeneDetection1.setDetectionContent(knDetectionSubitem.getDetectContent());
+                ktGeneDetection1.setDetectionSignificance(knDetectionSubitem.getDetectionSignificance());
+
+                ktGeneDetection1.setCreatedAt(System.currentTimeMillis());
+                ktGeneDetection1.setCreatedWay(createdWay);
+                ktGeneDetection1.setCheckState(checkState);
+                ktGeneDetectionList.add(ktGeneDetection1);
+            }
+        }
+        return ktGeneDetectionList==null||ktGeneDetectionList.size()==0?0:ktGeneDetectionDao.insertList(ktGeneDetectionList);
+
+    }
+
+    @Override
+    public int insertItemOrganization(List<KnDetectionitemDetectionitemorganization> knDetectionitemDetectionitemorganizationList) {
+        DbcontextHolder.setDbType("newDataSource");
+        List<KtGeneDetectionWays> ktGeneDetectionWaysList=new ArrayList<KtGeneDetectionWays>();
+        for(KnDetectionitemDetectionitemorganization itemorganization:knDetectionitemDetectionitemorganizationList){
+            KtGeneDetection ktGeneDetection=ktGeneDetectionDao.selectByPrimaryKey(itemorganization.getDetectionitemId());
+            //KtGeneDetectionWays ktGeneDetectionWays=ktGeneDetectionWaysDao.selectByPrimaryKey(itemorganization.getDetectionitemorganizationId());
+            if(ktGeneDetection!=null){
+                KtGeneDetectionWays ktGeneDetectionWays1=new KtGeneDetectionWays();
+                ktGeneDetectionWays1.setDetectionKey(itemorganization.getDetectionitemId());
+                ktGeneDetectionWays1.setDetectionWayKey(itemorganization.getDetectionitemorganizationId());
+                ktGeneDetectionWaysList.add(ktGeneDetectionWays1);
+            }
+        }
+        if(ktGeneDetectionWaysList!=null){
+            int i=ktGeneDetectionWaysDao.getCount();
+            if(i==ktGeneDetectionWaysList.size()){
+                return i;
+            }
+        }
+        return ktGeneDetectionWaysList==null||ktGeneDetectionWaysList.size()==0?0:ktGeneDetectionWaysDao.insertMore(ktGeneDetectionWaysList);
     }
 
     /**

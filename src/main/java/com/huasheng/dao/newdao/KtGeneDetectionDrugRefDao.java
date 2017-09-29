@@ -14,4 +14,6 @@ public interface KtGeneDetectionDrugRefDao {
     void deleteByDetectionKey(String detectionKey);
 
     int insertMore(List<KtGeneDetectionDrugRef> detectionDrugRefList);
+
+    int getCount();
 }

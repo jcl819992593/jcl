@@ -44,4 +44,8 @@
     delete from kt_gene_detection_cancer_ref
     where detection_key = #{detectionKey,jdbcType=VARCHAR}
   </delete>
+  <select id="getKtGeneDetectionCancerRefCount" resultType="Integer">
+    SELECT count(*) from kt_gene_detection_cancer_ref
+  </select>
+
 </mapper>

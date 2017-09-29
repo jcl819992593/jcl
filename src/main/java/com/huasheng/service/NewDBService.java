@@ -1,8 +1,6 @@
 package com.huasheng.service;
 
 import com.huasheng.pojo.knpojo.*;
-import com.huasheng.pojo.newpojo.KtEvidenceDrug;
-import com.huasheng.pojo.newpojo.KtSyndromeCancer;
 import com.huasheng.pojo.oldpojo.*;
 
 import java.util.List;
@@ -166,4 +164,28 @@ public interface NewDBService {
     int insertKtSyndromeGene(List<KnInheritedTumorSyndromeGene> inheritedTumorSyndromeGeneList);
 
     int insertktKeggPathWay(List<KnGeneMetabolism> geneMetabolismList);
+
+
+    /**
+     * 临床试验
+     * @param clinicalTrialsList
+     * @return
+     */
+    int insertKtClinicalTrials(List<KnClinicalTrials> clinicalTrialsList);
+    int insertKnKnClinicalTrialsGene(List<KnClinicalTrialsGene> clinicalTrialsGenesList);
+    int insertKnClinicalTrailCancerList(List<KnClinicalTrialsCancer> knClinicalTrialsCancerList);
+    int insertKnClinicalTrialsDrugList(List<KnClinicalTrialsDrug> knClinicalTrialsDrugList);
+
+    /**
+     * 基因检测
+     * @param knDetectionItemList
+     * @return
+     */
+    int insertKnDetectionItemList(List<KnDetectionItem> knDetectionItemList);
+    int insertKnDetectionitemCancerList(List<KnDetectionitemCancer> knDetectionitemCancerList);
+    int insertKnDetectionitemDrugList(List<KnDetectionitemDrug> knDetectionitemDrugList);
+
+    int insertKnDetectionItemSubList(List<KnDetectionSubitem> knDetectionSubitemList);
+
+    int insertItemOrganization(List<KnDetectionitemDetectionitemorganization> knDetectionitemDetectionitemorganizationList);
 }

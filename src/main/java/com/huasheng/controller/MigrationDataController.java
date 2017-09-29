@@ -1,6 +1,7 @@
 package com.huasheng.controller;
 
 import com.huasheng.pojo.knpojo.*;
+import com.huasheng.pojo.newpojo.KtGeneDetection;
 import com.huasheng.pojo.oldpojo.*;
 import com.huasheng.service.KnService;
 import com.huasheng.service.NewDBService;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -60,10 +62,38 @@ public class MigrationDataController {
             //List<KnGeneCancer> geneCancerList = knService.getKnGeneCancerList();
             //num = newDBService.insertKnGeneCancer(geneCancerList);
 
-            List<KnGeneGeneMetabolism> geneGeneMetabolismList = knService.getKnGeneGeneMetabolismList();
-            num = newDBService.insertKtGeneKeggPathway(geneGeneMetabolismList);
+           /*   List<KnGeneGeneMetabolism> geneGeneMetabolismList = knService.getKnGeneGeneMetabolismList();
+            num = newDBService.insertKtGeneKeggPathway(geneGeneMetabolismList);*/
+            //临床试验
+           /*  List<KnClinicalTrials> clinicalTrialsList=knService.getKnClinicalTrialsList();
+             num=newDBService.insertKtClinicalTrials(clinicalTrialsList);*/
 
-            //List<KnDocument> documentList = knService.getKnDocumentList();
+             /*List<KnClinicalTrialsGene> clinicalTrialsGenesList=knService.getKnClinicalTrialsGeneList();
+             num=newDBService.insertKnKnClinicalTrialsGene(clinicalTrialsGenesList);*/
+
+            /*List<KnClinicalTrialsCancer> knClinicalTrialsCancerList=knService.getKnClinicalTrialsCancerList();
+            num=newDBService.insertKnClinicalTrailCancerList(knClinicalTrialsCancerList);*/
+
+           /*  List<KnClinicalTrialsDrug> knClinicalTrialsDrugList=knService.getKnClinicalTrialsDrugList();
+            num=newDBService.insertKnClinicalTrialsDrugList(knClinicalTrialsDrugList);*/
+            //基因检测
+
+            List<KnDetectionItem> knDetectionItemList=knService.getKnDetectionItem();
+            num=newDBService.insertKnDetectionItemList(knDetectionItemList);
+
+            List<KnDetectionitemDrug> knDetectionitemDrugList=knService.getKnDetectionitemDrugList();
+            num=newDBService.insertKnDetectionitemDrugList(knDetectionitemDrugList);
+
+            List<KnDetectionitemCancer> knDetectionitemCancerList=knService.getKnDetectionitemCancerList();
+            num=newDBService.insertKnDetectionitemCancerList(knDetectionitemCancerList);
+
+            List<KnDetectionitemDetectionitemorganization> knDetectionitemDetectionitemorganizationList=knService.getItemOrganizationList();
+            num=newDBService.insertItemOrganization(knDetectionitemDetectionitemorganizationList);
+
+          //  List<KnDetectionItem> knDetectionItemList=knService.getKnDetectionItem();
+
+
+             //List<KnDocument> documentList = knService.getKnDocumentList();
             //num = newDBService.insertKnDocumentList(documentList);
 
             //List<OldKtIndication> indicationList = oldService.getOlcIndicationList(i);

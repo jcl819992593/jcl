@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huasheng.dao.kndao.KnClinicalTrialsDao" >
+  <resultMap id="BaseResultMap" type="com.huasheng.pojo.knpojo.KnClinicalTrials" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="test_name" property="testName" jdbcType="VARCHAR" />
+    <result column="test_area" property="testArea" jdbcType="VARCHAR" />
+    <result column="group_case" property="groupCase" jdbcType="VARCHAR" />
+    <result column="pathological_state" property="pathologicalState" jdbcType="VARCHAR" />
+    <result column="exist_treatment" property="existTreatment" jdbcType="VARCHAR" />
+    <result column="gene_test" property="geneTest" jdbcType="VARCHAR" />
+    <result column="treatment_plan" property="treatmentPlan" jdbcType="VARCHAR" />
+    <result column="test_result" property="testResult" jdbcType="VARCHAR" />
+    <result column="test_conclusion" property="testConclusion" jdbcType="VARCHAR" />
+    <result column="link" property="link" jdbcType="VARCHAR" />
+    <result column="create_by" property="createBy" jdbcType="VARCHAR" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="update_by" property="updateBy" jdbcType="VARCHAR" />
+    <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+    <result column="del_flag" property="delFlag" jdbcType="CHAR" />
+    <result column="remarks" property="remarks" jdbcType="VARCHAR" />
+    <result column="fda" property="fda" jdbcType="VARCHAR" />
+    <result column="cfda" property="cfda" jdbcType="VARCHAR" />
+    <result column="nccn_grade" property="nccnGrade" jdbcType="VARCHAR" />
+    <result column="trial_random" property="trialRandom" jdbcType="VARCHAR" />
+    <result column="double_blind" property="doubleBlind" jdbcType="VARCHAR" />
+    <result column="trial_compare" property="trialCompare" jdbcType="VARCHAR" />
+    <result column="trial_type" property="trialType" jdbcType="VARCHAR" />
+    <result column="trial_center" property="trialCenter" jdbcType="VARCHAR" />
+    <result column="trial_organization" property="trialOrganization" jdbcType="VARCHAR" />
+    <result column="pmid" property="pmid" jdbcType="VARCHAR" />
+    <result column="nct_code" property="nctCode" jdbcType="VARCHAR" />
+    <result column="trial_alias" property="trialAlias" jdbcType="VARCHAR" />
+    <result column="treat_type" property="treatType" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, test_name, test_area, group_case, pathological_state, exist_treatment, gene_test, 
+    treatment_plan, test_result, test_conclusion, link, create_by, create_date, update_by, 
+    update_date, del_flag, remarks, fda, cfda, nccn_grade, trial_random, double_blind, 
+    trial_compare, trial_type, trial_center, trial_organization, pmid, nct_code, trial_alias, 
+    treat_type
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from kn_clinical_trials
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from kn_clinical_trials
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.huasheng.pojo.knpojo.KnClinicalTrials" >
+    insert into kn_clinical_trials (id, test_name, test_area, 
+      group_case, pathological_state, exist_treatment, 
+      gene_test, treatment_plan, test_result, 
+      test_conclusion, link, create_by, 
+      create_date, update_by, update_date, 
+      del_flag, remarks, fda, 
+      cfda, nccn_grade, trial_random, 
+      double_blind, trial_compare, trial_type, 
+      trial_center, trial_organization, pmid, 
+      nct_code, trial_alias, treat_type
+      )
+    values (#{id,jdbcType=VARCHAR}, #{testName,jdbcType=VARCHAR}, #{testArea,jdbcType=VARCHAR}, 
+      #{groupCase,jdbcType=VARCHAR}, #{pathologicalState,jdbcType=VARCHAR}, #{existTreatment,jdbcType=VARCHAR}, 
+      #{geneTest,jdbcType=VARCHAR}, #{treatmentPlan,jdbcType=VARCHAR}, #{testResult,jdbcType=VARCHAR}, 
+      #{testConclusion,jdbcType=VARCHAR}, #{link,jdbcType=VARCHAR}, #{createBy,jdbcType=VARCHAR}, 
+      #{createDate,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=VARCHAR}, #{updateDate,jdbcType=TIMESTAMP}, 
+      #{delFlag,jdbcType=CHAR}, #{remarks,jdbcType=VARCHAR}, #{fda,jdbcType=VARCHAR}, 
+      #{cfda,jdbcType=VARCHAR}, #{nccnGrade,jdbcType=VARCHAR}, #{trialRandom,jdbcType=VARCHAR}, 
+      #{doubleBlind,jdbcType=VARCHAR}, #{trialCompare,jdbcType=VARCHAR}, #{trialType,jdbcType=VARCHAR}, 
+      #{trialCenter,jdbcType=VARCHAR}, #{trialOrganization,jdbcType=VARCHAR}, #{pmid,jdbcType=VARCHAR}, 
+      #{nctCode,jdbcType=VARCHAR}, #{trialAlias,jdbcType=VARCHAR}, #{treatType,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.huasheng.pojo.knpojo.KnClinicalTrials" >
+    insert into kn_clinical_trials
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="testName != null" >
+        test_name,
+      </if>
+      <if test="testArea != null" >
+        test_area,
+      </if>
+      <if test="groupCase != null" >
+        group_case,
+      </if>
+      <if test="pathologicalState != null" >
+        pathological_state,
+      </if>
+      <if test="existTreatment != null" >
+        exist_treatment,
+      </if>
+      <if test="geneTest != null" >
+        gene_test,
+      </if>
+      <if test="treatmentPlan != null" >
+        treatment_plan,
+      </if>
+      <if test="testResult != null" >
+        test_result,
+      </if>
+      <if test="testConclusion != null" >
+        test_conclusion,
+      </if>
+      <if test="link != null" >
+        link,
+      </if>
+      <if test="createBy != null" >
+        create_by,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="updateBy != null" >
+        update_by,
+      </if>
+      <if test="updateDate != null" >
+        update_date,
+      </if>
+      <if test="delFlag != null" >
+        del_flag,
+      </if>
+      <if test="remarks != null" >
+        remarks,
+      </if>
+      <if test="fda != null" >
+        fda,
+      </if>
+      <if test="cfda != null" >
+        cfda,
+      </if>
+      <if test="nccnGrade != null" >
+        nccn_grade,
+      </if>
+      <if test="trialRandom != null" >
+        trial_random,
+      </if>
+      <if test="doubleBlind != null" >
+        double_blind,
+      </if>
+      <if test="trialCompare != null" >
+        trial_compare,
+      </if>
+      <if test="trialType != null" >
+        trial_type,
+      </if>
+      <if test="trialCenter != null" >
+        trial_center,
+      </if>
+      <if test="trialOrganization != null" >
+        trial_organization,
+      </if>
+      <if test="pmid != null" >
+        pmid,
+      </if>
+      <if test="nctCode != null" >
+        nct_code,
+      </if>
+      <if test="trialAlias != null" >
+        trial_alias,
+      </if>
+      <if test="treatType != null" >
+        treat_type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="testName != null" >
+        #{testName,jdbcType=VARCHAR},
+      </if>
+      <if test="testArea != null" >
+        #{testArea,jdbcType=VARCHAR},
+      </if>
+      <if test="groupCase != null" >
+        #{groupCase,jdbcType=VARCHAR},
+      </if>
+      <if test="pathologicalState != null" >
+        #{pathologicalState,jdbcType=VARCHAR},
+      </if>
+      <if test="existTreatment != null" >
+        #{existTreatment,jdbcType=VARCHAR},
+      </if>
+      <if test="geneTest != null" >
+        #{geneTest,jdbcType=VARCHAR},
+      </if>
+      <if test="treatmentPlan != null" >
+        #{treatmentPlan,jdbcType=VARCHAR},
+      </if>
+      <if test="testResult != null" >
+        #{testResult,jdbcType=VARCHAR},
+      </if>
+      <if test="testConclusion != null" >
+        #{testConclusion,jdbcType=VARCHAR},
+      </if>
+      <if test="link != null" >
+        #{link,jdbcType=VARCHAR},
+      </if>
+      <if test="createBy != null" >
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null" >
+        #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null" >
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=CHAR},
+      </if>
+      <if test="remarks != null" >
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="fda != null" >
+        #{fda,jdbcType=VARCHAR},
+      </if>
+      <if test="cfda != null" >
+        #{cfda,jdbcType=VARCHAR},
+      </if>
+      <if test="nccnGrade != null" >
+        #{nccnGrade,jdbcType=VARCHAR},
+      </if>
+      <if test="trialRandom != null" >
+        #{trialRandom,jdbcType=VARCHAR},
+      </if>
+      <if test="doubleBlind != null" >
+        #{doubleBlind,jdbcType=VARCHAR},
+      </if>
+      <if test="trialCompare != null" >
+        #{trialCompare,jdbcType=VARCHAR},
+      </if>
+      <if test="trialType != null" >
+        #{trialType,jdbcType=VARCHAR},
+      </if>
+      <if test="trialCenter != null" >
+        #{trialCenter,jdbcType=VARCHAR},
+      </if>
+      <if test="trialOrganization != null" >
+        #{trialOrganization,jdbcType=VARCHAR},
+      </if>
+      <if test="pmid != null" >
+        #{pmid,jdbcType=VARCHAR},
+      </if>
+      <if test="nctCode != null" >
+        #{nctCode,jdbcType=VARCHAR},
+      </if>
+      <if test="trialAlias != null" >
+        #{trialAlias,jdbcType=VARCHAR},
+      </if>
+      <if test="treatType != null" >
+        #{treatType,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huasheng.pojo.knpojo.KnClinicalTrials" >
+    update kn_clinical_trials
+    <set >
+      <if test="testName != null" >
+        test_name = #{testName,jdbcType=VARCHAR},
+      </if>
+      <if test="testArea != null" >
+        test_area = #{testArea,jdbcType=VARCHAR},
+      </if>
+      <if test="groupCase != null" >
+        group_case = #{groupCase,jdbcType=VARCHAR},
+      </if>
+      <if test="pathologicalState != null" >
+        pathological_state = #{pathologicalState,jdbcType=VARCHAR},
+      </if>
+      <if test="existTreatment != null" >
+        exist_treatment = #{existTreatment,jdbcType=VARCHAR},
+      </if>
+      <if test="geneTest != null" >
+        gene_test = #{geneTest,jdbcType=VARCHAR},
+      </if>
+      <if test="treatmentPlan != null" >
+        treatment_plan = #{treatmentPlan,jdbcType=VARCHAR},
+      </if>
+      <if test="testResult != null" >
+        test_result = #{testResult,jdbcType=VARCHAR},
+      </if>
+      <if test="testConclusion != null" >
+        test_conclusion = #{testConclusion,jdbcType=VARCHAR},
+      </if>
+      <if test="link != null" >
+        link = #{link,jdbcType=VARCHAR},
+      </if>
+      <if test="createBy != null" >
+        create_by = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null" >
+        update_by = #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null" >
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delFlag != null" >
+        del_flag = #{delFlag,jdbcType=CHAR},
+      </if>
+      <if test="remarks != null" >
+        remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="fda != null" >
+        fda = #{fda,jdbcType=VARCHAR},
+      </if>
+      <if test="cfda != null" >
+        cfda = #{cfda,jdbcType=VARCHAR},
+      </if>
+      <if test="nccnGrade != null" >
+        nccn_grade = #{nccnGrade,jdbcType=VARCHAR},
+      </if>
+      <if test="trialRandom != null" >
+        trial_random = #{trialRandom,jdbcType=VARCHAR},
+      </if>
+      <if test="doubleBlind != null" >
+        double_blind = #{doubleBlind,jdbcType=VARCHAR},
+      </if>
+      <if test="trialCompare != null" >
+        trial_compare = #{trialCompare,jdbcType=VARCHAR},
+      </if>
+      <if test="trialType != null" >
+        trial_type = #{trialType,jdbcType=VARCHAR},
+      </if>
+      <if test="trialCenter != null" >
+        trial_center = #{trialCenter,jdbcType=VARCHAR},
+      </if>
+      <if test="trialOrganization != null" >
+        trial_organization = #{trialOrganization,jdbcType=VARCHAR},
+      </if>
+      <if test="pmid != null" >
+        pmid = #{pmid,jdbcType=VARCHAR},
+      </if>
+      <if test="nctCode != null" >
+        nct_code = #{nctCode,jdbcType=VARCHAR},
+      </if>
+      <if test="trialAlias != null" >
+        trial_alias = #{trialAlias,jdbcType=VARCHAR},
+      </if>
+      <if test="treatType != null" >
+        treat_type = #{treatType,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huasheng.pojo.knpojo.KnClinicalTrials" >
+    update kn_clinical_trials
+    set test_name = #{testName,jdbcType=VARCHAR},
+      test_area = #{testArea,jdbcType=VARCHAR},
+      group_case = #{groupCase,jdbcType=VARCHAR},
+      pathological_state = #{pathologicalState,jdbcType=VARCHAR},
+      exist_treatment = #{existTreatment,jdbcType=VARCHAR},
+      gene_test = #{geneTest,jdbcType=VARCHAR},
+      treatment_plan = #{treatmentPlan,jdbcType=VARCHAR},
+      test_result = #{testResult,jdbcType=VARCHAR},
+      test_conclusion = #{testConclusion,jdbcType=VARCHAR},
+      link = #{link,jdbcType=VARCHAR},
+      create_by = #{createBy,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_by = #{updateBy,jdbcType=VARCHAR},
+      update_date = #{updateDate,jdbcType=TIMESTAMP},
+      del_flag = #{delFlag,jdbcType=CHAR},
+      remarks = #{remarks,jdbcType=VARCHAR},
+      fda = #{fda,jdbcType=VARCHAR},
+      cfda = #{cfda,jdbcType=VARCHAR},
+      nccn_grade = #{nccnGrade,jdbcType=VARCHAR},
+      trial_random = #{trialRandom,jdbcType=VARCHAR},
+      double_blind = #{doubleBlind,jdbcType=VARCHAR},
+      trial_compare = #{trialCompare,jdbcType=VARCHAR},
+      trial_type = #{trialType,jdbcType=VARCHAR},
+      trial_center = #{trialCenter,jdbcType=VARCHAR},
+      trial_organization = #{trialOrganization,jdbcType=VARCHAR},
+      pmid = #{pmid,jdbcType=VARCHAR},
+      nct_code = #{nctCode,jdbcType=VARCHAR},
+      trial_alias = #{trialAlias,jdbcType=VARCHAR},
+      treat_type = #{treatType,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="getKnClinicalTrialsList"  resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from kn_clinical_trials
+  </select>
+</mapper>
